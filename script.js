@@ -2,12 +2,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
   const header = document.querySelector("header");
   const hamburger = document.querySelector(".hamburger");
+  const navLinks = document.querySelector(".nav-links");
 
   /************************************************
-   * 1. Transparent Header only on Mobile
+   * 1. Transparent Header on Mobile Scroll
    ***********************************************/
   window.addEventListener("scroll", () => {
-    // Only apply transparency if screen <= 768
     if (window.innerWidth <= 768) {
       if (window.scrollY > 50) {
         header.classList.add("mobile-scrolled");
@@ -24,9 +24,8 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   /************************************************
-   * 2. Hamburger Overlay
+   * 2. Hamburger Overlay (Partial Screen)
    ***********************************************/
-  const navLinks = document.querySelector(".nav-links");
   let overlay = document.createElement("div");
   overlay.classList.add("mobile-nav-overlay");
   document.body.appendChild(overlay);
@@ -46,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   /************************************************
-   * 3. Mobile "Shop" & "Contribute" Timed Popup
+   * 3. "Shop & Contribute" Popup - Show Once
    ***********************************************/
   let mobileButtonsOverlay = document.createElement("div");
   mobileButtonsOverlay.id = "mobileButtonsOverlay";
@@ -60,15 +59,13 @@ document.addEventListener("DOMContentLoaded", function() {
   `;
   document.body.appendChild(mobileButtonsOverlay);
 
-  function isMobile() {
-    return window.innerWidth <= 768;
-  }
-  // Show after 10 seconds if mobile
-  setTimeout(() => {
-    if (isMobile()) {
+  // Only show once per session
+  if (!sessionStorage.getItem("popupShown")) {
+    setTimeout(() => {
       mobileButtonsOverlay.classList.add("show");
-    }
-  }, 10000);
+    }, 10000); // 10 seconds
+    sessionStorage.setItem("popupShown", "true");
+  }
 
   // Close popup
   const closeBtn = mobileButtonsOverlay.querySelector(".close-mobile-btn");
@@ -143,6 +140,24 @@ document.addEventListener("DOMContentLoaded", function() {
       } else {
         homeVideo.muted = true;
       }
+    });
+  }
+
+  /************************************************
+   * 6. Bitcoin "Coming Soon" Popup
+   ***********************************************/
+  // On Home Page
+  const homeBtcLogo = document.getElementById("homeBitcoinLogo");
+  if (homeBtcLogo) {
+    homeBtcLogo.addEventListener("click", () => {
+      alert("Coming soon");
+    });
+  }
+  // On Contact Page
+  const contactBtcLogo = document.getElementById("bitcoinDonate");
+  if (contactBtcLogo) {
+    contactBtcLogo.addEventListener("click", () => {
+      alert("Coming soon");
     });
   }
 
