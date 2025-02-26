@@ -26,7 +26,7 @@
 
     <div class="header-buttons">
       <a href="https://www.amazon.com" id="shop-btn">Shop</a>
-      <a href="contact.html" id="contribute-btn">Contribute</a>
+      <a href="contact.html#contributeSection" id="contribute-btn">Contribute</a>
     </div>
 
     <div class="hamburger">
@@ -37,28 +37,31 @@
   </header>
 
   <main>
-    <!-- Original black background with "Get Involved" text 
-         We'll just keep your content, but adapt styling. -->
-    <section>
-      <h1>Get Involved</h1>
+    <!-- Immediately below header: involved.png -->
+    <section class="get-involved-banner">
       <img 
-        src="images/involved.png" 
-        alt="Get Involved Image" 
-        style="width:100%; max-width:600px; display:block; margin:20px auto;"
+        src="images/involved.png"
+        alt="Get Involved Main Banner"
+        style="display:block; width:100%; height:auto;"
       />
+    </section>
+
+    <!-- Additional text (previously at top) now below the banner -->
+    <section>
       <p>
-        Getting involved with the Unity Coalition means joining a structured, 
-        purpose-driven network that goes beyond traditional political activism. 
+        Getting involved with the Unity Coalition means joining a structured,
+        purpose-driven network that goes beyond traditional political activism.
         Whether you can offer your time, expertise, resources, or financial support,
         there are multiple ways to make a meaningful impact within our coalition.
       </p>
     </section>
 
-    <!-- Full-width image and “Sign Up to Volunteer” banner, from your request #5 -->
+    <!-- Next banner getinvolved.png with less margin -->
     <img
       src="images/getinvolved.png"
-      alt="Get Involved Banner"
-      style="width: 100%; display: block; margin-bottom: 20px;"
+      alt="Get Involved Secondary Banner"
+      class="less-margin"
+      style="display:block; width:100%; height:auto; margin-bottom:10px;"
     />
 
     <div class="volunteer-banner">Sign Up To Volunteer</div>
@@ -96,12 +99,12 @@
 
       <textarea name="message" placeholder="Message (optional)"></textarea>
 
-      <!-- I'm not a robot box -->
+      <!-- Checkboxes inline with text -->
       <label class="checkbox-label">
-        <input type="checkbox" name="not_robot" required /> I'm not a robot
+        <input type="checkbox" name="not_robot" required />
+        I'm not a robot
       </label>
 
-      <!-- Privacy Policy checkbox -->
       <label class="checkbox-label">
         <input type="checkbox" name="privacy_policy" required />
         By providing this information you are acknowledging and agreeing to the Privacy Policy
