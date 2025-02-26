@@ -37,24 +37,34 @@
   </header>
 
   <main>
-    <section>
+    <!-- About top section with about.png to the right (or on top on mobile) -->
+    <section class="translucent-blue about-top-section">
       <h1>About Unity Coalition</h1>
-      <p>
-        The Unity Coalition stands as a groundbreaking infrastructure connecting
-        reform-minded Americans across traditional divides. Operating as both
-        a cultural movement and a structured platform, we bring together populist,
-        independent, and reform-oriented voices to address our nation’s
-        most critical challenges.
-      </p>
-      <p>
-        Through our innovative digital hub, we create dedicated spaces
-        where leaders, organizations, and citizens can collaborate beyond
-        conventional silos.
-      </p>
+      <div class="about-top-content">
+        <img
+          src="images/about.png"
+          alt="About the Unity Coalition"
+          class="about-img"
+        />
+        <div class="about-text">
+          <p>
+            The Unity Coalition stands as a groundbreaking infrastructure connecting
+            reform-minded Americans across traditional divides. Operating as both
+            a cultural movement and a structured platform, we bring together populist,
+            independent, and reform-oriented voices to address our nation’s
+            most critical challenges.
+          </p>
+          <p>
+            Through our innovative digital hub, we create dedicated spaces
+            where leaders, organizations, and citizens can collaborate beyond
+            conventional silos.
+          </p>
+        </div>
+      </div>
     </section>
 
-    <!-- 8-slide presentation with audio -->
-    <section>
+    <!-- 10-slide presentation with audio -->
+    <section class="translucent-red">
       <h2>Unity Coalition Dynamics</h2>
       <div class="slider-container">
         <img src="images/UCDynamics1.png" alt="Slide 1" class="stop-presentation active" />
@@ -65,6 +75,8 @@
         <img src="images/UCDynamics6.png" alt="Slide 6" class="stop-presentation" />
         <img src="images/UCDynamics7.png" alt="Slide 7" class="stop-presentation" />
         <img src="images/UCDynamics8.png" alt="Slide 8" class="stop-presentation" />
+        <img src="images/UCDynamics9.png" alt="Slide 9" class="stop-presentation" />
+        <img src="images/UCDynamics10.png" alt="Slide 10" class="stop-presentation" />
       </div>
       <div class="slider-controls">
         <button onclick="prevSlide()">Prev</button>
@@ -78,8 +90,8 @@
       </p>
     </section>
 
-    <!-- Founder section with clearfix to avoid footer overlap -->
-    <section class="clearfix">
+    <!-- Founder section with clearfix -->
+    <section class="translucent-blue clearfix">
       <h2>About the Founder</h2>
       <img
         src="images/founderimage.png"
