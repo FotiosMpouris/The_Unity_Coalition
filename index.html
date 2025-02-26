@@ -10,100 +10,159 @@
 
   <!-- HEADER -->
   <header>
-    <!-- Left side: Logo + Text -->
     <div class="logo-group">
       <img src="images/unitycoalitionlogo.png" alt="Unity Coalition Logo" class="logo" />
       <span class="logo-text">Unity Coalition</span>
     </div>
 
-    <!-- Center or normal nav links (minus Gallery/Resources) -->
-    <div class="nav-links mobile-inactive">
-      <a href="index.html">Home</a>
+    <!-- Nav links (no Gallery/Resources) -->
+    <div class="nav-links">
+      <a href="index.html" class="active">Home</a>
       <a href="about.html">About</a>
       <a href="mission.html">Mission</a>
       <a href="projects.html">Projects</a>
       <a href="get-involved.html">Get Involved</a>
       <a href="contact.html">Contact</a>
-      <!-- Omit Gallery & Resources here per #3 -->
     </div>
 
-    <!-- Right side: Buttons (Shop + Contribute) -->
+    <!-- Right: Contribute & Shop buttons -->
     <div class="header-buttons">
-      <a href="https://www.amazon.com" target="_blank" id="shop-btn">Shop</a>
+      <a href="https://www.amazon.com" id="shop-btn">Shop</a>
       <a href="contact.html" id="contribute-btn">Contribute</a>
     </div>
 
-    <!-- Hamburger icon for mobile -->
+    <!-- Hamburger for mobile -->
     <div class="hamburger">
       <div></div>
       <div></div>
       <div></div>
     </div>
   </header>
-  
-  <!-- MAIN / BODY CONTENT -->
-  <main>
-    <!-- Requirement #4: Full-width banner images + CTA overlay -->
-    <div class="home-banner-container">
-      <!-- Desktop banner -->
-      <img src="images/homebanner.png" alt="Home Banner Desktop" class="full-width-img" />
-      <!-- Mobile banner could be handled with media queries or separate image;
-           for clarity, let's just use one if they are different. 
-           Or swap the above src for homebanner1.png if on mobile. -->
 
-      <!-- Overlay with "Reuniting Americans," quote, founder image, form for volunteer, etc. -->
+  <main>
+    <!-- Full-width home banner with overlay for quote and volunteer -->
+    <div class="home-banner-container">
+      <!-- Desktop Banner -->
+      <img
+        src="images/homebanner.png"
+        alt="Home Banner Desktop"
+        class="banner-desktop"
+      />
+      <!-- Mobile Banner -->
+      <img
+        src="images/homebanner1.png"
+        alt="Home Banner Mobile"
+        class="banner-mobile"
+      />
+      <!-- Overlay: “Reuniting Americans”, founder quote, buttons -->
       <div class="home-banner-overlay">
         <h1>Reuniting Americans</h1>
         <blockquote>
           “The reuniting of Americans begins right now.”<br/>
           — [Founder’s Name]
         </blockquote>
-        <img src="images/founderimage.png" alt="Founder Image" class="founder-image" />
+        <img
+          src="images/founderimage.png"
+          alt="Founder of Unity Coalition"
+          class="founder-image"
+        />
 
-        <!-- Volunteer form with email + zip code -> link to Get Involved page -->
+        <!-- Volunteer form: email + zip, leading to get-involved.html -->
         <form action="get-involved.html" method="get">
           <input type="email" placeholder="Your Email" required />
           <input type="text" placeholder="Zip Code" required />
           <button type="submit">Volunteer</button>
         </form>
 
-        <!-- “Contribute” button that goes to the current donate page (contact.html in this structure) -->
+        <!-- Contribute CTA button -->
         <div class="banner-cta-buttons">
           <a href="contact.html">Contribute</a>
         </div>
       </div>
     </div>
 
-    <!-- Additional sections if needed ... -->
+    <!-- The older content describing the Unity Coalition from your old code. -->
     <section>
-      <h2>Welcome to the Unity Coalition</h2>
+      <h2>Uniting America's Reform Movement</h2>
       <p>
-        Replace or add content about your movement, additional images, etc.
-        The main color scheme is white background, red/blue text, some black text.
+        In an era of unprecedented division and civic decline, the Unity Coalition 
+        emerges as a pioneering framework for reuniting Americans across traditional 
+        political and social boundaries. Our mission is to identify and amplify 
+        the common ground between reform-minded citizens, fostering a renaissance 
+        of civic engagement and shared purpose.
+      </p>
+      <p>
+        By concentrating on real, actionable reforms that resonate across party lines, 
+        we aim to reverse the ongoing civic decline and bring people together under 
+        a shared vision of progress.
       </p>
     </section>
+
+    <!-- A black section “Support Our Work,” shorter in height. -->
+    <section class="section-black">
+      <h2>Support Our Work</h2>
+      <p style="margin-bottom: 20px;">
+        Your donation helps establish our legal entities, build the communications 
+        hub, and maintain a motivated core team.
+      </p>
+      <p>
+        <a href="https://www.givesendgo.com/building-the-unity-coalition">
+          <img
+            src="images/givesend-logo.png"
+            alt="GiveSendGo Donate Button"
+            style="max-width: 150px; margin-right: 20px;"
+          />
+        </a>
+        <img
+          src="images/unitybitcoin-logo.png"
+          alt="Donate with Bitcoin"
+          style="max-width: 150px;"
+        />
+      </p>
+    </section>
+
+    <!-- Home page video at the bottom (from your old code) -->
+    <section>
+      <video
+        class="home-video"
+        src="homepage.mp4"
+        autoplay
+        loop
+        muted
+        playsinline
+        poster="images/homepage.png"
+        style="width: 100%; max-width: 900px; display: block; margin: 20px auto;"
+      >
+        Sorry, your browser doesn't support embedded videos.
+      </video>
+    </section>
+
   </main>
 
   <!-- FOOTER -->
   <footer>
-    <!-- #3: Gallery, Resources now in the footer -->
+    <!-- Put “Gallery” & “Resources” here, open in same window -->
     <div class="footer-links">
       <a href="gallery.html">Gallery</a>
       <a href="resources.html">Resources</a>
       <a href="contact.html">Contact</a>
     </div>
-
-    <!-- #3: X link placeholder, Facebook link placeholder, Mighty Networks link placeholder -->
     <div class="footer-logos">
-      <a href="#" target="_blank"><img src="images/xlogo.png" alt="X Logo" /></a>
-      <a href="#" target="_blank"><img src="images/facebooklogo.png" alt="Facebook Logo" /></a>
-      <a href="#" target="_blank"><img src="images/mightylogo.png" alt="Mighty Networks Logo" /></a>
+      <!-- The user had a Mighty Networks link in the old code 
+           (like <a href="https://www.mightynetworks.com/"> ? ) -->
+      <a href="https://www.mightynetworks.com/">
+        <img src="images/mightylogo.png" alt="Mighty Networks Logo" />
+      </a>
+      <a href="#">
+        <img src="images/xlogo.png" alt="X Logo" />
+      </a>
+      <a href="#">
+        <img src="images/facebooklogo.png" alt="Facebook Logo" />
+      </a>
     </div>
-
     <p>© 2025 Unity Coalition. All rights reserved.</p>
   </footer>
 
-  <!-- Script -->
   <script src="script.js"></script>
 </body>
 </html>
