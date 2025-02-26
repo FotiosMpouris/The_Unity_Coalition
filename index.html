@@ -15,7 +15,6 @@
       <span class="logo-text">Unity Coalition</span>
     </div>
 
-    <!-- Nav links (no Gallery/Resources) -->
     <div class="nav-links">
       <a href="index.html" class="active">Home</a>
       <a href="about.html">About</a>
@@ -25,10 +24,10 @@
       <a href="contact.html">Contact</a>
     </div>
 
-    <!-- Right: Contribute & Shop buttons -->
+    <!-- Desktop: Shop + Contribute (hidden on mobile) -->
     <div class="header-buttons">
       <a href="https://www.amazon.com" id="shop-btn">Shop</a>
-      <a href="contact.html" id="contribute-btn">Contribute</a>
+      <a href="contact.html#contributeSection" id="contribute-btn">Contribute</a>
     </div>
 
     <!-- Hamburger for mobile -->
@@ -40,7 +39,7 @@
   </header>
 
   <main>
-    <!-- Full-width home banner with overlay for quote and volunteer -->
+    <!-- Full-width home banner with overlay -->
     <div class="home-banner-container">
       <!-- Desktop Banner -->
       <img
@@ -54,20 +53,19 @@
         alt="Home Banner Mobile"
         class="banner-mobile"
       />
-      <!-- Overlay: “Reuniting Americans”, founder quote, buttons -->
+      <!-- Overlay content -->
       <div class="home-banner-overlay">
         <h1>Reuniting Americans</h1>
         <blockquote>
-          “The reuniting of American begins right now.”<br/>
-          — Patrick Clerkin
+          “The reuniting of Americans begins right now.”<br/>
+          — [Founder’s Name]
         </blockquote>
         <img
           src="images/founderimage.png"
           alt="Founder of Unity Coalition"
           class="founder-image"
         />
-
-        <!-- Volunteer form: email + zip, leading to get-involved.html -->
+        <!-- Volunteer form: email + zip -->
         <form action="get-involved.html" method="get">
           <input type="email" placeholder="Your Email" required />
           <input type="text" placeholder="Zip Code" required />
@@ -76,20 +74,18 @@
 
         <!-- Contribute CTA button -->
         <div class="banner-cta-buttons">
-          <a href="contact.html">Contribute</a>
+          <a href="contact.html#contributeSection">Contribute</a>
         </div>
       </div>
     </div>
 
-    <!-- The older content describing the Unity Coalition from your old code. -->
+    <!-- Additional content from old home page text -->
     <section>
       <h2>Uniting America's Reform Movement</h2>
       <p>
         In an era of unprecedented division and civic decline, the Unity Coalition 
         emerges as a pioneering framework for reuniting Americans across traditional 
-        political and social boundaries. Our mission is to identify and amplify 
-        the common ground between reform-minded citizens, fostering a renaissance 
-        of civic engagement and shared purpose.
+        political and social boundaries.
       </p>
       <p>
         By concentrating on real, actionable reforms that resonate across party lines, 
@@ -98,8 +94,28 @@
       </p>
     </section>
 
-   
-    <!-- Home page video at the bottom (from your old code) -->
+    <!-- Black donation section (full width) -->
+    <section class="section-black">
+      <h2>Support Our Work</h2>
+      <p>
+        Your donation helps establish our legal entities, build the communications
+        hub, and maintain a motivated core team.
+      </p>
+      <div class="donation-logos">
+        <a href="https://www.givesendgo.com/building-the-unity-coalition">
+          <img
+            src="images/givesend-logo.png"
+            alt="GiveSendGo Donate Button"
+          />
+        </a>
+        <img
+          src="images/unitybitcoin-logo.png"
+          alt="Donate with Bitcoin"
+        />
+      </div>
+    </section>
+
+    <!-- Home page video with click-to-toggle-audio -->
     <section>
       <video
         class="home-video"
@@ -109,48 +125,20 @@
         muted
         playsinline
         poster="images/homepage.png"
-        style="width: 100%; max-width: 900px; display: block; margin: 20px auto;"
       >
         Sorry, your browser doesn't support embedded videos.
       </video>
     </section>
-
-     <!-- A black section “Support Our Work,” shorter in height. -->
-    <section class="section-black">
-      <h2>Support Our Work</h2>
-      <p style="margin-bottom: 20px;">
-        Your donation helps establish our legal entities, build the communications 
-        hub, and maintain a motivated core team.
-      </p>
-      <p>
-        <a href="https://www.givesendgo.com/building-the-unity-coalition">
-          <img
-            src="images/givesend-logo.png"
-            alt="GiveSendGo Donate Button"
-            style="max-width: 150px; margin-right: 20px;"
-          />
-        </a>
-        <img
-          src="images/unitybitcoin-logo.png"
-          alt="Donate with Bitcoin"
-          style="max-width: 150px;"
-        />
-      </p>
-    </section>
-
   </main>
 
   <!-- FOOTER -->
   <footer>
-    <!-- Put “Gallery” & “Resources” here, open in same window -->
     <div class="footer-links">
       <a href="gallery.html">Gallery</a>
       <a href="resources.html">Resources</a>
       <a href="contact.html">Contact</a>
     </div>
     <div class="footer-logos">
-      <!-- The user had a Mighty Networks link in the old code 
-           (like <a href="https://www.mightynetworks.com/"> ? ) -->
       <a href="https://www.mightynetworks.com/">
         <img src="images/mightylogo.png" alt="Mighty Networks Logo" />
       </a>
