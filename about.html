@@ -26,7 +26,7 @@
 
     <div class="header-buttons">
       <a href="https://www.amazon.com" id="shop-btn">Shop</a>
-      <a href="contact.html" id="contribute-btn">Contribute</a>
+      <a href="contact.html#contributeSection" id="contribute-btn">Contribute</a>
     </div>
 
     <div class="hamburger">
@@ -37,9 +37,6 @@
   </header>
 
   <main>
-    <!-- From your original black first-section-fix, etc. 
-         We'll just replicate the content but keep the new approach. -->
-
     <section>
       <h1>About Unity Coalition</h1>
       <p>
@@ -76,12 +73,13 @@
         <button onclick="nextSlide()">Next</button>
       </div>
       <p>
-        Click <strong>Start Presentation</strong> to view the slides with accompanying audio.  
+        Click <strong>Start Presentation</strong> to view the slides with accompanying audio.
         Click on the slide at any time to stop the presentation.
       </p>
     </section>
 
-    <section>
+    <!-- Founder section with clearfix to avoid footer overlap -->
+    <section class="clearfix">
       <h2>About the Founder</h2>
       <img
         src="images/founderimage.png"
@@ -90,11 +88,10 @@
       />
       <p>
         Patrick Clerkin’s path to establishing the Unity Coalition emerged
-        from a unique combination of technical expertise and civic engagement. 
-        ( ... more original founder text from your old code ... )
+        from a unique combination of technical expertise and civic engagement.
+        ( ... more text about the founder ... )
       </p>
     </section>
-
   </main>
 
   <footer>
