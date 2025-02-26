@@ -14,8 +14,8 @@
       <img src="images/unitycoalitionlogo.png" alt="Unity Coalition Logo" class="logo" />
       <span class="logo-text">Unity Coalition</span>
     </div>
-    
-    <div class="nav-links mobile-inactive">
+
+    <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
       <a href="mission.html">Mission</a>
@@ -25,7 +25,7 @@
     </div>
 
     <div class="header-buttons">
-      <a href="https://www.amazon.com" target="_blank" id="shop-btn">Shop</a>
+      <a href="https://www.amazon.com" id="shop-btn">Shop</a>
       <a href="contact.html" id="contribute-btn">Contribute</a>
     </div>
 
@@ -36,63 +36,79 @@
     </div>
   </header>
 
-  <!-- MAIN CONTENT -->
   <main>
-    <!-- #5: Banner image -->
-    <img src="images/getinvolved.png" alt="Get Involved Banner" class="full-width-img" />
+    <!-- Original black background with "Get Involved" text 
+         We'll just keep your content, but adapt styling. -->
+    <section>
+      <h1>Get Involved</h1>
+      <img 
+        src="images/involved.png" 
+        alt="Get Involved Image" 
+        style="width:100%; max-width:600px; display:block; margin:20px auto;"
+      />
+      <p>
+        Getting involved with the Unity Coalition means joining a structured, 
+        purpose-driven network that goes beyond traditional political activism. 
+        Whether you can offer your time, expertise, resources, or financial support,
+        there are multiple ways to make a meaningful impact within our coalition.
+      </p>
+    </section>
 
-    <!-- Very large banner in red with "Sign Up To Volunteer" -->
-    <div class="volunteer-container">
-      <div class="volunteer-banner">Sign Up To Volunteer</div>
-      <!-- Form fields for volunteer sign-up (placeholders for AWS DynamoDB) -->
-      <form class="volunteer-form" action="#" method="POST" id="volunteerForm">
-        <!-- We will eventually integrate with AWS DynamoDB via an API gateway or similar. -->
-        <!-- For now, placeholders for data submission. -->
+    <!-- Full-width image and “Sign Up to Volunteer” banner, from your request #5 -->
+    <img
+      src="images/getinvolved.png"
+      alt="Get Involved Banner"
+      style="width: 100%; display: block; margin-bottom: 20px;"
+    />
 
-        <div class="form-row">
-          <div>
-            <input type="text" name="firstName" placeholder="First Name" required />
-          </div>
-          <div>
-            <input type="text" name="lastName" placeholder="Last Name" required />
-          </div>
+    <div class="volunteer-banner">Sign Up To Volunteer</div>
+    <form class="volunteer-form" action="#" method="POST" id="volunteerForm">
+      <!-- Placeholder for AWS DynamoDB integration -->
+      <div class="form-row">
+        <div>
+          <input type="text" name="firstName" placeholder="First Name" required />
         </div>
-        <div class="form-row">
-          <div>
-            <input type="email" name="email" placeholder="Email" required />
-          </div>
-          <div>
-            <input type="text" name="phone" placeholder="Phone" required />
-          </div>
+        <div>
+          <input type="text" name="lastName" placeholder="Last Name" required />
         </div>
-        <div class="form-row">
-          <div>
-            <input type="text" name="zip" placeholder="Zip" required />
-          </div>
-          <div>
-            <input type="text" name="city" placeholder="City" required />
-          </div>
-          <div>
-            <input type="text" name="state" placeholder="State" required />
-          </div>
+      </div>
+
+      <div class="form-row">
+        <div>
+          <input type="email" name="email" placeholder="Email" required />
         </div>
-        <!-- A message field if needed -->
-        <textarea name="message" placeholder="Message (optional)"></textarea>
-        
-        <!-- I'm not a robot box placeholder -->
-        <label class="checkbox-label">
-          <input type="checkbox" name="not_robot" required /> I'm not a robot
-        </label>
+        <div>
+          <input type="text" name="phone" placeholder="Phone" required />
+        </div>
+      </div>
 
-        <!-- Privacy Policy agreement -->
-        <label class="checkbox-label">
-          <input type="checkbox" name="privacy_policy" required />
-          By providing this information you are acknowledging and agreeing to the Privacy Policy
-        </label>
+      <div class="form-row">
+        <div>
+          <input type="text" name="zip" placeholder="Zip" required />
+        </div>
+        <div>
+          <input type="text" name="city" placeholder="City" required />
+        </div>
+        <div>
+          <input type="text" name="state" placeholder="State" required />
+        </div>
+      </div>
 
-        <button type="submit">Submit</button>
-      </form>
-    </div>
+      <textarea name="message" placeholder="Message (optional)"></textarea>
+
+      <!-- I'm not a robot box -->
+      <label class="checkbox-label">
+        <input type="checkbox" name="not_robot" required /> I'm not a robot
+      </label>
+
+      <!-- Privacy Policy checkbox -->
+      <label class="checkbox-label">
+        <input type="checkbox" name="privacy_policy" required />
+        By providing this information you are acknowledging and agreeing to the Privacy Policy
+      </label>
+
+      <button type="submit">Submit</button>
+    </form>
   </main>
 
   <footer>
@@ -102,9 +118,15 @@
       <a href="contact.html">Contact</a>
     </div>
     <div class="footer-logos">
-      <a href="#" target="_blank"><img src="images/xlogo.png" alt="X Logo" /></a>
-      <a href="#" target="_blank"><img src="images/facebooklogo.png" alt="Facebook Logo" /></a>
-      <a href="#" target="_blank"><img src="images/mightylogo.png" alt="Mighty Networks Logo" /></a>
+      <a href="https://www.mightynetworks.com/">
+        <img src="images/mightylogo.png" alt="Mighty Networks Logo" />
+      </a>
+      <a href="#">
+        <img src="images/xlogo.png" alt="X Logo" />
+      </a>
+      <a href="#">
+        <img src="images/facebooklogo.png" alt="Facebook Logo" />
+      </a>
     </div>
     <p>© 2025 Unity Coalition. All rights reserved.</p>
   </footer>
