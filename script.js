@@ -1,47 +1,90 @@
 document.addEventListener("DOMContentLoaded", function() {
-  /**************************************
-   * 1. Hamburger + Mobile Nav Overlay
-   *************************************/
+  const header = document.querySelector("header");
   const hamburger = document.querySelector(".hamburger");
+
+  /************************************************
+   * 1. Transparent Header + Red Hamburger on Scroll
+   ***********************************************/
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 50) {
+      header.classList.add("scrolled");
+      hamburger.classList.add("scrolled");
+    } else {
+      header.classList.remove("scrolled");
+      hamburger.classList.remove("scrolled");
+    }
+  });
+
+  /************************************************
+   * 2. Hamburger Overlay
+   ***********************************************/
   const navLinks = document.querySelector(".nav-links");
-  
-  // We'll create an overlay for mobile
+  // Create overlay
   let overlay = document.createElement("div");
   overlay.classList.add("mobile-nav-overlay");
   document.body.appendChild(overlay);
 
-  // Clone the nav-links inside the overlay
+  // Clone the nav-links for the overlay
   let overlayNav = navLinks.cloneNode(true);
   overlay.appendChild(overlayNav);
 
   hamburger.addEventListener("click", () => {
-    // Toggle show/hide
     overlay.classList.toggle("show");
   });
 
-  // Close overlay when user clicks a link
+  // Close overlay when user clicks a link inside it
   overlayNav.querySelectorAll("a").forEach(link => {
     link.addEventListener("click", () => {
       overlay.classList.remove("show");
     });
   });
 
-  /**************************************
-   * 2. About Page Slider
-   *************************************/
+  /************************************************
+   * 3. Mobile "Shop" & "Contribute" Timed Popup
+   ***********************************************/
+  // Create the overlay for mobile buttons
+  let mobileButtonsOverlay = document.createElement("div");
+  mobileButtonsOverlay.id = "mobileButtonsOverlay";
+  mobileButtonsOverlay.innerHTML = `
+    <div class="mobile-buttons-content">
+      <button class="close-mobile-btn">&times;</button>
+      <h3>Check Out</h3>
+      <a href="https://www.amazon.com" id="mobileShopBtn">Shop</a>
+      <a href="contact.html#contributeSection" id="mobileContributeBtn">Contribute</a>
+    </div>
+  `;
+  document.body.appendChild(mobileButtonsOverlay);
+
+  // Show after 10 seconds only on mobile
+  function isMobile() {
+    return window.innerWidth <= 768;
+  }
+  setTimeout(() => {
+    if (isMobile()) {
+      mobileButtonsOverlay.classList.add("show");
+    }
+  }, 10000);
+
+  // Close button
+  const closeBtn = mobileButtonsOverlay.querySelector(".close-mobile-btn");
+  closeBtn.addEventListener("click", () => {
+    mobileButtonsOverlay.classList.remove("show");
+  });
+
+  /************************************************
+   * 4. About Page Slider
+   ***********************************************/
   let sliderIndex = 0;
   let sliderTimer = null;
-  let audioPlaying = false;
 
-  // If you have an audio file for the about page:
-  let aboutAudio = new Audio("audio/ucdynamics_audio.mp3"); 
-  // Adjust path & name as needed
+  // Audio for slides (change path if needed)
+  let aboutAudio = new Audio("audio/ucdynamics_audio.mp3");
+  let audioPlaying = false;
 
   window.startPresentation = function() {
     showSlide(sliderIndex);
     sliderTimer = setInterval(nextSlide, 4000);
 
-    // Start audio
     aboutAudio.play();
     audioPlaying = true;
   };
@@ -49,7 +92,6 @@ document.addEventListener("DOMContentLoaded", function() {
   window.stopPresentation = function() {
     clearInterval(sliderTimer);
     sliderTimer = null;
-    // Stop audio
     aboutAudio.pause();
     aboutAudio.currentTime = 0;
     audioPlaying = false;
@@ -79,10 +121,26 @@ document.addEventListener("DOMContentLoaded", function() {
     slides[n].classList.add("active");
   }
 
-  // Stop presentation by clicking on the slide
+  // Stop presentation by clicking a slide
   document.addEventListener("click", function(e) {
     if(e.target.classList.contains("stop-presentation")) {
       window.stopPresentation();
     }
   });
+
+  /************************************************
+   * 5. Home Page Video (Click-to-toggle-audio)
+   ***********************************************/
+  const homeVideo = document.querySelector(".home-video");
+  if (homeVideo) {
+    homeVideo.addEventListener("click", () => {
+      if (homeVideo.muted) {
+        homeVideo.muted = false;
+        // Also ensure it plays
+        homeVideo.play();
+      } else {
+        homeVideo.muted = true;
+      }
+    });
+  }
 });
