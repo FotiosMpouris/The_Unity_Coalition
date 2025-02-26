@@ -18,7 +18,6 @@ html, body {
   --blue: #1c2951;       /* For nav text, button outlines, etc. */
   --red: #b22222;        /* For hovers, highlights, big calls to action */
   --black: #000000;      /* For selective text usage */
-  --gray-background: #f8f8f8; /* If needed */
   --light-border: #ccc;  /* For the header bottom border, etc. */
 }
 
@@ -28,11 +27,11 @@ body {
   color: #333;
 }
 
-/* Link styling, used site-wide unless overridden */
+/* Global link styling */
 a {
   color: var(--blue);
   text-decoration: none;
-  font-weight: normal;  /* “Less bold” per your request */
+  font-weight: normal;  
 }
 a:hover {
   color: var(--red);
@@ -51,11 +50,12 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 10px 20px;
-  transition: background-color 0.3s ease; /* for scroll transparency */
+  transition: background-color 0.3s ease;
 }
 
-/* When scrolled: transparent header */
-header.scrolled {
+/* On mobile, we may apply transparency on scroll, 
+   but for desktop we keep it solid. The JS checks screen size. */
+header.mobile-scrolled {
   background-color: rgba(255, 255, 255, 0.3);
 }
 
@@ -70,7 +70,7 @@ header.scrolled {
 }
 .logo-text {
   font-size: 1.5rem;
-  font-weight: normal;
+  font-weight: 300; /* Thinner text per your request */
   color: var(--black);
 }
 
@@ -80,14 +80,11 @@ header.scrolled {
   gap: 20px;
   align-items: center;
 }
-
 @media (max-width: 768px) {
   .nav-links {
     display: none; /* hidden in favor of hamburger overlay */
   }
 }
-
-/* Nav link style: uppercase, blue, hover red. */
 .nav-links a {
   text-transform: uppercase;
   font-size: 0.9rem;
@@ -99,11 +96,9 @@ header.scrolled {
   align-items: center;
   gap: 10px;
 }
-
-/* Hide these on mobile because we do a popup overlay instead */
 @media (max-width: 768px) {
   .header-buttons {
-    display: none;
+    display: none; /* hidden on mobile, replaced by timed popup */
   }
 }
 
@@ -139,7 +134,7 @@ header.scrolled {
    3. Hamburger for Mobile
 ------------------------------------------------------ */
 .hamburger {
-  display: none; /* Hidden on desktop */
+  display: none; /* hidden on desktop */
   flex-direction: column;
   gap: 4px;
   cursor: pointer;
@@ -152,22 +147,22 @@ header.scrolled {
   transition: background-color 0.3s ease;
 }
 
-/* Turn bars red when scrolled */
-.hamburger.scrolled div {
-  background-color: var(--red);
-}
-
 @media (max-width: 768px) {
   .hamburger {
     display: flex;
   }
 }
 
+/* On mobile scroll, turn bars red only if screen <= 768px */
+.hamburger.scrolled-mobile div {
+  background-color: var(--red);
+}
+
 /* Mobile nav overlay (translucent) */
 .mobile-nav-overlay {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
-  background-color: rgba(255, 255, 255, 0.9); /* Translucent white overlay */
+  background-color: rgba(255, 255, 255, 0.9);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -181,13 +176,10 @@ header.scrolled {
 .mobile-nav-overlay.show {
   transform: translateY(0);
 }
-
-/* The nav links in overlay appear bigger, centered */
 .mobile-nav-overlay a {
   color: var(--blue);
   text-transform: uppercase;
   font-size: 1.2rem;
-  transition: color 0.3s;
 }
 .mobile-nav-overlay a:hover {
   color: var(--red);
@@ -201,6 +193,9 @@ section {
   margin-top: 80px; /* Enough space for fixed header */
   padding: 20px;
 }
+
+/* Some sections might want to remove or reduce margin/padding, 
+   so we handle that inline where needed. */
 
 /* Full-width images for desktop vs mobile */
 .banner-desktop {
@@ -222,12 +217,43 @@ section {
   }
 }
 
-/* Transparent container for the home page banners */
+/* -----------------------------------------------------
+   5. Utility Classes for Translucent Boxes
+------------------------------------------------------ */
+.translucent-blue {
+  background-color: rgba(28,41,81,0.1); /* light-blue tint */
+  padding: 20px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+.translucent-red {
+  background-color: rgba(178,34,34,0.1); 
+  padding: 20px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+
+/* -----------------------------------------------------
+   6. Home Page & Banners
+------------------------------------------------------ */
+/* Very top small banner for “Reuniting Americans” (mobile or all devices),
+   if you want it above everything. We'll style it. */
+.light-blue-banner {
+  background-color: rgba(28,41,81,0.1); 
+  color: var(--blue);
+  text-align: center;
+  font-size: 1.3rem;
+  padding: 15px;
+  margin-top: 80px; /* so it’s not under header */
+  margin-bottom: 0;
+}
+
+/* Home banner container with the big background images */
 .home-banner-container {
   position: relative;
   width: 100%;
   margin-bottom: 20px;
-  padding: 0; /* Remove default section padding to avoid double spacing */
+  padding: 0;
 }
 .home-banner-container img {
   width: 100%;
@@ -245,7 +271,7 @@ section {
   max-width: 600px;
 }
 
-/* Reuniting Americans Title */
+/* Founder quote, etc. */
 .home-banner-overlay h1 {
   font-size: 2rem;
   margin-bottom: 20px;
@@ -254,8 +280,6 @@ section {
   padding: 10px;
   border-radius: 4px;
 }
-
-/* Founder Quote block */
 .home-banner-overlay blockquote {
   font-style: italic;
   background: rgba(255,255,255,0.8);
@@ -264,8 +288,6 @@ section {
   border-left: 5px solid var(--red);
   margin-bottom: 20px;
 }
-
-/* Founder image on the banner */
 .founder-image {
   max-width: 150px;
   margin: 10px auto 20px auto;
@@ -315,13 +337,13 @@ section {
 }
 
 /* -----------------------------------------------------
-   5. Timed Overlay for "Shop" & "Contribute" on Mobile
+   7. Timed Overlay (Mobile) for Shop & Contribute
 ------------------------------------------------------ */
 #mobileButtonsOverlay {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
   background-color: rgba(0,0,0,0.6);
-  display: none; /* hidden by default */
+  display: none; 
   justify-content: center;
   align-items: center;
   z-index: 10000;
@@ -342,30 +364,24 @@ section {
   margin-bottom: 15px;
   color: var(--blue);
 }
+/* Filled boxes for Shop/Contribute */
 .mobile-buttons-content a {
   display: inline-block;
   margin: 5px;
   padding: 10px 15px;
   text-transform: uppercase;
   text-decoration: none;
-  border: 2px solid var(--blue);
-  color: var(--blue);
+  color: #fff; 
+}
+.mobile-buttons-content a#mobileShopBtn {
+  background-color: var(--blue);
+}
+.mobile-buttons-content a#mobileContributeBtn {
+  background-color: var(--red);
 }
 .mobile-buttons-content a:hover {
-  background-color: var(--blue);
-  color: var(--white);
+  opacity: 0.8;
 }
-/* Contribute: red styling */
-.mobile-buttons-content a#mobileContributeBtn {
-  border-color: var(--red);
-  color: var(--red);
-}
-.mobile-buttons-content a#mobileContributeBtn:hover {
-  background-color: var(--red);
-  color: #fff;
-}
-
-/* Close X button in top right corner */
 .close-mobile-btn {
   position: absolute;
   top: 10px; 
@@ -377,13 +393,13 @@ section {
 }
 
 /* -----------------------------------------------------
-   6. About Page Slider
+   8. About Page Slider
 ------------------------------------------------------ */
 .slider-container {
   position: relative;
   max-width: 600px;
   margin: 20px auto;
-  overflow: hidden; /* ensure no overlap issues */
+  overflow: hidden;
 }
 .slider-container img {
   display: none;
@@ -409,13 +425,11 @@ section {
 .slider-controls button:hover {
   background-color: var(--red);
 }
-
-/* Clicking on the image stops presentation */
 .stop-presentation {
   cursor: pointer;
 }
 
-/* Fix float overlapping with footer (About page founder image) */
+/* Fix float overlap (about page) */
 .clearfix::after {
   content: "";
   display: block;
@@ -423,13 +437,13 @@ section {
 }
 
 /* -----------------------------------------------------
-   7. "Support Our Work" Black Section (Full-Width)
+   9. "Support Our Work" Section (Now More Transparent)
 ------------------------------------------------------ */
 .section-black {
   width: 100%;
   margin: 0;
   padding: 20px;
-  background-color: var(--black);
+  background-color: rgba(0,0,0,0.6); /* More transparent black */
   color: var(--white);
   text-align: center;
 }
@@ -449,7 +463,7 @@ section {
 }
 
 /* -----------------------------------------------------
-   8. Footer
+   10. Footer
 ------------------------------------------------------ */
 footer {
   background-color: var(--white);
@@ -490,7 +504,7 @@ footer p {
 }
 
 /* -----------------------------------------------------
-   9. Home Page Video (Click-to-toggle-audio)
+   11. Home Page Video (Click-to-toggle-audio)
 ------------------------------------------------------ */
 .home-video {
   width: 100%;
@@ -502,11 +516,10 @@ footer p {
 }
 
 /* -----------------------------------------------------
-   10. Get Involved
+   12. Get Involved
 ------------------------------------------------------ */
-/* We'll keep the top banner right below header, less spacing above/below */
 .get-involved-banner {
-  margin: 0; /* remove top/bottom default section margin */
+  margin: 0; 
   padding: 0;
 }
 .volunteer-banner {
@@ -516,7 +529,7 @@ footer p {
   text-align: center;
   font-size: 1.5rem;
   text-transform: uppercase;
-  margin-bottom: 10px; /* reduce spacing before the form */
+  margin-bottom: 10px; 
 }
 
 .volunteer-form {
@@ -553,8 +566,6 @@ footer p {
 .volunteer-form button:hover {
   background-color: var(--red);
 }
-
-/* Checkboxes inline with text */
 .checkbox-label {
   display: inline-flex;
   align-items: center;
@@ -562,14 +573,13 @@ footer p {
   margin-top: 10px;
 }
 
-/* reduce spacing between banners on get involved */
+/* reduce spacing between getinvolved banners */
 .less-margin {
-  margin-top: 0;
   margin-bottom: 10px;
 }
 
 /* -----------------------------------------------------
-   11. Gallery
+   13. Gallery
 ------------------------------------------------------ */
 .gallery-grid {
   display: grid;
@@ -584,7 +594,7 @@ footer p {
 }
 
 /* -----------------------------------------------------
-   12. Projects collaborator grid
+   14. Projects collaborator grid
 ------------------------------------------------------ */
 .collaborators {
   display: grid;
@@ -609,15 +619,21 @@ footer p {
 }
 
 /* -----------------------------------------------------
-   13. Contact Page
+   15. Contact Page
 ------------------------------------------------------ */
-/* Large text box "Contribute" spanning margins */
+/* Large text box "Contribute" offset for anchor link */
+#contributeSection {
+  display: block;
+  position: relative;
+  padding-top: 80px; /* offset so the header won't obscure it */
+  margin-top: -80px; /* negative margin to keep layout consistent */
+}
 .contribute-banner {
   background-color: var(--red);
   color: var(--white);
   padding: 20px;
-  margin: 40px 0;
   text-transform: uppercase;
   text-align: center;
   font-size: 1.6rem;
+  margin-top: 40px;  
 }
