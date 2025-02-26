@@ -1,17 +1,25 @@
 document.addEventListener("DOMContentLoaded", function() {
+
   const header = document.querySelector("header");
   const hamburger = document.querySelector(".hamburger");
 
   /************************************************
-   * 1. Transparent Header + Red Hamburger on Scroll
+   * 1. Transparent Header only on Mobile
    ***********************************************/
   window.addEventListener("scroll", () => {
-    if (window.scrollY > 50) {
-      header.classList.add("scrolled");
-      hamburger.classList.add("scrolled");
+    // Only apply transparency if screen <= 768
+    if (window.innerWidth <= 768) {
+      if (window.scrollY > 50) {
+        header.classList.add("mobile-scrolled");
+        hamburger.classList.add("scrolled-mobile");
+      } else {
+        header.classList.remove("mobile-scrolled");
+        hamburger.classList.remove("scrolled-mobile");
+      }
     } else {
-      header.classList.remove("scrolled");
-      hamburger.classList.remove("scrolled");
+      // On desktop, remain solid
+      header.classList.remove("mobile-scrolled");
+      hamburger.classList.remove("scrolled-mobile");
     }
   });
 
@@ -19,12 +27,10 @@ document.addEventListener("DOMContentLoaded", function() {
    * 2. Hamburger Overlay
    ***********************************************/
   const navLinks = document.querySelector(".nav-links");
-  // Create overlay
   let overlay = document.createElement("div");
   overlay.classList.add("mobile-nav-overlay");
   document.body.appendChild(overlay);
 
-  // Clone the nav-links for the overlay
   let overlayNav = navLinks.cloneNode(true);
   overlay.appendChild(overlayNav);
 
@@ -32,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function() {
     overlay.classList.toggle("show");
   });
 
-  // Close overlay when user clicks a link inside it
+  // Close overlay when user clicks a link
   overlayNav.querySelectorAll("a").forEach(link => {
     link.addEventListener("click", () => {
       overlay.classList.remove("show");
@@ -42,7 +48,6 @@ document.addEventListener("DOMContentLoaded", function() {
   /************************************************
    * 3. Mobile "Shop" & "Contribute" Timed Popup
    ***********************************************/
-  // Create the overlay for mobile buttons
   let mobileButtonsOverlay = document.createElement("div");
   mobileButtonsOverlay.id = "mobileButtonsOverlay";
   mobileButtonsOverlay.innerHTML = `
@@ -55,17 +60,17 @@ document.addEventListener("DOMContentLoaded", function() {
   `;
   document.body.appendChild(mobileButtonsOverlay);
 
-  // Show after 10 seconds only on mobile
   function isMobile() {
     return window.innerWidth <= 768;
   }
+  // Show after 10 seconds if mobile
   setTimeout(() => {
     if (isMobile()) {
       mobileButtonsOverlay.classList.add("show");
     }
   }, 10000);
 
-  // Close button
+  // Close popup
   const closeBtn = mobileButtonsOverlay.querySelector(".close-mobile-btn");
   closeBtn.addEventListener("click", () => {
     mobileButtonsOverlay.classList.remove("show");
@@ -76,8 +81,6 @@ document.addEventListener("DOMContentLoaded", function() {
    ***********************************************/
   let sliderIndex = 0;
   let sliderTimer = null;
-
-  // Audio for slides (change path if needed)
   let aboutAudio = new Audio("audio/ucdynamics_audio.mp3");
   let audioPlaying = false;
 
@@ -121,9 +124,9 @@ document.addEventListener("DOMContentLoaded", function() {
     slides[n].classList.add("active");
   }
 
-  // Stop presentation by clicking a slide
+  // Stop presentation by clicking the slide
   document.addEventListener("click", function(e) {
-    if(e.target.classList.contains("stop-presentation")) {
+    if (e.target.classList.contains("stop-presentation")) {
       window.stopPresentation();
     }
   });
@@ -136,11 +139,11 @@ document.addEventListener("DOMContentLoaded", function() {
     homeVideo.addEventListener("click", () => {
       if (homeVideo.muted) {
         homeVideo.muted = false;
-        // Also ensure it plays
         homeVideo.play();
       } else {
         homeVideo.muted = true;
       }
     });
   }
+
 });
