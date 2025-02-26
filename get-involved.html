@@ -42,12 +42,12 @@
       <img 
         src="images/involved.png"
         alt="Get Involved Main Banner"
-        style="display:block; width:100%; height:auto;"
+        style="display:block; max-width:100%; height:auto; margin-bottom:10px;"
       />
     </section>
 
-    <!-- Additional text (previously at top) now below the banner -->
-    <section>
+    <!-- Additional text in a translucent box -->
+    <section class="translucent-blue">
       <p>
         Getting involved with the Unity Coalition means joining a structured,
         purpose-driven network that goes beyond traditional political activism.
@@ -57,12 +57,14 @@
     </section>
 
     <!-- Next banner getinvolved.png with less margin -->
-    <img
-      src="images/getinvolved.png"
-      alt="Get Involved Secondary Banner"
-      class="less-margin"
-      style="display:block; width:100%; height:auto; margin-bottom:10px;"
-    />
+    <section>
+      <img
+        src="images/getinvolved.png"
+        alt="Get Involved Secondary Banner"
+        class="less-margin"
+        style="display:block; max-width:100%; height:auto; margin-bottom:10px;"
+      />
+    </section>
 
     <div class="volunteer-banner">Sign Up To Volunteer</div>
     <form class="volunteer-form" action="#" method="POST" id="volunteerForm">
@@ -99,16 +101,17 @@
 
       <textarea name="message" placeholder="Message (optional)"></textarea>
 
-      <!-- Checkboxes inline with text -->
-      <label class="checkbox-label">
-        <input type="checkbox" name="not_robot" required />
-        I'm not a robot
-      </label>
-
-      <label class="checkbox-label">
-        <input type="checkbox" name="privacy_policy" required />
-        By providing this information you are acknowledging and agreeing to the Privacy Policy
-      </label>
+      <!-- Aligned checkboxes -->
+      <div class="form-row checkboxes">
+        <label class="checkbox-label">
+          <input type="checkbox" name="not_robot" required />
+          I'm not a robot
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" name="privacy_policy" required />
+          By providing this information you are acknowledging and agreeing to the Privacy Policy
+        </label>
+      </div>
 
       <button type="submit">Submit</button>
     </form>
