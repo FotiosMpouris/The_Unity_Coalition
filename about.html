@@ -14,8 +14,8 @@
       <img src="images/unitycoalitionlogo.png" alt="Unity Coalition Logo" class="logo" />
       <span class="logo-text">Unity Coalition</span>
     </div>
-    
-    <div class="nav-links mobile-inactive">
+
+    <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="about.html" class="active">About</a>
       <a href="mission.html">Mission</a>
@@ -25,7 +25,7 @@
     </div>
 
     <div class="header-buttons">
-      <a href="https://www.amazon.com" target="_blank" id="shop-btn">Shop</a>
+      <a href="https://www.amazon.com" id="shop-btn">Shop</a>
       <a href="contact.html" id="contribute-btn">Contribute</a>
     </div>
 
@@ -37,25 +37,29 @@
   </header>
 
   <main>
+    <!-- From your original black first-section-fix, etc. 
+         We'll just replicate the content but keep the new approach. -->
+
     <section>
       <h1>About Unity Coalition</h1>
       <p>
-        The Unity Coalition stands as a groundbreaking infrastructure connecting reform-minded Americans 
-        across traditional divides. Operating as both a cultural movement and a structured platform, 
-        we bring together populist, independent, and reform-oriented voices to address our nation’s 
+        The Unity Coalition stands as a groundbreaking infrastructure connecting
+        reform-minded Americans across traditional divides. Operating as both
+        a cultural movement and a structured platform, we bring together populist,
+        independent, and reform-oriented voices to address our nation’s
         most critical challenges.
       </p>
       <p>
-        Through our innovative digital hub, we create dedicated spaces where leaders, organizations, 
-        and citizens can collaborate beyond conventional silos. 
+        Through our innovative digital hub, we create dedicated spaces
+        where leaders, organizations, and citizens can collaborate beyond
+        conventional silos.
       </p>
     </section>
 
-    <!-- Requirement #9: 8 slides with auto-advance, plus audio controls. -->
+    <!-- 8-slide presentation with audio -->
     <section>
-      <h2>Our Dynamic Presentation</h2>
+      <h2>Unity Coalition Dynamics</h2>
       <div class="slider-container">
-        <!-- Each slide has class="stop-presentation" so user can click to stop. -->
         <img src="images/UCDynamics1.png" alt="Slide 1" class="stop-presentation active" />
         <img src="images/UCDynamics2.png" alt="Slide 2" class="stop-presentation" />
         <img src="images/UCDynamics3.png" alt="Slide 3" class="stop-presentation" />
@@ -65,16 +69,18 @@
         <img src="images/UCDynamics7.png" alt="Slide 7" class="stop-presentation" />
         <img src="images/UCDynamics8.png" alt="Slide 8" class="stop-presentation" />
       </div>
-
       <div class="slider-controls">
         <button onclick="prevSlide()">Prev</button>
         <button onclick="startPresentation()">Start Presentation</button>
         <button onclick="stopPresentation()">Stop</button>
         <button onclick="nextSlide()">Next</button>
       </div>
+      <p>
+        Click <strong>Start Presentation</strong> to view the slides with accompanying audio.  
+        Click on the slide at any time to stop the presentation.
+      </p>
     </section>
 
-    <!-- Additional info about the founder -->
     <section>
       <h2>About the Founder</h2>
       <img
@@ -83,12 +89,14 @@
         style="width: 100%; max-width: 300px; float: right; margin: 0 0 1em 1em;"
       />
       <p>
-        [Founder bio here...]
+        Patrick Clerkin’s path to establishing the Unity Coalition emerged
+        from a unique combination of technical expertise and civic engagement. 
+        ( ... more original founder text from your old code ... )
       </p>
     </section>
+
   </main>
 
-  <!-- FOOTER -->
   <footer>
     <div class="footer-links">
       <a href="gallery.html">Gallery</a>
@@ -96,9 +104,15 @@
       <a href="contact.html">Contact</a>
     </div>
     <div class="footer-logos">
-      <a href="#" target="_blank"><img src="images/xlogo.png" alt="X Logo" /></a>
-      <a href="#" target="_blank"><img src="images/facebooklogo.png" alt="Facebook Logo" /></a>
-      <a href="#" target="_blank"><img src="images/mightylogo.png" alt="Mighty Networks Logo" /></a>
+      <a href="https://www.mightynetworks.com/">
+        <img src="images/mightylogo.png" alt="Mighty Networks Logo" />
+      </a>
+      <a href="#">
+        <img src="images/xlogo.png" alt="X Logo" />
+      </a>
+      <a href="#">
+        <img src="images/facebooklogo.png" alt="Facebook Logo" />
+      </a>
     </div>
     <p>© 2025 Unity Coalition. All rights reserved.</p>
   </footer>
