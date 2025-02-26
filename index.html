@@ -69,7 +69,7 @@
           class="founder-image"
         />
         <!-- Volunteer form: email + zip -->
-        <form action="get-involved.html" method="get">
+        <form action="get-involved.html" method="get" class="home-volunteer-form">
           <input type="email" placeholder="Your Email" required />
           <input type="text" placeholder="Zip Code" required />
           <button type="submit">Volunteer</button>
@@ -100,8 +100,7 @@
       </p>
     </section>
 
-    <!-- Black donation section (more transparent) -->
-   <!-- Home page video with click-to-toggle-audio -->
+    <!-- Home page video with click-to-toggle-audio -->
     <section>
       <video
         class="home-video"
@@ -117,25 +116,27 @@
     </section>
   </main>
 
-   <section class="section-black">
-      <h2>Support Our Work</h2>
-      <p>
-        Your donation helps establish our legal entities, build the communications
-        hub, and maintain a motivated core team.
-      </p>
-      <div class="donation-logos">
-        <a href="https://www.givesendgo.com/building-the-unity-coalition">
-          <img
-            src="images/givesend-logo.png"
-            alt="GiveSendGo Donate Button"
-          />
-        </a>
+  <!-- Donation section at bottom -->
+  <section class="section-black">
+    <h2>Support Our Work</h2>
+    <p>
+      Your donation helps establish our legal entities, build the communications
+      hub, and maintain a motivated core team.
+    </p>
+    <div class="donation-logos">
+      <a href="https://www.givesendgo.com/building-the-unity-coalition">
         <img
-          src="images/unitybitcoin-logo.png"
-          alt="Donate with Bitcoin"
+          src="images/givesend-logo.png"
+          alt="GiveSendGo Donate Button"
         />
-      </div>
-    </section>
+      </a>
+      <img
+        id="homeBitcoinLogo"
+        src="images/unitybitcoin-logo.png"
+        alt="Donate with Bitcoin"
+      />
+    </div>
+  </section>
 
   <!-- FOOTER -->
   <footer>
