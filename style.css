@@ -646,42 +646,45 @@ footer p {
   color: #666;
 }
 
-/* 19. Timed Overlay - Mobile Only */
+/* 19. Timed Overlay - Mobile Only - FIXED */
 #mobileButtonsOverlay {
   display: none; /* default hidden */
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0,0,0,0.7);
   justify-content: center;
   align-items: center;
   z-index: 10000;
 }
-@media (max-width: 768px) {
-  #mobileButtonsOverlay.show {
-    display: flex;
-  }
+#mobileButtonsOverlay.show {
+  display: flex !important; /* Force display with !important */
 }
 .mobile-buttons-content {
   background-color: #fff;
-  padding: 20px;
+  padding: 25px;
   border-radius: 6px;
   text-align: center;
   width: 80%;
   max-width: 300px;
   position: relative;
   min-height: 200px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
 }
 .mobile-buttons-content h3 {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   color: var(--blue);
+  font-size: 1.3rem;
 }
 .mobile-buttons-content a {
-  display: inline-block;
-  margin: 5px;
-  padding: 10px 15px;
+  display: block;
+  margin: 15px auto;
+  padding: 12px 20px;
   text-transform: uppercase;
   text-decoration: none;
   color: #fff;
+  width: 80%;
+  border-radius: 4px;
+  font-weight: bold;
 }
 .mobile-buttons-content a#mobileShopBtn {
   background-color: var(--blue);
@@ -698,6 +701,7 @@ footer p {
   right: 10px;
   background: none;
   border: none;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   cursor: pointer;
+  color: var(--red);
 }
