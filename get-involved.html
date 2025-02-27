@@ -37,8 +37,9 @@
   </header>
 
   <main>
-    <!-- Immediately below header: involved.png (smaller & minimal spacing) -->
-    <section class="get-involved-banner" style="margin-top:0; padding-top:0;">
+
+    <!-- involved.png (smaller) near top -->
+    <section style="margin:0; padding:0; text-align:center;">
       <img 
         src="images/involved.png"
         alt="Get Involved Main Banner"
@@ -46,37 +47,35 @@
           display:block;
           max-width:500px;
           height:auto;
-          margin: 20px auto 10px auto;
+          margin: 80px auto 10px auto; /* 80px so it doesn't clash with fixed header */
         "
       />
     </section>
 
-    <!-- Additional text in a translucent box -->
-    <section class="translucent-blue" style="margin-top:0;">
-      <p>
-        Getting involved with the Unity Coalition means joining a structured,
-        purpose-driven network that goes beyond traditional political activism.
-        Whether you can offer your time, expertise, resources, or financial support,
-        there are multiple ways to make a meaningful impact within our coalition.
-      </p>
-    </section>
-
-    <!-- Next banner getinvolved.png with less margin -->
-    <section>
+    <!-- Side-by-side with #63C5DA background -->
+    <section class="involved-side-by-side">
       <img
         src="images/getinvolved.png"
         alt="Get Involved Secondary Banner"
-        class="less-margin"
-        style="
-          display:block;
-          max-width:600px;
-          height:auto;
-          margin: 10px auto;
-        "
+        class="involved-img"
       />
+      <div class="involved-textbox">
+        <p>
+          Getting involved with the Unity Coalition means joining a structured,
+          purpose-driven network that goes beyond traditional political activism.
+          Whether you can offer your time, expertise, resources, or financial support,
+          there are multiple ways to make a meaningful impact within our coalition.
+        </p>
+      </div>
     </section>
 
-    <div class="volunteer-banner">Sign Up To Volunteer</div>
+    <!-- Add more text or sections as needed -->
+
+    <!-- Volunteer banner with an ID so we can link from Home -->
+    <div id="volunteerSection" class="volunteer-banner">
+      Sign Up To Volunteer
+    </div>
+
     <form class="volunteer-form" action="#" method="POST" id="volunteerForm">
       <!-- Placeholder for AWS DynamoDB integration -->
       <div class="form-row">
