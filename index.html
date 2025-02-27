@@ -36,52 +36,65 @@
     </div>
   </header>
 
-  <!-- A small light-blue banner with "Reuniting Americans" at top -->
-  <div class="light-blue-banner">
-    The United States of America
-  </div>
-
-  <main>
-    <!-- Full-width home banner with overlay -->
-    <div class="home-banner-container">
-      <!-- Desktop Banner -->
+  <!-- HERO SECTION with Founder, Quote, "Reuniting America," and Buttons -->
+  <div class="home-banner-container">
+    <!-- Desktop Banner -->
+    <img
+      src="images/homebanner.png"
+      alt="Home Banner Desktop"
+      class="banner-desktop"
+    />
+    <!-- Mobile Banner -->
+    <img
+      src="images/homebanner1.png"
+      alt="Home Banner Mobile"
+      class="banner-mobile"
+    />
+    <!-- Overlay content -->
+    <div class="home-banner-overlay">
+      <h1>Reuniting America</h1>
+      <blockquote>
+        “The reuniting of Americans begins right now.”<br/>
+        — [Founder’s Name]
+      </blockquote>
       <img
-        src="images/homebanner.png"
-        alt="Home Banner Desktop"
-        class="banner-desktop"
+        src="images/founderimage.png"
+        alt="Founder of Unity Coalition"
+        class="founder-image"
       />
-      <!-- Mobile Banner -->
-      <img
-        src="images/homebanner1.png"
-        alt="Home Banner Mobile"
-        class="banner-mobile"
-      />
-      <!-- Overlay content -->
-      <div class="home-banner-overlay">
-        <h1>Reuniting America</h1>
-        <blockquote>
-          “The reuniting of Americans begins right now.”<br/>
-          — [Founder’s Name]
-        </blockquote>
-        <img
-          src="images/founderimage.png"
-          alt="Founder of Unity Coalition"
-          class="founder-image"
-        />
-        <!-- Volunteer form: email + zip -->
-        <form action="get-involved.html" method="get" class="home-volunteer-form">
-          <input type="email" placeholder="Your Email" required />
-          <input type="text" placeholder="Zip Code" required />
-          <button type="submit">Volunteer</button>
-        </form>
 
-        <!-- Contribute CTA button -->
-        <div class="banner-cta-buttons">
-          <a href="contact.html#contributeSection">Contribute</a>
-        </div>
+      <!-- Volunteer & Contribute Buttons directly in the hero -->
+      <div class="hero-buttons-group">
+        <!-- "Volunteer" now links to the Get Involved page -->
+        <a href="get-involved.html" class="hero-volunteer-btn">Volunteer</a>
+
+        <!-- Contribute link to contact's #contributeSection -->
+        <a href="contact.html#contributeSection" class="hero-contribute-btn">Contribute</a>
       </div>
     </div>
+  </div>
 
+  <!-- "Join Our Movement" banner (RED top / WHITE bottom for form) -->
+  <section class="join-movement-section">
+    <div class="join-movement-banner">
+      <h2>Join Our Movement</h2>
+    </div>
+    <div class="join-movement-form-container">
+      <form action="get-involved.html" method="get" class="join-movement-form">
+        <label>
+          <span>Email Address</span>
+          <input type="email" name="email" placeholder="Your Email" required />
+        </label>
+        <label>
+          <span>Zip Code</span>
+          <input type="text" name="zip" placeholder="Zip Code" required />
+        </label>
+        <button type="submit">Join</button>
+      </form>
+    </div>
+  </section>
+
+  <main>
     <!-- Some text in translucent boxes for variety -->
     <section class="translucent-blue">
       <h2>Uniting America's Reform Movement</h2>
@@ -116,7 +129,7 @@
     </section>
   </main>
 
-  <!-- Donation section at bottom -->
+  <!-- Donation section at bottom (scaled 3 logos) -->
   <section class="section-black">
     <h2>Support Our Work</h2>
     <p>
@@ -128,12 +141,21 @@
         <img
           src="images/givesend-logo.png"
           alt="GiveSendGo Donate Button"
+          style="max-width:110px;"
+        />
+      </a>
+      <a href="https://payments.google.com">
+        <img
+          src="images/googlepaylogo.png"
+          alt="Google Pay Donate Button"
+          style="max-width:110px;"
         />
       </a>
       <img
         id="homeBitcoinLogo"
         src="images/unitybitcoin-logo.png"
         alt="Donate with Bitcoin"
+        style="max-width:110px;"
       />
     </div>
   </section>
