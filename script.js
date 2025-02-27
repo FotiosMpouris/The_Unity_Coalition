@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function() {
-
   const header = document.querySelector("header");
   const hamburger = document.querySelector(".hamburger");
   const navLinks = document.querySelector(".nav-links");
@@ -50,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   /************************************************
-   * 3. "Shop & Contribute" Popup - Mobile Only - FIXED
+   * 3. "Shop & Contribute" Popup - (Modified)
    ***********************************************/
   function createPopup() {
     console.log("Creating popup...");
@@ -72,16 +71,28 @@ document.addEventListener("DOMContentLoaded", function() {
       mobileButtonsOverlay.classList.remove("show");
     });
     
-    // FORCE POPUP TO SHOW FOR TESTING
-    console.log("Setting timeout to show popup...");
+    // Show popup after 10 seconds
+    console.log("Setting timeout to show popup in 10 seconds...");
     setTimeout(() => {
       console.log("Timeout executed, showing popup");
       mobileButtonsOverlay.classList.add("show");
-    }, 3000); // Show after 3 seconds for testing
+    }, 10000); 
   }
 
-  // Create and show the popup
-  createPopup();
+  /**
+   * Only create and show the popup if user is on the home page (index.html or root "/")
+   * so it doesn't appear on each page. This way it happens on:
+   *  - Opening the site at index.html
+   *  - Refreshing the home page
+   * but NOT when navigating to about.html, contact.html, etc.
+   */
+  if (
+    window.location.pathname === "/" ||
+    window.location.pathname.endsWith("/index.html") ||
+    window.location.pathname.endsWith("index.html")
+  ) {
+    createPopup();
+  }
 
   /************************************************
    * 4. About Page Slider
@@ -169,7 +180,7 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   /************************************************
-   * 7. Fix anchor links for Contribute and Volunteer - IMPROVED
+   * 7. Fix anchor links for Contribute and Volunteer
    ***********************************************/
   // Fix contribute links to target the correct section
   const contributeLinks = document.querySelectorAll('a[href*="#contributeSection"]');
@@ -239,244 +250,5 @@ document.addEventListener("DOMContentLoaded", function() {
   window.addEventListener('hashchange', handleHashScroll);
 
   // Debugging the popup
-  console.log("Script initialized!");
-});
-document.addEventListener("DOMContentLoaded", function() {
-  const header = document.querySelector("header");
-  const hamburger = document.querySelector(".hamburger");
-  const navLinks = document.querySelector(".nav-links");
-
-  /************************************************
-   * 1. Transparent Header on Mobile Scroll
-   ***********************************************/
-  window.addEventListener("scroll", () => {
-    if (window.innerWidth <= 768) {
-      if (window.scrollY > 50) {
-        header.classList.add("mobile-scrolled");
-        hamburger.classList.add("scrolled-mobile");
-      } else {
-        header.classList.remove("mobile-scrolled");
-        hamburger.classList.remove("scrolled-mobile");
-      }
-    } else {
-      // Remove any mobile scroll classes when on desktop
-      header.classList.remove("mobile-scrolled");
-      hamburger.classList.remove("scrolled-mobile");
-    }
-  });
-
-  /************************************************
-   * 2. Hamburger Overlay (Partial Screen)
-   ***********************************************/
-  // Create the overlay for the mobile nav
-  let overlay = document.createElement("div");
-  overlay.classList.add("mobile-nav-overlay");
-  document.body.appendChild(overlay);
-
-  // Build the nav links inside the overlay
-  let overlayNavHTML = "";
-  navLinks.querySelectorAll("a").forEach(link => {
-    overlayNavHTML += `
-      <a href="${link.getAttribute('href')}" 
-         class="${link.classList.contains('active') ? 'active' : ''}">
-        ${link.textContent}
-      </a>`;
-  });
-  overlay.innerHTML = overlayNavHTML;
-
-  // Show/hide overlay on hamburger click
-  hamburger.addEventListener("click", () => {
-    overlay.classList.toggle("show");
-  });
-
-  // Close overlay if user clicks any nav link
-  overlay.querySelectorAll("a").forEach(link => {
-    link.addEventListener("click", () => {
-      overlay.classList.remove("show");
-    });
-  });
-
-  /************************************************
-   * 3. "Shop & Contribute" Popup (All Screens)
-   ***********************************************/
-  function createPopup() {
-    console.log("Creating popup...");
-
-    let mobileButtonsOverlay = document.createElement("div");
-    mobileButtonsOverlay.id = "mobileButtonsOverlay"; 
-    mobileButtonsOverlay.innerHTML = `
-      <div class="mobile-buttons-content">
-        <button class="close-mobile-btn">&times;</button>
-        <h3>Check Out</h3>
-        <a href="https://www.amazon.com" id="mobileShopBtn">Shop</a>
-        <a href="contact.html#contributeSection" id="mobileContributeBtn">Contribute</a>
-      </div>
-    `;
-    document.body.appendChild(mobileButtonsOverlay);
-
-    // Close popup on click of X
-    const closeBtn = mobileButtonsOverlay.querySelector(".close-mobile-btn");
-    closeBtn.addEventListener("click", () => {
-      mobileButtonsOverlay.classList.remove("show");
-    });
-
-    // Show after 10 seconds (10000ms)
-    console.log("Setting timeout to show popup in 10 seconds...");
-    setTimeout(() => {
-      console.log("Timeout executed, showing popup");
-      mobileButtonsOverlay.classList.add("show");
-    }, 10000);
-  }
-
-  // Create and show the popup on any screen size
-  createPopup();
-
-  /************************************************
-   * 4. About Page Slider
-   ***********************************************/
-  let sliderIndex = 0;
-  let sliderTimer = null;
-  let aboutAudio = new Audio("audio/ucdynamics_audio.mp3");
-
-  window.startPresentation = function() {
-    showSlide(sliderIndex);
-    sliderTimer = setInterval(nextSlide, 4000);
-    aboutAudio.play();
-  };
-
-  window.stopPresentation = function() {
-    clearInterval(sliderTimer);
-    sliderTimer = null;
-    aboutAudio.pause();
-    aboutAudio.currentTime = 0;
-  };
-
-  window.nextSlide = function() {
-    sliderIndex++;
-    let slides = document.querySelectorAll(".slider-container img");
-    if (sliderIndex >= slides.length) {
-      sliderIndex = 0;
-    }
-    showSlide(sliderIndex);
-  };
-
-  window.prevSlide = function() {
-    sliderIndex--;
-    let slides = document.querySelectorAll(".slider-container img");
-    if (sliderIndex < 0) {
-      sliderIndex = slides.length - 1;
-    }
-    showSlide(sliderIndex);
-  };
-
-  function showSlide(n) {
-    let slides = document.querySelectorAll(".slider-container img");
-    slides.forEach(s => s.classList.remove("active"));
-    slides[n].classList.add("active");
-  }
-
-  // Stop presentation if user clicks on any element with .stop-presentation
-  document.addEventListener("click", function(e) {
-    if (e.target.classList.contains("stop-presentation")) {
-      window.stopPresentation();
-    }
-  });
-
-  /************************************************
-   * 5. Home Page Video (Click-to-toggle-audio)
-   ***********************************************/
-  const homeVideo = document.querySelector(".home-video");
-  if (homeVideo) {
-    homeVideo.addEventListener("click", () => {
-      if (homeVideo.muted) {
-        homeVideo.muted = false;
-        homeVideo.play();
-      } else {
-        homeVideo.muted = true;
-      }
-    });
-  }
-
-  /************************************************
-   * 6. Bitcoin "Coming Soon" Popup
-   ***********************************************/
-  const homeBtcLogo = document.getElementById("homeBitcoinLogo");
-  if (homeBtcLogo) {
-    homeBtcLogo.addEventListener("click", () => {
-      alert("Coming soon");
-    });
-  }
-
-  const contactBtcLogo = document.getElementById("bitcoinDonate");
-  if (contactBtcLogo) {
-    contactBtcLogo.addEventListener("click", () => {
-      alert("Coming soon");
-    });
-  }
-
-  /************************************************
-   * 7. Anchor Links for Contribute & Volunteer
-   ***********************************************/
-  // Contribute links
-  const contributeLinks = document.querySelectorAll('a[href*="#contributeSection"]');
-  contributeLinks.forEach(link => {
-    link.addEventListener("click", function(e) {
-      const targetUrl = this.getAttribute("href");
-      // If same page (hash or contact.html)
-      if (targetUrl.startsWith("#") || window.location.pathname.includes("contact.html")) {
-        e.preventDefault();
-        const contributeSection = document.getElementById("contributeSection");
-        if (contributeSection) {
-          const headerHeight = document.querySelector("header").offsetHeight;
-          const sectionTop = contributeSection.getBoundingClientRect().top + window.pageYOffset;
-          window.scrollTo({
-            top: sectionTop - headerHeight - 20,
-            behavior: "smooth",
-          });
-        }
-      }
-    });
-  });
-
-  // Volunteer links
-  const volunteerLinks = document.querySelectorAll('a[href*="#volunteerSection"]');
-  volunteerLinks.forEach(link => {
-    link.addEventListener("click", function(e) {
-      const targetUrl = this.getAttribute("href");
-      // If same page (hash or get-involved.html)
-      if (targetUrl.startsWith("#") || window.location.pathname.includes("get-involved.html")) {
-        e.preventDefault();
-        const volunteerSection = document.getElementById("volunteerSection");
-        if (volunteerSection) {
-          const headerHeight = document.querySelector("header").offsetHeight;
-          const sectionTop = volunteerSection.getBoundingClientRect().top + window.pageYOffset;
-          window.scrollTo({
-            top: sectionTop - headerHeight - 20,
-            behavior: "smooth",
-          });
-        }
-      }
-    });
-  });
-
-  // Handle direct URL hash access
-  function handleHashScroll() {
-    if (window.location.hash) {
-      setTimeout(function() {
-        const targetElement = document.querySelector(window.location.hash);
-        if (targetElement) {
-          const headerHeight = document.querySelector("header").offsetHeight;
-          const targetTop = targetElement.getBoundingClientRect().top + window.pageYOffset;
-          window.scrollTo({
-            top: targetTop - headerHeight - 20,
-            behavior: "smooth",
-          });
-        }
-      }, 100); 
-    }
-  }
-  handleHashScroll();
-  window.addEventListener("hashchange", handleHashScroll);
-
   console.log("Script initialized!");
 });
