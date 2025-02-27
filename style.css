@@ -390,34 +390,6 @@ main, section {
   }
 }
 
-/* Donation Logos Consistency Fix - Match Contact Page to Home Page */
-.donation-logos img,
-#bitcoinDonate,
-a[href*="givesendgo"] img,
-a[href*="google"] img {
-  width: 80px !important; /* Force consistent width similar to home page */
-  height: auto !important;
-  object-fit: contain;
-  display: inline-block;
-  margin: 0 10px;
-}
-
-/* Ensure the home page logos maintain their existing size */
-#homeBitcoinLogo,
-.section-black .donation-logos img {
-  width: 80px !important;
-}
-
-/* Keep the mobile scaling consistent */
-@media (max-width: 768px) {
-  .donation-logos img,
-  #bitcoinDonate,
-  #homeBitcoinLogo,
-  a[href*="givesendgo"] img,
-  a[href*="google"] img {
-    width: 80px !important;
-  }
-}
 
 /* 11. About Page */
 .about-top-content {
@@ -733,4 +705,31 @@ footer p {
   font-size: 1.5rem;
   cursor: pointer;
   color: var(--red);
+}
+
+/* Donation logos in the Contribute section - make consistent with Home page */
+.translucent-red img[src*="givesend-logo.png"],
+.translucent-red img[src*="googlepaylogo.png"],
+.translucent-red img[src*="unitybitcoin-logo.png"] {
+  max-width: 110px;
+  height: auto;
+  transition: max-width 0.3s ease;
+}
+
+/* Ensure all donation logo containers are centered and consistent */
+.translucent-red div[style*="text-align: center"] {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/* For mobile: make logos smaller to fit side by side */
+@media (max-width: 768px) {
+  .translucent-red img[src*="givesend-logo.png"],
+  .translucent-red img[src*="googlepaylogo.png"],
+  .translucent-red img[src*="unitybitcoin-logo.png"] {
+    max-width: 80px;
+  }
 }
