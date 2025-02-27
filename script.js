@@ -17,7 +17,6 @@ document.addEventListener("DOMContentLoaded", function() {
         hamburger.classList.remove("scrolled-mobile");
       }
     } else {
-      // On desktop, remain solid
       header.classList.remove("mobile-scrolled");
       hamburger.classList.remove("scrolled-mobile");
     }
@@ -48,8 +47,9 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   /************************************************
-   * 3. "Shop & Contribute" Popup - Show Once
+   * 3. "Shop & Contribute" Popup - Mobile Only
    ***********************************************/
+  // We'll hide it on desktop by default (CSS). For mobile, after 10s, show once
   let mobileButtonsOverlay = document.createElement("div");
   mobileButtonsOverlay.id = "mobileButtonsOverlay";
   mobileButtonsOverlay.innerHTML = `
@@ -65,12 +65,15 @@ document.addEventListener("DOMContentLoaded", function() {
   // Only show once per session
   if (!sessionStorage.getItem("popupShown")) {
     setTimeout(() => {
-      mobileButtonsOverlay.classList.add("show");
+      // Show only if screen <= 768 by checking again
+      if (window.innerWidth <= 768) {
+        mobileButtonsOverlay.classList.add("show");
+      }
     }, 10000); // 10 seconds
     sessionStorage.setItem("popupShown", "true");
   }
 
-  // Close popup
+  // Close popup on click of X
   const closeBtn = mobileButtonsOverlay.querySelector(".close-mobile-btn");
   closeBtn.addEventListener("click", () => {
     mobileButtonsOverlay.classList.remove("show");
@@ -82,14 +85,11 @@ document.addEventListener("DOMContentLoaded", function() {
   let sliderIndex = 0;
   let sliderTimer = null;
   let aboutAudio = new Audio("audio/ucdynamics_audio.mp3");
-  let audioPlaying = false;
 
   window.startPresentation = function() {
     showSlide(sliderIndex);
     sliderTimer = setInterval(nextSlide, 4000);
-
     aboutAudio.play();
-    audioPlaying = true;
   };
 
   window.stopPresentation = function() {
@@ -97,7 +97,6 @@ document.addEventListener("DOMContentLoaded", function() {
     sliderTimer = null;
     aboutAudio.pause();
     aboutAudio.currentTime = 0;
-    audioPlaying = false;
   };
 
   window.nextSlide = function() {
