@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   /************************************************
-   * 3. "Shop & Contribute" Popup - (Modified)
+   * 3. "Shop & Contribute" Popup - Modified
    ***********************************************/
   function createPopup() {
     console.log("Creating popup...");
@@ -71,26 +71,32 @@ document.addEventListener("DOMContentLoaded", function() {
       mobileButtonsOverlay.classList.remove("show");
     });
     
-    // Show popup after 10 seconds
+    // Show after 10 seconds (10000 ms)
     console.log("Setting timeout to show popup in 10 seconds...");
     setTimeout(() => {
       console.log("Timeout executed, showing popup");
       mobileButtonsOverlay.classList.add("show");
-    }, 10000); 
+    }, 10000);
   }
 
-  /**
-   * Only create and show the popup if user is on the home page (index.html or root "/")
-   * so it doesn't appear on each page. This way it happens on:
-   *  - Opening the site at index.html
-   *  - Refreshing the home page
-   * but NOT when navigating to about.html, contact.html, etc.
-   */
-  if (
-    window.location.pathname === "/" ||
-    window.location.pathname.endsWith("/index.html") ||
-    window.location.pathname.endsWith("index.html")
-  ) {
+  // Helper function to detect "home page" (root or index.html)
+  function isHomePage() {
+    // Current path, e.g. "/myRepo/about.html" or "/myRepo/"
+    let path = window.location.pathname;
+    // Remove trailing slash if present (but not if it's just "/")
+    if (path.length > 1 && path.endsWith("/")) {
+      path = path.slice(0, -1);
+    }
+    // If path is empty after removing slash => root ("/")
+    // OR ends with "index.html" => treat as home
+    // OR path is something like "/myRepo" => consider it the root if there's no .html
+    const endsWithIndex = path.endsWith("index.html");
+    const noHtmlInPath = !path.includes(".html"); // e.g. "/myRepo" or "/" 
+    return (path === "" || endsWithIndex || noHtmlInPath);
+  }
+
+  // Only create/show popup if on home page (root or index.html)
+  if (isHomePage()) {
     createPopup();
   }
 
