@@ -20,9 +20,7 @@ html, body {
   --red: #b22222;        /* For hovers, highlights, big calls to action */
   --black: #000000;      /* For selective text usage */
   --light-border: #ccc;  /* For the header bottom border, etc. */
-
-  /* The new color from your request */
-  --cyan-63C5DA: #63C5DA;
+  --cyan-63C5DA: #63C5DA; /* Requested color */
 }
 
 /* Body Base */
@@ -149,7 +147,7 @@ header.mobile-scrolled {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(28, 41, 81, 0.8); /* translucent blue */
+  background-color: rgba(28,41,81, 0.8); /* translucent blue */
   padding: 20px;
   border-radius: 10px;
   text-align: center;
@@ -168,14 +166,12 @@ header.mobile-scrolled {
   margin: 10px 0;
   padding: 10px;
   text-transform: uppercase;
-  text-decoration: none;
-  border-radius: 4px;
-  /* thin black stroke or shadow */
   text-shadow: 
     -1px -1px 0 #000,  
      1px -1px 0 #000,
     -1px  1px 0 #000,
      1px  1px 0 #000;
+  border-radius: 4px;
 }
 .mobile-nav-overlay a:hover {
   background-color: rgba(178,34,34, 0.9);
@@ -183,7 +179,7 @@ header.mobile-scrolled {
 
 /* 5. Main / Section Spacing */
 main, section {
-  margin-top: 80px; /* Enough space for fixed header */
+  margin-top: 80px; /* Enough space for fixed header on most pages */
   padding: 20px;
 }
 .banner-desktop {
@@ -210,13 +206,13 @@ main, section {
   background-color: rgba(28,41,81,0.1);
   padding: 20px;
   border-radius: 6px;
-  margin-bottom: 20px;
+  margin-bottom: 10px; /* Reduced from 20px to give less gap */
 }
 .translucent-red {
   background-color: rgba(178,34,34,0.1);
   padding: 20px;
   border-radius: 6px;
-  margin-bottom: 20px;
+  margin-bottom: 10px; /* Reduced from 20px as well */
 }
 
 /* 7. Home Banner & Hero Overlay */
@@ -380,14 +376,12 @@ main, section {
   margin-top: 20px;
 }
 .donation-logos img {
-  /* Desktop default can be around 120px; we shrink for mobile below */
   max-width: 120px;
   height: auto;
 }
-/* Shrink donation logos on mobile so they line up in a row */
 @media (max-width: 768px) {
   .donation-logos img {
-    max-width: 80px;
+    max-width: 80px; /* scale down so all three fit side by side */
   }
 }
 
@@ -512,11 +506,23 @@ main, section {
   gap: 5px;
   margin-top: 10px;
 }
-.less-margin {
-  margin-bottom: 10px;
+
+/* Replace top banner for get-involved */
+.get-involved-banner {
+  margin-top: 80px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--cyan-63C5DA);
+  height: 200px;
+}
+.get-involved-banner h1 {
+  font-size: 2rem;
+  color: #fff;
+  text-transform: uppercase;
 }
 
-/* Involved side-by-side (with #63C5DA) */
+/* Involved side-by-side (#63C5DA background) */
 .involved-side-by-side {
   display: flex;
   flex-wrap: wrap;
@@ -529,7 +535,7 @@ main, section {
   height: auto;
 }
 .involved-textbox {
-  background-color: var(--cyan-63C5DA); /* #63C5DA from your request */
+  background-color: var(--cyan-63C5DA);
   flex: 1;
   padding: 20px;
   margin-left: 10px;
@@ -586,27 +592,25 @@ main, section {
 #contributeSection {
   display: block;
   position: relative;
-  padding-top: 80px;
-  margin-top: -80px;
-}
-.contribute-banner {
-  background-color: var(--red);
-  color: var(--white);
+  /* Removed the old negative margin to avoid overlap */
   padding: 30px 20px;
+  background-color: var(--red);
+  color: #fff;
   text-transform: uppercase;
   text-align: center;
   font-size: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  margin-top: 20px; 
+}
+.contribute-banner {
+  /* same styling but ensures no overlap */
 }
 
 /* 18. Footer - #63C5DA translucent */
 footer {
-  background-color: rgba(99, 197, 218, 0.8); /* translucent #63C5DA */
+  background-color: rgba(99, 197, 218, 0.8);
   padding: 20px;
   text-align: center;
-  margin-top: 40px;
+  margin-top: 0; /* ensures it abuts preceding section if desired */
 }
 footer .footer-links {
   display: flex;
@@ -649,7 +653,6 @@ footer p {
   align-items: center;
   z-index: 10000;
 }
-/* Only show on mobile screens, if triggered by JS */
 @media (max-width: 768px) {
   #mobileButtonsOverlay.show {
     display: flex;
