@@ -143,20 +143,20 @@ header.mobile-scrolled {
   background-color: var(--red);
 }
 
-/* 4. Mobile nav overlay (partial coverage) */
+/* 4. Mobile nav overlay (partial coverage) - UPDATED */
 .mobile-nav-overlay {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(28,41,81,0.8); /* translucent blue */
-  padding: 20px;
+  background-color: rgba(28,41,81,0.9); /* More opaque blue */
+  padding: 30px;
   border-radius: 10px;
   text-align: center;
   display: none;
   z-index: 9999;
   min-width: 250px;
-  min-height: 200px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
 }
 .mobile-nav-overlay.show {
   display: block;
@@ -165,8 +165,8 @@ header.mobile-scrolled {
   display: block;
   background-color: rgba(178,34,34, 0.7); /* translucent red */
   color: #fff;
-  margin: 10px 0;
-  padding: 10px;
+  margin: 15px 0;
+  padding: 12px;
   text-transform: uppercase;
   text-shadow: 
     -1px -1px 0 #000,
@@ -174,8 +174,10 @@ header.mobile-scrolled {
     -1px  1px 0 #000,
      1px  1px 0 #000;
   border-radius: 4px;
+  font-weight: bold;
 }
-.mobile-nav-overlay a:hover {
+.mobile-nav-overlay a:hover, 
+.mobile-nav-overlay a.active {
   background-color: rgba(178,34,34, 0.9);
 }
 
