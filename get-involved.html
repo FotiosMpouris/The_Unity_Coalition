@@ -38,15 +38,10 @@
 
   <main>
 
-    <!-- Removed involved.png; replaced with a medium text box "GET INVOLVED" -->
+    <!-- GET INVOLVED banner -->
     <section class="get-involved-banner">
       <h1>GET INVOLVED</h1>
     </section>
-    <!--
-      If you want the sections to be closer or farther, 
-      you can adjust .get-involved-banner's bottom margin
-      (in style.css) or the top margin of the next section below.
-    -->
 
     <!-- Side-by-side with #63C5DA background -->
     <section class="involved-side-by-side">
@@ -65,58 +60,63 @@
       </div>
     </section>
 
-    <!-- Volunteer banner -->
-    <div id="volunteerSection" class="volunteer-banner">
-      Sign Up To Volunteer
+    <!-- Modern Volunteer banner and form -->
+    <div id="volunteerSection" class="modern-volunteer-banner">
+      <h2>SIGN UP TO VOLUNTEER</h2>
     </div>
 
-    <form class="volunteer-form" action="#" method="POST" id="volunteerForm">
-      <div class="form-row">
-        <div>
-          <input type="text" name="firstName" placeholder="First Name" required />
+    <div class="modern-form-container">
+      <form class="modern-volunteer-form" action="#" method="POST" id="volunteerForm">
+        <div class="form-row">
+          <div class="form-field">
+            <input type="text" name="firstName" placeholder="First Name" required />
+          </div>
+          <div class="form-field">
+            <input type="text" name="lastName" placeholder="Last Name" required />
+          </div>
         </div>
-        <div>
-          <input type="text" name="lastName" placeholder="Last Name" required />
-        </div>
-      </div>
 
-      <div class="form-row">
-        <div>
-          <input type="email" name="email" placeholder="Email" required />
+        <div class="form-row">
+          <div class="form-field">
+            <input type="email" name="email" placeholder="Email" required />
+          </div>
+          <div class="form-field">
+            <input type="text" name="phone" placeholder="Phone" required />
+          </div>
         </div>
-        <div>
-          <input type="text" name="phone" placeholder="Phone" required />
-        </div>
-      </div>
 
-      <div class="form-row">
-        <div>
-          <input type="text" name="zip" placeholder="Zip" required />
+        <div class="form-row three-column">
+          <div class="form-field">
+            <input type="text" name="zip" placeholder="Zip" required />
+          </div>
+          <div class="form-field">
+            <input type="text" name="city" placeholder="City" required />
+          </div>
+          <div class="form-field">
+            <input type="text" name="state" placeholder="State" required />
+          </div>
         </div>
-        <div>
-          <input type="text" name="city" placeholder="City" required />
+
+        <div class="form-field full-width">
+          <textarea name="message" placeholder="Message (optional)"></textarea>
         </div>
-        <div>
-          <input type="text" name="state" placeholder="State" required />
+
+        <!-- Properly aligned checkboxes -->
+        <div class="checkbox-container">
+          <label class="modern-checkbox">
+            <input type="checkbox" name="not_robot" required />
+            <span class="checkbox-text">I'm not a robot</span>
+          </label>
+          
+          <label class="modern-checkbox">
+            <input type="checkbox" name="privacy_policy" required />
+            <span class="checkbox-text">By providing this information you are acknowledging and agreeing to the Privacy Policy</span>
+          </label>
         </div>
-      </div>
 
-      <textarea name="message" placeholder="Message (optional)"></textarea>
-
-      <!-- Aligned checkboxes -->
-      <div class="form-row checkboxes">
-        <label class="checkbox-label">
-          <input type="checkbox" name="not_robot" required />
-          I'm not a robot
-        </label>
-        <label class="checkbox-label">
-          <input type="checkbox" name="privacy_policy" required />
-          By providing this information you are acknowledging and agreeing to the Privacy Policy
-        </label>
-      </div>
-
-      <button type="submit">Submit</button>
-    </form>
+        <button type="submit" class="modern-submit-btn">SUBMIT</button>
+      </form>
+    </div>
   </main>
 
   <footer>
