@@ -20,7 +20,9 @@ html, body {
   --red: #b22222;        /* For hovers, highlights, big calls to action */
   --black: #000000;      /* For selective text usage */
   --light-border: #ccc;  /* For the header bottom border, etc. */
-  --cyan-63C5DA: #63C5DA; /* Requested color */
+
+  /* The new color from your request */
+  --cyan-63C5DA: #63C5DA;
 }
 
 /* Body Base */
@@ -147,7 +149,7 @@ header.mobile-scrolled {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(28,41,81, 0.8); /* translucent blue */
+  background-color: rgba(28,41,81,0.8); /* translucent blue */
   padding: 20px;
   border-radius: 10px;
   text-align: center;
@@ -167,7 +169,7 @@ header.mobile-scrolled {
   padding: 10px;
   text-transform: uppercase;
   text-shadow: 
-    -1px -1px 0 #000,  
+    -1px -1px 0 #000,
      1px -1px 0 #000,
     -1px  1px 0 #000,
      1px  1px 0 #000;
@@ -206,13 +208,13 @@ main, section {
   background-color: rgba(28,41,81,0.1);
   padding: 20px;
   border-radius: 6px;
-  margin-bottom: 10px; /* Reduced from 20px to give less gap */
+  margin-bottom: 10px; /* Reduced for less gap */
 }
 .translucent-red {
   background-color: rgba(178,34,34,0.1);
   padding: 20px;
   border-radius: 6px;
-  margin-bottom: 10px; /* Reduced from 20px as well */
+  margin-bottom: 10px;
 }
 
 /* 7. Home Banner & Hero Overlay */
@@ -379,9 +381,10 @@ main, section {
   max-width: 120px;
   height: auto;
 }
+/* Shrink donation logos on mobile so they line up side by side */
 @media (max-width: 768px) {
   .donation-logos img {
-    max-width: 80px; /* scale down so all three fit side by side */
+    max-width: 80px;
   }
 }
 
@@ -507,9 +510,9 @@ main, section {
   margin-top: 10px;
 }
 
-/* Replace top banner for get-involved */
+/* "GET INVOLVED" Banner */
 .get-involved-banner {
-  margin-top: 80px; 
+  margin-top: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -588,29 +591,15 @@ main, section {
   margin-bottom: 10px;
 }
 
-/* 17. Contact Page */
-#contributeSection {
-  display: block;
-  position: relative;
-  /* Removed the old negative margin to avoid overlap */
-  padding: 30px 20px;
-  background-color: var(--red);
-  color: #fff;
-  text-transform: uppercase;
-  text-align: center;
-  font-size: 2rem;
-  margin-top: 20px; 
-}
-.contribute-banner {
-  /* same styling but ensures no overlap */
-}
+/* 17. Contact Page - no negative margin for Contribute banner, 
+   place contact.png to the right (inline styling in contact.html) */
 
 /* 18. Footer - #63C5DA translucent */
 footer {
   background-color: rgba(99, 197, 218, 0.8);
   padding: 20px;
   text-align: center;
-  margin-top: 0; /* ensures it abuts preceding section if desired */
+  margin-top: 0; /* ensures it abuts preceding section */
 }
 footer .footer-links {
   display: flex;
@@ -643,7 +632,7 @@ footer p {
   color: #666;
 }
 
-/* 19. Timed Overlay - Hide from Desktop (Optional) */
+/* 19. Timed Overlay - Mobile Only */
 #mobileButtonsOverlay {
   display: none; /* default hidden */
   position: fixed;
