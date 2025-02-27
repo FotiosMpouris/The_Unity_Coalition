@@ -457,6 +457,18 @@ main, section {
   text-align: center;
 }
 
+/* Contribute Banner */
+.contribute-banner {
+  background-color: var(--red);
+  color: var(--white);
+  padding: 20px;
+  text-align: center;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  font-weight: bold;
+  width: 100%;
+}
 /* 14. Get Involved Page */
 .volunteer-banner {
   background-color: var(--red);
