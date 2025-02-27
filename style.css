@@ -809,3 +809,53 @@ footer p {
     flex: 1;
   }
 }
+
+/* 21. Content with Image Sections */
+.content-with-image {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.content-with-image .section-content {
+  flex: 1;
+  min-width: 300px;
+}
+
+.content-with-image .section-image {
+  flex: 0 0 auto;
+  max-width: 250px;
+}
+
+.content-with-image .section-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Reverse order for image on the left */
+.content-with-image.reverse {
+  flex-direction: row-reverse;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .content-with-image, 
+  .content-with-image.reverse {
+    flex-direction: column;
+  }
+  
+  .content-with-image .section-image {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  
+  .content-with-image .section-image img {
+    max-width: 250px;
+    margin: 0 auto;
+    display: block;
+  }
+}
