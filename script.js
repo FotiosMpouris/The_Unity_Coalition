@@ -1,3 +1,5 @@
+<script>
+// script.js content (same code you provided, no extra changes needed)
 document.addEventListener("DOMContentLoaded", function() {
 
   const header = document.querySelector("header");
@@ -49,7 +51,6 @@ document.addEventListener("DOMContentLoaded", function() {
   /************************************************
    * 3. "Shop & Contribute" Popup - Mobile Only
    ***********************************************/
-  // We'll hide it on desktop by default (CSS). For mobile, after 10s, show once
   let mobileButtonsOverlay = document.createElement("div");
   mobileButtonsOverlay.id = "mobileButtonsOverlay";
   mobileButtonsOverlay.innerHTML = `
@@ -65,7 +66,6 @@ document.addEventListener("DOMContentLoaded", function() {
   // Only show once per session
   if (!sessionStorage.getItem("popupShown")) {
     setTimeout(() => {
-      // Show only if screen <= 768 by checking again
       if (window.innerWidth <= 768) {
         mobileButtonsOverlay.classList.add("show");
       }
@@ -164,3 +164,4 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
 });
+</script>
