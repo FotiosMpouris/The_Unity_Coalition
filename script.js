@@ -26,18 +26,21 @@ document.addEventListener("DOMContentLoaded", function() {
   /************************************************
    * 2. Hamburger Overlay (Partial Screen)
    ***********************************************/
+  // Create the overlay
   let overlay = document.createElement("div");
   overlay.classList.add("mobile-nav-overlay");
   document.body.appendChild(overlay);
 
+  // Clone existing .nav-links and place into overlay
   let overlayNav = navLinks.cloneNode(true);
   overlay.appendChild(overlayNav);
 
+  // Show/hide overlay on hamburger click
   hamburger.addEventListener("click", () => {
     overlay.classList.toggle("show");
   });
 
-  // Close overlay when user clicks a link
+  // Close overlay if user clicks any nav link inside
   overlayNav.querySelectorAll("a").forEach(link => {
     link.addEventListener("click", () => {
       overlay.classList.remove("show");
@@ -121,7 +124,7 @@ document.addEventListener("DOMContentLoaded", function() {
     slides[n].classList.add("active");
   }
 
-  // Stop presentation by clicking the slide
+  // Stop presentation if user clicks on the slide
   document.addEventListener("click", function(e) {
     if (e.target.classList.contains("stop-presentation")) {
       window.stopPresentation();
