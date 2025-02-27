@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   /************************************************
-   * 3. "Shop & Contribute" Popup - Mobile Only
+   * 3. "Shop & Contribute" Popup - Mobile Only - FIXED
    ***********************************************/
   let mobileButtonsOverlay = document.createElement("div");
   mobileButtonsOverlay.id = "mobileButtonsOverlay";
@@ -64,14 +64,13 @@ document.addEventListener("DOMContentLoaded", function() {
   `;
   document.body.appendChild(mobileButtonsOverlay);
 
-  // Show only once per session
+  // Show popup regardless of device size for testing - will revert to mobile-only later
   if (!sessionStorage.getItem("popupShown")) {
     setTimeout(() => {
-      if (window.innerWidth <= 768) {
-        mobileButtonsOverlay.classList.add("show");
-      }
-    }, 10000); // 10 seconds
-    sessionStorage.setItem("popupShown", "true");
+      mobileButtonsOverlay.classList.add("show");
+      // Store that popup was shown
+      sessionStorage.setItem("popupShown", "true");
+    }, 3000); // Reduced to 3 seconds for testing
   }
 
   // Close popup on click of X
@@ -166,19 +165,26 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   /************************************************
-   * 7. Fix anchor links for Contribute and Volunteer
+   * 7. Fix anchor links for Contribute and Volunteer - IMPROVED
    ***********************************************/
   // Fix contribute links to target the correct section
   const contributeLinks = document.querySelectorAll('a[href*="#contributeSection"]');
   contributeLinks.forEach(link => {
     link.addEventListener('click', function(e) {
-      e.preventDefault();
-      const contributeSection = document.getElementById('contributeSection');
-      if (contributeSection) {
-        contributeSection.scrollIntoView({behavior: 'smooth'});
-      } else {
-        // If not on the same page, maintain the original link behavior
-        window.location.href = this.href;
+      const targetUrl = this.getAttribute('href');
+      // If it's on the same page
+      if (targetUrl.startsWith('#') || window.location.pathname.includes('contact.html')) {
+        e.preventDefault();
+        const contributeSection = document.getElementById('contributeSection');
+        if (contributeSection) {
+          // Scroll to element with offset for the fixed header
+          const headerHeight = document.querySelector('header').offsetHeight;
+          const sectionTop = contributeSection.getBoundingClientRect().top + window.pageYOffset;
+          window.scrollTo({
+            top: sectionTop - headerHeight - 20, // 20px additional offset
+            behavior: 'smooth'
+          });
+        }
       }
     });
   });
@@ -187,15 +193,45 @@ document.addEventListener("DOMContentLoaded", function() {
   const volunteerLinks = document.querySelectorAll('a[href*="#volunteerSection"]');
   volunteerLinks.forEach(link => {
     link.addEventListener('click', function(e) {
-      e.preventDefault();
-      const volunteerSection = document.getElementById('volunteerSection');
-      if (volunteerSection) {
-        volunteerSection.scrollIntoView({behavior: 'smooth'});
-      } else {
-        // If not on the same page, maintain the original link behavior
-        window.location.href = this.href;
+      const targetUrl = this.getAttribute('href');
+      // If it's on the same page
+      if (targetUrl.startsWith('#') || window.location.pathname.includes('get-involved.html')) {
+        e.preventDefault();
+        const volunteerSection = document.getElementById('volunteerSection');
+        if (volunteerSection) {
+          // Scroll to element with offset for the fixed header
+          const headerHeight = document.querySelector('header').offsetHeight;
+          const sectionTop = volunteerSection.getBoundingClientRect().top + window.pageYOffset;
+          window.scrollTo({
+            top: sectionTop - headerHeight - 20, // 20px additional offset
+            behavior: 'smooth'
+          });
+        }
       }
     });
   });
+
+  // Also handle direct URL access with hash
+  function handleHashScroll() {
+    // Check if there's a hash in the URL
+    if (window.location.hash) {
+      setTimeout(function() {
+        const targetElement = document.querySelector(window.location.hash);
+        if (targetElement) {
+          const headerHeight = document.querySelector('header').offsetHeight;
+          const targetTop = targetElement.getBoundingClientRect().top + window.pageYOffset;
+          window.scrollTo({
+            top: targetTop - headerHeight - 20,
+            behavior: 'smooth'
+          });
+        }
+      }, 100); // Small delay to ensure page is fully loaded
+    }
+  }
+  
+  // Run on page load
+  handleHashScroll();
+  // Run when hash changes
+  window.addEventListener('hashchange', handleHashScroll);
 
 });
