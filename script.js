@@ -52,32 +52,36 @@ document.addEventListener("DOMContentLoaded", function() {
   /************************************************
    * 3. "Shop & Contribute" Popup - Mobile Only - FIXED
    ***********************************************/
-  let mobileButtonsOverlay = document.createElement("div");
-  mobileButtonsOverlay.id = "mobileButtonsOverlay";
-  mobileButtonsOverlay.innerHTML = `
-    <div class="mobile-buttons-content">
-      <button class="close-mobile-btn">&times;</button>
-      <h3>Check Out</h3>
-      <a href="https://www.amazon.com" id="mobileShopBtn">Shop</a>
-      <a href="contact.html#contributeSection" id="mobileContributeBtn">Contribute</a>
-    </div>
-  `;
-  document.body.appendChild(mobileButtonsOverlay);
-
-  // Show popup regardless of device size for testing - will revert to mobile-only later
-  if (!sessionStorage.getItem("popupShown")) {
+  function createPopup() {
+    console.log("Creating popup...");
+    let mobileButtonsOverlay = document.createElement("div");
+    mobileButtonsOverlay.id = "mobileButtonsOverlay";
+    mobileButtonsOverlay.innerHTML = `
+      <div class="mobile-buttons-content">
+        <button class="close-mobile-btn">&times;</button>
+        <h3>Check Out</h3>
+        <a href="https://www.amazon.com" id="mobileShopBtn">Shop</a>
+        <a href="contact.html#contributeSection" id="mobileContributeBtn">Contribute</a>
+      </div>
+    `;
+    document.body.appendChild(mobileButtonsOverlay);
+    
+    // Close popup on click of X
+    const closeBtn = mobileButtonsOverlay.querySelector(".close-mobile-btn");
+    closeBtn.addEventListener("click", () => {
+      mobileButtonsOverlay.classList.remove("show");
+    });
+    
+    // FORCE POPUP TO SHOW FOR TESTING
+    console.log("Setting timeout to show popup...");
     setTimeout(() => {
+      console.log("Timeout executed, showing popup");
       mobileButtonsOverlay.classList.add("show");
-      // Store that popup was shown
-      sessionStorage.setItem("popupShown", "true");
-    }, 3000); // Reduced to 3 seconds for testing
+    }, 3000); // Show after 3 seconds for testing
   }
 
-  // Close popup on click of X
-  const closeBtn = mobileButtonsOverlay.querySelector(".close-mobile-btn");
-  closeBtn.addEventListener("click", () => {
-    mobileButtonsOverlay.classList.remove("show");
-  });
+  // Create and show the popup
+  createPopup();
 
   /************************************************
    * 4. About Page Slider
@@ -234,4 +238,6 @@ document.addEventListener("DOMContentLoaded", function() {
   // Run when hash changes
   window.addEventListener('hashchange', handleHashScroll);
 
+  // Debugging the popup
+  console.log("Script initialized!");
 });
