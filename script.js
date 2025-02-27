@@ -30,9 +30,12 @@ document.addEventListener("DOMContentLoaded", function() {
   overlay.classList.add("mobile-nav-overlay");
   document.body.appendChild(overlay);
 
-  // Clone existing .nav-links and place into overlay
-  let overlayNav = navLinks.cloneNode(true);
-  overlay.appendChild(overlayNav);
+  // Create navigation links for the overlay
+  let overlayNavHTML = '';
+  navLinks.querySelectorAll("a").forEach(link => {
+    overlayNavHTML += `<a href="${link.getAttribute('href')}" class="${link.classList.contains('active') ? 'active' : ''}">${link.textContent}</a>`;
+  });
+  overlay.innerHTML = overlayNavHTML;
 
   // Show/hide overlay on hamburger click
   hamburger.addEventListener("click", () => {
@@ -40,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   // Close overlay if user clicks any nav link inside
-  overlayNav.querySelectorAll("a").forEach(link => {
+  overlay.querySelectorAll("a").forEach(link => {
     link.addEventListener("click", () => {
       overlay.classList.remove("show");
     });
@@ -161,5 +164,38 @@ document.addEventListener("DOMContentLoaded", function() {
       alert("Coming soon");
     });
   }
+
+  /************************************************
+   * 7. Fix anchor links for Contribute and Volunteer
+   ***********************************************/
+  // Fix contribute links to target the correct section
+  const contributeLinks = document.querySelectorAll('a[href*="#contributeSection"]');
+  contributeLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const contributeSection = document.getElementById('contributeSection');
+      if (contributeSection) {
+        contributeSection.scrollIntoView({behavior: 'smooth'});
+      } else {
+        // If not on the same page, maintain the original link behavior
+        window.location.href = this.href;
+      }
+    });
+  });
+
+  // Fix volunteer links to target the correct section
+  const volunteerLinks = document.querySelectorAll('a[href*="#volunteerSection"]');
+  volunteerLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const volunteerSection = document.getElementById('volunteerSection');
+      if (volunteerSection) {
+        volunteerSection.scrollIntoView({behavior: 'smooth'});
+      } else {
+        // If not on the same page, maintain the original link behavior
+        window.location.href = this.href;
+      }
+    });
+  });
 
 });
