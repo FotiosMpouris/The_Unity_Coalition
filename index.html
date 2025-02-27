@@ -38,9 +38,6 @@
     </div>
   </header>
 
-  <!-- 1) ADD THIS: The overlay container for mobile nav -->
-  <div class="mobile-nav-overlay"></div>
-
   <!-- HERO SECTION with Founder, Quote, "Reuniting America," and Buttons -->
   <div class="home-banner-container">
     <!-- Desktop Banner -->
@@ -76,8 +73,8 @@
     </div>
   </div>
 
-  <!-- "Join Our Movement" banner (RED top / WHITE bottom for form) -->
-  <section class="join-movement-section">
+  <!-- "Join Our Movement" merged into one section/box -->
+  <section class="join-movement-section" style="margin-bottom:0;">
     <div class="join-movement-banner">
       <h2>Join Our Movement</h2>
     </div>
@@ -131,8 +128,8 @@
     </section>
   </main>
 
-  <!-- Donation section at bottom (scaled 3 logos) -->
-  <section class="section-black">
+  <!-- Donation section at bottom (scaled 3 logos on mobile), no extra margin -->
+  <section class="section-black" style="margin-bottom:0;">
     <h2>Support Our Work</h2>
     <p>
       Your donation helps establish our legal entities, build the communications
@@ -143,21 +140,18 @@
         <img
           src="images/givesend-logo.png"
           alt="GiveSendGo Donate Button"
-          style="max-width:120px;"
         />
       </a>
       <a href="https://payments.google.com">
         <img
           src="images/googlepaylogo.png"
           alt="Google Pay Donate Button"
-          style="max-width:120px;"
         />
       </a>
       <img
         id="homeBitcoinLogo"
         src="images/unitybitcoin-logo.png"
         alt="Donate with Bitcoin"
-        style="max-width:120px;"
       />
     </div>
   </section>
