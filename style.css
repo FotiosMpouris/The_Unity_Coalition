@@ -390,20 +390,25 @@ main, section {
   }
 }
 
-/* Donation Logos Consistency Fix */
+/* Donation Logos Consistency Fix - Match Contact Page to Home Page */
 .donation-logos img,
 #bitcoinDonate,
-#homeBitcoinLogo,
 a[href*="givesendgo"] img,
 a[href*="google"] img {
-  width: 110px !important; /* Force consistent width */
+  width: 80px !important; /* Force consistent width similar to home page */
   height: auto !important;
   object-fit: contain;
   display: inline-block;
   margin: 0 10px;
 }
 
-/* On mobile make them a bit smaller but still consistent */
+/* Ensure the home page logos maintain their existing size */
+#homeBitcoinLogo,
+.section-black .donation-logos img {
+  width: 80px !important;
+}
+
+/* Keep the mobile scaling consistent */
 @media (max-width: 768px) {
   .donation-logos img,
   #bitcoinDonate,
