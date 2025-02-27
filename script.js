@@ -1,5 +1,3 @@
-<script>
-// script.js content (same code you provided, no extra changes needed)
 document.addEventListener("DOMContentLoaded", function() {
 
   const header = document.querySelector("header");
@@ -63,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function() {
   `;
   document.body.appendChild(mobileButtonsOverlay);
 
-  // Only show once per session
+  // Show only once per session
   if (!sessionStorage.getItem("popupShown")) {
     setTimeout(() => {
       if (window.innerWidth <= 768) {
@@ -155,6 +153,7 @@ document.addEventListener("DOMContentLoaded", function() {
       alert("Coming soon");
     });
   }
+
   // On Contact Page
   const contactBtcLogo = document.getElementById("bitcoinDonate");
   if (contactBtcLogo) {
@@ -164,4 +163,3 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
 });
-</script>
