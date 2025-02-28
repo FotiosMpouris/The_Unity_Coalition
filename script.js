@@ -100,33 +100,82 @@ document.addEventListener("DOMContentLoaded", function() {
     createPopup();
   }
 
- /************************************************
- * 4. About Page Slider
+/************************************************
+ * Improved About Page Slider
  ***********************************************/
 let sliderIndex = 0;
 let sliderTimer = null;
-let aboutAudio = document.getElementById('slideAudio'); // Updated to use the audio element from HTML
+let isPlaying = false; // Track if presentation is playing
+let slideAudio = document.getElementById('slideAudio');
+
+// Initialize once the DOM is fully loaded
+document.addEventListener("DOMContentLoaded", function() {
+  // Make sure we have the audio element
+  slideAudio = document.getElementById('slideAudio');
+  
+  // Add click handlers to slides
+  const slides = document.querySelectorAll(".slider-container img");
+  slides.forEach(slide => {
+    slide.addEventListener("click", function() {
+      togglePresentation();
+    });
+  });
+});
+
+// Toggle between play and pause
+function togglePresentation() {
+  if (isPlaying) {
+    stopPresentation();
+  } else {
+    startPresentation();
+  }
+}
 
 window.startPresentation = function() {
+  if (isPlaying) return; // Prevent multiple timers
+  
+  isPlaying = true;
   showSlide(sliderIndex);
+  
+  // Clear any existing timer
+  if (sliderTimer) clearInterval(sliderTimer);
+  
+  // Set new timer
   sliderTimer = setInterval(nextSlide, 4000);
   
-  // Play audio
-  aboutAudio.currentTime = 0; // Reset to beginning
-  aboutAudio.play().catch(error => {
-    console.log("Audio playback failed: ", error);
-    // Some browsers require user interaction before playing audio
-    alert("Please click again to start audio playback");
-  });
+  // Play audio from where it was paused
+  if (slideAudio) {
+    // Only reset to beginning if we're at the first slide
+    if (sliderIndex === 0) {
+      slideAudio.currentTime = 0;
+    }
+    
+    // Add a promise to handle playback
+    const playPromise = slideAudio.play();
+    
+    // Handle potential play() promise rejection (browser autoplay policy)
+    if (playPromise !== undefined) {
+      playPromise.catch(error => {
+        console.log("Audio playback failed: ", error);
+        alert("Please interact with the page again to enable audio");
+      });
+    }
+  }
 };
 
 window.stopPresentation = function() {
-  clearInterval(sliderTimer);
-  sliderTimer = null;
+  isPlaying = false;
   
-  // Pause audio
-  aboutAudio.pause();
-  aboutAudio.currentTime = 0;
+  // Clear timer
+  if (sliderTimer) {
+    clearInterval(sliderTimer);
+    sliderTimer = null;
+  }
+  
+  // Pause audio (but don't reset position)
+  if (slideAudio) {
+    slideAudio.pause();
+  }
 };
 
 window.nextSlide = function() {
@@ -153,13 +202,12 @@ function showSlide(n) {
   slides[n].classList.add("active");
 }
 
-// Stop presentation if user clicks on the slide
-document.addEventListener("click", function(e) {
+// Remove the old click handler that might be causing issues
+document.removeEventListener("click", function(e) {
   if (e.target.classList.contains("stop-presentation")) {
     window.stopPresentation();
   }
 });
-
   /************************************************
    * 5. Home Page Video (Click-to-toggle-audio)
    ***********************************************/
