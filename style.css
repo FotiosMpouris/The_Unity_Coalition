@@ -1012,3 +1012,26 @@ footer p {
     font-size: 1.5rem;
   }
 }
+
+/* 24. Mission Images Row */
+.mission-images-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.mission-image {
+  flex: 1;
+  max-width: calc(33.333% - 10px);
+  height: auto;
+  object-fit: cover;
+}
+
+/* Ensure the mobile version continues to work as before */
+@media (max-width: 768px) {
+  .mission-images-row {
+    display: none;
+  }
+}
