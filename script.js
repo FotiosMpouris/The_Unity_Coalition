@@ -101,16 +101,30 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
 /************************************************
- * Improved About Page Slider
+ * Advanced About Page Slider with Custom Timing
  ***********************************************/
+// Configuration for each slide
+const slideConfig = [
+  { duration: 5000, audioStart: 0 },      // Slide 0
+  { duration: 5000, audioStart: 5 },      // Slide 1
+  { duration: 9000, audioStart: 10 },    // Slide 2
+  { duration: 7000, audioStart: 19 },     // Slide 3
+  { duration: 11000, audioStart: 26 },    // Slide 4
+  { duration: 18000, audioStart: 37 },     // Slide 5
+  { duration: 6000, audioStart: 55 },    // Slide 6
+  { duration: 5000, audioStart: 61 },     // Slide 7
+  { duration: 7000, audioStart: 66 },    // Slide 8
+  { duration: 2000, audioStart: 73 }      // Slide 9
+];
+
 let sliderIndex = 0;
 let sliderTimer = null;
-let isPlaying = false; // Track if presentation is playing
-let slideAudio = document.getElementById('slideAudio');
+let isPlaying = false;
+let slideAudio = null;
 
 // Initialize once the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", function() {
-  // Make sure we have the audio element
+  // Initialize audio
   slideAudio = document.getElementById('slideAudio');
   
   // Add click handlers to slides
@@ -132,28 +146,19 @@ function togglePresentation() {
 }
 
 window.startPresentation = function() {
-  if (isPlaying) return; // Prevent multiple timers
+  if (isPlaying) return;
   
   isPlaying = true;
   showSlide(sliderIndex);
   
-  // Clear any existing timer
-  if (sliderTimer) clearInterval(sliderTimer);
+  // Schedule next slide using the current slide's custom duration
+  scheduleNextSlide();
   
-  // Set new timer
-  sliderTimer = setInterval(nextSlide, 7100);
-  
-  // Play audio from where it was paused
+  // Play audio from the current slide's position
   if (slideAudio) {
-    // Only reset to beginning if we're at the first slide
-    if (sliderIndex === 0) {
-      slideAudio.currentTime = 0;
-    }
+    slideAudio.currentTime = slideConfig[sliderIndex].audioStart;
     
-    // Add a promise to handle playback
     const playPromise = slideAudio.play();
-    
-    // Handle potential play() promise rejection (browser autoplay policy)
     if (playPromise !== undefined) {
       playPromise.catch(error => {
         console.log("Audio playback failed: ", error);
@@ -168,32 +173,68 @@ window.stopPresentation = function() {
   
   // Clear timer
   if (sliderTimer) {
-    clearInterval(sliderTimer);
+    clearTimeout(sliderTimer);
     sliderTimer = null;
   }
   
-  // Pause audio (but don't reset position)
+  // Pause audio
   if (slideAudio) {
     slideAudio.pause();
   }
 };
 
+function scheduleNextSlide() {
+  // Clear any existing timer
+  if (sliderTimer) clearTimeout(sliderTimer);
+  
+  // Schedule next slide using current slide's duration
+  sliderTimer = setTimeout(() => {
+    if (isPlaying) nextSlide();
+  }, slideConfig[sliderIndex].duration);
+}
+
 window.nextSlide = function() {
   sliderIndex++;
   let slides = document.querySelectorAll(".slider-container img");
+  
   if (sliderIndex >= slides.length) {
     sliderIndex = 0;
   }
+  
   showSlide(sliderIndex);
+  
+  // If presentation is playing, set up audio and timing for new slide
+  if (isPlaying) {
+    // Set audio to the start time for this slide
+    if (slideAudio) {
+      slideAudio.currentTime = slideConfig[sliderIndex].audioStart;
+    }
+    
+    // Schedule the next slide
+    scheduleNextSlide();
+  }
 };
 
 window.prevSlide = function() {
   sliderIndex--;
   let slides = document.querySelectorAll(".slider-container img");
+  
   if (sliderIndex < 0) {
     sliderIndex = slides.length - 1;
   }
+  
   showSlide(sliderIndex);
+  
+  // If presentation is playing, set up audio and timing for new slide
+  if (isPlaying) {
+    // Set audio to the start time for this slide
+    if (slideAudio) {
+      slideAudio.currentTime = slideConfig[sliderIndex].audioStart;
+    }
+    
+    // Schedule the next slide
+    scheduleNextSlide();
+  }
 };
 
 function showSlide(n) {
@@ -201,13 +242,7 @@ function showSlide(n) {
   slides.forEach(s => s.classList.remove("active"));
   slides[n].classList.add("active");
 }
-
-// Remove the old click handler that might be causing issues
-document.removeEventListener("click", function(e) {
-  if (e.target.classList.contains("stop-presentation")) {
-    window.stopPresentation();
-  }
-});
+  
   /************************************************
    * 5. Home Page Video (Click-to-toggle-audio)
    ***********************************************/
