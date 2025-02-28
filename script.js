@@ -141,7 +141,7 @@ window.startPresentation = function() {
   if (sliderTimer) clearInterval(sliderTimer);
   
   // Set new timer
-  sliderTimer = setInterval(nextSlide, 4000);
+  sliderTimer = setInterval(nextSlide, 6000);
   
   // Play audio from where it was paused
   if (slideAudio) {
