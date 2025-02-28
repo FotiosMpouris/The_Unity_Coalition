@@ -100,56 +100,65 @@ document.addEventListener("DOMContentLoaded", function() {
     createPopup();
   }
 
-  /************************************************
-   * 4. About Page Slider
-   ***********************************************/
-  let sliderIndex = 0;
-  let sliderTimer = null;
-  let aboutAudio = new Audio("audio/ucdynamics_audio.mp3");
+ /************************************************
+ * 4. About Page Slider
+ ***********************************************/
+let sliderIndex = 0;
+let sliderTimer = null;
+let aboutAudio = document.getElementById('slideAudio'); // Updated to use the audio element from HTML
 
-  window.startPresentation = function() {
-    showSlide(sliderIndex);
-    sliderTimer = setInterval(nextSlide, 4000);
-    aboutAudio.play();
-  };
-
-  window.stopPresentation = function() {
-    clearInterval(sliderTimer);
-    sliderTimer = null;
-    aboutAudio.pause();
-    aboutAudio.currentTime = 0;
-  };
-
-  window.nextSlide = function() {
-    sliderIndex++;
-    let slides = document.querySelectorAll(".slider-container img");
-    if (sliderIndex >= slides.length) {
-      sliderIndex = 0;
-    }
-    showSlide(sliderIndex);
-  };
-
-  window.prevSlide = function() {
-    sliderIndex--;
-    let slides = document.querySelectorAll(".slider-container img");
-    if (sliderIndex < 0) {
-      sliderIndex = slides.length - 1;
-    }
-    showSlide(sliderIndex);
-  };
-
-  function showSlide(n) {
-    let slides = document.querySelectorAll(".slider-container img");
-    slides.forEach(s => s.classList.remove("active"));
-    slides[n].classList.add("active");
-  }
-
-  // Stop presentation if user clicks on the slide
-  document.addEventListener("click", function(e) {
-    if (e.target.classList.contains("stop-presentation")) {
-      window.stopPresentation();
-    }
+window.startPresentation = function() {
+  showSlide(sliderIndex);
+  sliderTimer = setInterval(nextSlide, 4000);
+  
+  // Play audio
+  aboutAudio.currentTime = 0; // Reset to beginning
+  aboutAudio.play().catch(error => {
+    console.log("Audio playback failed: ", error);
+    // Some browsers require user interaction before playing audio
+    alert("Please click again to start audio playback");
   });
+};
+
+window.stopPresentation = function() {
+  clearInterval(sliderTimer);
+  sliderTimer = null;
+  
+  // Pause audio
+  aboutAudio.pause();
+  aboutAudio.currentTime = 0;
+};
+
+window.nextSlide = function() {
+  sliderIndex++;
+  let slides = document.querySelectorAll(".slider-container img");
+  if (sliderIndex >= slides.length) {
+    sliderIndex = 0;
+  }
+  showSlide(sliderIndex);
+};
+
+window.prevSlide = function() {
+  sliderIndex--;
+  let slides = document.querySelectorAll(".slider-container img");
+  if (sliderIndex < 0) {
+    sliderIndex = slides.length - 1;
+  }
+  showSlide(sliderIndex);
+};
+
+function showSlide(n) {
+  let slides = document.querySelectorAll(".slider-container img");
+  slides.forEach(s => s.classList.remove("active"));
+  slides[n].classList.add("active");
+}
+
+// Stop presentation if user clicks on the slide
+document.addEventListener("click", function(e) {
+  if (e.target.classList.contains("stop-presentation")) {
+    window.stopPresentation();
+  }
+});
 
   /************************************************
    * 5. Home Page Video (Click-to-toggle-audio)
