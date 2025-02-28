@@ -393,22 +393,33 @@ main, section {
 /* 11. About Page */
 .about-top-content {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: row; /* Explicitly set to row for desktop */
   align-items: flex-start;
-  gap: 20px;
+  gap: 30px;
+  flex-wrap: nowrap; /* Prevent wrapping which causes the text to go below */
 }
+
 .about-img {
   max-width: 300px;
   width: 100%;
+  flex-shrink: 0; /* This prevents the image from shrinking */
 }
+
+.about-text {
+  flex: 1; /* Make text take remaining space */
+}
+
 @media (max-width: 768px) {
   .about-top-content {
     flex-direction: column;
+    flex-wrap: wrap; /* Allow wrapping on mobile */
   }
+  
   .about-img {
     max-width: 100%;
   }
 }
+
 .clearfix::after {
   content: "";
   display: block;
