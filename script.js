@@ -100,113 +100,212 @@ document.addEventListener("DOMContentLoaded", function() {
     createPopup();
   }
 
-/************************************************
- * Improved About Page Slider
- ***********************************************/
-let sliderIndex = 0;
-let sliderTimer = null;
-let isPlaying = false; // Track if presentation is playing
-let slideAudio = document.getElementById('slideAudio');
+ * Advanced About Page Slider with Custom Timing
+   ***********************************************/
+  // Configuration for each slide - customize durations and audio start times
+  const slideConfig = [
+    { duration: 5000, audioStart: 0 },      // Slide 0
+    { duration: 5000, audioStart: 5 },      // Slide 1
+    { duration: 9000, audioStart: 10 },     // Slide 2
+    { duration: 7000, audioStart: 19 },     // Slide 3
+    { duration: 11000, audioStart: 26 },    // Slide 4
+    { duration: 9000, audioStart: 37 },     // Slide 5
+    { duration: 11000, audioStart: 46 },    // Slide 6
+    { duration: 8000, audioStart: 57 },     // Slide 7
+    { duration: 10000, audioStart: 65 },    // Slide 8
+    { duration: 2000, audioStart: 75 }      // Slide 9
+  ];
 
-// Initialize once the DOM is fully loaded
-document.addEventListener("DOMContentLoaded", function() {
-  // Make sure we have the audio element
-  slideAudio = document.getElementById('slideAudio');
-  
-  // Add click handlers to slides
-  const slides = document.querySelectorAll(".slider-container img");
-  slides.forEach(slide => {
-    slide.addEventListener("click", function() {
-      togglePresentation();
-    });
-  });
-});
+  let sliderIndex = 0;
+  let sliderTimer = null;
+  let isPlaying = false;
+  let slideAudio = document.getElementById('slideAudio');
 
-// Toggle between play and pause
-function togglePresentation() {
-  if (isPlaying) {
-    stopPresentation();
-  } else {
-    startPresentation();
-  }
-}
-
-window.startPresentation = function() {
-  if (isPlaying) return; // Prevent multiple timers
-  
-  isPlaying = true;
-  showSlide(sliderIndex);
-  
-  // Clear any existing timer
-  if (sliderTimer) clearInterval(sliderTimer);
-  
-  // Set new timer
-  sliderTimer = setInterval(nextSlide, 4000);
-  
-  // Play audio from where it was paused
-  if (slideAudio) {
-    // Only reset to beginning if we're at the first slide
-    if (sliderIndex === 0) {
-      slideAudio.currentTime = 0;
+  // Only initialize slider functionality if we're on the about page
+  const sliderContainer = document.querySelector(".slider-container");
+  if (sliderContainer && slideAudio) {
+    console.log("Slide presentation initialized");
+    
+    // Make sure first slide is active
+    const slides = document.querySelectorAll(".slider-container img");
+    if (slides.length > 0) {
+      slides.forEach(s => s.classList.remove("active"));
+      slides[0].classList.add("active");
     }
     
-    // Add a promise to handle playback
-    const playPromise = slideAudio.play();
+    // Add click handlers to slides to stop presentation when clicked
+    slides.forEach(slide => {
+      slide.addEventListener("click", function() {
+        if (isPlaying) {
+          stopPresentation();
+        }
+      });
+    });
+
+    // Pre-load the audio
+    slideAudio.load();
     
-    // Handle potential play() promise rejection (browser autoplay policy)
+    // Initialize button click handlers
+    const startBtn = document.querySelector("button[onclick='startPresentation()']");
+    const stopBtn = document.querySelector("button[onclick='stopPresentation()']");
+    const prevBtn = document.querySelector("button[onclick='prevSlide()']");
+    const nextBtn = document.querySelector("button[onclick='nextSlide()']");
+    
+    if (startBtn) startBtn.addEventListener("click", function(e) {
+      e.preventDefault();
+      startPresentation();
+    });
+    
+    if (stopBtn) stopBtn.addEventListener("click", function(e) {
+      e.preventDefault();
+      stopPresentation();
+    });
+    
+    if (prevBtn) prevBtn.addEventListener("click", function(e) {
+      e.preventDefault();
+      prevSlide();
+    });
+    
+    if (nextBtn) nextBtn.addEventListener("click", function(e) {
+      e.preventDefault();
+      nextSlide();
+    });
+    
+    // Unlock audio on first user interaction - helps with browser autoplay policies
+    document.addEventListener('click', function unlockAudio() {
+      console.log("Attempting to unlock audio...");
+      const silentSound = new Audio("data:audio/mp3;base64,SUQzBAAAAAAAI1TSU0UAAAAPAAADTGF2ZjU4LjI5LjEwMAAAAAAAAAAAAAAA//tQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAABIADAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV6urq6urq6urq6urq6urq6urq6urq6urq6v////////////////////////////////8AAAAATGF2YzU4LjU0AAAAAAAAAAAAAAAAJAAAAAAAAAAAASDs90hvAAAAAAAAAAAAAAAAAAAA//sQZAAP8AAAaQAAAAgAAA0gAAABAAABpAAAACAAADSAAAAETEFNRTMuMTAwVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV");
+      // Play a short silent sound to unlock audio context
+      silentSound.play().then(() => {
+        document.removeEventListener('click', unlockAudio);
+        console.log("Audio unlocked successfully");
+      }).catch(e => {
+        console.log("Audio unlock failed:", e);
+      });
+    }, {once: true});
+  }
+
+  // Function to start the presentation with synchronized audio
+  function startPresentation() {
+    if (isPlaying || !slideAudio) return;
+    
+    console.log("Starting presentation");
+    isPlaying = true;
+    
+    // Show the current slide
+    showSlide(sliderIndex);
+    
+    // Set audio to current slide's start time
+    slideAudio.currentTime = slideConfig[sliderIndex].audioStart;
+    
+    // Try to play audio
+    const playPromise = slideAudio.play();
     if (playPromise !== undefined) {
-      playPromise.catch(error => {
-        console.log("Audio playback failed: ", error);
-        alert("Please interact with the page again to enable audio");
+      playPromise.then(() => {
+        console.log("Audio playing from time:", slideConfig[sliderIndex].audioStart);
+        // Schedule the next slide based on this slide's duration
+        scheduleNextSlide();
+      }).catch(error => {
+        console.error("Audio playback failed:", error);
+        isPlaying = false;
+        alert("Please click the Start Presentation button again to enable audio");
       });
     }
   }
-};
 
-window.stopPresentation = function() {
-  isPlaying = false;
+  // Function to stop the presentation
+  function stopPresentation() {
+    if (!isPlaying) return;
+    
+    console.log("Stopping presentation");
+    isPlaying = false;
+    
+    // Clear the timer for next slide
+    if (sliderTimer) {
+      clearTimeout(sliderTimer);
+      sliderTimer = null;
+    }
+    
+    // Pause the audio
+    if (slideAudio) {
+      slideAudio.pause();
+    }
+  }
+
+  // Schedule the next slide based on current slide's duration
+  function scheduleNextSlide() {
+    // Clear any existing timer
+    if (sliderTimer) {
+      clearTimeout(sliderTimer);
+    }
+    
+    // Only schedule if we're playing
+    if (isPlaying) {
+      console.log(`Scheduling next slide in ${slideConfig[sliderIndex].duration}ms`);
+      sliderTimer = setTimeout(() => {
+        nextSlide();
+      }, slideConfig[sliderIndex].duration);
+    }
+  }
+
+  // Go to next slide
+  function nextSlide() {
+    const slides = document.querySelectorAll(".slider-container img");
+    
+    // Increment slide index (with wrap-around)
+    sliderIndex++;
+    if (sliderIndex >= slides.length) {
+      sliderIndex = 0;
+    }
+    
+    console.log("Moving to slide:", sliderIndex);
+    
+    // Show the new slide
+    showSlide(sliderIndex);
+    
+    // If we're playing, update audio position and schedule next slide
+    if (isPlaying && slideAudio) {
+      slideAudio.currentTime = slideConfig[sliderIndex].audioStart;
+      scheduleNextSlide();
+    }
+  }
+
+  // Go to previous slide
+  function prevSlide() {
+    const slides = document.querySelectorAll(".slider-container img");
+    
+    // Decrement slide index (with wrap-around)
+    sliderIndex--;
+    if (sliderIndex < 0) {
+      sliderIndex = slides.length - 1;
+    }
+    
+    console.log("Moving to slide:", sliderIndex);
+    
+    // Show the new slide
+    showSlide(sliderIndex);
+    
+    // If we're playing, update audio position and schedule next slide
+    if (isPlaying && slideAudio) {
+      slideAudio.currentTime = slideConfig[sliderIndex].audioStart;
+      scheduleNextSlide();
+    }
+  }
+
+  // Show a specific slide
+  function showSlide(n) {
+    const slides = document.querySelectorAll(".slider-container img");
+    slides.forEach(s => s.classList.remove("active"));
+    slides[n].classList.add("active");
+  }
+
+  // Make these functions available globally for the onclick attributes
+  window.startPresentation = startPresentation;
+  window.stopPresentation = stopPresentation;
+  window.nextSlide = nextSlide;
+  window.prevSlide = prevSlide;
   
-  // Clear timer
-  if (sliderTimer) {
-    clearInterval(sliderTimer);
-    sliderTimer = null;
-  }
-  
-  // Pause audio (but don't reset position)
-  if (slideAudio) {
-    slideAudio.pause();
-  }
-};
-
-window.nextSlide = function() {
-  sliderIndex++;
-  let slides = document.querySelectorAll(".slider-container img");
-  if (sliderIndex >= slides.length) {
-    sliderIndex = 0;
-  }
-  showSlide(sliderIndex);
-};
-
-window.prevSlide = function() {
-  sliderIndex--;
-  let slides = document.querySelectorAll(".slider-container img");
-  if (sliderIndex < 0) {
-    sliderIndex = slides.length - 1;
-  }
-  showSlide(sliderIndex);
-};
-
-function showSlide(n) {
-  let slides = document.querySelectorAll(".slider-container img");
-  slides.forEach(s => s.classList.remove("active"));
-  slides[n].classList.add("active");
-}
-
-// Remove the old click handler that might be causing issues
-document.removeEventListener("click", function(e) {
-  if (e.target.classList.contains("stop-presentation")) {
-    window.stopPresentation();
-  }
+  // Rest of your existing code...
 });
   
   /************************************************
