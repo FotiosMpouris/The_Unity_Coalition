@@ -127,8 +127,8 @@ document.addEventListener("DOMContentLoaded", function() {
       { duration: 17500 },     // Slide 5
       { duration: 5500 },      // Slide 6
       { duration: 8000 },      // Slide 7
-      { duration: 8000 },      // Slide 8
-      { duration: 3500 }       // Slide 9
+      { duration: 6000 },      // Slide 8
+      { duration: 1000 }       // Slide 9
     ];
     
     let sliderIndex = 0;
