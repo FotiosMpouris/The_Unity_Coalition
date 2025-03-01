@@ -119,8 +119,8 @@ document.addEventListener("DOMContentLoaded", function() {
     
     // Configuration for each slide - customize durations only
     const slideConfig = [
-      { duration: 5000 },      // Slide 0
-      { duration: 5000 },      // Slide 1
+      { duration: 4000 },      // Slide 0
+      { duration: 6000 },      // Slide 1
       { duration: 9000 },      // Slide 2
       { duration: 7000 },      // Slide 3
       { duration: 11000 },     // Slide 4
