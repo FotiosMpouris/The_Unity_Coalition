@@ -123,8 +123,8 @@ document.addEventListener("DOMContentLoaded", function() {
       { duration: 6100 },      // Slide 1
       { duration: 9000 },      // Slide 2
       { duration: 6000 },      // Slide 3
-      { duration: 11000 },     // Slide 4
-      { duration: 17000 },      // Slide 5
+      { duration: 12000 },     // Slide 4
+      { duration: 18000 },      // Slide 5
       { duration: 5000 },     // Slide 6
       { duration: 6000 },      // Slide 7
       { duration: 5000 },     // Slide 8
