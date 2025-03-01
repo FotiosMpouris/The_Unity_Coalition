@@ -126,8 +126,8 @@ document.addEventListener("DOMContentLoaded", function() {
       { duration: 11500 },     // Slide 4
       { duration: 17500 },     // Slide 5
       { duration: 5000 },      // Slide 6
-      { duration: 6100 },      // Slide 7
-      { duration: 7000 },      // Slide 8
+      { duration: 7000 },      // Slide 7
+      { duration: 8000 },      // Slide 8
       { duration: 3500 }       // Slide 9
     ];
     
