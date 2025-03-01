@@ -101,147 +101,183 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
 /************************************************
- * Advanced About Page Slider with Custom Timing
- ***********************************************/
-// Configuration for each slide
-const slideConfig = [
-  { duration: 5000, audioStart: 0 },      // Slide 0
-  { duration: 5000, audioStart: 5 },      // Slide 1
-  { duration: 9000, audioStart: 19 },    // Slide 2
-  { duration: 7000, audioStart: 26 },     // Slide 3
-  { duration: 11000, audioStart: 37 },    // Slide 4
-  { duration: 9000, audioStart: 43 },     // Slide 5
-  { duration: 11000, audioStart: 52 },    // Slide 6
-  { duration: 8000, audioStart: 63 },     // Slide 7
-  { duration: 10000, audioStart: 111 },    // Slide 8
-  { duration: 2000, audioStart: 114 }      // Slide 9
-];
+   * Advanced About Page Slider with Custom Timing
+   ***********************************************/
+  // Configuration for each slide
+  const slideConfig = [
+    { duration: 5000, audioStart: 0 },      // Slide 0
+    { duration: 5000, audioStart: 5 },      // Slide 1
+    { duration: 9000, audioStart: 19 },     // Slide 2
+    { duration: 7000, audioStart: 26 },     // Slide 3
+    { duration: 11000, audioStart: 37 },    // Slide 4
+    { duration: 9000, audioStart: 43 },     // Slide 5
+    { duration: 11000, audioStart: 52 },    // Slide 6
+    { duration: 8000, audioStart: 63 },     // Slide 7
+    { duration: 10000, audioStart: 111 },   // Slide 8
+    { duration: 2000, audioStart: 114 }     // Slide 9
+  ];
 
-let sliderIndex = 0;
-let sliderTimer = null;
-let isPlaying = false;
-let slideAudio = null;
-
-// Initialize once the DOM is fully loaded
-document.addEventListener("DOMContentLoaded", function() {
-  // Initialize audio
-  slideAudio = document.getElementById('slideAudio');
+  let sliderIndex = 0;
+  let sliderTimer = null;
+  let isPlaying = false;
+  let slideAudio = document.getElementById('slideAudio');
   
-  // Add click handlers to slides
-  const slides = document.querySelectorAll(".slider-container img");
-  slides.forEach(slide => {
-    slide.addEventListener("click", function() {
-      togglePresentation();
+  // Only initialize slider if we're on the About page (has slider elements)
+  const sliderContainer = document.querySelector(".slider-container");
+  if (sliderContainer && slideAudio) {
+    // Remove the stop-presentation class from all slides
+    const slides = document.querySelectorAll(".slider-container img");
+    slides.forEach(slide => {
+      slide.classList.remove("stop-presentation");
+      
+      // Add click handler to each slide
+      slide.addEventListener("click", function() {
+        if (isPlaying) {
+          stopPresentation();
+        }
+      });
     });
-  });
-});
-
-// Toggle between play and pause
-function togglePresentation() {
-  if (isPlaying) {
-    stopPresentation();
-  } else {
-    startPresentation();
+    
+    // Make first slide active
+    if (slides.length > 0) {
+      slides.forEach(s => s.classList.remove("active"));
+      slides[0].classList.add("active");
+    }
+    
+    // Add event listeners to control buttons
+    const startBtn = document.querySelector("button[onclick='startPresentation()']");
+    const stopBtn = document.querySelector("button[onclick='stopPresentation()']");
+    const prevBtn = document.querySelector("button[onclick='prevSlide()']");
+    const nextBtn = document.querySelector("button[onclick='nextSlide()']");
+    
+    if (startBtn) startBtn.addEventListener("click", startPresentation);
+    if (stopBtn) stopBtn.addEventListener("click", stopPresentation);
+    if (prevBtn) prevBtn.addEventListener("click", prevSlide);
+    if (nextBtn) nextBtn.addEventListener("click", nextSlide);
+    
+    // Pre-load the audio
+    slideAudio.load();
+    
+    // Attempt to unlock audio on first user interaction with the page
+    document.body.addEventListener('click', function audioUnlock() {
+      // Create and play a silent audio element
+      const silentAudio = new Audio("data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4LjI5LjEwMAAAAAAAAAAAAAAA//tQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAABIADAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV6urq6urq6urq6urq6urq6urq6urq6urq6v////////////////////////////////8AAAAATGF2YzU4LjU0AAAAAAAAAAAAAAAAJAAAAAAAAAAAASDs90hvAAAAAAAAAAAAAAAAAAAA//sQZAAP8AAAaQAAAAgAAA0gAAABAAABpAAAACAAADSAAAAETEFNRTMuMTAwVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV");
+      silentAudio.play().then(() => {
+        // Once the silent audio plays, we can remove this listener
+        document.body.removeEventListener('click', audioUnlock);
+        console.log("Audio unlocked successfully");
+      }).catch(error => {
+        console.log("Audio unlock failed: ", error);
+      });
+    }, { once: true });
   }
-}
 
-window.startPresentation = function() {
-  if (isPlaying) return;
-  
-  isPlaying = true;
-  showSlide(sliderIndex);
-  
-  // Schedule next slide using the current slide's custom duration
-  scheduleNextSlide();
-  
-  // Play audio from the current slide's position
-  if (slideAudio) {
+  function startPresentation() {
+    if (isPlaying || !slideAudio) return;
+    
+    isPlaying = true;
+    showSlide(sliderIndex);
+    
+    // Schedule next slide using the current slide's custom duration
+    scheduleNextSlide();
+    
+    // Reset audio to the current slide's position
     slideAudio.currentTime = slideConfig[sliderIndex].audioStart;
     
+    // Try to play the audio
     const playPromise = slideAudio.play();
     if (playPromise !== undefined) {
       playPromise.catch(error => {
         console.log("Audio playback failed: ", error);
-        alert("Please interact with the page again to enable audio");
+        alert("Please click the Start Presentation button again to enable audio");
+        isPlaying = false;
       });
     }
   }
-};
 
-window.stopPresentation = function() {
-  isPlaying = false;
-  
-  // Clear timer
-  if (sliderTimer) {
-    clearTimeout(sliderTimer);
-    sliderTimer = null;
-  }
-  
-  // Pause audio
-  if (slideAudio) {
-    slideAudio.pause();
-  }
-};
-
-function scheduleNextSlide() {
-  // Clear any existing timer
-  if (sliderTimer) clearTimeout(sliderTimer);
-  
-  // Schedule next slide using current slide's duration
-  sliderTimer = setTimeout(() => {
-    if (isPlaying) nextSlide();
-  }, slideConfig[sliderIndex].duration);
-}
-
-window.nextSlide = function() {
-  sliderIndex++;
-  let slides = document.querySelectorAll(".slider-container img");
-  
-  if (sliderIndex >= slides.length) {
-    sliderIndex = 0;
-  }
-  
-  showSlide(sliderIndex);
-  
-  // If presentation is playing, set up audio and timing for new slide
-  if (isPlaying) {
-    // Set audio to the start time for this slide
-    if (slideAudio) {
-      slideAudio.currentTime = slideConfig[sliderIndex].audioStart;
+  function stopPresentation() {
+    isPlaying = false;
+    
+    // Clear timer
+    if (sliderTimer) {
+      clearTimeout(sliderTimer);
+      sliderTimer = null;
     }
     
-    // Schedule the next slide
-    scheduleNextSlide();
-  }
-};
-
-window.prevSlide = function() {
-  sliderIndex--;
-  let slides = document.querySelectorAll(".slider-container img");
-  
-  if (sliderIndex < 0) {
-    sliderIndex = slides.length - 1;
-  }
-  
-  showSlide(sliderIndex);
-  
-  // If presentation is playing, set up audio and timing for new slide
-  if (isPlaying) {
-    // Set audio to the start time for this slide
+    // Pause audio
     if (slideAudio) {
-      slideAudio.currentTime = slideConfig[sliderIndex].audioStart;
+      slideAudio.pause();
+    }
+  }
+
+  function scheduleNextSlide() {
+    // Clear any existing timer
+    if (sliderTimer) clearTimeout(sliderTimer);
+    
+    // Schedule next slide using current slide's duration
+    sliderTimer = setTimeout(() => {
+      if (isPlaying) nextSlide();
+    }, slideConfig[sliderIndex].duration);
+  }
+
+  function nextSlide() {
+    sliderIndex++;
+    let slides = document.querySelectorAll(".slider-container img");
+    
+    if (sliderIndex >= slides.length) {
+      sliderIndex = 0;
     }
     
-    // Schedule the next slide
-    scheduleNextSlide();
+    showSlide(sliderIndex);
+    
+    // If presentation is playing, set up audio and timing for new slide
+    if (isPlaying) {
+      // Set audio to the start time for this slide
+      if (slideAudio) {
+        slideAudio.currentTime = slideConfig[sliderIndex].audioStart;
+      }
+      
+      // Schedule the next slide
+      scheduleNextSlide();
+    }
   }
-};
 
-function showSlide(n) {
-  let slides = document.querySelectorAll(".slider-container img");
-  slides.forEach(s => s.classList.remove("active"));
-  slides[n].classList.add("active");
-}
+  function prevSlide() {
+    sliderIndex--;
+    let slides = document.querySelectorAll(".slider-container img");
+    
+    if (sliderIndex < 0) {
+      sliderIndex = slides.length - 1;
+    }
+    
+    showSlide(sliderIndex);
+    
+    // If presentation is playing, set up audio and timing for new slide
+    if (isPlaying) {
+      // Set audio to the start time for this slide
+      if (slideAudio) {
+        slideAudio.currentTime = slideConfig[sliderIndex].audioStart;
+      }
+      
+      // Schedule the next slide
+      scheduleNextSlide();
+    }
+  }
+
+  function showSlide(n) {
+    let slides = document.querySelectorAll(".slider-container img");
+    slides.forEach(s => s.classList.remove("active"));
+    slides[n].classList.add("active");
+  }
+
+  // Expose the functions to the global scope for button onclick handlers
+  window.startPresentation = startPresentation;
+  window.stopPresentation = stopPresentation;
+  window.nextSlide = nextSlide;
+  window.prevSlide = prevSlide;
+  
+  // Rest of your existing code...
+});
   
   /************************************************
    * 5. Home Page Video (Click-to-toggle-audio)
