@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   /************************************************
-   * 4. Advanced About Page Slider with Custom Timing
+   * 4. Advanced About Page Slider with Continuous Audio
    ***********************************************/
   // Initialize slide presentation functionality
   initSlidePresentation();
@@ -115,20 +115,20 @@ document.addEventListener("DOMContentLoaded", function() {
       return; // Not on about page or missing elements
     }
     
-    console.log("Initializing slide presentation");
+    console.log("Initializing slide presentation with continuous audio");
     
-    // Configuration for each slide - customize durations and audio start times
+    // Configuration for each slide - customize durations only
     const slideConfig = [
-      { duration: 5000, audioStart: 0 },      // Slide 0
-      { duration: 5000, audioStart: 5 },      // Slide 1
-      { duration: 9000, audioStart: 10 },     // Slide 2
-      { duration: 7000, audioStart: 19 },     // Slide 3
-      { duration: 11000, audioStart: 26 },    // Slide 4
-      { duration: 9000, audioStart: 37 },     // Slide 5
-      { duration: 11000, audioStart: 46 },    // Slide 6
-      { duration: 8000, audioStart: 57 },     // Slide 7
-      { duration: 10000, audioStart: 65 },    // Slide 8
-      { duration: 2000, audioStart: 75 }      // Slide 9
+      { duration: 5000 },      // Slide 0
+      { duration: 5000 },      // Slide 1
+      { duration: 9000 },      // Slide 2
+      { duration: 7000 },      // Slide 3
+      { duration: 11000 },     // Slide 4
+      { duration: 9000 },      // Slide 5
+      { duration: 11000 },     // Slide 6
+      { duration: 8000 },      // Slide 7
+      { duration: 10000 },     // Slide 8
+      { duration: 2000 }       // Slide 9
     ];
     
     let sliderIndex = 0;
@@ -167,7 +167,7 @@ document.addEventListener("DOMContentLoaded", function() {
     };
     document.addEventListener("click", unlockAudio, { once: true });
     
-    // Set up button event listeners using IDs instead of onclick attributes
+    // Set up button event listeners using IDs
     const startBtn = document.getElementById("startPresentationBtn");
     const stopBtn = document.getElementById("stopPresentationBtn");
     const prevBtn = document.getElementById("prevSlideBtn");
@@ -178,21 +178,18 @@ document.addEventListener("DOMContentLoaded", function() {
     if (prevBtn) prevBtn.addEventListener("click", prevSlide);
     if (nextBtn) nextBtn.addEventListener("click", nextSlide);
     
-    // Function to start the presentation
+    // Function to start the presentation with continuous audio
     function startPresentation() {
       if (isPlaying) return;
       
       console.log("Starting presentation at slide", sliderIndex);
       isPlaying = true;
       
-      // Set audio to current slide's start time
-      slideAudio.currentTime = slideConfig[sliderIndex].audioStart;
-      
-      // Try to play audio
+      // Start the audio from the beginning (or from where it was paused)
       const playPromise = slideAudio.play();
       if (playPromise !== undefined) {
         playPromise.then(() => {
-          console.log("Audio playing from time:", slideConfig[sliderIndex].audioStart);
+          console.log("Audio playing continuously");
           // Schedule the next slide
           scheduleNextSlide();
         }).catch(error => {
@@ -216,7 +213,7 @@ document.addEventListener("DOMContentLoaded", function() {
         sliderTimer = null;
       }
       
-      // Pause the audio
+      // Pause the audio (but don't reset position)
       slideAudio.pause();
     }
     
@@ -236,7 +233,7 @@ document.addEventListener("DOMContentLoaded", function() {
       }
     }
     
-    // Function to go to next slide
+    // Function to go to next slide without interrupting audio
     function nextSlide() {
       // Update slide index (with wrap-around)
       sliderIndex++;
@@ -255,14 +252,14 @@ document.addEventListener("DOMContentLoaded", function() {
         }
       });
       
-      // If presentation is playing, update audio
+      // If presentation is playing, schedule next slide
+      // without modifying the audio playback
       if (isPlaying) {
-        slideAudio.currentTime = slideConfig[sliderIndex].audioStart;
         scheduleNextSlide();
       }
     }
     
-    // Function to go to previous slide
+    // Function to go to previous slide without interrupting audio
     function prevSlide() {
       // Update slide index (with wrap-around)
       sliderIndex--;
@@ -281,9 +278,9 @@ document.addEventListener("DOMContentLoaded", function() {
         }
       });
       
-      // If presentation is playing, update audio
+      // If presentation is playing, schedule next slide
+      // without modifying the audio playback
       if (isPlaying) {
-        slideAudio.currentTime = slideConfig[sliderIndex].audioStart;
         scheduleNextSlide();
       }
     }
