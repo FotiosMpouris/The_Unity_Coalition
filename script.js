@@ -105,22 +105,36 @@ document.addEventListener("DOMContentLoaded", function() {
  ***********************************************/
 // Configuration for each slide
 const slideConfig = [
-  { duration: 6000, audioStart: 0 },      // Slide 0
-  { duration: 8000, audioStart: 6 },      // Slide 1
-  { duration: 12000, audioStart: 14 },    // Slide 2
-  { duration: 7000, audioStart: 33 },     // Slide 3
-  { duration: 10000, audioStart: 40 },    // Slide 4
-  { duration: 9000, audioStart: 50 },     // Slide 5
-  { duration: 11000, audioStart: 59 },    // Slide 6
-  { duration: 8000, audioStart: 70 },     // Slide 7
-  { duration: 10000, audioStart: 78 },    // Slide 8
-  { duration: 7000, audioStart: 88 }      // Slide 9
+  { duration: 5000, audioStart: 0 },      // Slide 0
+  { duration: 5000, audioStart: 5 },      // Slide 1
+  { duration: 9000, audioStart: 19 },    // Slide 2
+  { duration: 7000, audioStart: 26 },     // Slide 3
+  { duration: 11000, audioStart: 37 },    // Slide 4
+  { duration: 9000, audioStart: 43 },     // Slide 5
+  { duration: 11000, audioStart: 52 },    // Slide 6
+  { duration: 8000, audioStart: 63 },     // Slide 7
+  { duration: 10000, audioStart: 111 },    // Slide 8
+  { duration: 2000, audioStart: 114 }      // Slide 9
 ];
 
 let sliderIndex = 0;
 let sliderTimer = null;
 let isPlaying = false;
-let slideAudio = new Audio("audio/ucdynamics_audio.mp3");
+let slideAudio = null;
+
+// Initialize once the DOM is fully loaded
+document.addEventListener("DOMContentLoaded", function() {
+  // Initialize audio
+  slideAudio = document.getElementById('slideAudio');
+  
+  // Add click handlers to slides
+  const slides = document.querySelectorAll(".slider-container img");
+  slides.forEach(slide => {
+    slide.addEventListener("click", function() {
+      togglePresentation();
+    });
+  });
+});
 
 // Toggle between play and pause
 function togglePresentation() {
@@ -141,10 +155,17 @@ window.startPresentation = function() {
   scheduleNextSlide();
   
   // Play audio from the current slide's position
-  slideAudio.currentTime = slideConfig[sliderIndex].audioStart;
-  slideAudio.play().catch(error => {
-    console.log("Audio playback failed:", error);
-  });
+  if (slideAudio) {
+    slideAudio.currentTime = slideConfig[sliderIndex].audioStart;
+    
+    const playPromise = slideAudio.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(error => {
+        console.log("Audio playback failed: ", error);
+        alert("Please interact with the page again to enable audio");
+      });
+    }
+  }
 };
 
 window.stopPresentation = function() {
@@ -157,7 +178,9 @@ window.stopPresentation = function() {
   }
   
   // Pause audio
-  slideAudio.pause();
+  if (slideAudio) {
+    slideAudio.pause();
+  }
 };
 
 function scheduleNextSlide() {
@@ -183,7 +206,9 @@ window.nextSlide = function() {
   // If presentation is playing, set up audio and timing for new slide
   if (isPlaying) {
     // Set audio to the start time for this slide
-    slideAudio.currentTime = slideConfig[sliderIndex].audioStart;
+    if (slideAudio) {
+      slideAudio.currentTime = slideConfig[sliderIndex].audioStart;
+    }
     
     // Schedule the next slide
     scheduleNextSlide();
@@ -203,7 +228,9 @@ window.prevSlide = function() {
   // If presentation is playing, set up audio and timing for new slide
   if (isPlaying) {
     // Set audio to the start time for this slide
-    slideAudio.currentTime = slideConfig[sliderIndex].audioStart;
+    if (slideAudio) {
+      slideAudio.currentTime = slideConfig[sliderIndex].audioStart;
+    }
     
     // Schedule the next slide
     scheduleNextSlide();
@@ -215,16 +242,6 @@ function showSlide(n) {
   slides.forEach(s => s.classList.remove("active"));
   slides[n].classList.add("active");
 }
-
-// Add click handlers to slides
-document.addEventListener("DOMContentLoaded", function() {
-  const slides = document.querySelectorAll(".slider-container img");
-  slides.forEach(slide => {
-    slide.addEventListener("click", function() {
-      togglePresentation();
-    });
-  });
-});
   
   /************************************************
    * 5. Home Page Video (Click-to-toggle-audio)
