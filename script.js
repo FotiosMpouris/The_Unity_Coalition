@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function() {
     
     // Configuration for each slide with your updated durations
     const slideConfig = [
-      { duration: 4000 },      // Slide 0
+      { duration: 3300 },      // Slide 0
       { duration: 6100 },      // Slide 1
       { duration: 9000 },      // Slide 2
       { duration: 6000 },      // Slide 3
