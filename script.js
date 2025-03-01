@@ -100,8 +100,8 @@ document.addEventListener("DOMContentLoaded", function() {
     createPopup();
   }
 
-  /************************************************
-   * 4. Advanced About Page Slider with Continuous Audio
+ /************************************************
+   * 4. Advanced About Page Slider with Continuous Audio and Auto-Restart
    ***********************************************/
   // Initialize slide presentation functionality
   initSlidePresentation();
@@ -115,25 +115,26 @@ document.addEventListener("DOMContentLoaded", function() {
       return; // Not on about page or missing elements
     }
     
-    console.log("Initializing slide presentation with continuous audio");
+    console.log("Initializing slide presentation with continuous audio and auto-restart");
     
-    // Configuration for each slide - customize durations only
+    // Configuration for each slide with your updated durations
     const slideConfig = [
       { duration: 4000 },      // Slide 0
       { duration: 6100 },      // Slide 1
       { duration: 9000 },      // Slide 2
       { duration: 6000 },      // Slide 3
       { duration: 11500 },     // Slide 4
-      { duration: 17500 },      // Slide 5
-      { duration: 5000 },     // Slide 6
+      { duration: 17500 },     // Slide 5
+      { duration: 5000 },      // Slide 6
       { duration: 6100 },      // Slide 7
-      { duration: 7000 },     // Slide 8
+      { duration: 7000 },      // Slide 8
       { duration: 3500 }       // Slide 9
     ];
     
     let sliderIndex = 0;
     let sliderTimer = null;
     let isPlaying = false;
+    let hasCompletedFullCycle = false;
     
     // Make sure first slide is active initially
     const slides = document.querySelectorAll(".slider-container img");
@@ -178,6 +179,18 @@ document.addEventListener("DOMContentLoaded", function() {
     if (prevBtn) prevBtn.addEventListener("click", prevSlide);
     if (nextBtn) nextBtn.addEventListener("click", nextSlide);
     
+    // Handle audio end event for looping
+    slideAudio.addEventListener('ended', function() {
+      // If presentation is still playing when audio ends, restart the audio
+      if (isPlaying) {
+        console.log("Audio ended, restarting audio");
+        slideAudio.currentTime = 0;
+        slideAudio.play().catch(error => {
+          console.error("Error restarting audio:", error);
+        });
+      }
+    });
+    
     // Function to start the presentation with continuous audio
     function startPresentation() {
       if (isPlaying) return;
@@ -185,7 +198,14 @@ document.addEventListener("DOMContentLoaded", function() {
       console.log("Starting presentation at slide", sliderIndex);
       isPlaying = true;
       
-      // Start the audio from the beginning (or from where it was paused)
+      // Start the audio from the beginning if we completed a cycle
+      // or from where it was paused if we're in the middle
+      if (hasCompletedFullCycle || sliderIndex === 0) {
+        slideAudio.currentTime = 0;
+        hasCompletedFullCycle = false;
+      }
+      
+      // Play the audio
       const playPromise = slideAudio.play();
       if (playPromise !== undefined) {
         playPromise.then(() => {
@@ -213,7 +233,7 @@ document.addEventListener("DOMContentLoaded", function() {
         sliderTimer = null;
       }
       
-      // Pause the audio (but don't reset position)
+      // Pause the audio (but don't reset position unless at end)
       slideAudio.pause();
     }
     
@@ -237,8 +257,12 @@ document.addEventListener("DOMContentLoaded", function() {
     function nextSlide() {
       // Update slide index (with wrap-around)
       sliderIndex++;
+      
+      // Check if we've completed a full cycle
       if (sliderIndex >= slides.length) {
         sliderIndex = 0;
+        hasCompletedFullCycle = true;
+        console.log("Completed full cycle, restarting from slide 0");
       }
       
       console.log("Moving to next slide:", sliderIndex);
