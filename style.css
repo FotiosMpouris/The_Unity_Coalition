@@ -80,6 +80,14 @@ header {
   transition: background-color 0.3s ease;
 }
 
+/* Increase header height for desktops only */
+@media (min-width: 769px) {
+  header {
+    /* Increase the vertical padding from 10px to 20px 
+       (making the header appear taller on larger screens) */
+    padding: 20px 20px;
+  }
+}
 
 header.mobile-scrolled {
   background-color: rgba(255, 255, 255, 0.3);
@@ -129,13 +137,13 @@ header.mobile-scrolled {
   transition: all 0.3s ease;
 }
 #shop-btn {
-  background-color: var(--white);
-  color: var(--blue);
+  background-color: var(--blue);
+  color: var(--white);
   border-color: var(--blue);
 }
 #shop-btn:hover {
-  background-color: var(--blue);
-  color: var(--white);
+  background-color: var(--white);
+  color: var(--blue);
 }
 #contribute-btn {
   background-color: var(--red);
