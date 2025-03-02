@@ -85,7 +85,7 @@ header {
   header {
     /* Increase the vertical padding from 10px to 20px 
        (making the header appear taller on larger screens) */
-    padding: 70px 20px;
+    padding: 40px 20px;
   }
 }
 
