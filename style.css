@@ -76,23 +76,11 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 20px;
+  padding: 20px 20px;
   transition: background-color 0.3s ease;
 }
 
-/* Desktop-only header height */
-@media (min-width: 769px) {
-  header {
-    height: 200px; /* Set specific height for desktop */
-  }
-  
-  /* Adjust main content margin for desktop */
-  main, section {
-    margin-top: 125px; /* Adjusted for taller header */
-  }
 
-   
-}
 header.mobile-scrolled {
   background-color: rgba(255, 255, 255, 0.3);
 }
