@@ -78,6 +78,7 @@ header {
   justify-content: space-between;
   padding: 10px 20px;
   transition: background-color 0.3s ease;
+}
 
 /* Desktop-only header height */
 @media (min-width: 769px) {
@@ -89,7 +90,7 @@ header {
   main, section {
     margin-top: 125px; /* Adjusted for taller header */
   }
-}
+
    
 }
 header.mobile-scrolled {
