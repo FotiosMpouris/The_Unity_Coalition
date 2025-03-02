@@ -82,14 +82,12 @@ header {
 /* Desktop-only header height */
 @media (min-width: 769px) {
   header {
-    padding: 15px 20px; /* Keep reasonable padding */
-    height: 125px; /* Set a specific height for desktop */
-    min-height: 50px; /* Ensure minimum height */
+    height: 200px; /* Set specific height for desktop */
   }
   
   /* Adjust main content margin for desktop */
   main, section {
-    margin-top: 125px; /* Increased for taller desktop header */
+    margin-top: 125px; /* Adjusted for taller header */
   }
 }
    
