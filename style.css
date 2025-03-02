@@ -40,13 +40,32 @@ a:hover {
   color: var(--red);
 }
 
+/* Top Banner */
+.top-banner {
+  background-color: var(--red);
+  color: var(--white);
+  text-align: center;
+  padding: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .top-banner {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+
+
 /* 2. Header */
 header {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 999;
   background-color: var(--white);
-  border-bottom: 1px solid var(--light-border);
+  border-bottom: 2px solid var(--red);
   display: flex;
   align-items: center;
   justify-content: space-between;
