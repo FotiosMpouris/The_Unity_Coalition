@@ -50,6 +50,11 @@ a:hover {
   text-transform: uppercase;
   letter-spacing: 1px;
   font-size: 1rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000; /* Higher than header */
 }
 
 @media (max-width: 768px) {
@@ -57,12 +62,14 @@ a:hover {
     font-size: 0.9rem;
     padding: 8px;
   }
+}
 
 
 /* 2. Header */
 header {
   position: fixed;
-  top: 0; left: 0; right: 0;
+  top: 36px; /* Height of the banner */
+  left: 0; right: 0;
   z-index: 999;
   background-color: var(--white);
   border-bottom: 2px solid var(--red);
@@ -202,7 +209,7 @@ header.mobile-scrolled {
 
 /* 5. Main / Section Spacing */
 main, section {
-  margin-top: 80px; /* Enough space for fixed header on most pages */
+  margin-top: 110px; /* Increased to accommodate header + banner */
   padding: 20px;
 }
 .banner-desktop {
