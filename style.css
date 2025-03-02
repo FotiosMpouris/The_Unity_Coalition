@@ -214,9 +214,9 @@ main, section {
 }
 
 .home-page .banner-desktop {
-  height: 300px; /* Adjust this value as needed */
+  height: 400px; /* Adjust this value as needed */
   object-fit: cover;
-  object-position: top;
+  object-position: center;
 }
 
 /* 6. Translucent Boxes */
