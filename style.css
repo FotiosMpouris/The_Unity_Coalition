@@ -83,7 +83,7 @@ header {
 @media (min-width: 769px) {
   header {
     padding: 15px 20px; /* Keep reasonable padding */
-    height: 50px; /* Set a specific height for desktop */
+    height: 125px; /* Set a specific height for desktop */
     min-height: 50px; /* Ensure minimum height */
   }
   
