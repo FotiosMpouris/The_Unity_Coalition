@@ -82,7 +82,7 @@ header {
 /* Desktop-only header height */
 @media (min-width: 769px) {
   header {
-    padding: 25px 20px; /* Taller header only on desktop */
+    padding: 65px 20px; /* Taller header only on desktop */
   }
   
   /* Adjust main content margin for desktop */
@@ -225,25 +225,39 @@ main, section {
   margin-top: 110px; /* Increased to accommodate header + banner */
   padding: 20px;
 }
-.banner-desktop {
+
+/* Adjust home banner specifically */
+.home-banner-container {
+  margin-top: 80px; /* Specific margin for home banner */
+}
+
+@media (max-width: 768px) {
+  .home-banner-container {
+    margin-top: 90px; /* More space on mobile */
+  }
+}
+
+.banner-desktop, .banner-mobile {
   display: block;
   width: 100%;
   height: auto;
+  margin-top: 0;
+  padding-top: 0;
 }
-.banner-mobile {
-  display: none;
-  width: 100%;
-  height: auto;
-}
+
 @media (max-width: 768px) {
   .banner-desktop {
     display: none;
   }
   .banner-mobile {
     display: block;
+    margin-top: 0;
+  }
+  .home-banner-container {
+    margin-top: 90px; /* Adjusted for mobile */
+    padding-top: 0;
   }
 }
-
 /* 6. Translucent Boxes */
 .translucent-blue {
   background-color: rgba(28,41,81,0.1);
