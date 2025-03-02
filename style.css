@@ -205,6 +205,14 @@ main, section {
   }
 }
 
+@media (min-width: 769px) {
+  .home-page .banner-desktop {
+    height: 300px; /* Adjust this value as needed */
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
 .home-page .banner-desktop {
   height: 300px; /* Adjust this value as needed */
   object-fit: cover;
