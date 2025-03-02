@@ -78,6 +78,19 @@ header {
   justify-content: space-between;
   padding: 10px 20px;
   transition: background-color 0.3s ease;
+
+/* Desktop-only header height */
+@media (min-width: 769px) {
+  header {
+    padding: 15px 20px; /* Taller header only on desktop */
+  }
+  
+  /* Adjust main content margin for desktop */
+  main, section {
+    margin-top: 120px; /* Increased for taller desktop header */
+  }
+}
+   
 }
 header.mobile-scrolled {
   background-color: rgba(255, 255, 255, 0.3);
