@@ -205,6 +205,12 @@ main, section {
   }
 }
 
+.home-page .banner-desktop {
+  height: 300px; /* Adjust this value as needed */
+  object-fit: cover;
+  object-position: center;
+}
+
 /* 6. Translucent Boxes */
 .translucent-blue {
   background-color: rgba(28,41,81,0.1);
