@@ -223,14 +223,14 @@ main, section {
   padding: 20px;
 }
 
-/* Adjust home banner specifically */
+/* Update home banner container top margin */
 .home-banner-container {
-  margin-top: 80px; /* Specific margin for home banner */
+  margin-top: 150px; /* Increased from 80px to allow space for both banner and header */
 }
 
 @media (max-width: 768px) {
   .home-banner-container {
-    margin-top: 90px; /* More space on mobile */
+    margin-top: 130px; /* Adjusted for mobile */
   }
 }
 
@@ -340,17 +340,26 @@ main, section {
   border-color: var(--red);
 }
 .hero-contribute-btn:hover {
+   
   color: var(--red);
   background-color: #fff;
+}
+
+/* Adjust the home-banner-overlay position */
+.home-banner-overlay {
+  top: 60%; /* Move down from 20% or 50% */
+}
+
+@media (max-width: 768px) {
+  .home-banner-overlay {
+    top: 60%; /* Consistent positioning on mobile */
+  }
 }
 
 /* Desktop-specific adjustment for hero overlay content */
 @media (min-width: 769px) {
   .home-banner-overlay {
-    /* Move the overlay up by adjusting top position */
-    top: 20%; /* Default is 50% - this moves it higher */
-    
-    /* You can also increase the max-width for better readability on desktop */
+    /* Retain the max-width setting */
     max-width: 650px;
   }
   
@@ -369,7 +378,6 @@ main, section {
     max-width: 225px;
   }
 }
-
 /* Update the centered logo scaling */
 /* Fix logo positioning and white box issues */
 .centered-logo-container {
