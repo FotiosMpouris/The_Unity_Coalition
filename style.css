@@ -273,10 +273,8 @@ main, section {
 .home-banner-container {
   position: relative;
   width: 100%;
-  margin-top: 100px;
   margin-bottom: 20px;
   padding: 0;
-  z-index: 10;
 }
 .home-banner-container img {
   width: 100%;
@@ -292,7 +290,6 @@ main, section {
   color: var(--white);
   width: 90%;
   max-width: 600px;
-  z-index: 15;
 }
 .home-banner-overlay h1 {
   font-size: 2rem;
@@ -320,9 +317,6 @@ main, section {
   gap: 10px;
   justify-content: center;
   margin-top: 10px;
-  margin-bottom: 30px; /* Add space after buttons */
-  position: relative;
-  z-index: 20; /* Ensure buttons are above other elements */
 }
 .hero-buttons-group a {
   display: inline-block;
@@ -360,24 +354,30 @@ main, section {
     max-width: 650px;
   }
   
-   .home-banner-overlay h1 {
-    font-size: 1.6rem;
+  /* Make the heading bigger on desktop */
+  .home-banner-overlay h1 {
+    font-size: 2.9rem;
   }
   
+  /* Slightly larger blockquote text on desktop */
   .home-banner-overlay blockquote {
-    font-size: 0.95rem;
+    font-size: 1.5rem;
   }
   
+  /* Slightly larger founder image on desktop */
   .founder-image {
-    max-width: 120px;
+    max-width: 225px;
   }
-/* NEW: Centered Logo Above Map */
+}
+
+/* Update the centered logo scaling */
+/* Fix logo positioning and white box issues */
 .centered-logo-container {
   text-align: center;
   padding: 0;
-  margin: 20px auto 0; /* Add margin-top to move down from buttons */
+  margin: 0 auto;
   position: relative;
-  z-index: 5; /* Lower z-index so buttons appear on top */
+  z-index: 10;
   max-width: 100%;
   background: transparent;
   overflow: visible;
@@ -390,9 +390,10 @@ main, section {
   margin: 0 auto;
   display: block;
   position: relative;
+  z-index: 20;
   background-color: transparent;
   border-radius: 0;
-  box-shadow: none; /* Remove shadow */
+  box-shadow: none; /* Remove shadow that might be causing white background */
 }
 
 /* Remove white background */
@@ -403,6 +404,8 @@ main, section {
   content: none;
   display: none;
 }
+
+
 
 .modern-volunteer-form .form-row {
   display: flex;
@@ -549,7 +552,6 @@ main, section {
   padding: 0;
   background: transparent;
   overflow: visible;
-  z-index: 4; /* Lower than logo */
 }
 
 .usa-map {
@@ -557,21 +559,23 @@ main, section {
   display: block;
   height: auto;
   margin: 0 auto;
+  background: transparent;
 }
 
-/* Mobile adjustments for logo and map */
+/* Mobile adjustments */
 @media (max-width: 768px) {
+  /* Fix top margin for proper spacing */
   .home-banner-container {
     margin-top: 110px;
   }
   
-   .centered-logo-container {
-    margin-top: 0;
+  .centered-logo-container {
+    margin-top: 10px;
   }
   
   .centered-logo {
     max-width: 90px; /* Smaller on mobile */
-    margin-top: 10px;
+    background-color: transparent;
   }
   
   .map-container {
@@ -580,18 +584,18 @@ main, section {
   }
   
  .hero-buttons-group {
-    margin-bottom: 50px; /* More space after buttons on mobile */
+    margin-bottom: 20px;
   }
 }
 
 /* Very small screens */
 @media (max-width: 480px) {
   .centered-logo {
-    max-width: 80px;
+    max-width: 110px; /* Even smaller on very small screens */
   }
 }
 
-/* United We Stand Banner */
+/* Transparent blue for United We Stand banner */
 .united-we-stand-banner {
   width: 100%;
   background-color: rgba(28, 41, 81, 0.8); /* Transparent blue */
@@ -613,6 +617,7 @@ main, section {
   font-weight: bold;
 }
 
+
 /* Mobile adjustments for logo and map */
 @media (max-width: 768px) {
   .centered-logo {
@@ -620,10 +625,9 @@ main, section {
     margin-bottom: -20px;
   }
   
-  .united-we-stand-banner h2 {
-    font-size: 1.6rem;
+ .united-we-stand-banner h2 {
+    font-size: 1.6rem; /* Smaller text on mobile */
   }
-
   .united-we-stand-banner {
     padding: 10px 15px;
   }
@@ -1236,3 +1240,6 @@ footer p {
   background-color: #fff;
   padding: 30px;
   border-radius: 8px;
+
+
+
