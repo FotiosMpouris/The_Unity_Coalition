@@ -698,9 +698,9 @@ margin-bottom: -30px; /* Creates overlap with the map below */
   }
   .united-we-stand-banner {
     padding: 10px 15px;
-    margin-top: 90px; /* You already have this */
-    position: static; /* Override position:relative (or whichever) */
-    bottom: auto;     /* So margin-top can push it down in normal flow */
+    margin-top: 90px;
+    position: static;
+    bottom: auto;
   }
 }
 
