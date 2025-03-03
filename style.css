@@ -1150,13 +1150,15 @@ footer p {
   font-weight: bold;
 }
 
-/* United We Stand Banner above the map */
+/* United We Stand Banner on top of the map */
 .united-we-stand-banner {
   width: 100%;
   background-color: rgba(28, 41, 81, 0.8); /* Transparent blue */
   text-align: center;
   padding: 15px 20px;
   margin: 0;
+  position: relative;
+  z-index: 10;
 }
 
 .united-we-stand-banner h2 {
