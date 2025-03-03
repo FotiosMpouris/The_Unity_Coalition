@@ -1111,3 +1111,63 @@ footer p {
     display: none;
   }
 }
+
+/* 25. United We Stand Section */
+.united-section {
+  position: relative;
+  width: 100%;
+  background-color: var(--blue);
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0;
+  margin-bottom: 0;
+  overflow: hidden;
+}
+
+.united-logo {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  max-width: 120px;
+  z-index: 10;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.united-text-overlay {
+  text-align: center;
+  width: 100%;
+  max-width: 800px;
+  padding: 30px 20px;
+  position: relative;
+  z-index: 5;
+}
+
+.united-text-overlay h2 {
+  font-size: 3rem;
+  color: var(--white);
+  text-transform: uppercase;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .united-logo {
+    max-width: 80px;
+    top: 10px;
+    left: 10px;
+  }
+  
+  .united-text-overlay h2 {
+    font-size: 2rem;
+  }
+  
+  .united-section {
+    padding: 30px 15px;
+  }
+}
