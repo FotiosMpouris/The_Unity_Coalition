@@ -261,12 +261,12 @@ main, section {
 
 /* Update home banner container top margin */
 .home-banner-container {
-  margin-top: 190px; /* Increased from 80px to allow space for both banner and header */
+  margin-top: 150px; /* Increased from 80px to allow space for both banner and header */
 }
 
 @media (max-width: 768px) {
   .home-banner-container {
-    margin-top: 210px; /* Increased from 130px to prevent overlap */
+    margin-top: 120px; /* Increased from 130px to prevent overlap */
   }
 }
 
@@ -400,13 +400,13 @@ main, section {
 
 @media (max-width: 768px) {
   .home-banner-overlay {
-    top: 15%; /* Moved even higher */
-    width: 85%;
+    top: 25%; /* Adjusted to position properly */
+    width: 90%; /* Slightly wider */
   }
   
   .home-banner-overlay h1 {
-    font-size: 1.5rem; /* Smaller font */
-    background: rgba(255, 255, 255, 0.95); /* More opaque */
+    font-size: 1.6rem; /* Slightly larger */
+    background: rgba(255, 255, 255, 0.95);
     padding: 8px;
     margin-bottom: 6px;
   }
@@ -636,17 +636,18 @@ margin-bottom: -30px; /* Creates overlap with the map below */
 /* Mobile spacing adjustments for banner, logo, map */
 @media (max-width: 768px) {
   .home-banner-container {
-    margin-top: 210px; /* Match the value from change #1 */
+    margin-top: 120px; /* Match the value from change #1 */
   }
   .centered-logo-container {
-    margin-top: 120px; /* Increase from 80px */
+    margin-top: 30px; /* Reduced from 120px to bring logo closer */
     position: relative;
   }
   .centered-logo {
-    max-width: 80px; /* Smaller than 100px */
-    margin-top: 40px; /* More space from content above */
+    max-width: 90px; /* Slightly larger than 80px */
+    margin-top: 10px; /* Less space from content above */
     margin-bottom: -15px;
   }
+   
   .map-container {
     margin-top: 10px;
   }
