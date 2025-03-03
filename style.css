@@ -230,7 +230,7 @@ main, section {
 
 @media (max-width: 768px) {
   .home-banner-container {
-    margin-top: 130px; /* Adjusted for mobile */
+    margin-top: 160px; /* Increased from 130px to prevent overlap */
   }
 }
 
@@ -352,7 +352,16 @@ main, section {
 
 @media (max-width: 768px) {
   .home-banner-overlay {
-    top: 60%; /* Consistent positioning on mobile */
+    top: 35%; /* Moved up to show content better */
+    width: 80%; /* Make it a bit narrower */
+  }
+  
+  /* Make text more visible */
+  .home-banner-overlay h1,
+  .home-banner-overlay blockquote {
+    background: rgba(255, 255, 255, 0.9); /* More opaque background */
+    padding: 12px;
+    margin-bottom: 10px;
   }
 }
 
@@ -574,21 +583,22 @@ main, section {
 @media (max-width: 768px) {
   /* Fix top margin for proper spacing */
   .home-banner-container {
-    margin-top: 110px;
+    margin-top: 160px; /* Changed from 110px to 160px */
   }
   
   .centered-logo-container {
-    margin-top: 10px;
+    margin-top: 50px; /* Changed from 10px to 50px */
+    position: relative; /* Added for proper positioning */
   }
   
   .centered-logo {
-    max-width: 90px; /* Smaller on mobile */
-    background-color: transparent;
+    max-width: 120px; /* Reduced size */
+    margin-top: 20px; /* Added to push down */
+    margin-bottom: -15px; /* Adjusted */
   }
-  
+   
   .map-container {
-    max-width: 100%; /* Full width on mobile */
-    margin-top: 10px; /* Less negative margin on mobile */
+    margin-top: 10px; /* Added to adjust spacing */
   }
   
  .hero-buttons-group {
