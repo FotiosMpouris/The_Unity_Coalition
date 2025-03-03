@@ -687,15 +687,23 @@ margin-bottom: -30px; /* Creates overlap with the map below */
   font-weight: bold;
 }
 
+/* Mobile adjustments for united-we-stand banner */
 @media (max-width: 768px) {
+  .centered-logo {
+    max-width: 180px;
+    margin-bottom: -20px;
+  }
+  .united-we-stand-banner h2 {
+    font-size: 1.6rem;
+  }
   .united-we-stand-banner {
     padding: 10px 15px;
-    margin-top: 90px;   /* you already have this */
-    position: static;  /* override "relative" if you want normal flow */
-    bottom: auto;      /* override the "bottom: 0" so margin-top works */
+    margin-top: 90px; /* You already have this */
+    position: static; /* Override position:relative (or whichever) */
+    bottom: auto;     /* So margin-top can push it down in normal flow */
   }
-  /* any other mobile overrides here */
 }
+
 
 
 /* =========================================================
