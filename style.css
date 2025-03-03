@@ -1112,14 +1112,13 @@ footer p {
   }
 }
 
-/* 25. United We Stand Section */
-.united-section {
+/* 25. We Are United Section */
+.we-are-united-section {
   position: relative;
   width: 100%;
   background-color: var(--blue);
-  padding: 40px 20px;
+  padding: 30px 20px;
   display: flex;
-  flex-direction: column;
   align-items: center;
   margin-top: 0;
   margin-bottom: 0;
@@ -1127,29 +1126,44 @@ footer p {
 }
 
 .united-logo {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  max-width: 120px;
-  z-index: 10;
+  max-width: 100px;
+  margin-right: 20px;
   border-radius: 5px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
 .united-text-overlay {
   text-align: center;
-  width: 100%;
-  max-width: 800px;
-  padding: 30px 20px;
+  flex: 1;
+  padding: 10px 20px;
   position: relative;
   z-index: 5;
 }
 
 .united-text-overlay h2 {
-  font-size: 3rem;
+  font-size: 2.5rem;
   color: var(--white);
   text-transform: uppercase;
-  margin-bottom: 15px;
+  margin-bottom: 0;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+
+/* United We Stand Banner above the map */
+.united-we-stand-banner {
+  width: 100%;
+  background-color: rgba(28, 41, 81, 0.8); /* Transparent blue */
+  text-align: center;
+  padding: 15px 20px;
+  margin: 0;
+}
+
+.united-we-stand-banner h2 {
+  font-size: 2.8rem;
+  color: var(--white);
+  text-transform: uppercase;
+  margin: 0;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
   letter-spacing: 2px;
   font-weight: bold;
@@ -1159,15 +1173,22 @@ footer p {
 @media (max-width: 768px) {
   .united-logo {
     max-width: 80px;
-    top: 10px;
-    left: 10px;
+    margin-right: 15px;
   }
   
   .united-text-overlay h2 {
+    font-size: 1.8rem;
+  }
+  
+  .we-are-united-section {
+    padding: 20px 15px;
+  }
+  
+  .united-we-stand-banner h2 {
     font-size: 2rem;
   }
   
-  .united-section {
-    padding: 30px 15px;
+  .united-we-stand-banner {
+    padding: 10px 15px;
   }
 }
