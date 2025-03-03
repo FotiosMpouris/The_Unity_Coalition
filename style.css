@@ -344,6 +344,32 @@ main, section {
   background-color: #fff;
 }
 
+/* Desktop-specific adjustment for hero overlay content */
+@media (min-width: 769px) {
+  .home-banner-overlay {
+    /* Move the overlay up by adjusting top position */
+    top: 40%; /* Default is 50% - this moves it higher */
+    
+    /* You can also increase the max-width for better readability on desktop */
+    max-width: 650px;
+  }
+  
+  /* Make the heading bigger on desktop */
+  .home-banner-overlay h1 {
+    font-size: 2.5rem;
+  }
+  
+  /* Slightly larger blockquote text on desktop */
+  .home-banner-overlay blockquote {
+    font-size: 1.1rem;
+  }
+  
+  /* Slightly larger founder image on desktop */
+  .founder-image {
+    max-width: 180px;
+  }
+}
+
 /* 8. Join Our Movement (red top / white bottom) */
 .join-movement-section {
   margin-top: 0;
