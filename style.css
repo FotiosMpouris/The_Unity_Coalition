@@ -371,28 +371,40 @@ main, section {
 }
 
 /* Update the centered logo scaling */
-/* Fix logo positioning issues */
+/* Fix logo positioning and white box issues */
 .centered-logo-container {
   text-align: center;
-  padding: 20px 0;
-  margin: 30px auto 0; /* Add top margin to move down from buttons */
+  padding: 0;
+  margin: 0 auto;
   position: relative;
-  z-index: 5; /* Lower z-index so it doesn't overlap buttons */
-  max-width: 400px;
-  background: transparent; /* Remove any background */
+  z-index: 10;
+  max-width: 100%;
+  background: transparent;
+  overflow: visible;
 }
 
 .centered-logo {
-  max-width: 180px; /* Smaller size for desktop */
-  width: 100%;
+  max-width: 220px; /* Larger for desktop */
+  width: auto;
   height: auto;
   margin: 0 auto;
   display: block;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   position: relative;
-  background: transparent; /* Ensure logo doesn't have white background */
+  z-index: 20;
+  background-color: transparent;
+  border-radius: 0;
+  box-shadow: none; /* Remove shadow that might be causing white background */
 }
+
+/* Remove white background */
+.centered-logo-container::before,
+.centered-logo-container::after,
+.centered-logo::before,
+.centered-logo::after {
+  content: none;
+  display: none;
+}
+
 
 
 .modern-volunteer-form .form-row {
@@ -535,10 +547,11 @@ main, section {
 .map-container {
   position: relative;
   width: 100%;
-  max-width: 800px;
-  margin: 20px auto 0; /* Add top margin */
+  max-width: 1000px;
+  margin: -30px auto 0; /* Negative margin to pull up under logo */
   padding: 0;
   background: transparent;
+  overflow: visible;
 }
 
 .usa-map {
@@ -551,28 +564,27 @@ main, section {
 
 /* Mobile adjustments */
 @media (max-width: 768px) {
-  /* Fix header overlap on mobile */
+  /* Fix top margin for proper spacing */
   .home-banner-container {
-    margin-top: 100px; /* Increase top margin to prevent header overlap */
+    margin-top: 110px;
   }
   
   .centered-logo-container {
-    padding: 40px 0 20px; /* More padding on top to move down from buttons */
-    max-width: 90%;
-    margin-top: 50px; /* Additional space from hero buttons */
+    margin-top: 10px;
   }
   
   .centered-logo {
-    max-width: 130px; /* Smaller on mobile */
+    max-width: 90px; /* Smaller on mobile */
+    background-color: transparent;
   }
   
   .map-container {
     max-width: 100%; /* Full width on mobile */
-    margin-top: 10px;
+    margin-top: 10px; /* Less negative margin on mobile */
   }
   
-  .hero-buttons-group {
-    margin-bottom: 50px; /* Add space below buttons */
+ .hero-buttons-group {
+    margin-bottom: 20px;
   }
 }
 
@@ -583,9 +595,10 @@ main, section {
   }
 }
 
+/* Transparent blue for United We Stand banner */
 .united-we-stand-banner {
   width: 100%;
-  background-color: var(--blue);
+  background-color: rgba(28, 41, 81, 0.8); /* Transparent blue */
   text-align: center;
   padding: 15px 20px;
   margin: 0;
@@ -604,6 +617,7 @@ main, section {
   font-weight: bold;
 }
 
+
 /* Mobile adjustments for logo and map */
 @media (max-width: 768px) {
   .centered-logo {
@@ -611,10 +625,9 @@ main, section {
     margin-bottom: -20px;
   }
   
-  .united-we-stand-banner h2 {
-    font-size: 1.8rem;
+ .united-we-stand-banner h2 {
+    font-size: 1.6rem; /* Smaller text on mobile */
   }
-  
   .united-we-stand-banner {
     padding: 10px 15px;
   }
