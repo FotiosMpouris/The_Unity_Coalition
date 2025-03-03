@@ -85,7 +85,7 @@ header {
   header {
     /* Increase the vertical padding from 10px to 20px 
        (making the header appear taller on larger screens) */
-    padding: 15px 20px;
+    padding: 20px 20px;
   }
 }
 
@@ -367,6 +367,212 @@ main, section {
   /* Slightly larger founder image on desktop */
   .founder-image {
     max-width: 225px;
+  }
+}
+
+/* NEW: Centered Logo Above Map */
+.centered-logo-container {
+  text-align: center;
+  padding: 20px 0 0;
+  margin: 0;
+  position: relative;
+  z-index: 10;
+}
+
+.centered-logo {
+  max-width: 250px;
+  height: auto;
+  margin: 0 auto;
+  display: block;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.modern-volunteer-form .form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.modern-volunteer-form .form-field {
+  flex: 1;
+  min-width: 200px;
+}
+
+.modern-volunteer-form .form-field input,
+.modern-volunteer-form .form-field textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.modern-volunteer-form .form-field input:focus,
+.modern-volunteer-form .form-field textarea:focus {
+  border-color: var(--blue);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(28, 41, 81, 0.1);
+}
+
+.modern-volunteer-form .form-field.full-width {
+  width: 100%;
+}
+
+.modern-volunteer-form textarea {
+  width: 100%;
+  height: 120px;
+  resize: vertical;
+}
+
+/* Three column layout for zip/city/state */
+.modern-volunteer-form .three-column .form-field {
+  min-width: 100px;
+}
+
+/* Checkbox styling */
+.checkbox-container {
+  margin: 25px 0;
+}
+
+.modern-checkbox {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+.modern-checkbox input[type="checkbox"] {
+  margin-top: 3px;
+  margin-right: 10px;
+  min-width: 16px;
+  height: 16px;
+}
+
+.checkbox-text {
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+/* Submit button */
+.modern-submit-btn {
+  background-color: var(--blue);
+  color: var(--white);
+  border: none;
+  border-radius: 4px;
+  padding: 12px 30px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: block;
+  margin: 0 auto;
+  min-width: 150px;
+}
+
+.modern-submit-btn:hover {
+  background-color: #0f1c3f;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .modern-volunteer-form .form-row {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .modern-volunteer-form .form-field {
+    width: 100%;
+  }
+  
+  .modern-volunteer-banner h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* 24. Mission Images Row */
+.mission-images-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.mission-image {
+  flex: 1;
+  max-width: calc(33.333% - 10px);
+  height: auto;
+  object-fit: cover;
+}
+
+/* Ensure the mobile version continues to work as before */
+@media (max-width: 768px) {
+  .mission-images-row {
+    display: none;
+  }
+}
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  position: relative;
+  z-index: 20;
+  margin-bottom: -30px; /* Creates overlap with the map below */
+}
+
+/* Map container with United We Stand Banner */
+.map-container {
+  position: relative;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.usa-map {
+  width: 100%;
+  display: block;
+  height: auto;
+}
+
+.united-we-stand-banner {
+  width: 100%;
+  background-color: var(--blue);
+  text-align: center;
+  padding: 15px 20px;
+  margin: 0;
+  position: relative;
+  bottom: 0;
+  left: 0;
+}
+
+.united-we-stand-banner h2 {
+  font-size: 2.5rem;
+  color: var(--white);
+  text-transform: uppercase;
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+
+/* Mobile adjustments for logo and map */
+@media (max-width: 768px) {
+  .centered-logo {
+    max-width: 180px;
+    margin-bottom: -20px;
+  }
+  
+  .united-we-stand-banner h2 {
+    font-size: 1.8rem;
+  }
+  
+  .united-we-stand-banner {
+    padding: 10px 15px;
   }
 }
 
@@ -977,220 +1183,3 @@ footer p {
   background-color: #fff;
   padding: 30px;
   border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.modern-volunteer-form .form-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  margin-bottom: 20px;
-}
-
-.modern-volunteer-form .form-field {
-  flex: 1;
-  min-width: 200px;
-}
-
-.modern-volunteer-form .form-field input,
-.modern-volunteer-form .form-field textarea {
-  width: 100%;
-  padding: 12px 15px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 1rem;
-  transition: border-color 0.3s;
-}
-
-.modern-volunteer-form .form-field input:focus,
-.modern-volunteer-form .form-field textarea:focus {
-  border-color: var(--blue);
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(28, 41, 81, 0.1);
-}
-
-.modern-volunteer-form .form-field.full-width {
-  width: 100%;
-}
-
-.modern-volunteer-form textarea {
-  width: 100%;
-  height: 120px;
-  resize: vertical;
-}
-
-/* Three column layout for zip/city/state */
-.modern-volunteer-form .three-column .form-field {
-  min-width: 100px;
-}
-
-/* Checkbox styling */
-.checkbox-container {
-  margin: 25px 0;
-}
-
-.modern-checkbox {
-  display: flex;
-  align-items: flex-start;
-  margin-bottom: 15px;
-  cursor: pointer;
-}
-
-.modern-checkbox input[type="checkbox"] {
-  margin-top: 3px;
-  margin-right: 10px;
-  min-width: 16px;
-  height: 16px;
-}
-
-.checkbox-text {
-  font-size: 0.95rem;
-  line-height: 1.4;
-}
-
-/* Submit button */
-.modern-submit-btn {
-  background-color: var(--blue);
-  color: var(--white);
-  border: none;
-  border-radius: 4px;
-  padding: 12px 30px;
-  font-size: 1rem;
-  text-transform: uppercase;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  display: block;
-  margin: 0 auto;
-  min-width: 150px;
-}
-
-.modern-submit-btn:hover {
-  background-color: #0f1c3f;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .modern-volunteer-form .form-row {
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  .modern-volunteer-form .form-field {
-    width: 100%;
-  }
-  
-  .modern-volunteer-banner h2 {
-    font-size: 1.5rem;
-  }
-}
-
-/* 24. Mission Images Row */
-.mission-images-row {
-  display: flex;
-  justify-content: space-between;
-  gap: 15px;
-  margin-bottom: 20px;
-  width: 100%;
-}
-
-.mission-image {
-  flex: 1;
-  max-width: calc(33.333% - 10px);
-  height: auto;
-  object-fit: cover;
-}
-
-/* Ensure the mobile version continues to work as before */
-@media (max-width: 768px) {
-  .mission-images-row {
-    display: none;
-  }
-}
-
-/* 25. We Are United Section */
-.we-are-united-section {
-  position: relative;
-  width: 100%;
-  background-color: var(--blue);
-  padding: 30px 20px;
-  display: flex;
-  align-items: center;
-  margin-top: 0;
-  margin-bottom: 0;
-  overflow: hidden;
-}
-
-.united-logo {
-  max-width: 100px;
-  margin-right: 20px;
-  border-radius: 5px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-}
-
-.united-text-overlay {
-  text-align: center;
-  flex: 1;
-  padding: 10px 20px;
-  position: relative;
-  z-index: 5;
-}
-
-.united-text-overlay h2 {
-  font-size: 2.5rem;
-  color: var(--white);
-  text-transform: uppercase;
-  margin-bottom: 0;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-  letter-spacing: 2px;
-  font-weight: bold;
-}
-
-/* United We Stand Banner on top of the map */
-.united-we-stand-banner {
-  width: 100%;
-  background-color: rgba(28, 41, 81, 0.8); /* Transparent blue */
-  text-align: center;
-  padding: 15px 20px;
-  margin: 0;
-  position: relative;
-  z-index: 10;
-}
-
-.united-we-stand-banner h2 {
-  font-size: 2.8rem;
-  color: var(--white);
-  text-transform: uppercase;
-  margin: 0;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-  letter-spacing: 2px;
-  font-weight: bold;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .united-logo {
-    max-width: 80px;
-    margin-right: 15px;
-  }
-  
-  .united-text-overlay h2 {
-    font-size: 1.8rem;
-  }
-  
-  .we-are-united-section {
-    padding: 20px 15px;
-  }
-  
-  .united-we-stand-banner h2 {
-    font-size: 2rem;
-  }
-  
-  .united-we-stand-banner {
-    padding: 10px 15px;
-  }
-}
