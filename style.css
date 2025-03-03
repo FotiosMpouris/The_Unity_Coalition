@@ -400,7 +400,7 @@ main, section {
 
 @media (max-width: 768px) {
   .home-banner-overlay {
-    top: 25%; /* Adjusted to position properly */
+    top: 45%; /* Adjusted to position properly */
     width: 90%; /* Slightly wider */
   }
   
@@ -409,6 +409,9 @@ main, section {
     background: rgba(255, 255, 255, 0.95);
     padding: 8px;
     margin-bottom: 6px;
+    display: block; /* Ensure it's displayed */
+    position: relative; /* Add this to ensure proper positioning */
+    z-index: 10; /* Make sure it's above other elements */
   }
   
   .home-banner-overlay blockquote {
