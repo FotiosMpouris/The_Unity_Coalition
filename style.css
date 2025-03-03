@@ -370,24 +370,30 @@ main, section {
   }
 }
 
-/* NEW: Centered Logo Above Map */
+/* Update the centered logo scaling */
 .centered-logo-container {
   text-align: center;
-  padding: 20px 0 0;
+  padding: 30px 0 20px;
   margin: 0;
   position: relative;
   z-index: 10;
+  max-width: 500px; /* Constrain container width */
+  margin: 0 auto; /* Center the container */
 }
 
 .centered-logo {
-  max-width: 250px;
+  max-width: 200px; /* Smaller for desktop */
+  width: 100%;
   height: auto;
   margin: 0 auto;
   display: block;
   border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  position: relative;
+  z-index: 20;
+  margin-bottom: 20px; /* Remove overlap with map */
 }
+
 
 .modern-volunteer-form .form-row {
   display: flex;
@@ -525,11 +531,12 @@ main, section {
   margin-bottom: -30px; /* Creates overlap with the map below */
 }
 
-/* Map container with United We Stand Banner */
+/* Map container with centered map */
 .map-container {
   position: relative;
   width: 100%;
-  margin: 0;
+  max-width: 800px; /* Constrain map width */
+  margin: 0 auto; /* Center the map */
   padding: 0;
 }
 
@@ -537,8 +544,36 @@ main, section {
   width: 100%;
   display: block;
   height: auto;
+  margin: 0 auto;
 }
 
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .centered-logo-container {
+    padding: 20px 0 15px;
+    max-width: 90%;
+  }
+  
+  .centered-logo {
+    max-width: 150px; /* Smaller on mobile */
+    margin-bottom: 15px;
+  }
+  
+  .map-container {
+    max-width: 100%; /* Full width on mobile */
+  }
+  
+  .united-we-stand-banner h2 {
+    font-size: 1.6rem; /* Smaller text on mobile */
+  }
+}
+
+/* Very small screens */
+@media (max-width: 480px) {
+  .centered-logo {
+    max-width: 120px; /* Even smaller on very small screens */
+  }
+}
 .united-we-stand-banner {
   width: 100%;
   background-color: var(--blue);
