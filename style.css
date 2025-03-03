@@ -371,18 +371,19 @@ main, section {
 }
 
 /* Update the centered logo scaling */
+/* Fix logo positioning issues */
 .centered-logo-container {
   text-align: center;
-  padding: 30px 0 20px;
-  margin: 0;
+  padding: 20px 0;
+  margin: 30px auto 0; /* Add top margin to move down from buttons */
   position: relative;
-  z-index: 10;
-  max-width: 500px; /* Constrain container width */
-  margin: 0 auto; /* Center the container */
+  z-index: 5; /* Lower z-index so it doesn't overlap buttons */
+  max-width: 400px;
+  background: transparent; /* Remove any background */
 }
 
 .centered-logo {
-  max-width: 200px; /* Smaller for desktop */
+  max-width: 180px; /* Smaller size for desktop */
   width: 100%;
   height: auto;
   margin: 0 auto;
@@ -390,8 +391,7 @@ main, section {
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   position: relative;
-  z-index: 20;
-  margin-bottom: 20px; /* Remove overlap with map */
+  background: transparent; /* Ensure logo doesn't have white background */
 }
 
 
@@ -535,9 +535,10 @@ main, section {
 .map-container {
   position: relative;
   width: 100%;
-  max-width: 800px; /* Constrain map width */
-  margin: 0 auto; /* Center the map */
+  max-width: 800px;
+  margin: 20px auto 0; /* Add top margin */
   padding: 0;
+  background: transparent;
 }
 
 .usa-map {
@@ -545,35 +546,43 @@ main, section {
   display: block;
   height: auto;
   margin: 0 auto;
+  background: transparent;
 }
 
 /* Mobile adjustments */
 @media (max-width: 768px) {
+  /* Fix header overlap on mobile */
+  .home-banner-container {
+    margin-top: 100px; /* Increase top margin to prevent header overlap */
+  }
+  
   .centered-logo-container {
-    padding: 20px 0 15px;
+    padding: 40px 0 20px; /* More padding on top to move down from buttons */
     max-width: 90%;
+    margin-top: 50px; /* Additional space from hero buttons */
   }
   
   .centered-logo {
-    max-width: 150px; /* Smaller on mobile */
-    margin-bottom: 15px;
+    max-width: 130px; /* Smaller on mobile */
   }
   
   .map-container {
     max-width: 100%; /* Full width on mobile */
+    margin-top: 10px;
   }
   
-  .united-we-stand-banner h2 {
-    font-size: 1.6rem; /* Smaller text on mobile */
+  .hero-buttons-group {
+    margin-bottom: 50px; /* Add space below buttons */
   }
 }
 
 /* Very small screens */
 @media (max-width: 480px) {
   .centered-logo {
-    max-width: 120px; /* Even smaller on very small screens */
+    max-width: 110px; /* Even smaller on very small screens */
   }
 }
+
 .united-we-stand-banner {
   width: 100%;
   background-color: var(--blue);
