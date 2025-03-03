@@ -266,7 +266,7 @@ main, section {
 
 @media (max-width: 768px) {
   .home-banner-container {
-    margin-top: 160px; /* Increased from 130px to prevent overlap */
+    margin-top: 210px; /* Increased from 130px to prevent overlap */
   }
 }
 
@@ -398,33 +398,37 @@ main, section {
   top: 60%; /* Move down from 20% or 50% */
 }
 
-/* Responsive changes for the banner overlay */
 @media (max-width: 768px) {
   .home-banner-overlay {
-    top: 20%; /* Moved even higher from 25% */
-    width: 85%; /* Slightly wider */
+    top: 15%; /* Moved even higher */
+    width: 85%;
   }
   
   .home-banner-overlay h1 {
-    font-size: 1.7rem;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 10px;
-    margin-bottom: 8px;
+    font-size: 1.5rem; /* Smaller font */
+    background: rgba(255, 255, 255, 0.95); /* More opaque */
+    padding: 8px;
+    margin-bottom: 6px;
   }
   
   .home-banner-overlay blockquote {
-    font-size: 0.9rem;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 10px;
-    margin-bottom: 8px;
+    font-size: 0.85rem; /* Smaller */
+    background: rgba(255, 255, 255, 0.95);
+    padding: 8px;
+    margin-bottom: 6px;
   }
   
   .founder-image {
-    max-width: 90px;
-    margin: 5px auto 10px auto;
+    max-width: 80px; /* Smaller */
+    margin: 3px auto 8px auto; /* Less space */
+  }
+  
+  /* Make buttons smaller on mobile */
+  .hero-buttons-group a {
+    padding: 8px 14px;
+    font-size: 0.9rem;
   }
 }
-
 /* Desktop-specific adjustment for hero overlay content */
 @media (min-width: 769px) {
   .home-banner-overlay {
@@ -632,15 +636,15 @@ margin-bottom: -30px; /* Creates overlap with the map below */
 /* Mobile spacing adjustments for banner, logo, map */
 @media (max-width: 768px) {
   .home-banner-container {
-    margin-top: 160px; /* Changed from 110px to 160px */
+    margin-top: 210px; /* Match the value from change #1 */
   }
   .centered-logo-container {
-    margin-top: 80px;
+    margin-top: 120px; /* Increase from 80px */
     position: relative;
   }
   .centered-logo {
-    max-width: 100px; /* Reduced size */
-    margin-top: 30px;
+    max-width: 80px; /* Smaller than 100px */
+    margin-top: 40px; /* More space from content above */
     margin-bottom: -15px;
   }
   .map-container {
