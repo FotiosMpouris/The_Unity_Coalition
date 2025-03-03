@@ -225,7 +225,7 @@ main, section {
 
 /* Update home banner container top margin */
 .home-banner-container {
-  margin-top: 150px; /* Increased from 80px to allow space for both banner and header */
+  margin-top: 190px; /* Increased from 80px to allow space for both banner and header */
 }
 
 @media (max-width: 768px) {
@@ -352,16 +352,28 @@ main, section {
 
 @media (max-width: 768px) {
   .home-banner-overlay {
-    top: 35%; /* Moved up to show content better */
-    width: 80%; /* Make it a bit narrower */
+    top: 20%; /* Moved even higher from 25% */
+    width: 85%; /* Slightly wider */
   }
   
-  /* Make text more visible */
-  .home-banner-overlay h1,
+  /* Make text more visible and sized appropriately */
+  .home-banner-overlay h1 {
+    font-size: 1.7rem; /* Smaller heading */
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px;
+    margin-bottom: 8px;
+  }
+  
   .home-banner-overlay blockquote {
-    background: rgba(255, 255, 255, 0.9); /* More opaque background */
-    padding: 12px;
-    margin-bottom: 10px;
+    font-size: 0.9rem; /* Smaller quote text */
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px;
+    margin-bottom: 8px;
+  }
+  
+  .founder-image {
+    max-width: 90px; /* Smaller founder image */
+    margin: 5px auto 10px auto; /* Reduced margins */
   }
 }
 
@@ -587,13 +599,13 @@ main, section {
   }
   
   .centered-logo-container {
-    margin-top: 50px; /* Changed from 10px to 50px */
+    margin-top: 80px; /* Changed from 10px to 50px */
     position: relative; /* Added for proper positioning */
   }
   
   .centered-logo {
-    max-width: 120px; /* Reduced size */
-    margin-top: 20px; /* Added to push down */
+    max-width: 100px; /* Reduced size */
+    margin-top: 30px; /* Added to push down */
     margin-bottom: -15px; /* Adjusted */
   }
    
