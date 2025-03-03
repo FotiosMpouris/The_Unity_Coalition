@@ -348,7 +348,7 @@ main, section {
 @media (min-width: 769px) {
   .home-banner-overlay {
     /* Move the overlay up by adjusting top position */
-    top: 10%; /* Default is 50% - this moves it higher */
+    top: 20%; /* Default is 50% - this moves it higher */
     
     /* You can also increase the max-width for better readability on desktop */
     max-width: 650px;
