@@ -628,6 +628,17 @@ main, section {
   margin-top: 0;
 }
 
+/* ADD THIS CODE RIGHT HERE - Desktop-only white text for mission */
+@media (min-width: 769px) {
+  .mission-text-overlay .translucent-blue {
+    color: white; /* Override the default text color for desktop */
+    background-color: rgba(28, 41, 81, 0.7); /* More opaque background */
+  }
+  
+  .mission-text-overlay h1 {
+    color: white; /* Ensure heading is also white */
+  }
+}
 /* Overlap effect (box shadow) for some container */
 box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 position: relative;
