@@ -35,31 +35,34 @@
       <div></div>
     </div>
   </header>
-  <!-- Our Mission text box at top, images below --> 
-   <section class="projects-hero">
-    <div class="translucent-blue" style="max-width:800px; margin:auto;">
-      <h1>Our Mission</h1>
-      <p>
-        The Unity Coalition is dedicated to reuniting America's fragmented reform
-        movements into a cohesive, action-oriented force for positive change.
-      </p>
-      <p>
-        By creating both cultural and infrastructural frameworks, we enable scattered
-        reform efforts to consolidate their goals, share resources, and work together
-        effectively across traditional boundaries.
-      </p>
-      <p>
-        The Unity Coalition represents a new chapter in American civic life, where we
-        move beyond polarization to forge practical solutions that serve all Americans.
-      </p>
-      </div>
-    </section>
-    
+
+  <!-- Mission Container - New wrapper for mission content -->
+  <div class="mission-container">
     <!-- Three images in a row for desktop -->
     <div class="mission-images-row banner-desktop">
       <img src="images/missionbannerleft.png" alt="Mission Left" class="mission-image" />
       <img src="images/missionbanner.png" alt="Mission Center" class="mission-image" />
       <img src="images/missionbannerright.png" alt="Mission Right" class="mission-image" />
+      
+      <!-- Our Mission text overlay centered over images --> 
+      <div class="mission-text-overlay">
+        <div class="translucent-blue">
+          <h1>Our Mission</h1>
+          <p>
+            The Unity Coalition is dedicated to reuniting America's fragmented reform
+            movements into a cohesive, action-oriented force for positive change.
+          </p>
+          <p>
+            By creating both cultural and infrastructural frameworks, we enable scattered
+            reform efforts to consolidate their goals, share resources, and work together
+            effectively across traditional boundaries.
+          </p>
+          <p>
+            The Unity Coalition represents a new chapter in American civic life, where we
+            move beyond polarization to forge practical solutions that serve all Americans.
+          </p>
+        </div>
+      </div>
     </div>
     
     <!-- Single image for mobile (unchanged) -->
@@ -68,7 +71,8 @@
       alt="Mission Banner Mobile"
       class="banner-mobile"
     />
-  </main>
+  </div>
+
   <footer>
     <div class="footer-links">
       <a href="gallery.html">Gallery</a>
