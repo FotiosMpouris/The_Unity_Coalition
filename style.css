@@ -608,6 +608,26 @@ main, section {
   }
 }
 
+.mission-container {
+  position: relative;
+  margin-top: 110px; /* Match other top margins */
+}
+
+.mission-text-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  width: 80%;
+  max-width: 800px;
+}
+
+.mission-images-row {
+  position: relative;
+  margin-top: 0;
+}
+
 /* Overlap effect (box shadow) for some container */
 box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 position: relative;
@@ -642,7 +662,7 @@ margin-bottom: -30px; /* Creates overlap with the map below */
     margin-top: 120px; /* Match the value from change #1 */
   }
   .centered-logo-container {
-    margin-top: 50px; /* Reduced from 120px to bring logo closer */
+    margin-top: 70px; /* Reduced from 120px to bring logo closer */
     position: relative;
   }
   .centered-logo {
@@ -651,7 +671,7 @@ margin-bottom: -30px; /* Creates overlap with the map below */
     margin-bottom: -15px;
   }
   .map-container {
-    margin-top: 25px;
+    margin-top: 40px;
   }
   .hero-buttons-group {
     margin-bottom: 20px;
