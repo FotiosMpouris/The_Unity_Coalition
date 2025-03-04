@@ -408,6 +408,7 @@ main, section {
     font-size: 1.6rem; /* Slightly larger */
     background: rgba(255, 255, 255, 0.95);
     padding: 8px;
+    margin-top: -30px; /* Add negative margin to pull it up into view */
     margin-bottom: 6px;
     display: block; /* Ensure it's displayed */
     position: relative; /* Add this to ensure proper positioning */
