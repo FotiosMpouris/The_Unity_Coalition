@@ -642,7 +642,7 @@ margin-bottom: -30px; /* Creates overlap with the map below */
     margin-top: 120px; /* Match the value from change #1 */
   }
   .centered-logo-container {
-    margin-top: 30px; /* Reduced from 120px to bring logo closer */
+    margin-top: 50px; /* Reduced from 120px to bring logo closer */
     position: relative;
   }
   .centered-logo {
@@ -651,7 +651,7 @@ margin-bottom: -30px; /* Creates overlap with the map below */
     margin-bottom: -15px;
   }
   .map-container {
-    margin-top: 10px;
+    margin-top: 25px;
   }
   .hero-buttons-group {
     margin-bottom: 20px;
