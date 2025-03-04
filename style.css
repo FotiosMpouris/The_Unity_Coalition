@@ -1,5 +1,5 @@
 /* ============================
-   style.css
+   style.css (UPDATED)
    ============================ */
 
 /* =========================================================
@@ -400,7 +400,7 @@ main, section {
 
 @media (max-width: 768px) {
   .home-banner-overlay {
-    top: 70%; /* Change from 25% to move the entire overlay down */
+    top: 70%; /* Moved further down for smaller screens */
     width: 90%;
   }
   
@@ -409,22 +409,21 @@ main, section {
     background: rgba(255, 255, 255, 0.95);
     padding: 8px;
     margin-bottom: 6px;
-    display: block; /* Ensure it's displayed */
-    position: relative; /* Add this to ensure proper positioning */
-    z-index: 10; /* Make sure it's above other elements */
+    display: block;
+    position: relative;
+    z-index: 10;
   }
-}
   
   .home-banner-overlay blockquote {
-    font-size: 0.85rem; /* Smaller */
+    font-size: 0.85rem;
     background: rgba(255, 255, 255, 0.95);
     padding: 8px;
     margin-bottom: 6px;
   }
   
   .founder-image {
-    max-width: 80px; /* Smaller */
-    margin: 3px auto 8px auto; /* Less space */
+    max-width: 80px;
+    margin: 3px auto 8px auto;
   }
   
   /* Make buttons smaller on mobile */
@@ -647,11 +646,10 @@ margin-bottom: -30px; /* Creates overlap with the map below */
     position: relative;
   }
   .centered-logo {
-    max-width: 65px; /* Slightly larger than 80px */
-    margin-top: 10px; /* Less space from content above */
+    max-width: 65px; /* Adjusted size */
+    margin-top: 10px;
     margin-bottom: -15px;
   }
-   
   .map-container {
     margin-top: 10px;
   }
@@ -707,8 +705,6 @@ margin-bottom: -30px; /* Creates overlap with the map below */
     bottom: auto;
   }
 }
-
-
 
 /* =========================================================
    8. Join Our Movement Section
