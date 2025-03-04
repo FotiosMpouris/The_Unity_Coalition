@@ -681,7 +681,7 @@ margin-bottom: -30px; /* Creates overlap with the map below */
 /* Very small screens */
 @media (max-width: 480px) {
   .centered-logo {
-    max-width: 50px; /* Even smaller on very small screens */
+    max-width: 70px; /* Even smaller on very small screens */
   }
 }
 
@@ -712,7 +712,7 @@ margin-bottom: -30px; /* Creates overlap with the map below */
 /* Mobile adjustments for united-we-stand banner */
 @media (max-width: 768px) {
   .centered-logo {
-    max-width: 80px;
+    max-width: 90px;
     margin-bottom: -20px;
   }
   .united-we-stand-banner h2 {
