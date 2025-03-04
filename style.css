@@ -400,21 +400,18 @@ main, section {
 
 @media (max-width: 768px) {
   .home-banner-overlay {
-    /* Keep existing values */
-    position: absolute;
-    top: 25%; 
+    top: 40%; /* Change from 25% to move the entire overlay down */
     width: 90%;
   }
   
-  /* Target just the h1 and ensure it's visible */
   .home-banner-overlay h1 {
-    display: block !important; /* Force display */
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     background: rgba(255, 255, 255, 0.95);
     padding: 8px;
-    margin-bottom: 8px;
-    position: static; /* Reset any positioning issues */
-    visibility: visible !important; /* Ensure visibility */
+    margin-bottom: 6px;
+    display: block; /* Ensure it's displayed */
+    position: relative; /* Add this to ensure proper positioning */
+    z-index: 10; /* Make sure it's above other elements */
   }
 }
   
