@@ -400,7 +400,7 @@ main, section {
 
 @media (max-width: 768px) {
   .home-banner-overlay {
-    top: 40%; /* Change from 25% to move the entire overlay down */
+    top: 70%; /* Change from 25% to move the entire overlay down */
     width: 90%;
   }
   
