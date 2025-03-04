@@ -647,7 +647,7 @@ margin-bottom: -30px; /* Creates overlap with the map below */
     position: relative;
   }
   .centered-logo {
-    max-width: 90px; /* Slightly larger than 80px */
+    max-width: 65px; /* Slightly larger than 80px */
     margin-top: 10px; /* Less space from content above */
     margin-bottom: -15px;
   }
