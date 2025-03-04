@@ -400,7 +400,7 @@ main, section {
 
 @media (max-width: 768px) {
   .home-banner-overlay {
-    top: 45%; /* Adjusted to position properly */
+    top: 30%; /* Adjusted to position properly */
     width: 90%; /* Slightly wider */
   }
   
