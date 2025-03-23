@@ -116,7 +116,7 @@ h2 {
    ========================================================= */
 .top-banner {
   background-color: var(--red);
-  color: var(--white); /* Ensure white text */
+  color: var(--white);
   text-align: center;
   padding: 10px;
   font-weight: bold;
@@ -371,24 +371,24 @@ main, section {
    6. Translucent Boxes (Now Cards)
    ========================================================= */
 .translucent-blue {
-  background-color: rgba(28, 41, 81, 0.1);
+  background-color: rgba(28, 41, 81, 0.2); /* More robust blue tint */
   padding: 30px;
   border-radius: 8px;
   margin-bottom: 5px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 .translucent-red {
-  background-color: rgba(178, 34, 34, 0.1);
+  background-color: rgba(178, 34, 34, 0.2); /* More robust red tint */
   padding: 30px;
   border-radius: 8px;
   margin-bottom: 5px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 [data-theme="dark"] .translucent-blue {
-  background-color: rgba(99, 197, 218, 0.1);
+  background-color: rgba(99, 197, 218, 0.2); /* Slightly adjusted for dark mode */
 }
 [data-theme="dark"] .translucent-red {
-  background-color: rgba(178, 34, 34, 0.2);
+  background-color: rgba(178, 34, 34, 0.3); /* Slightly adjusted for dark mode */
 }
 
 /* =========================================================
@@ -432,6 +432,11 @@ main, section {
   border-left: 5px solid var(--red);
   margin-bottom: 20px;
 }
+[data-theme="dark"] .home-banner-overlay h1,
+[data-theme="dark"] .home-banner-overlay blockquote {
+  background: rgba(28, 41, 81, 0.8); /* Darker background in dark mode */
+  color: var(--white);
+}
 .founder-image {
   max-width: 150px;
   margin: 10px auto 20px auto;
@@ -460,10 +465,21 @@ main, section {
 }
 .hero-volunteer-btn {
   background-color: var(--blue);
+  border-color: var(--blue);
 }
 .hero-contribute-btn {
   background-color: var(--red);
   border-color: var(--red);
+}
+[data-theme="dark"] .hero-volunteer-btn {
+  background-color: var(--blue);
+  border-color: var(--blue);
+  color: #fff; /* Ensure text is visible */
+}
+[data-theme="dark"] .hero-contribute-btn {
+  background-color: var(--red);
+  border-color: var(--red);
+  color: #fff; /* Ensure text is visible */
 }
 .hero-contribute-btn:hover {
   background: linear-gradient(to right, var(--red), var(--gold));
@@ -488,6 +504,11 @@ main, section {
   .home-banner-overlay h1,
   .home-banner-overlay blockquote {
     background: rgba(255, 255, 255, 0.9); /* Slightly more opaque for mobile readability */
+  }
+  [data-theme="dark"] .home-banner-overlay h1,
+  [data-theme="dark"] .home-banner-overlay blockquote {
+    background: rgba(28, 41, 81, 0.9);
+    color: var(--white);
   }
   .founder-image {
     max-width: 80px;
@@ -712,14 +733,14 @@ main, section {
   height: auto;
   margin: 0 auto;
   background: transparent;
-  border: 3px solid var(--blue); /* Added dark border */
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Added depth */
+  border: 3px solid var(--blue);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Ensure map overlay text is white */
 .map-container > div > div {
   background-color: rgba(28, 41, 81, 0.8);
-  color: var(--white) !important; /* Force white text */
+  color: var(--white) !important;
 }
 .map-container > div > div p {
   color: var(--white) !important;
@@ -799,7 +820,7 @@ main, section {
 }
 .join-movement-banner {
   background-color: var(--red);
-  color: var(--white); /* Ensure white text */
+  color: var(--white);
   text-align: center;
   padding: 20px;
 }
@@ -807,7 +828,7 @@ main, section {
   font-size: 1.8rem;
   margin: 0;
   text-transform: uppercase;
-  color: var(--white); /* Force white */
+  color: var(--white);
 }
 .join-movement-form-container {
   background-color: #fff;
@@ -858,7 +879,7 @@ main, section {
 /* Ensure join form message text is white */
 .join-movement-form-container > div:last-child {
   background-color: var(--blue);
-  color: var(--white) !important; /* Force white text */
+  color: var(--white) !important;
 }
 .join-movement-form-container > div:last-child p {
   color: var(--white) !important;
@@ -1137,14 +1158,14 @@ main, section {
 }
 
 /* =========================================================
-   18. Footer - Updated to Darker Blue
+   18. Footer
    ========================================================= */
 footer {
-  background-color: var(--blue); /* Darker blue */
+  background-color: var(--blue);
   padding: 20px;
   text-align: center;
   margin-top: 0;
-  border-top: 2px solid var(--cyan-63C5DA); /* Cyan accent */
+  border-top: 2px solid var(--cyan-63C5DA);
 }
 [data-theme="dark"] footer {
   background-color: var(--blue);
@@ -1158,7 +1179,7 @@ footer .footer-links {
 }
 footer .footer-links a {
   text-transform: uppercase;
-  color: var(--cyan-63C5DA); /* Cyan links for contrast */
+  color: var(--cyan-63C5DA);
   font-size: 0.9rem;
 }
 footer .footer-links a:hover {
@@ -1177,7 +1198,7 @@ footer .footer-logos a img {
 }
 footer p {
   font-size: 0.8rem;
-  color: #ccc; /* Lighter for readability */
+  color: #ccc;
 }
 [data-theme="dark"] footer p {
   color: #aaa;
