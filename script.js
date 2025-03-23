@@ -24,24 +24,20 @@ document.addEventListener("DOMContentLoaded", function() {
   /************************************************
    * 2. Hamburger Overlay (Partial Screen)
    ***********************************************/
-  // Create the overlay
   let overlay = document.createElement("div");
   overlay.classList.add("mobile-nav-overlay");
   document.body.appendChild(overlay);
 
-  // Create navigation links for the overlay
   let overlayNavHTML = '';
   navLinks.querySelectorAll("a").forEach(link => {
     overlayNavHTML += `<a href="${link.getAttribute('href')}" class="${link.classList.contains('active') ? 'active' : ''}">${link.textContent}</a>`;
   });
   overlay.innerHTML = overlayNavHTML;
 
-  // Show/hide overlay on hamburger click
   hamburger.addEventListener("click", () => {
     overlay.classList.toggle("show");
   });
 
-  // Close overlay if user clicks any nav link inside
   overlay.querySelectorAll("a").forEach(link => {
     link.addEventListener("click", () => {
       overlay.classList.remove("show");
@@ -57,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function() {
     mobileButtonsOverlay.id = "mobileButtonsOverlay";
     mobileButtonsOverlay.innerHTML = `
       <div class="mobile-buttons-content">
-        <button class="close-mobile-btn">&times;</button>
+        <button class="close-mobile-btn">×</button>
         <h3>Check Out</h3>
         <a href="https://www.amazon.com" id="mobileShopBtn">Shop</a>
         <a href="contact.html#contributeSection" id="mobileContributeBtn">Contribute</a>
@@ -65,13 +61,11 @@ document.addEventListener("DOMContentLoaded", function() {
     `;
     document.body.appendChild(mobileButtonsOverlay);
     
-    // Close popup on click of X
     const closeBtn = mobileButtonsOverlay.querySelector(".close-mobile-btn");
     closeBtn.addEventListener("click", () => {
       mobileButtonsOverlay.classList.remove("show");
     });
     
-    // Show after 10 seconds (10000 ms)
     console.log("Setting timeout to show popup in 10 seconds...");
     setTimeout(() => {
       console.log("Timeout executed, showing popup");
@@ -79,56 +73,46 @@ document.addEventListener("DOMContentLoaded", function() {
     }, 10000);
   }
 
-  // Helper function to detect "home page" (root or index.html)
   function isHomePage() {
-    // Current path, e.g. "/myRepo/about.html" or "/myRepo/"
     let path = window.location.pathname;
-    // Remove trailing slash if present (but not if it's just "/")
     if (path.length > 1 && path.endsWith("/")) {
       path = path.slice(0, -1);
     }
-    // If path is empty after removing slash => root ("/")
-    // OR ends with "index.html" => treat as home
-    // OR path is something like "/myRepo" => consider it the root if there's no .html
     const endsWithIndex = path.endsWith("index.html");
-    const noHtmlInPath = !path.includes(".html"); // e.g. "/myRepo" or "/" 
+    const noHtmlInPath = !path.includes(".html");
     return (path === "" || endsWithIndex || noHtmlInPath);
   }
 
-  // Only create/show popup if on home page (root or index.html)
   if (isHomePage()) {
     createPopup();
   }
 
- /************************************************
+  /************************************************
    * 4. Advanced About Page Slider with Continuous Audio and Auto-Restart
    ***********************************************/
-  // Initialize slide presentation functionality
   initSlidePresentation();
   
   function initSlidePresentation() {
-    // Check if we're on the About page with slider elements
     const sliderContainer = document.querySelector(".slider-container");
     const slideAudio = document.getElementById("slideAudio");
     
     if (!sliderContainer || !slideAudio) {
-      return; // Not on about page or missing elements
+      return;
     }
     
     console.log("Initializing slide presentation with continuous audio and auto-restart");
     
-    // Configuration for each slide with your updated durations
     const slideConfig = [
-      { duration: 3300 },      // Slide 0
-      { duration: 6600 },      // Slide 1
-      { duration: 9000 },      // Slide 2
-      { duration: 6000 },      // Slide 3
-      { duration: 11500 },     // Slide 4
-      { duration: 17500 },     // Slide 5
-      { duration: 5500 },      // Slide 6
-      { duration: 8000 },      // Slide 7
-      { duration: 6000 },      // Slide 8
-      { duration: 1000 }       // Slide 9
+      { duration: 3300 },
+      { duration: 6600 },
+      { duration: 9000 },
+      { duration: 6000 },
+      { duration: 11500 },
+      { duration: 17500 },
+      { duration: 5500 },
+      { duration: 8000 },
+      { duration: 6000 },
+      { duration: 1000 }
     ];
     
     let sliderIndex = 0;
@@ -136,7 +120,6 @@ document.addEventListener("DOMContentLoaded", function() {
     let isPlaying = false;
     let hasCompletedFullCycle = false;
     
-    // Make sure first slide is active initially
     const slides = document.querySelectorAll(".slider-container img");
     slides.forEach((slide, index) => {
       if (index === 0) {
@@ -145,7 +128,6 @@ document.addEventListener("DOMContentLoaded", function() {
         slide.classList.remove("active");
       }
       
-      // Add click handler to stop presentation when slide is clicked
       slide.addEventListener("click", function() {
         if (isPlaying) {
           stopPresentation();
@@ -153,7 +135,6 @@ document.addEventListener("DOMContentLoaded", function() {
       });
     });
     
-    // Unlock audio on first user interaction
     const unlockAudio = function() {
       console.log("Attempting to unlock audio...");
       const silentSound = new Audio("data:audio/mp3;base64,SUQzBAAAAAAAI1TSU0UAAAAPAAADTGF2ZjU4LjI5LjEwMAAAAAAAAAAAAAAA//tQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAABIADAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV6urq6urq6urq6urq6urq6urq6urq6urq6v////////////////////////////////8AAAAATGF2YzU4LjU0AAAAAAAAAAAAAAAAJAAAAAAAAAAAASDs90hvAAAAAAAAAAAAAAAAAAAA//sQZAAP8AAAaQAAAAgAAA0gAAABAAABpAAAACAAADSAAAAETEFNRTMuMTAwVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV");
@@ -168,7 +149,6 @@ document.addEventListener("DOMContentLoaded", function() {
     };
     document.addEventListener("click", unlockAudio, { once: true });
     
-    // Set up button event listeners using IDs
     const startBtn = document.getElementById("startPresentationBtn");
     const stopBtn = document.getElementById("stopPresentationBtn");
     const prevBtn = document.getElementById("prevSlideBtn");
@@ -179,9 +159,7 @@ document.addEventListener("DOMContentLoaded", function() {
     if (prevBtn) prevBtn.addEventListener("click", prevSlide);
     if (nextBtn) nextBtn.addEventListener("click", nextSlide);
     
-    // Handle audio end event for looping
     slideAudio.addEventListener('ended', function() {
-      // If presentation is still playing when audio ends, restart the audio
       if (isPlaying) {
         console.log("Audio ended, restarting audio");
         slideAudio.currentTime = 0;
@@ -191,26 +169,21 @@ document.addEventListener("DOMContentLoaded", function() {
       }
     });
     
-    // Function to start the presentation with continuous audio
     function startPresentation() {
       if (isPlaying) return;
       
       console.log("Starting presentation at slide", sliderIndex);
       isPlaying = true;
       
-      // Start the audio from the beginning if we completed a cycle
-      // or from where it was paused if we're in the middle
       if (hasCompletedFullCycle || sliderIndex === 0) {
         slideAudio.currentTime = 0;
         hasCompletedFullCycle = false;
       }
       
-      // Play the audio
       const playPromise = slideAudio.play();
       if (playPromise !== undefined) {
         playPromise.then(() => {
           console.log("Audio playing continuously");
-          // Schedule the next slide
           scheduleNextSlide();
         }).catch(error => {
           console.error("Audio playback failed:", error);
@@ -220,31 +193,25 @@ document.addEventListener("DOMContentLoaded", function() {
       }
     }
     
-    // Function to stop the presentation
     function stopPresentation() {
       if (!isPlaying) return;
       
       console.log("Stopping presentation");
       isPlaying = false;
       
-      // Clear the timer
       if (sliderTimer) {
         clearTimeout(sliderTimer);
         sliderTimer = null;
       }
       
-      // Pause the audio (but don't reset position unless at end)
       slideAudio.pause();
     }
     
-    // Schedule the next slide based on current slide's duration
     function scheduleNextSlide() {
-      // Clear any existing timer
       if (sliderTimer) {
         clearTimeout(sliderTimer);
       }
       
-      // Schedule next slide
       if (isPlaying) {
         console.log(`Scheduling next slide in ${slideConfig[sliderIndex].duration}ms`);
         sliderTimer = setTimeout(() => {
@@ -253,12 +220,9 @@ document.addEventListener("DOMContentLoaded", function() {
       }
     }
     
-    // Function to go to next slide without interrupting audio
     function nextSlide() {
-      // Update slide index (with wrap-around)
       sliderIndex++;
       
-      // Check if we've completed a full cycle
       if (sliderIndex >= slides.length) {
         sliderIndex = 0;
         hasCompletedFullCycle = true;
@@ -267,7 +231,6 @@ document.addEventListener("DOMContentLoaded", function() {
       
       console.log("Moving to next slide:", sliderIndex);
       
-      // Update slide display
       slides.forEach((slide, index) => {
         if (index === sliderIndex) {
           slide.classList.add("active");
@@ -276,16 +239,12 @@ document.addEventListener("DOMContentLoaded", function() {
         }
       });
       
-      // If presentation is playing, schedule next slide
-      // without modifying the audio playback
       if (isPlaying) {
         scheduleNextSlide();
       }
     }
     
-    // Function to go to previous slide without interrupting audio
     function prevSlide() {
-      // Update slide index (with wrap-around)
       sliderIndex--;
       if (sliderIndex < 0) {
         sliderIndex = slides.length - 1;
@@ -293,7 +252,6 @@ document.addEventListener("DOMContentLoaded", function() {
       
       console.log("Moving to previous slide:", sliderIndex);
       
-      // Update slide display
       slides.forEach((slide, index) => {
         if (index === sliderIndex) {
           slide.classList.add("active");
@@ -302,8 +260,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
       });
       
-      // If presentation is playing, schedule next slide
-      // without modifying the audio playback
       if (isPlaying) {
         scheduleNextSlide();
       }
@@ -328,7 +284,6 @@ document.addEventListener("DOMContentLoaded", function() {
   /************************************************
    * 6. Bitcoin "Coming Soon" Popup
    ***********************************************/
-  // On Home Page
   const homeBtcLogo = document.getElementById("homeBitcoinLogo");
   if (homeBtcLogo) {
     homeBtcLogo.addEventListener("click", () => {
@@ -336,7 +291,6 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 
-  // On Contact Page
   const contactBtcLogo = document.getElementById("bitcoinDonate");
   if (contactBtcLogo) {
     contactBtcLogo.addEventListener("click", () => {
@@ -347,21 +301,18 @@ document.addEventListener("DOMContentLoaded", function() {
   /************************************************
    * 7. Fix anchor links for Contribute and Volunteer
    ***********************************************/
-  // Fix contribute links to target the correct section
   const contributeLinks = document.querySelectorAll('a[href*="#contributeSection"]');
   contributeLinks.forEach(link => {
     link.addEventListener('click', function(e) {
       const targetUrl = this.getAttribute('href');
-      // If it's on the same page
       if (targetUrl.startsWith('#') || window.location.pathname.includes('contact.html')) {
         e.preventDefault();
         const contributeSection = document.getElementById('contributeSection');
         if (contributeSection) {
-          // Scroll to element with offset for the fixed header
           const headerHeight = document.querySelector('header').offsetHeight;
           const sectionTop = contributeSection.getBoundingClientRect().top + window.pageYOffset;
           window.scrollTo({
-            top: sectionTop - headerHeight - 20, // 20px additional offset
+            top: sectionTop - headerHeight - 20,
             behavior: 'smooth'
           });
         }
@@ -369,21 +320,18 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 
-  // Fix volunteer links to target the correct section
   const volunteerLinks = document.querySelectorAll('a[href*="#volunteerSection"]');
   volunteerLinks.forEach(link => {
     link.addEventListener('click', function(e) {
       const targetUrl = this.getAttribute('href');
-      // If it's on the same page
       if (targetUrl.startsWith('#') || window.location.pathname.includes('get-involved.html')) {
         e.preventDefault();
         const volunteerSection = document.getElementById('volunteerSection');
         if (volunteerSection) {
-          // Scroll to element with offset for the fixed header
           const headerHeight = document.querySelector('header').offsetHeight;
           const sectionTop = volunteerSection.getBoundingClientRect().top + window.pageYOffset;
           window.scrollTo({
-            top: sectionTop - headerHeight - 20, // 20px additional offset
+            top: sectionTop - headerHeight - 20,
             behavior: 'smooth'
           });
         }
@@ -391,9 +339,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 
-  // Also handle direct URL access with hash
   function handleHashScroll() {
-    // Check if there's a hash in the URL
     if (window.location.hash) {
       setTimeout(function() {
         const targetElement = document.querySelector(window.location.hash);
@@ -405,14 +351,37 @@ document.addEventListener("DOMContentLoaded", function() {
             behavior: 'smooth'
           });
         }
-      }, 100); // Small delay to ensure page is fully loaded
+      }, 100);
     }
   }
   
-  // Run on page load
   handleHashScroll();
-  // Run when hash changes
   window.addEventListener('hashchange', handleHashScroll);
+
+  /************************************************
+   * 8. Dark Mode Toggle
+   ***********************************************/
+  const themeToggleBtn = document.querySelector(".theme-toggle");
+  const htmlElement = document.documentElement;
+
+  // Load saved theme from local storage
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme) {
+    htmlElement.setAttribute("data-theme", savedTheme);
+  }
+
+  // Toggle theme on button click
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener("click", () => {
+      const currentTheme = htmlElement.getAttribute("data-theme");
+      const newTheme = currentTheme === "dark" ? "light" : "dark";
+      
+      htmlElement.setAttribute("data-theme", newTheme);
+      localStorage.setItem("theme", newTheme);
+      
+      console.log(`Theme switched to ${newTheme}`);
+    });
+  }
 
   console.log("Script fully initialized!");
 });
