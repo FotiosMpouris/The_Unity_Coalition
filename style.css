@@ -15,28 +15,28 @@
 }
 html, body {
   overflow-x: hidden;
-  font-family: 'Open Sans', Arial, sans-serif; /* Updated to Open Sans */
+  font-family: 'Open Sans', Arial, sans-serif;
   line-height: 1.6;
 }
 :root {
   --white: #ffffff;
-  --blue: #1c2951;       /* For nav text, button outlines, etc. */
-  --red: #b22222;        /* For hovers, highlights, big calls to action */
-  --black: #000000;      /* For selective text usage */
-  --light-border: #ccc;  /* For the header bottom border, etc. */
-  --cyan-63C5DA: #63C5DA; /* New color from your request */
-  --gold: #FFD700;       /* New accent color for buttons */
+  --blue: #1c2951;
+  --red: #b22222;
+  --black: #000000;
+  --light-border: #ccc;
+  --cyan-63C5DA: #63C5DA;
+  --gold: #FFD700;
 }
 
 /* Dark mode variant */
 [data-theme="dark"] {
-  --white: #1c2951;      /* Dark background */
-  --blue: #ffffff;       /* Text flips to white */
-  --red: #b22222;        /* Stays bold for emphasis */
-  --black: #ffffff;      /* Text usage flips */
-  --light-border: #555;  /* Subtle border in dark mode */
-  --cyan-63C5DA: #63C5DA; /* Keeps cyan as accent */
-  --gold: #FFD700;       /* Gold stays for highlights */
+  --white: #1c2951;
+  --blue: #ffffff;
+  --red: #b22222;
+  --black: #ffffff;
+  --light-border: #555;
+  --cyan-63C5DA: #63C5DA;
+  --gold: #FFD700;
 }
 
 body {
@@ -44,7 +44,7 @@ body {
   color: #333;
 }
 [data-theme="dark"] body {
-  background-color: var(--white); /* Now #1c2951 */
+  background-color: var(--white);
   color: #ddd;
 }
 
@@ -53,26 +53,26 @@ a {
   color: var(--blue);
   text-decoration: none;
   font-weight: normal;
-  transition: color 0.3s ease, transform 0.2s ease; /* Added hover effect */
+  transition: color 0.3s ease, transform 0.2s ease;
 }
 a:hover {
   color: var(--red);
-  transform: scale(1.05); /* Subtle zoom on hover */
+  transform: scale(1.05);
 }
 
 /* Headings with Montserrat */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Montserrat', sans-serif;
-  font-weight: 700; /* Bold for impact */
+  font-weight: 700;
 }
 h1 {
-  font-size: 3rem; /* Bigger for desktop */
-  text-align: center; /* Centered for presence */
+  font-size: 3rem;
+  text-align: center;
 }
 h2 {
-  font-size: 2rem; /* Adjusted size */
+  font-size: 2rem;
   text-align: center;
-  border-bottom: 2px solid var(--red); /* Subtle underline */
+  border-bottom: 2px solid var(--red);
   padding-bottom: 5px;
   margin-bottom: 15px;
 }
@@ -83,41 +83,40 @@ h2 {
 
 /* =========================================================
    Dark Mode Toggle Button
-   - Positioned in header, styled for visibility
+   - Now uses moon emoji, positioned in nav-links on desktop
+   - Adjusted for mobile to avoid overlap
    ========================================================= */
 .theme-toggle {
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  background: var(--blue);
-  color: var(--white);
+  background: none;
   border: none;
-  padding: 8px 12px;
-  border-radius: 20px;
+  font-size: 1.2rem;
   cursor: pointer;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  transition: background 0.3s ease;
+  padding: 5px;
+  color: var(--blue);
+  transition: color 0.3s ease;
+}
+.theme-toggle::before {
+  content: "🌙"; /* Half-moon emoji */
 }
 .theme-toggle:hover {
-  background: var(--gold);
-  color: var(--black);
+  color: var(--gold);
 }
 @media (max-width: 768px) {
   .theme-toggle {
-    top: 5px;
-    right: 50px; /* Avoid overlap with hamburger */
+    position: absolute;
+    top: 60px; /* Below hamburger */
+    right: 20px;
+    font-size: 1rem;
+    padding: 3px;
   }
 }
 
 /* =========================================================
    Top Banner
-   - Fixed banner at the very top
-   - Bright red background
    ========================================================= */
 .top-banner {
   background-color: var(--red);
-  color: var(--white);
+  color: var(--white); /* Ensure white text */
   text-align: center;
   padding: 10px;
   font-weight: bold;
@@ -131,7 +130,7 @@ h2 {
   z-index: 1000;
 }
 [data-theme="dark"] .top-banner {
-  background-color: var(--red); /* Stays red for emphasis */
+  background-color: var(--red);
 }
 
 @media (max-width: 768px) {
@@ -143,8 +142,6 @@ h2 {
 
 /* =========================================================
    2. Header
-   - Fixed header below the top banner
-   - Contains logo, navigation links, and header buttons
    ========================================================= */
 header {
   position: fixed;
@@ -161,7 +158,7 @@ header {
   transition: background-color 0.3s ease;
 }
 [data-theme="dark"] header {
-  background-color: var(--white); /* #1c2951 */
+  background-color: var(--white);
   border-bottom-color: var(--light-border);
 }
 
@@ -193,7 +190,7 @@ header.mobile-scrolled {
   color: var(--black);
 }
 [data-theme="dark"] .logo-text {
-  color: var(--black); /* White in dark mode */
+  color: var(--black);
 }
 
 /* Navigation links (desktop) */
@@ -207,13 +204,13 @@ header.mobile-scrolled {
     display: none;
   }
 }
-.nav-links a {
+.nav-links a, .nav-links button {
   text-transform: uppercase;
   font-size: 0.9rem;
 }
 .nav-links a.active {
   font-weight: 700;
-  background-color: rgba(178, 34, 34, 0.9); /* Highlight active link */
+  background-color: rgba(178, 34, 34, 0.9);
   color: var(--white);
   padding: 4px 8px;
   border-radius: 4px;
@@ -262,8 +259,6 @@ header.mobile-scrolled {
 
 /* =========================================================
    3. Hamburger for Mobile
-   - Visible only on mobile
-   - Ties to overlay navigation
    ========================================================= */
 .hamburger {
   display: none;
@@ -287,12 +282,11 @@ header.mobile-scrolled {
   background-color: var(--red);
 }
 [data-theme="dark"] .hamburger div {
-  background-color: var(--cyan-63C5DA); /* Cyan in dark mode */
+  background-color: var(--cyan-63C5DA);
 }
 
 /* =========================================================
    4. Mobile Nav Overlay (partial coverage)
-   - Slides in for mobile nav with animation
    ========================================================= */
 .mobile-nav-overlay {
   position: fixed;
@@ -307,7 +301,7 @@ header.mobile-scrolled {
   z-index: 9999;
   min-width: 250px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease; /* Slide-in animation */
+  transition: transform 0.3s ease;
 }
 .mobile-nav-overlay.show {
   display: block;
@@ -335,8 +329,6 @@ header.mobile-scrolled {
 
 /* =========================================================
    5. Main / Section Spacing
-   - Margins to accommodate fixed header + banner
-   - Adjust home banner spacing
    ========================================================= */
 main, section {
   margin-top: 110px;
@@ -377,14 +369,13 @@ main, section {
 
 /* =========================================================
    6. Translucent Boxes (Now Cards)
-   - Updated to card style with shadow and padding
    ========================================================= */
 .translucent-blue {
   background-color: rgba(28, 41, 81, 0.1);
-  padding: 30px; /* Increased from 20px */
-  border-radius: 8px; /* Slightly larger */
-  margin-bottom: 5px; /* Reduced for tighter flow */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Card effect */
+  padding: 30px;
+  border-radius: 8px;
+  margin-bottom: 5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 .translucent-red {
   background-color: rgba(178, 34, 34, 0.1);
@@ -394,16 +385,14 @@ main, section {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 [data-theme="dark"] .translucent-blue {
-  background-color: rgba(99, 197, 218, 0.1); /* Cyan tint */
+  background-color: rgba(99, 197, 218, 0.1);
 }
 [data-theme="dark"] .translucent-red {
-  background-color: rgba(178, 34, 34, 0.2); /* Slightly more opaque */
+  background-color: rgba(178, 34, 34, 0.2);
 }
 
 /* =========================================================
    7. Home Banner & Hero Overlay
-   - Large top section with background and overlay text
-   - Founder image, hero buttons
    ========================================================= */
 .home-banner-container {
   position: relative;
@@ -496,6 +485,10 @@ main, section {
     padding: 8px;
     margin-bottom: 6px;
   }
+  .home-banner-overlay h1,
+  .home-banner-overlay blockquote {
+    background: rgba(255, 255, 255, 0.9); /* Slightly more opaque for mobile readability */
+  }
   .founder-image {
     max-width: 80px;
     margin: 3px auto 8px auto;
@@ -573,13 +566,13 @@ main, section {
   border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 1rem;
-  transition: border-color 0.3s, box-shadow 0.3s; /* Added shadow transition */
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 .modern-volunteer-form .form-field input:focus,
 .modern-volunteer-form .form-field textarea:focus {
   border-color: var(--blue);
   outline: none;
-  box-shadow: 0 0 5px var(--cyan-63C5DA); /* Glow effect */
+  box-shadow: 0 0 5px var(--cyan-63C5DA);
 }
 .modern-volunteer-form .form-field.full-width {
   width: 100%;
@@ -719,6 +712,17 @@ main, section {
   height: auto;
   margin: 0 auto;
   background: transparent;
+  border: 3px solid var(--blue); /* Added dark border */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Added depth */
+}
+
+/* Ensure map overlay text is white */
+.map-container > div > div {
+  background-color: rgba(28, 41, 81, 0.8);
+  color: var(--white) !important; /* Force white text */
+}
+.map-container > div > div p {
+  color: var(--white) !important;
 }
 
 @media (max-width: 768px) {
@@ -795,7 +799,7 @@ main, section {
 }
 .join-movement-banner {
   background-color: var(--red);
-  color: #fff;
+  color: var(--white); /* Ensure white text */
   text-align: center;
   padding: 20px;
 }
@@ -803,6 +807,7 @@ main, section {
   font-size: 1.8rem;
   margin: 0;
   text-transform: uppercase;
+  color: var(--white); /* Force white */
 }
 .join-movement-form-container {
   background-color: #fff;
@@ -848,6 +853,15 @@ main, section {
 }
 .join-movement-form button:hover {
   background: linear-gradient(to right, var(--blue), var(--gold));
+}
+
+/* Ensure join form message text is white */
+.join-movement-form-container > div:last-child {
+  background-color: var(--blue);
+  color: var(--white) !important; /* Force white text */
+}
+.join-movement-form-container > div:last-child p {
+  color: var(--white) !important;
 }
 
 /* =========================================================
@@ -1123,16 +1137,17 @@ main, section {
 }
 
 /* =========================================================
-   18. Footer - #63C5DA Translucent
+   18. Footer - Updated to Darker Blue
    ========================================================= */
 footer {
-  background-color: rgba(99, 197, 218, 0.8);
+  background-color: var(--blue); /* Darker blue */
   padding: 20px;
   text-align: center;
   margin-top: 0;
+  border-top: 2px solid var(--cyan-63C5DA); /* Cyan accent */
 }
 [data-theme="dark"] footer {
-  background-color: rgba(99, 197, 218, 0.3);
+  background-color: var(--blue);
 }
 footer .footer-links {
   display: flex;
@@ -1143,11 +1158,11 @@ footer .footer-links {
 }
 footer .footer-links a {
   text-transform: uppercase;
-  color: var(--blue);
+  color: var(--cyan-63C5DA); /* Cyan links for contrast */
   font-size: 0.9rem;
 }
 footer .footer-links a:hover {
-  color: var(--red);
+  color: var(--gold);
 }
 footer .footer-logos {
   display: flex;
@@ -1162,7 +1177,7 @@ footer .footer-logos a img {
 }
 footer p {
   font-size: 0.8rem;
-  color: #666;
+  color: #ccc; /* Lighter for readability */
 }
 [data-theme="dark"] footer p {
   color: #aaa;
