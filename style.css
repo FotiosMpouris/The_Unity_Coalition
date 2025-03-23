@@ -15,7 +15,7 @@
 }
 html, body {
   overflow-x: hidden;
-  font-family: 'Open Sans', Arial, sans-serif;
+  font-family: 'Open Sans', Arial, sans-serif; /* Updated to Open Sans */
   line-height: 1.6;
 }
 :root {
@@ -24,9 +24,8 @@ html, body {
   --red: #b22222;        /* For hovers, highlights, big calls to action */
   --black: #000000;      /* For selective text usage */
   --light-border: #ccc;  /* For the header bottom border, etc. */
-  --cyan-63C5DA: #63C5DA; /* Kept as accent but not used in footer */
-  --gold: #FFD700;       /* Gold for highlights */
-  --wood: #4A2C2A;       /* Dark wood tone for map frame */
+  --cyan-63C5DA: #63C5DA; /* New color from your request */
+  --gold: #FFD700;       /* New accent color for buttons */
 }
 
 /* Dark mode variant */
@@ -38,7 +37,6 @@ html, body {
   --light-border: #555;  /* Subtle border in dark mode */
   --cyan-63C5DA: #63C5DA; /* Keeps cyan as accent */
   --gold: #FFD700;       /* Gold stays for highlights */
-  --wood: #4A2C2A;       /* Wood stays consistent */
 }
 
 body {
@@ -46,8 +44,8 @@ body {
   color: #333;
 }
 [data-theme="dark"] body {
-  background-color: var(--white); /* #1c2951 */
-  color: #ddd; /* Lighter text for readability */
+  background-color: var(--white); /* Now #1c2951 */
+  color: #ddd;
 }
 
 /* Global link styling */
@@ -55,26 +53,26 @@ a {
   color: var(--blue);
   text-decoration: none;
   font-weight: normal;
-  transition: color 0.3s ease, transform 0.2s ease;
+  transition: color 0.3s ease, transform 0.2s ease; /* Added hover effect */
 }
 a:hover {
   color: var(--red);
-  transform: scale(1.05);
+  transform: scale(1.05); /* Subtle zoom on hover */
 }
 
 /* Headings with Montserrat */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
+  font-weight: 700; /* Bold for impact */
 }
 h1 {
-  font-size: 3rem;
-  text-align: center;
+  font-size: 3rem; /* Bigger for desktop */
+  text-align: center; /* Centered for presence */
 }
 h2 {
-  font-size: 2rem;
+  font-size: 2rem; /* Adjusted size */
   text-align: center;
-  border-bottom: 2px solid var(--red);
+  border-bottom: 2px solid var(--red); /* Subtle underline */
   padding-bottom: 5px;
   margin-bottom: 15px;
 }
@@ -85,39 +83,30 @@ h2 {
 
 /* =========================================================
    Dark Mode Toggle Button
-   - Uses half-moon emoji, no text, adjusts placement
+   - Positioned in header, styled for visibility
    ========================================================= */
 .theme-toggle {
-  background: none;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  background: var(--blue);
+  color: var(--white);
   border: none;
+  padding: 8px 12px;
+  border-radius: 20px;
   cursor: pointer;
-  font-size: 1.5rem; /* Larger for visibility */
-  padding: 5px 10px;
-  transition: color 0.3s ease;
-  color: var(--blue);
-  --icon: "\1F319"; /* Half-moon emoji */
-}
-.theme-toggle::before {
-  content: var(--icon);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  transition: background 0.3s ease;
 }
 .theme-toggle:hover {
-  color: var(--gold);
+  background: var(--gold);
+  color: var(--black);
 }
-
-/* Desktop: Inside nav-links */
-@media (min-width: 769px) {
-  .theme-toggle {
-    position: static;
-    margin-left: 10px;
-  }
-}
-
-/* Mobile: Shift left to avoid hamburger */
 @media (max-width: 768px) {
   .theme-toggle {
-    position: absolute;
-    top: 10px;
-    right: 60px;
+    top: 5px;
+    right: 50px; /* Avoid overlap with hamburger */
   }
 }
 
@@ -142,20 +131,7 @@ h2 {
   z-index: 1000;
 }
 [data-theme="dark"] .top-banner {
-  background-color: var(--red);
-}
-
-[data-theme="dark"] .home-banner-overlay h1,
-[data-theme="dark"] .home-banner-overlay blockquote {
-  color: var(--white);
-  background: rgba(0, 0, 0, 0.8);
-}
-
-[data-theme="dark"] .top-banner,
-[data-theme="dark"] .join-movement-banner,
-[data-theme="dark"] .join-movement-banner h2,
-[data-theme="dark"] .hero-contribute-btn {
-  color: var(--white);
+  background-color: var(--red); /* Stays red for emphasis */
 }
 
 @media (max-width: 768px) {
@@ -185,7 +161,7 @@ header {
   transition: background-color 0.3s ease;
 }
 [data-theme="dark"] header {
-  background-color: var(--white);
+  background-color: var(--white); /* #1c2951 */
   border-bottom-color: var(--light-border);
 }
 
@@ -217,7 +193,7 @@ header.mobile-scrolled {
   color: var(--black);
 }
 [data-theme="dark"] .logo-text {
-  color: var(--black);
+  color: var(--black); /* White in dark mode */
 }
 
 /* Navigation links (desktop) */
@@ -237,7 +213,7 @@ header.mobile-scrolled {
 }
 .nav-links a.active {
   font-weight: 700;
-  background-color: rgba(178, 34, 34, 0.9);
+  background-color: rgba(178, 34, 34, 0.9); /* Highlight active link */
   color: var(--white);
   padding: 4px 8px;
   border-radius: 4px;
@@ -311,7 +287,7 @@ header.mobile-scrolled {
   background-color: var(--red);
 }
 [data-theme="dark"] .hamburger div {
-  background-color: var(--gold);
+  background-color: var(--cyan-63C5DA); /* Cyan in dark mode */
 }
 
 /* =========================================================
@@ -331,7 +307,7 @@ header.mobile-scrolled {
   z-index: 9999;
   min-width: 250px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease; /* Slide-in animation */
 }
 .mobile-nav-overlay.show {
   display: block;
@@ -385,14 +361,6 @@ main, section {
   padding-top: 0;
 }
 
-[data-theme="dark"] .banner-desktop {
-  content: url("images/homebannerdark.png");
-}
-
-[data-theme="dark"] .banner-mobile {
-  content: url("images/homebannerdark1.png");
-}
-
 @media (max-width: 768px) {
   .banner-desktop {
     display: none;
@@ -412,31 +380,24 @@ main, section {
    - Updated to card style with shadow and padding
    ========================================================= */
 .translucent-blue {
-  background-color: rgba(28, 41, 81, 0.3);
-  padding: 30px;
-  border-radius: 8px;
-  margin-bottom: 5px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: rgba(28, 41, 81, 0.1);
+  padding: 30px; /* Increased from 20px */
+  border-radius: 8px; /* Slightly larger */
+  margin-bottom: 5px; /* Reduced for tighter flow */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Card effect */
 }
 .translucent-red {
-  background-color: rgba(178, 34, 34, 0.3);
+  background-color: rgba(178, 34, 34, 0.1);
   padding: 30px;
   border-radius: 8px;
   margin-bottom: 5px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 [data-theme="dark"] .translucent-blue {
-  background-color: rgba(99, 197, 218, 0.3);
+  background-color: rgba(99, 197, 218, 0.1); /* Cyan tint */
 }
 [data-theme="dark"] .translucent-red {
-  background-color: rgba(178, 34, 34, 0.4);
-}
-
-[data-theme="dark"] .section-content,
-[data-theme="dark"] .section-black,
-[data-theme="dark"] .section-black h2,
-[data-theme="dark"] .section-black p {
-  color: #ddd;
+  background-color: rgba(178, 34, 34, 0.2); /* Slightly more opaque */
 }
 
 /* =========================================================
@@ -503,13 +464,10 @@ main, section {
   border-radius: 4px;
   border: 2px solid var(--blue);
   font-weight: bold;
-  transition: all 0.3s ease;
 }
 .hero-buttons-group a:hover {
   background: linear-gradient(to right, var(--blue), var(--gold));
   border-color: var(--gold);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 .hero-volunteer-btn {
   background-color: var(--blue);
@@ -615,13 +573,13 @@ main, section {
   border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 1rem;
-  transition: border-color 0.3s, box-shadow 0.3s;
+  transition: border-color 0.3s, box-shadow 0.3s; /* Added shadow transition */
 }
 .modern-volunteer-form .form-field input:focus,
 .modern-volunteer-form .form-field textarea:focus {
   border-color: var(--blue);
   outline: none;
-  box-shadow: 0 0 5px var(--gold);
+  box-shadow: 0 0 5px var(--cyan-63C5DA); /* Glow effect */
 }
 .modern-volunteer-form .form-field.full-width {
   width: 100%;
@@ -761,9 +719,6 @@ main, section {
   height: auto;
   margin: 0 auto;
   background: transparent;
-  border: 4px solid var(--wood); /* Dark wood frame */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
 }
 
 @media (max-width: 768px) {
@@ -877,7 +832,7 @@ main, section {
 }
 .join-movement-form input:focus {
   border-color: var(--blue);
-  box-shadow: 0 0 5px var(--gold);
+  box-shadow: 0 0 5px var(--cyan-63C5DA);
 }
 .join-movement-form button {
   margin-top: 10px;
@@ -1089,7 +1044,7 @@ main, section {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--blue);
+  background-color: var(--cyan-63C5DA);
   height: 200px;
 }
 .get-involved-banner h1 {
@@ -1110,7 +1065,7 @@ main, section {
   height: auto;
 }
 .involved-textbox {
-  background-color: var(--blue);
+  background-color: var(--cyan-63C5DA);
   flex: 1;
   padding: 20px;
   margin-left: 10px;
@@ -1168,27 +1123,16 @@ main, section {
 }
 
 /* =========================================================
-   18. Footer - Bold Navy to Red Gradient
+   18. Footer - #63C5DA Translucent
    ========================================================= */
 footer {
-  background: linear-gradient(to bottom, var(--blue), var(--red));
+  background-color: rgba(99, 197, 218, 0.8);
   padding: 20px;
   text-align: center;
   margin-top: 0;
-  box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.3);
-  position: relative;
-}
-footer::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: var(--gold);
 }
 [data-theme="dark"] footer {
-  background: linear-gradient(to bottom, var(--blue), var(--red));
+  background-color: rgba(99, 197, 218, 0.3);
 }
 footer .footer-links {
   display: flex;
@@ -1199,13 +1143,11 @@ footer .footer-links {
 }
 footer .footer-links a {
   text-transform: uppercase;
-  color: var(--white);
+  color: var(--blue);
   font-size: 0.9rem;
-  font-weight: bold;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 footer .footer-links a:hover {
-  color: var(--gold);
+  color: var(--red);
 }
 footer .footer-logos {
   display: flex;
@@ -1217,14 +1159,13 @@ footer .footer-logos {
 footer .footer-logos a img {
   max-width: 40px;
   height: auto;
-  filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.5));
 }
 footer p {
   font-size: 0.8rem;
-  color: #ddd;
+  color: #666;
 }
 [data-theme="dark"] footer p {
-  color: #bbb;
+  color: #aaa;
 }
 
 /* =========================================================
@@ -1358,7 +1299,7 @@ footer p {
 }
 .form-field input:focus {
   border-color: var(--blue);
-  box-shadow: 0 0 5px var(--gold);
+  box-shadow: 0 0 5px var(--cyan-63C5DA);
 }
 .join-button {
   background-color: var(--blue);
@@ -1461,32 +1402,4 @@ footer p {
   background-color: #fff;
   padding: 30px;
   border-radius: 8px;
-}
-
-/* =========================================================
-   23. Map Overlay and Join Form Footer Text
-   ========================================================= */
-.map-overlay-text {
-  background-color: rgba(28, 41, 81, 0.8);
-  color: white;
-  text-align: center;
-  padding: 15px;
-  margin: 0 auto;
-  max-width: 80%;
-}
-[data-theme="dark"] .map-overlay-text {
-  background-color: rgba(28, 41, 81, 0.9);
-}
-
-.join-form-footer {
-  background-color: var(--blue);
-  color: white;
-  text-align: center;
-  padding: 15px;
-  margin-top: 20px;
-  border-radius: 4px;
-}
-[data-theme="dark"] .join-form-footer {
-  background-color: var(--blue);
-  color: var(--white);
 }
