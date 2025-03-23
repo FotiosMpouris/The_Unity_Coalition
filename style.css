@@ -1,12 +1,11 @@
-/* ============================
-   style.css (UPDATED)
-   ============================ */
+/* Import Google Fonts for Montserrat and Open Sans */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap');
 
 /* =========================================================
    1. Basic Resets & Colors
    - Resets for margin, padding, and box-sizing
    - Sets global font family and line height
-   - Defines color variables in :root
+   - Defines color variables in :root with dark mode variant
    - Sets body background and link styling
    ========================================================= */
 * {
@@ -16,7 +15,7 @@
 }
 html, body {
   overflow-x: hidden;
-  font-family: Arial, sans-serif;
+  font-family: 'Open Sans', Arial, sans-serif; /* Updated to Open Sans */
   line-height: 1.6;
 }
 :root {
@@ -26,11 +25,27 @@ html, body {
   --black: #000000;      /* For selective text usage */
   --light-border: #ccc;  /* For the header bottom border, etc. */
   --cyan-63C5DA: #63C5DA; /* New color from your request */
+  --gold: #FFD700;       /* New accent color for buttons */
+}
+
+/* Dark mode variant */
+[data-theme="dark"] {
+  --white: #1c2951;      /* Dark background */
+  --blue: #ffffff;       /* Text flips to white */
+  --red: #b22222;        /* Stays bold for emphasis */
+  --black: #ffffff;      /* Text usage flips */
+  --light-border: #555;  /* Subtle border in dark mode */
+  --cyan-63C5DA: #63C5DA; /* Keeps cyan as accent */
+  --gold: #FFD700;       /* Gold stays for highlights */
 }
 
 body {
   background-color: var(--white);
   color: #333;
+}
+[data-theme="dark"] body {
+  background-color: var(--white); /* Now #1c2951 */
+  color: #ddd;
 }
 
 /* Global link styling */
@@ -38,9 +53,61 @@ a {
   color: var(--blue);
   text-decoration: none;
   font-weight: normal;
+  transition: color 0.3s ease, transform 0.2s ease; /* Added hover effect */
 }
 a:hover {
   color: var(--red);
+  transform: scale(1.05); /* Subtle zoom on hover */
+}
+
+/* Headings with Montserrat */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700; /* Bold for impact */
+}
+h1 {
+  font-size: 3rem; /* Bigger for desktop */
+  text-align: center; /* Centered for presence */
+}
+h2 {
+  font-size: 2rem; /* Adjusted size */
+  text-align: center;
+  border-bottom: 2px solid var(--red); /* Subtle underline */
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+}
+@media (max-width: 768px) {
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.6rem; }
+}
+
+/* =========================================================
+   Dark Mode Toggle Button
+   - Positioned in header, styled for visibility
+   ========================================================= */
+.theme-toggle {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  background: var(--blue);
+  color: var(--white);
+  border: none;
+  padding: 8px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  transition: background 0.3s ease;
+}
+.theme-toggle:hover {
+  background: var(--gold);
+  color: var(--black);
+}
+@media (max-width: 768px) {
+  .theme-toggle {
+    top: 5px;
+    right: 50px; /* Avoid overlap with hamburger */
+  }
 }
 
 /* =========================================================
@@ -61,7 +128,10 @@ a:hover {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000; /* Higher than header */
+  z-index: 1000;
+}
+[data-theme="dark"] .top-banner {
+  background-color: var(--red); /* Stays red for emphasis */
 }
 
 @media (max-width: 768px) {
@@ -78,8 +148,8 @@ a:hover {
    ========================================================= */
 header {
   position: fixed;
-  top: 36px; /* Height of the banner */
-  left: 0; 
+  top: 36px;
+  left: 0;
   right: 0;
   z-index: 999;
   background-color: var(--white);
@@ -90,19 +160,22 @@ header {
   padding: 10px 20px;
   transition: background-color 0.3s ease;
 }
+[data-theme="dark"] header {
+  background-color: var(--white); /* #1c2951 */
+  border-bottom-color: var(--light-border);
+}
 
-/* Increase header height for desktops only */
 @media (min-width: 769px) {
   header {
-    /* Increase the vertical padding from 10px to 20px 
-       (making the header appear taller on larger screens) */
     padding: 20px 20px;
   }
 }
 
-/* Background change when mobile scrolled */
 header.mobile-scrolled {
   background-color: rgba(255, 255, 255, 0.3);
+}
+[data-theme="dark"] header.mobile-scrolled {
+  background-color: rgba(28, 41, 81, 0.3);
 }
 
 /* Logo and logo text grouping */
@@ -119,6 +192,9 @@ header.mobile-scrolled {
   font-weight: 300;
   color: var(--black);
 }
+[data-theme="dark"] .logo-text {
+  color: var(--black); /* White in dark mode */
+}
 
 /* Navigation links (desktop) */
 .nav-links {
@@ -128,12 +204,19 @@ header.mobile-scrolled {
 }
 @media (max-width: 768px) {
   .nav-links {
-    display: none; /* hidden on mobile in favor of overlay */
+    display: none;
   }
 }
 .nav-links a {
   text-transform: uppercase;
   font-size: 0.9rem;
+}
+.nav-links a.active {
+  font-weight: 700;
+  background-color: rgba(178, 34, 34, 0.9); /* Highlight active link */
+  color: var(--white);
+  padding: 4px 8px;
+  border-radius: 4px;
 }
 
 /* Header buttons (desktop) */
@@ -144,7 +227,7 @@ header.mobile-scrolled {
 }
 @media (max-width: 768px) {
   .header-buttons {
-    display: none; /* hidden on mobile, replaced by timed popup */
+    display: none;
   }
 }
 .header-buttons a {
@@ -155,7 +238,6 @@ header.mobile-scrolled {
   transition: all 0.3s ease;
 }
 
-/* Shop button (blue) */
 #shop-btn {
   background-color: var(--blue);
   color: var(--white);
@@ -166,7 +248,6 @@ header.mobile-scrolled {
   color: var(--blue);
 }
 
-/* Contribute button (red) */
 #contribute-btn {
   background-color: var(--red);
   border-color: var(--red);
@@ -185,7 +266,7 @@ header.mobile-scrolled {
    - Ties to overlay navigation
    ========================================================= */
 .hamburger {
-  display: none; /* hidden on desktop */
+  display: none;
   flex-direction: column;
   gap: 4px;
   cursor: pointer;
@@ -202,51 +283,54 @@ header.mobile-scrolled {
   }
 }
 
-/* Change hamburger color on mobile scroll */
 .hamburger.scrolled-mobile div {
   background-color: var(--red);
+}
+[data-theme="dark"] .hamburger div {
+  background-color: var(--cyan-63C5DA); /* Cyan in dark mode */
 }
 
 /* =========================================================
    4. Mobile Nav Overlay (partial coverage)
-   - Slides in for mobile nav
-   - Also used for "show" class toggling
+   - Slides in for mobile nav with animation
    ========================================================= */
 .mobile-nav-overlay {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(28,41,81,0.9); /* More opaque blue */
+  background-color: rgba(28, 41, 81, 0.9);
   padding: 30px;
   border-radius: 10px;
   text-align: center;
   display: none;
   z-index: 9999;
   min-width: 250px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease; /* Slide-in animation */
 }
 .mobile-nav-overlay.show {
   display: block;
+  transform: translate(-50%, -50%);
 }
+[data-theme="dark"] .mobile-nav-overlay {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
 .mobile-nav-overlay a {
   display: block;
-  background-color: rgba(178,34,34, 0.7); /* translucent red */
+  background-color: rgba(178, 34, 34, 0.7);
   color: #fff;
   margin: 15px 0;
   padding: 12px;
   text-transform: uppercase;
-  text-shadow: 
-    -1px -1px 0 #000,
-     1px -1px 0 #000,
-    -1px  1px 0 #000,
-     1px  1px 0 #000;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   border-radius: 4px;
   font-weight: bold;
 }
-.mobile-nav-overlay a:hover, 
+.mobile-nav-overlay a:hover,
 .mobile-nav-overlay a.active {
-  background-color: rgba(178,34,34, 0.9);
+  background-color: rgba(178, 34, 34, 0.9);
 }
 
 /* =========================================================
@@ -255,22 +339,20 @@ header.mobile-scrolled {
    - Adjust home banner spacing
    ========================================================= */
 main, section {
-  margin-top: 110px; /* Increased to accommodate header + banner */
+  margin-top: 110px;
   padding: 20px;
 }
 
-/* Update home banner container top margin */
 .home-banner-container {
-  margin-top: 150px; /* Increased from 80px to allow space for both banner and header */
+  margin-top: 150px;
 }
 
 @media (max-width: 768px) {
   .home-banner-container {
-    margin-top: 120px; /* Increased from 130px to prevent overlap */
+    margin-top: 120px;
   }
 }
 
-/* Desktop & Mobile banner images */
 .banner-desktop, .banner-mobile {
   display: block;
   width: 100%;
@@ -288,26 +370,34 @@ main, section {
     margin-top: 0;
   }
   .home-banner-container {
-    margin-top: 90px; /* Adjusted for mobile */
+    margin-top: 90px;
     padding-top: 0;
   }
 }
 
 /* =========================================================
-   6. Translucent Boxes
-   - For subtle background highlights (blue & red)
+   6. Translucent Boxes (Now Cards)
+   - Updated to card style with shadow and padding
    ========================================================= */
 .translucent-blue {
-  background-color: rgba(28,41,81,0.1);
-  padding: 20px;
-  border-radius: 6px;
-  margin-bottom: 10px; /* Reduced for less gap */
+  background-color: rgba(28, 41, 81, 0.1);
+  padding: 30px; /* Increased from 20px */
+  border-radius: 8px; /* Slightly larger */
+  margin-bottom: 5px; /* Reduced for tighter flow */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Card effect */
 }
 .translucent-red {
-  background-color: rgba(178,34,34,0.1);
-  padding: 20px;
-  border-radius: 6px;
-  margin-bottom: 10px;
+  background-color: rgba(178, 34, 34, 0.1);
+  padding: 30px;
+  border-radius: 8px;
+  margin-bottom: 5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+[data-theme="dark"] .translucent-blue {
+  background-color: rgba(99, 197, 218, 0.1); /* Cyan tint */
+}
+[data-theme="dark"] .translucent-red {
+  background-color: rgba(178, 34, 34, 0.2); /* Slightly more opaque */
 }
 
 /* =========================================================
@@ -327,10 +417,9 @@ main, section {
   height: auto;
 }
 
-/* Overlay text in the banner */
 .home-banner-overlay {
   position: absolute;
-  top: 50%;
+  top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
@@ -348,7 +437,7 @@ main, section {
 }
 .home-banner-overlay blockquote {
   font-style: italic;
-  background: rgba(255,255,255,0.8);
+  background: rgba(255, 255, 255, 0.8);
   color: var(--black);
   padding: 10px;
   border-left: 5px solid var(--red);
@@ -360,7 +449,6 @@ main, section {
   display: block;
 }
 
-/* Hero buttons container */
 .hero-buttons-group {
   display: flex;
   gap: 10px;
@@ -378,8 +466,8 @@ main, section {
   font-weight: bold;
 }
 .hero-buttons-group a:hover {
-  background-color: var(--red);
-  border-color: var(--red);
+  background: linear-gradient(to right, var(--blue), var(--gold));
+  border-color: var(--gold);
 }
 .hero-volunteer-btn {
   background-color: var(--blue);
@@ -389,50 +477,34 @@ main, section {
   border-color: var(--red);
 }
 .hero-contribute-btn:hover {
-  color: var(--red);
-  background-color: #fff;
-}
-
-/* Adjust the home-banner-overlay position */
-.home-banner-overlay {
-  top: 60%; /* Move down from 20% or 50% */
+  background: linear-gradient(to right, var(--red), var(--gold));
+  color: var(--white);
 }
 
 @media (max-width: 768px) {
   .home-banner-overlay {
-    top: 70%; /* Moved further down for smaller screens */
+    top: 70%;
     width: 90%;
   }
-  
   .home-banner-overlay h1 {
     font-size: 1.6rem;
-    background: rgba(255, 255, 255, 0.95);
     padding: 8px;
     margin-bottom: 6px;
-    display: block;
-    position: relative;
-    z-index: 10;
   }
-  
   .home-banner-overlay blockquote {
     font-size: 0.85rem;
-    background: rgba(255, 255, 255, 0.95);
     padding: 8px;
     margin-bottom: 6px;
   }
-  
   .founder-image {
     max-width: 80px;
     margin: 3px auto 8px auto;
   }
-  
-  /* Make buttons smaller on mobile */
   .hero-buttons-group a {
     padding: 8px 14px;
     font-size: 0.9rem;
   }
 }
-/* Desktop-specific adjustment for hero overlay content */
 @media (min-width: 769px) {
   .home-banner-overlay {
     max-width: 650px;
@@ -450,7 +522,6 @@ main, section {
 
 /* =========================================================
    Centered Logo & Map Overlap 
-   - Removing any white background from centered logo
    ========================================================= */
 .centered-logo-container {
   text-align: center;
@@ -460,10 +531,9 @@ main, section {
   z-index: 10;
   max-width: 100%;
   background: transparent;
-  overflow: visible;
 }
 .centered-logo {
-  max-width: 220px; /* Larger for desktop */
+  max-width: 220px;
   width: auto;
   height: auto;
   margin: 0 auto;
@@ -472,10 +542,9 @@ main, section {
   z-index: 20;
   background-color: transparent;
   border-radius: 0;
-  box-shadow: none; /* Remove shadow that might be causing white background */
+  box-shadow: none;
 }
 
-/* Remove white background from pseudo-elements (if any) */
 .centered-logo-container::before,
 .centered-logo-container::after,
 .centered-logo::before,
@@ -486,7 +555,6 @@ main, section {
 
 /* =========================================================
    Modern Volunteer Form Layout 
-   - Field arrangement, focus effects, checkboxes
    ========================================================= */
 .modern-volunteer-form .form-row {
   display: flex;
@@ -505,13 +573,13 @@ main, section {
   border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 1rem;
-  transition: border-color 0.3s;
+  transition: border-color 0.3s, box-shadow 0.3s; /* Added shadow transition */
 }
 .modern-volunteer-form .form-field input:focus,
 .modern-volunteer-form .form-field textarea:focus {
   border-color: var(--blue);
   outline: none;
-  box-shadow: 0 0 0 2px rgba(28, 41, 81, 0.1);
+  box-shadow: 0 0 5px var(--cyan-63C5DA); /* Glow effect */
 }
 .modern-volunteer-form .form-field.full-width {
   width: 100%;
@@ -525,7 +593,6 @@ main, section {
   min-width: 100px;
 }
 
-/* Checkbox styling in the modern volunteer form */
 .checkbox-container {
   margin: 25px 0;
 }
@@ -546,7 +613,6 @@ main, section {
   line-height: 1.4;
 }
 
-/* Submit button for modern form */
 .modern-submit-btn {
   background-color: var(--blue);
   color: var(--white);
@@ -564,12 +630,11 @@ main, section {
   min-width: 150px;
 }
 .modern-submit-btn:hover {
-  background-color: #0f1c3f;
+  background: linear-gradient(to right, var(--blue), var(--gold));
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
-/* Responsive adjustments for modern volunteer form */
 @media (max-width: 768px) {
   .modern-volunteer-form .form-row {
     flex-direction: column;
@@ -585,7 +650,6 @@ main, section {
 
 /* =========================================================
    24. Mission Images Row
-   - Desktop-only mission images
    ========================================================= */
 .mission-images-row {
   display: flex;
@@ -601,7 +665,6 @@ main, section {
   object-fit: cover;
 }
 
-/* Hide mission images on mobile */
 @media (max-width: 768px) {
   .mission-images-row {
     display: none;
@@ -610,7 +673,7 @@ main, section {
 
 .mission-container {
   position: relative;
-  margin-top: 110px; /* Match other top margins */
+  margin-top: 110px;
 }
 
 .mission-text-overlay {
@@ -628,33 +691,24 @@ main, section {
   margin-top: 0;
 }
 
-/* ADD THIS CODE RIGHT HERE - Desktop-only white text for mission */
 @media (min-width: 769px) {
   .mission-text-overlay .translucent-blue {
-    color: white; /* Override the default text color for desktop */
-    background-color: rgba(28, 41, 81, 0.7); /* More opaque background */
+    color: white;
+    background-color: rgba(28, 41, 81, 0.7);
   }
-  
   .mission-text-overlay h1 {
-    color: white; /* Ensure heading is also white */
+    color: white;
   }
 }
-/* Overlap effect (box shadow) for some container */
-box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-position: relative;
-z-index: 20;
-margin-bottom: -30px; /* Creates overlap with the map below */
 
 /* =========================================================
    Map Container
-   - Holds the USA map
-   - Overlaps with the centered logo above
    ========================================================= */
 .map-container {
   position: relative;
   width: 100%;
   max-width: 1000px;
-  margin: -30px auto 0; /* Negative margin to pull up under logo */
+  margin: -30px auto 0;
   padding: 0;
   background: transparent;
   overflow: visible;
@@ -667,17 +721,15 @@ margin-bottom: -30px; /* Creates overlap with the map below */
   background: transparent;
 }
 
-/* Mobile spacing adjustments for banner, logo, map */
 @media (max-width: 768px) {
   .home-banner-container {
-    margin-top: 120px; /* Match the value from change #1 */
+    margin-top: 120px;
   }
   .centered-logo-container {
-    margin-top: 70px; /* Reduced from 120px to bring logo closer */
-    position: relative;
+    margin-top: 70px;
   }
   .centered-logo {
-    max-width: 75px; /* Adjusted size */
+    max-width: 75px;
     margin-top: 10px;
     margin-bottom: -15px;
   }
@@ -689,20 +741,18 @@ margin-bottom: -30px; /* Creates overlap with the map below */
   }
 }
 
-/* Very small screens */
 @media (max-width: 480px) {
   .centered-logo {
-    max-width: 70px; /* Even smaller on very small screens */
+    max-width: 70px;
   }
 }
 
 /* =========================================================
    United We Stand Banner
-   - Transparent blue overlay banner
    ========================================================= */
 .united-we-stand-banner {
   width: 100%;
-  background-color: rgba(28, 41, 81, 0.8); /* Transparent blue */
+  background-color: rgba(28, 41, 81, 0.8);
   text-align: center;
   padding: 15px 20px;
   margin: 0;
@@ -715,12 +765,11 @@ margin-bottom: -30px; /* Creates overlap with the map below */
   color: var(--white);
   text-transform: uppercase;
   margin: 0;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   letter-spacing: 2px;
   font-weight: bold;
 }
 
-/* Mobile adjustments for united-we-stand banner */
 @media (max-width: 768px) {
   .centered-logo {
     max-width: 90px;
@@ -739,7 +788,6 @@ margin-bottom: -30px; /* Creates overlap with the map below */
 
 /* =========================================================
    8. Join Our Movement Section
-   - Red top banner, white bottom form
    ========================================================= */
 .join-movement-section {
   margin-top: 0;
@@ -780,6 +828,11 @@ margin-bottom: -30px; /* Creates overlap with the map below */
   padding: 8px;
   border: 1px solid #999;
   border-radius: 4px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.join-movement-form input:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 5px var(--cyan-63C5DA);
 }
 .join-movement-form button {
   margin-top: 10px;
@@ -791,14 +844,14 @@ margin-bottom: -30px; /* Creates overlap with the map below */
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  transition: all 0.3s;
 }
 .join-movement-form button:hover {
-  background-color: var(--red);
+  background: linear-gradient(to right, var(--blue), var(--gold));
 }
 
 /* =========================================================
    9. Home Page Video
-   - Click-to-toggle-audio
    ========================================================= */
 .home-video {
   width: 100%;
@@ -811,13 +864,12 @@ margin-bottom: -30px; /* Creates overlap with the map below */
 
 /* =========================================================
    10. Donation Section (Black-ish)
-   - A dark overlay with donation logos
    ========================================================= */
 .section-black {
   width: 100%;
   margin: 0;
   padding: 20px;
-  background-color: rgba(0,0,0,0.6);
+  background-color: rgba(0, 0, 0, 0.6);
   color: var(--white);
   text-align: center;
 }
@@ -843,7 +895,6 @@ margin-bottom: -30px; /* Creates overlap with the map below */
 
 /* =========================================================
    11. About Page Top Content
-   - Image on the left, text on the right (desktop)
    ========================================================= */
 .about-top-content {
   display: flex;
@@ -858,7 +909,7 @@ margin-bottom: -30px; /* Creates overlap with the map below */
   flex-shrink: 0;
 }
 .about-text {
-  flex: 1; /* Make text take remaining space */
+  flex: 1;
 }
 @media (max-width: 768px) {
   .about-top-content {
@@ -877,7 +928,6 @@ margin-bottom: -30px; /* Creates overlap with the map below */
 
 /* =========================================================
    12. Slider (About Page)
-   - Simple image slider with controls
    ========================================================= */
 .slider-container {
   position: relative;
@@ -909,13 +959,9 @@ margin-bottom: -30px; /* Creates overlap with the map below */
 .slider-controls button:hover {
   background-color: var(--red);
 }
-.stop-presentation {
-  cursor: pointer;
-}
 
 /* =========================================================
    13. Projects Hero (background image)
-   - Large hero section for the Projects page
    ========================================================= */
 .projects-hero {
   background: url("images/projects.png") center center / cover no-repeat;
@@ -938,7 +984,6 @@ margin-bottom: -30px; /* Creates overlap with the map below */
 
 /* =========================================================
    14. Get Involved Page
-   - Volunteer banner, volunteer form
    ========================================================= */
 .volunteer-banner {
   background-color: var(--red);
@@ -994,7 +1039,6 @@ margin-bottom: -30px; /* Creates overlap with the map below */
   margin-top: 10px;
 }
 
-/* "GET INVOLVED" Banner (cyan background) */
 .get-involved-banner {
   margin-top: 80px;
   display: flex;
@@ -1009,7 +1053,6 @@ margin-bottom: -30px; /* Creates overlap with the map below */
   text-transform: uppercase;
 }
 
-/* Involved side-by-side (#63C5DA background) */
 .involved-side-by-side {
   display: flex;
   flex-wrap: wrap;
@@ -1056,7 +1099,6 @@ margin-bottom: -30px; /* Creates overlap with the map below */
 
 /* =========================================================
    16. Projects Collaborator Grid
-   - Grid layout for partner/collaborator info
    ========================================================= */
 .collaborators {
   display: grid;
@@ -1081,20 +1123,16 @@ margin-bottom: -30px; /* Creates overlap with the map below */
 }
 
 /* =========================================================
-   17. Contact Page Adjustments
-   (Mostly handled inline, minimal negative margin removal)
-   ========================================================= */
-/* (No additional contact-specific styles here, referencing comment in your code) */
-
-/* =========================================================
    18. Footer - #63C5DA Translucent
-   - Footer links, logos, small text
    ========================================================= */
 footer {
   background-color: rgba(99, 197, 218, 0.8);
   padding: 20px;
   text-align: center;
   margin-top: 0;
+}
+[data-theme="dark"] footer {
+  background-color: rgba(99, 197, 218, 0.3);
 }
 footer .footer-links {
   display: flex;
@@ -1126,25 +1164,27 @@ footer p {
   font-size: 0.8rem;
   color: #666;
 }
+[data-theme="dark"] footer p {
+  color: #aaa;
+}
 
 /* =========================================================
    19. Timed Overlay - Mobile Only
-   - Shows mobile-only overlay with shop/contribute buttons
    ========================================================= */
 #mobileButtonsOverlay {
-  display: none; /* default hidden */
+  display: none;
   position: fixed;
-  top: 0; 
-  left: 0; 
-  right: 0; 
+  top: 0;
+  left: 0;
+  right: 0;
   bottom: 0;
-  background: rgba(0,0,0,0.7);
+  background: rgba(0, 0, 0, 0.7);
   justify-content: center;
   align-items: center;
   z-index: 10000;
 }
 #mobileButtonsOverlay.show {
-  display: flex !important; /* Force display with !important */
+  display: flex !important;
 }
 .mobile-buttons-content {
   background-color: #fff;
@@ -1155,7 +1195,11 @@ footer p {
   max-width: 300px;
   position: relative;
   min-height: 200px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+[data-theme="dark"] .mobile-buttons-content {
+  background-color: #333;
+  color: #ddd;
 }
 .mobile-buttons-content h3 {
   margin-bottom: 20px;
@@ -1180,7 +1224,7 @@ footer p {
   background-color: var(--red);
 }
 .mobile-buttons-content a:hover {
-  opacity: 0.8;
+  background: linear-gradient(to right, var(--blue), var(--gold));
 }
 .close-mobile-btn {
   position: absolute;
@@ -1194,8 +1238,7 @@ footer p {
 }
 
 /* =========================================================
-   20. Modern Join Movement Section (Feb 2025)
-   - Inspired by Trump site design
+   20. Modern Join Movement Section
    ========================================================= */
 .join-movement-section {
   position: relative;
@@ -1228,8 +1271,8 @@ footer p {
   background-color: #fff;
   padding: 30px;
   border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  border: 1px solid rgba(0, 0, 0, 0.05); /* Very subtle border */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 .form-field-group {
   display: flex;
@@ -1252,12 +1295,11 @@ footer p {
   border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 1rem;
-  transition: border-color 0.3s;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 .form-field input:focus {
   border-color: var(--blue);
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(28, 41, 81, 0.1);
+  box-shadow: 0 0 5px var(--cyan-63C5DA);
 }
 .join-button {
   background-color: var(--blue);
@@ -1273,12 +1315,11 @@ footer p {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 .join-button:hover {
-  background-color: #0f1c3f;
+  background: linear-gradient(to right, var(--blue), var(--gold));
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
-/* Responsive adjustments for modern form wrapper */
 @media (min-width: 768px) {
   .form-field-group {
     flex-direction: row;
@@ -1290,7 +1331,6 @@ footer p {
 
 /* =========================================================
    21. Content with Image Sections
-   - Allows reversed or standard layout
    ========================================================= */
 .content-with-image {
   display: flex;
@@ -1313,14 +1353,12 @@ footer p {
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
-/* Reverse order for image on the left */
 .content-with-image.reverse {
   flex-direction: row-reverse;
 }
 
-/* Mobile responsive adjustments */
 @media (max-width: 768px) {
-  .content-with-image, 
+  .content-with-image,
   .content-with-image.reverse {
     flex-direction: column;
   }
@@ -1337,7 +1375,6 @@ footer p {
 
 /* =========================================================
    22. Modern Volunteer Form - Trump-Inspired Styling
-   - Similar layout changes as the modern join movement
    ========================================================= */
 .modern-volunteer-banner {
   background-color: var(--red);
@@ -1364,5 +1401,5 @@ footer p {
   margin: 0 auto;
   background-color: #fff;
   padding: 30px;
-  border-radius: 8px; /* etc. - rest is repeated above */
+  border-radius: 8px;
 }
