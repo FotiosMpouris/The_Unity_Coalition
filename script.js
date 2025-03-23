@@ -4,6 +4,39 @@ document.addEventListener("DOMContentLoaded", function() {
   const navLinks = document.querySelector(".nav-links");
 
   /************************************************
+   * 0. Dark Mode Toggle and Banner Swap
+   ***********************************************/
+  const themeToggle = document.querySelectorAll(".theme-toggle");
+  const htmlElement = document.documentElement;
+  const bannerDesktop = document.querySelector(".banner-desktop");
+
+  // Load saved theme from localStorage
+  const savedTheme = localStorage.getItem("theme") || "light";
+  htmlElement.setAttribute("data-theme", savedTheme);
+  console.log(`Loaded theme: ${savedTheme}`);
+  updateBanner(savedTheme);
+
+  // Toggle theme on button click
+  themeToggle.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const currentTheme = htmlElement.getAttribute("data-theme");
+      const newTheme = currentTheme === "light" ? "dark" : "light";
+      htmlElement.setAttribute("data-theme", newTheme);
+      localStorage.setItem("theme", newTheme);
+      console.log(`Switched to theme: ${newTheme}`);
+      updateBanner(newTheme);
+    });
+  });
+
+  // Function to swap banner image
+  function updateBanner(theme) {
+    if (bannerDesktop) {
+      const src = theme === "dark" ? bannerDesktop.dataset.dark : bannerDesktop.dataset.light;
+      bannerDesktop.src = src;
+    }
+  }
+
+  /************************************************
    * 1. Transparent Header on Mobile Scroll
    ***********************************************/
   window.addEventListener("scroll", () => {
@@ -103,16 +136,16 @@ document.addEventListener("DOMContentLoaded", function() {
     console.log("Initializing slide presentation with continuous audio and auto-restart");
     
     const slideConfig = [
-      { duration: 3300 },
-      { duration: 6600 },
-      { duration: 9000 },
-      { duration: 6000 },
-      { duration: 11500 },
-      { duration: 17500 },
-      { duration: 5500 },
-      { duration: 8000 },
-      { duration: 6000 },
-      { duration: 1000 }
+      { duration: 3300 },  // Slide 0
+      { duration: 6600 },  // Slide 1
+      { duration: 9000 },  // Slide 2
+      { duration: 6000 },  // Slide 3
+      { duration: 11500 }, // Slide 4
+      { duration: 17500 }, // Slide 5
+      { duration: 5500 },  // Slide 6
+      { duration: 8000 },  // Slide 7
+      { duration: 6000 },  // Slide 8
+      { duration: 1000 }   // Slide 9
     ];
     
     let sliderIndex = 0;
@@ -135,17 +168,17 @@ document.addEventListener("DOMContentLoaded", function() {
       });
     });
     
+    // Simplified audio unlock
     const unlockAudio = function() {
       console.log("Attempting to unlock audio...");
-      const silentSound = new Audio("data:audio/mp3;base64,SUQzBAAAAAAAI1TSU0UAAAAPAAADTGF2ZjU4LjI5LjEwMAAAAAAAAAAAAAAA//tQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAABIADAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV6urq6urq6urq6urq6urq6urq6urq6urq6v////////////////////////////////8AAAAATGF2YzU4LjU0AAAAAAAAAAAAAAAAJAAAAAAAAAAAASDs90hvAAAAAAAAAAAAAAAAAAAA//sQZAAP8AAAaQAAAAgAAA0gAAABAAABpAAAACAAADSAAAAETEFNRTMuMTAwVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV");
-      silentSound.play()
-        .then(() => {
-          console.log("Audio unlocked successfully");
-          document.removeEventListener("click", unlockAudio);
-        })
-        .catch(e => {
-          console.log("Failed to unlock audio:", e);
-        });
+      slideAudio.muted = true;
+      slideAudio.play().then(() => {
+        slideAudio.muted = false;
+        console.log("Audio unlocked successfully");
+        document.removeEventListener("click", unlockAudio);
+      }).catch(e => {
+        console.log("Failed to unlock audio:", e);
+      });
     };
     document.addEventListener("click", unlockAudio, { once: true });
     
@@ -357,31 +390,6 @@ document.addEventListener("DOMContentLoaded", function() {
   
   handleHashScroll();
   window.addEventListener('hashchange', handleHashScroll);
-
-  /************************************************
-   * 8. Dark Mode Toggle
-   ***********************************************/
-  const themeToggleBtn = document.querySelector(".theme-toggle");
-  const htmlElement = document.documentElement;
-
-  // Load saved theme from local storage
-  const savedTheme = localStorage.getItem("theme");
-  if (savedTheme) {
-    htmlElement.setAttribute("data-theme", savedTheme);
-  }
-
-  // Toggle theme on button click
-  if (themeToggleBtn) {
-    themeToggleBtn.addEventListener("click", () => {
-      const currentTheme = htmlElement.getAttribute("data-theme");
-      const newTheme = currentTheme === "dark" ? "light" : "dark";
-      
-      htmlElement.setAttribute("data-theme", newTheme);
-      localStorage.setItem("theme", newTheme);
-      
-      console.log(`Theme switched to ${newTheme}`);
-    });
-  }
 
   console.log("Script fully initialized!");
 });
