@@ -29,6 +29,7 @@
       <a href="projects.html">Projects</a>
       <a href="get-involved.html">Get Involved</a>
       <a href="contact.html">Contact</a>
+      <button class="theme-toggle"></button> <!-- Moved into nav-links -->
     </div>
 
     <div class="header-buttons">
@@ -43,17 +44,19 @@
       <div></div>
     </div>
 
-    <!-- Dark Mode Toggle Button -->
-    <button class="theme-toggle">Toggle Theme</button>
+    <!-- Dark Mode Toggle Button (mobile only) -->
+    <button class="theme-toggle"></button>
   </header>
 
   <!-- HERO SECTION -->
   <div class="home-banner-container">
-    <!-- Desktop Banner -->
+    <!-- Desktop Banner with Dark Mode Swap -->
     <img
       src="images/homebanner.png"
       alt="Home Banner Desktop"
       class="banner-desktop"
+      data-light="images/homebanner.png"
+      data-dark="images/homebannerdark.png"
     />
     <!-- Mobile Banner (uncomment if needed) -->
     <!-- <img
@@ -109,7 +112,7 @@
     </div>
   </div>
   
-  <!-- "Join Our Movement" Section (Moved Up) -->
+  <!-- "Join Our Movement" Section -->
   <section class="join-movement-section" style="margin-bottom:0;">
     <div class="join-movement-banner">
       <h2>JOIN OUR MOVEMENT</h2>
