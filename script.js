@@ -359,29 +359,43 @@ document.addEventListener("DOMContentLoaded", function() {
   window.addEventListener('hashchange', handleHashScroll);
 
   /************************************************
-   * 8. Dark Mode Toggle
-   ***********************************************/
-  const themeToggleBtn = document.querySelector(".theme-toggle");
-  const htmlElement = document.documentElement;
+ * 8. Dark Mode Toggle
+ ***********************************************/
+const themeToggleBtn = document.querySelector(".theme-toggle");
+const htmlElement = document.documentElement;
 
-  // Load saved theme from local storage
-  const savedTheme = localStorage.getItem("theme");
-  if (savedTheme) {
-    htmlElement.setAttribute("data-theme", savedTheme);
+// Load saved theme from local storage
+const savedTheme = localStorage.getItem("theme");
+if (savedTheme) {
+  htmlElement.setAttribute("data-theme", savedTheme);
+  // Set initial icon based on saved theme
+  if (savedTheme === "dark") {
+    themeToggleBtn.setAttribute("data-icon", "sun");
+    themeToggleBtn.style.setProperty("--icon", '"\\2600"'); /* Sun icon */
+  } else {
+    themeToggleBtn.setAttribute("data-icon", "moon");
+    themeToggleBtn.style.setProperty("--icon", '"\\263D"'); /* Moon icon */
   }
+}
 
-  // Toggle theme on button click
-  if (themeToggleBtn) {
-    themeToggleBtn.addEventListener("click", () => {
-      const currentTheme = htmlElement.getAttribute("data-theme");
-      const newTheme = currentTheme === "dark" ? "light" : "dark";
-      
-      htmlElement.setAttribute("data-theme", newTheme);
-      localStorage.setItem("theme", newTheme);
-      
-      console.log(`Theme switched to ${newTheme}`);
-    });
-  }
-
-  console.log("Script fully initialized!");
-});
+// Toggle theme on button click
+if (themeToggleBtn) {
+  themeToggleBtn.addEventListener("click", () => {
+    const currentTheme = htmlElement.getAttribute("data-theme");
+    const newTheme = currentTheme === "dark" ? "light" : "dark";
+    
+    htmlElement.setAttribute("data-theme", newTheme);
+    localStorage.setItem("theme", newTheme);
+    
+    // Swap icon based on new theme
+    if (newTheme === "dark") {
+      themeToggleBtn.setAttribute("data-icon", "sun");
+      themeToggleBtn.style.setProperty("--icon", '"\\2600"'); /* Sun icon */
+    } else {
+      themeToggleBtn.setAttribute("data-icon", "moon");
+      themeToggleBtn.style.setProperty("--icon", '"\\263D"'); /* Moon icon */
+    }
+    
+    console.log(`Theme switched to ${newTheme}, icon set to ${newTheme === "dark" ? "sun" : "moon"}`);
+  });
+}
