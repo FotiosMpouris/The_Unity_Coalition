@@ -116,7 +116,7 @@ h2 {
    ========================================================= */
 .top-banner {
   background-color: var(--red);
-  color: var(--white);
+  color: #fff; /* White in both modes */
   text-align: center;
   padding: 10px;
   font-weight: bold;
@@ -131,6 +131,7 @@ h2 {
 }
 [data-theme="dark"] .top-banner {
   background-color: var(--red);
+  color: #fff; /* Ensure white in dark mode */
 }
 
 @media (max-width: 768px) {
@@ -371,24 +372,29 @@ main, section {
    6. Translucent Boxes (Now Cards)
    ========================================================= */
 .translucent-blue {
-  background-color: rgba(28, 41, 81, 0.2); /* More robust blue tint */
+  background-color: rgba(28, 41, 81, 0.3); /* Deeper blue for light mode */
   padding: 30px;
   border-radius: 8px;
   margin-bottom: 5px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 .translucent-red {
-  background-color: rgba(178, 34, 34, 0.2); /* More robust red tint */
+  background-color: rgba(178, 34, 34, 0.3); /* Deeper red for light mode */
   padding: 30px;
   border-radius: 8px;
   margin-bottom: 5px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 [data-theme="dark"] .translucent-blue {
-  background-color: rgba(99, 197, 218, 0.2); /* Slightly adjusted for dark mode */
+  background-color: rgba(99, 197, 218, 0.3); /* Adjusted for dark mode */
 }
 [data-theme="dark"] .translucent-red {
-  background-color: rgba(178, 34, 34, 0.3); /* Slightly adjusted for dark mode */
+  background-color: rgba(178, 34, 34, 0.4); /* Adjusted for dark mode */
+}
+
+/* Center text in sections */
+.section-content {
+  text-align: center;
 }
 
 /* =========================================================
@@ -434,7 +440,7 @@ main, section {
 }
 [data-theme="dark"] .home-banner-overlay h1,
 [data-theme="dark"] .home-banner-overlay blockquote {
-  background: rgba(28, 41, 81, 0.8); /* Darker background in dark mode */
+  background: rgba(28, 41, 81, 0.8);
   color: var(--white);
 }
 .founder-image {
@@ -471,15 +477,11 @@ main, section {
   background-color: var(--red);
   border-color: var(--red);
 }
-[data-theme="dark"] .hero-volunteer-btn {
-  background-color: var(--blue);
-  border-color: var(--blue);
-  color: #fff; /* Ensure text is visible */
-}
+[data-theme="dark"] .hero-volunteer-btn,
 [data-theme="dark"] .hero-contribute-btn {
-  background-color: var(--red);
+  background-color: var(--red); /* Both red in dark mode */
   border-color: var(--red);
-  color: #fff; /* Ensure text is visible */
+  color: #fff;
 }
 .hero-contribute-btn:hover {
   background: linear-gradient(to right, var(--red), var(--gold));
@@ -503,7 +505,7 @@ main, section {
   }
   .home-banner-overlay h1,
   .home-banner-overlay blockquote {
-    background: rgba(255, 255, 255, 0.9); /* Slightly more opaque for mobile readability */
+    background: rgba(255, 255, 255, 0.9);
   }
   [data-theme="dark"] .home-banner-overlay h1,
   [data-theme="dark"] .home-banner-overlay blockquote {
@@ -740,10 +742,10 @@ main, section {
 /* Ensure map overlay text is white */
 .map-container > div > div {
   background-color: rgba(28, 41, 81, 0.8);
-  color: var(--white) !important;
+  color: #fff !important;
 }
 .map-container > div > div p {
-  color: var(--white) !important;
+  color: #fff !important;
 }
 
 @media (max-width: 768px) {
@@ -908,8 +910,16 @@ main, section {
   color: var(--white);
   text-align: center;
 }
-.section-black h2 {
-  margin-top: 0;
+[data-theme="dark"] .section-black {
+  background-color: rgba(0, 0, 0, 0.5); /* Slightly lighter in dark mode */
+}
+.section-black h2,
+.section-black p {
+  color: var(--white);
+}
+[data-theme="dark"] .section-black h2,
+[data-theme="dark"] .section-black p {
+  color: #fff; /* Ensure white in dark mode */
 }
 .donation-logos {
   display: flex;
@@ -1161,14 +1171,14 @@ main, section {
    18. Footer
    ========================================================= */
 footer {
-  background-color: var(--blue);
+  background: linear-gradient(to right, #1c2951, #b22222); /* Gradient in light mode */
   padding: 20px;
   text-align: center;
   margin-top: 0;
   border-top: 2px solid var(--cyan-63C5DA);
 }
 [data-theme="dark"] footer {
-  background-color: var(--blue);
+  background: var(--blue); /* Keep solid blue in dark mode */
 }
 footer .footer-links {
   display: flex;
@@ -1181,6 +1191,7 @@ footer .footer-links a {
   text-transform: uppercase;
   color: var(--cyan-63C5DA);
   font-size: 0.9rem;
+  font-weight: bold; /* Bolder links */
 }
 footer .footer-links a:hover {
   color: var(--gold);
@@ -1198,10 +1209,10 @@ footer .footer-logos a img {
 }
 footer p {
   font-size: 0.8rem;
-  color: #ccc;
+  color: #fff; /* Brighter white */
 }
 [data-theme="dark"] footer p {
-  color: #aaa;
+  color: #fff; /* Ensure white in dark mode */
 }
 
 /* =========================================================
