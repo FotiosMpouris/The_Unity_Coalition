@@ -5,12 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Unity Coalition - Home</title>
   <link rel="stylesheet" href="style.css" />
+  <!-- Google Fonts for Montserrat and Open Sans -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
   <!-- Top Banner -->
-<div class="top-banner">
-  People Are The Solution
-</div>
+  <div class="top-banner">
+    People Are The Solution
+  </div>
 
   <!-- HEADER -->
   <header>
@@ -40,6 +42,9 @@
       <div></div>
       <div></div>
     </div>
+
+    <!-- Dark Mode Toggle Button -->
+    <button class="theme-toggle">Toggle Theme</button>
   </header>
 
   <!-- HERO SECTION -->
@@ -50,18 +55,17 @@
       alt="Home Banner Desktop"
       class="banner-desktop"
     />
-    <!-- Mobile Banner 
-    <img
+    <!-- Mobile Banner (uncomment if needed) -->
+    <!-- <img
       src="images/homebanner1.png"
       alt="Home Banner Mobile"
       class="banner-mobile"
-    />-->
+    /> -->
 
     <div class="home-banner-overlay">
       <h1>Reuniting America</h1>
       <blockquote>
-        "The reuniting of Americans begins right now."<br/>
-        — [Founder's Name]
+        "The reuniting of Americans begins now."
       </blockquote>
       <img
         src="images/founderimage1.png"
@@ -88,7 +92,7 @@
 
   <!-- Map Section with United We Stand Banner at Bottom -->
   <div class="map-container">
-    <!-- Added text directly over the map image -->
+    <!-- Text overlay on map -->
     <div style="position: absolute; top: 0; left: 0; right: 0; z-index: 5; margin-top: 20px;">
       <div style="background-color: rgba(28, 41, 81, 0.8); color: white; text-align: center; padding: 15px; margin: 0 auto; max-width: 80%;">
         <p style="font-size: 1.2rem; font-weight: bold; margin: 0;">Join our team of motivated, focused and capable independents – party-affiliated and unaffiliated – to bring forth a more stable and dignified order fit for our time</p>
@@ -105,31 +109,31 @@
     </div>
   </div>
   
-  <!-- "Join Our Movement" banner + form in one section -->
- <section class="join-movement-section" style="margin-bottom:0;">
-  <div class="join-movement-banner">
-    <h2>JOIN OUR MOVEMENT</h2>
-  </div>
-  <div class="join-movement-form-container">
-    <div class="modern-form-wrapper">
-      <div class="form-field-group">
-        <div class="form-field">
-          <span>Email Address</span>
-          <input type="email" name="email" placeholder="Your Email" required />
+  <!-- "Join Our Movement" Section (Moved Up) -->
+  <section class="join-movement-section" style="margin-bottom:0;">
+    <div class="join-movement-banner">
+      <h2>JOIN OUR MOVEMENT</h2>
+    </div>
+    <div class="join-movement-form-container">
+      <div class="modern-form-wrapper">
+        <div class="form-field-group">
+          <div class="form-field">
+            <span>Email Address</span>
+            <input type="email" name="email" placeholder="Your Email" required />
+          </div>
+          <div class="form-field">
+            <span>Zip Code</span>
+            <input type="text" name="zip" placeholder="Zip Code" required />
+          </div>
         </div>
-        <div class="form-field">
-          <span>Zip Code</span>
-          <input type="text" name="zip" placeholder="Zip Code" required />
-        </div>
+        <button type="submit" class="join-button">JOIN</button>
       </div>
-      <button type="submit" class="join-button">JOIN</button>
+      <!-- Text below the join form -->
+      <div style="background-color: var(--blue); color: white; text-align: center; padding: 15px; margin-top: 20px; border-radius: 4px;">
+        <p style="font-size: 1.3rem; font-weight: bold; margin: 0;">The time to unite America is now!</p>
+      </div>
     </div>
-    <!-- Added text below the join form -->
-    <div style="background-color: var(--blue); color: white; text-align: center; padding: 15px; margin-top: 20px; border-radius: 4px;">
-      <p style="font-size: 1.3rem; font-weight: bold; margin: 0;">The time to unite America is now!</p>
-    </div>
-  </div>
-</section>
+  </section>
 
   <main>
     <!-- Reform Movement Section with reform.png on the right -->
@@ -150,7 +154,7 @@
       </div>
     </section>
 
-   <!-- Honor Section with honor.png on the left -->
+    <!-- Honor Section with honor.png on the left -->
     <section class="translucent-red content-with-image reverse">
       <div class="section-image">
         <img src="images/honor.png" alt="Honor" />
