@@ -8,9 +8,9 @@
 </head>
 <body>
   <!-- Top Banner -->
-<div class="top-banner">
-  People Are The Solution
-</div>
+  <div class="top-banner">
+    People Are The Solution
+  </div>
 
   <!-- HEADER -->
   <header>
@@ -26,6 +26,7 @@
       <a href="projects.html">Projects</a>
       <a href="get-involved.html">Get Involved</a>
       <a href="contact.html">Contact</a>
+      <button class="theme-toggle"></button> <!-- Dark mode toggle for desktop -->
     </div>
 
     <div class="header-buttons">
@@ -38,6 +39,9 @@
       <div></div>
       <div></div>
     </div>
+
+    <!-- Mobile-only dark mode toggle -->
+    <button class="theme-toggle mobile-only"></button>
   </header>
 
   <main>
@@ -45,11 +49,7 @@
     <section class="translucent-blue about-top-section">
       <h1>About Unity Coalition</h1>
       <div class="about-top-content">
-        <img
-          src="images/about.png"
-          alt="About the Unity Coalition"
-          class="about-img"
-        />
+        <img src="images/about.png" alt="About the Unity Coalition" class="about-img" />
         <div class="about-text">
           <p>
             The Unity Coalition stands as a groundbreaking infrastructure connecting
@@ -69,105 +69,106 @@
       </div>
     </section>
 
-   <!-- Historical Context Section (New) -->
-   <section class="translucent-red">
-     <h2>Understanding Our Historical Moment</h2>
-     <p>
-       America stands at a pivotal moment in its 250-year journey. Our nation has evolved through distinct eras—from Federalization (1788-1860) under Washington to Lincoln's Industrialization era (1860-1932), Roosevelt's Globalization period (1932-2016), and now into the Informationalization age that began taking shape in 2016.
-     </p>
-     <p>
-       Each transition has brought profound realignments in our political landscape, with parties transforming to address the challenges of their time. Today, we stand at another critical juncture where populist and globalist forces must find common ground for America to thrive. The Unity Coalition serves as the vital hinge connecting these perspectives, creating space for productive dialogue and collaborative action.
-     </p>
-   </section>
+    <!-- The Culture That Animates Us -->
+    <section class="translucent-blue">
+      <h2>The Culture That Animates Us</h2>
+      <div class="culture-content">
+        <div class="culture-text">
+          <p>
+            At the Unity Coalition, we're guided by core values that shape all our work:
+          </p>
+          <ul style="margin-left: 20px; margin-bottom: 15px;">
+            <li><strong>Transparency:</strong> We lead with positive values before policies, creating a foundation of trust.</li>
+            <li><strong>Focus:</strong> We emphasize reform and bridging divides rather than overturning and dividing.</li>
+            <li><strong>Humility:</strong> We appreciate complexity and focus on managing and balancing issues rather than oversimplifying them.</li>
+            <li><strong>Dignity:</strong> We promote civic revival with basic decorum, elevating public discourse.</li>
+            <li><strong>Responsiveness:</strong> We function as a support group, think tank, and action network, adapting to evolving needs.</li>
+          </ul>
+          <p>
+            These principles enable us to extract and amplify the virtuous aspects of both populist and globalist perspectives while minimizing their more destructive tendencies.
+          </p>
+        </div>
+        <img src="images/culture.png" alt="Our Culture" class="culture-img" />
+      </div>
+    </section>
 
-   <!-- 10-slide presentation with audio -->
-<section class="translucent-blue">
-  <h2>Unity Coalition Dynamics</h2>
-  <div class="slider-container">    
-    <img src="images/UCDynamics1.png" alt="Slide 1" class="active" />
-    <img src="images/UCDynamics2.png" alt="Slide 2" />
-    <img src="images/UCDynamics3.png" alt="Slide 3" />
-    <img src="images/UCDynamics4.png" alt="Slide 4" />
-    <img src="images/UCDynamics5.png" alt="Slide 5" />
-    <img src="images/UCDynamics6.png" alt="Slide 6" />
-    <img src="images/UCDynamics7.png" alt="Slide 7" />
-    <img src="images/UCDynamics8.png" alt="Slide 8" />
-    <img src="images/UCDynamics9.png" alt="Slide 9" />
-    <img src="images/UCDynamics10.png" alt="Slide 10" />
-  </div>
-  
-  <!-- Audio element for slideshow -->
-  <audio id="slideAudio" src="audio/slidemusic.mp3" preload="auto"></audio>
-          
-  <div class="slider-controls">
-    <button type="button" id="prevSlideBtn">Prev</button>
-    <button type="button" id="startPresentationBtn">Start Presentation</button>
-    <button type="button" id="stopPresentationBtn">Stop</button>
-    <button type="button" id="nextSlideBtn">Next</button>
-  </div>
-  <p>
-    Click <strong>Start Presentation</strong> to view the slides with accompanying audio.
-    Click on any slide to stop the presentation.
-  </p>
-</section>
+    <!-- Historical Context Section -->
+    <section class="translucent-red">
+      <h2>Understanding Our Historical Moment</h2>
+      <img src="images/historicalmoment.png" alt="Historical Moment Map" style="width: 100%; max-width: 300px; float: left; margin: 0 1em 1em 0;" />
+      <p>
+        America stands at a pivotal moment in its 250-year journey. Our nation has evolved through distinct eras—from Federalization (1788-1860) under Washington to Lincoln's Industrialization era (1860-1932), Roosevelt's Globalization period (1932-2016), and now into the Informationalization age that began taking shape in 2016.
+      </p>
+      <p>
+        Each transition has brought profound realignments in our political landscape, with parties transforming to address the challenges of their time. Today, we stand at another critical juncture where populist and globalist forces must find common ground for America to thrive. The Unity Coalition serves as the vital hinge connecting these perspectives, creating space for productive dialogue and collaborative action.
+      </p>
+    </section>
 
-   <!-- The Culture That Animates Us (New) -->
-   <section class="translucent-blue">
-     <h2>The Culture That Animates Us</h2>
-     <p>
-       At the Unity Coalition, we're guided by core values that shape all our work:
-     </p>
-     <ul style="margin-left: 20px; margin-bottom: 15px;">
-       <li><strong>Transparency:</strong> We lead with positive values before policies, creating a foundation of trust.</li>
-       <li><strong>Focus:</strong> We emphasize reform and bridging divides rather than overturning and dividing.</li>
-       <li><strong>Humility:</strong> We appreciate complexity and focus on managing and balancing issues rather than oversimplifying them.</li>
-       <li><strong>Dignity:</strong> We promote civic revival with basic decorum, elevating public discourse.</li>
-       <li><strong>Responsiveness:</strong> We function as a support group, think tank, and action network, adapting to evolving needs.</li>
-     </ul>
-     <p>
-       These principles enable us to extract and amplify the virtuous aspects of both populist and globalist perspectives while minimizing their more destructive tendencies.
-     </p>
-   </section>
-    
+    <!-- 10-slide presentation with audio -->
+    <section class="translucent-blue">
+      <h2>Unity Coalition Dynamics</h2>
+      <div class="slider-container">    
+        <img src="images/UCDynamics1.png" alt="Slide 1" class="active" />
+        <img src="images/UCDynamics2.png" alt="Slide 2" />
+        <img src="images/UCDynamics3.png" alt="Slide 3" />
+        <img src="images/UCDynamics4.png" alt="Slide 4" />
+        <img src="images/UCDynamics5.png" alt="Slide 5" />
+        <img src="images/UCDynamics6.png" alt="Slide 6" />
+        <img src="images/UCDynamics7.png" alt="Slide 7" />
+        <img src="images/UCDynamics8.png" alt="Slide 8" />
+        <img src="images/UCDynamics9.png" alt="Slide 9" />
+        <img src="images/UCDynamics10.png" alt="Slide 10" />
+      </div>
+      
+      <!-- Audio element for slideshow -->
+      <audio id="slideAudio" src="audio/slidemusic.mp3" preload="auto"></audio>
+              
+      <div class="slider-controls">
+        <button type="button" id="prevSlideBtn">Prev</button>
+        <button type="button" id="startPresentationBtn">Start Presentation</button>
+        <button type="button" id="stopPresentationBtn">Stop</button>
+        <button type="button" id="nextSlideBtn">Next</button>
+      </div>
+      <p>
+        Click <strong>Start Presentation</strong> to view the slides with accompanying audio.
+        Click on any slide to stop the presentation.
+      </p>
+    </section>
+
     <!-- Founder section with clearfix -->
-    <!-- Founder section with clearfix -->
-<section class="translucent-red clearfix">
-  <h2>About the Founder</h2>
-  <img
-    src="images/founderimage.png"
-    alt="Founder of Unity Coalition"
-    style="width: 100%; max-width: 300px; float: right; margin: 0 0 1em 1em;"
-  />
-  <p>
-    Patrick Clerkin's path to establishing the Unity Coalition emerged
-    from a unique combination of technical expertise and civic engagement.
-    With a background in mechanical engineering and experience in the semiconductor industry, Patrick brings an analytical perspective to complex social challenges.
-  </p>
-  <p>
-    His journey toward founding the Unity Coalition was shaped by extensive travels throughout America's heartland, where he drove over 35,000 miles to experience the country firsthand—not through the lens of pundits, but through direct engagement with communities between the coasts and off the interstates.
-  </p>
-  <p>
-    Patrick's prior civic experiences include running for City Council on a moderate, independent platform and developing a community network to address local civic erosion. Throughout his endeavors, he has consistently found himself "intermediating and reconciling between groups" rather than fitting squarely within any single faction—a quality that uniquely positions him to lead an organization dedicated to bridging America's divides.
-  </p>
-</section>
+    <section class="translucent-red clearfix">
+      <h2>About the Founder</h2>
+      <img src="images/founderimage.png" alt="Founder of Unity Coalition" style="width: 100%; max-width: 300px; float: right; margin: 0 0 1em 1em;" />
+      <p>
+        Patrick Clerkin's path to establishing the Unity Coalition emerged
+        from a unique combination of technical expertise and civic engagement.
+        With a background in mechanical engineering and experience in the semiconductor industry, Patrick brings an analytical perspective to complex social challenges.
+      </p>
+      <p>
+        His journey toward founding the Unity Coalition was shaped by extensive travels throughout America's heartland, where he drove over 35,000 miles to experience the country firsthand—not through the lens of pundits, but through direct engagement with communities between the coasts and off the interstates.
+      </p>
+      <p>
+        Patrick's prior civic experiences include running for City Council on a moderate, independent platform and developing a community network to address local civic erosion. Throughout his endeavors, he has consistently found himself "intermediating and reconciling between groups" rather than fitting squarely within any single faction—a quality that uniquely positions him to lead an organization dedicated to bridging America's divides.
+      </p>
+    </section>
 
-   <!-- The Path Forward (New) -->
-   <section class="translucent-blue">
-     <h2>The Path Forward: Our 30-Year Vision</h2>
-     <p>
-       The Unity Coalition operates with both immediate action and long-term vision. Our strategic timeline reflects our commitment to steady, deliberate progress:
-     </p>
-     <ul style="margin-left: 20px; margin-bottom: 15px;">
-       <li><strong>2025:</strong> Focus on agenda refinement, recruitment, cultural development, and infrastructure building</li>
-       <li><strong>2026:</strong> Run our first slate of independent candidates in strategically selected districts</li>
-       <li><strong>2027-2028:</strong> Collaborate with populist Republicans to influence party reform</li>
-       <li><strong>2029-2032:</strong> Work with globalist Democrats to advance international cooperation frameworks</li>
-       <li><strong>2033-2055:</strong> Foster unified independents' collaboration with transformed Republican and Democratic parties</li>
-     </ul>
-     <p>
-       This methodical approach ensures that our coalition builds sustainable momentum while fostering the gradual evolution of America's political landscape toward greater cooperation, effectiveness, and representation.
-     </p>
-   </section>
+    <!-- The Path Forward -->
+    <section class="translucent-blue">
+      <h2>The Path Forward: Our 30-Year Vision</h2>
+      <p>
+        The Unity Coalition operates with both immediate action and long-term vision. Our strategic timeline reflects our commitment to steady, deliberate progress:
+      </p>
+      <ul style="margin-left: 20px; margin-bottom: 15px;">
+        <li><strong>2025:</strong> Focus on agenda refinement, recruitment, cultural development, and infrastructure building</li>
+        <li><strong>2026:</strong> Run our first slate of independent candidates in strategically selected districts</li>
+        <li><strong>2027-2028:</strong> Collaborate with populist Republicans to influence party reform</li>
+        <li><strong>2029-2032:</strong> Work with globalist Democrats to advance international cooperation frameworks</li>
+        <li><strong>2033-2055:</strong> Foster unified independents' collaboration with transformed Republican and Democratic parties</li>
+      </ul>
+      <p>
+        This methodical approach ensures that our coalition builds sustainable momentum while fostering the gradual evolution of America's political landscape toward greater cooperation, effectiveness, and representation.
+      </p>
+    </section>
   </main>
 
   <footer>
