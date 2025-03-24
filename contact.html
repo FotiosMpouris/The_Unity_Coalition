@@ -143,18 +143,23 @@
         <div class="modern-form-wrapper" style="max-width: 500px; margin: 20px auto;">
           <form action="#" method="POST" class="form-field-group">
             <div class="form-field">
+              <span>Your Name</span>
               <input type="text" name="name" placeholder="Your Name" required />
             </div>
             <div class="form-field">
+              <span>Your Email</span>
               <input type="email" name="email" placeholder="Your Email" required />
             </div>
             <div class="form-field full-width">
+              <span>Zip Code</span>
               <input type="text" name="zip" placeholder="Zip Code" />
             </div>
-            <label class="modern-checkbox">
-              <input type="checkbox" id="privacy_policy" name="privacy_policy" required />
-              <span class="checkbox-text">By providing this information, you acknowledge and agree to our Privacy Policy</span>
-            </label>
+            <div class="checkbox-container">
+              <label class="modern-checkbox">
+                <input type="checkbox" id="privacy_policy" name="privacy_policy" required />
+                <span class="checkbox-text">By providing this information, you acknowledge and agree to our Privacy Policy</span>
+              </label>
+            </div>
             <button type="submit" class="join-button">SUBSCRIBE</button>
           </form>
         </div>
