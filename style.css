@@ -1644,3 +1644,46 @@ li strong {
   padding: 30px;
   border-radius: 8px;
 }
+
+/* Global content alignment reset */
+section p, 
+section ul, 
+section ol,
+section li {
+  text-align: left;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* Ensure all headings are centered */
+h1, h2, h3, h4, h5, h6 {
+  text-align: center !important;
+  width: 100%;
+  margin: 0 auto 15px auto;
+}
+
+/* Bullet point styling */
+ul {
+  list-style-position: outside;
+  margin-left: 15px;
+  margin-bottom: 20px;
+}
+
+li {
+  margin-bottom: 10px;
+  padding-left: 10px;
+}
+
+/* Section images */
+.section-image {
+  margin: 0 auto;
+  text-align: center;
+  display: block;
+}
+
+/* Override any conflicting styles */
+.translucent-blue p,
+.translucent-red p,
+.content-with-image .section-content p {
+  text-align: left !important;
+}
