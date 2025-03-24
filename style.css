@@ -410,7 +410,13 @@ main, section {
 
 /* Center text in sections */
 .section-content {
+  text-align: left;
+}
+
+.content-with-image .section-content h2 {
   text-align: center;
+  width: 100%;
+  margin-bottom: 15px;
 }
 
 /* =========================================================
