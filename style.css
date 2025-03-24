@@ -1584,6 +1584,36 @@ li strong {
   display: inline-block;
   margin-right: 5px;
 }
+
+/* Ensure consistent text alignment in all content sections */
+.translucent-blue p,
+.translucent-red p {
+  text-align: left;
+  padding: 0 15px;
+  margin-bottom: 15px;
+}
+
+/* Make all headings centered */
+.translucent-blue h1, .translucent-blue h2, .translucent-blue h3,
+.translucent-red h1, .translucent-red h2, .translucent-red h3 {
+  text-align: center;
+  width: 100%;
+  margin: 0 auto 15px auto;
+}
+
+/* Style list items consistently */
+.translucent-blue ul, .translucent-red ul,
+.translucent-blue ol, .translucent-red ol {
+  text-align: left;
+  padding-left: 35px;
+  padding-right: 15px;
+  margin-bottom: 20px;
+}
+
+.translucent-blue li, .translucent-red li {
+  text-align: left;
+  margin-bottom: 10px;
+}
 /* =========================================================
    22. Modern Volunteer Form - Trump-Inspired Styling
    ========================================================= */
