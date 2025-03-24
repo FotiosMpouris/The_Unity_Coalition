@@ -7,11 +7,12 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<!-- Top Banner -->
-<div class="top-banner">
-  People Are The Solution
-</div>
+  <!-- Top Banner -->
+  <div class="top-banner">
+    People Are The Solution
+  </div>
   
+  <!-- HEADER -->
   <header>
     <div class="logo-group">
       <img src="images/unitycoalitionlogo.png" alt="Unity Coalition Logo" class="logo" />
@@ -24,6 +25,7 @@
       <a href="projects.html">Projects</a>
       <a href="get-involved.html">Get Involved</a>
       <a href="contact.html">Contact</a>
+      <button class="theme-toggle" aria-label="Toggle Dark Mode"></button>
     </div>
     <div class="header-buttons">
       <a href="https://www.amazon.com" id="shop-btn">Shop</a>
@@ -34,14 +36,16 @@
       <div></div>
       <div></div>
     </div>
+    <button class="theme-toggle mobile-only" aria-label="Toggle Dark Mode"></button>
   </header>
-  <!-- Mission Container - New wrapper for mission content -->
+
+  <!-- Mission Container -->
   <div class="mission-container">
     <!-- Three images in a row for desktop -->
     <div class="mission-images-row banner-desktop">
-      <img src="images/missionbannerleft.png" alt="Mission Left" class="mission-image" />
-      <img src="images/missionbanner.png" alt="Mission Center" class="mission-image" />
-      <img src="images/missionbannerright.png" alt="Mission Right" class="mission-image" />
+      <img src="images/missionbannerleft.png" alt="Mission Left" class="mission-image" style="box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />
+      <img src="images/missionbanner.png" alt="Mission Center" class="mission-image" style="box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />
+      <img src="images/missionbannerright.png" alt="Mission Right" class="mission-image" style="box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />
       
       <!-- Our Mission text overlay centered over images --> 
       <div class="mission-text-overlay">
@@ -64,16 +68,18 @@
       </div>
     </div>
     
-    <!-- Single image for mobile (unchanged) -->
+    <!-- Single image for mobile -->
     <img
       src="images/missionbanner1.png"
       alt="Mission Banner Mobile"
       class="banner-mobile"
+      style="box-shadow: 0 2px 8px rgba(0,0,0,0.1);"
     />
   </div>
 
-  <!-- Union and Independence section (New) -->
+  <!-- Main Content -->
   <main>
+    <!-- Union and Independence section -->
     <section class="translucent-blue">
       <h2>Union and Independence: Our Core Mission</h2>
       <p>
@@ -84,6 +90,7 @@
       </p>
     </section>
 
+    <!-- Four-Part Mission Strategy -->
     <section class="translucent-red">
       <h2>Our Four-Part Mission Strategy</h2>
       <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 15px;">
@@ -114,7 +121,11 @@
       </div>
     </section>
 
+    <!-- Why Independents Must Unify and Connect with starlings.png -->
     <section class="translucent-blue">
+      <div class="starlings-banner">
+        <img src="images/starlings.png" alt="Starlings Unifying" class="starlings-img" style="box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />
+      </div>
       <h2>Why Independents Must Unify and Connect</h2>
       <p>
         The Unity Coalition serves four essential functions in our political landscape:
@@ -130,6 +141,7 @@
       </p>
     </section>
 
+    <!-- Virtuous Aspects of Populism and Globalism -->
     <section class="translucent-red">
       <h2>The Virtuous Aspects of Populism and Globalism</h2>
       <p>
@@ -160,6 +172,7 @@
     </section>
   </main>
 
+  <!-- Footer -->
   <footer>
     <div class="footer-links">
       <a href="gallery.html">Gallery</a>
@@ -179,6 +192,7 @@
     </div>
     <p>© 2025 Unity Coalition. All rights reserved.</p>
   </footer>
+
   <script src="script.js"></script>
 </body>
 </html>
