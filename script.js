@@ -85,13 +85,13 @@ document.addEventListener("DOMContentLoaded", function() {
     let mobileButtonsOverlay = document.createElement("div");
     mobileButtonsOverlay.id = "mobileButtonsOverlay";
     mobileButtonsOverlay.innerHTML = `
-      <div class="mobile-buttons-content">
-        <button class="close-mobile-btn">×</button>
-        <h3>Check Out</h3>
-        <a href="https://www.amazon.com" id="mobileShopBtn">Shop</a>
-        <a href="contact.html#contributeSection" id="mobileContributeBtn">Contribute</a>
-      </div>
-    `;
+  <div class="mobile-buttons-content">
+    <button class="close-mobile-btn">×</button>
+    <h3 style="color: white;">Check Out</h3>
+    <a href="https://www.amazon.com" id="mobileShopBtn" style="background-color: var(--blue); color: white;">Shop</a>
+    <a href="contact.html#contributeSection" id="mobileContributeBtn">Contribute</a>
+  </div>
+`;
     document.body.appendChild(mobileButtonsOverlay);
     
     const closeBtn = mobileButtonsOverlay.querySelector(".close-mobile-btn");
