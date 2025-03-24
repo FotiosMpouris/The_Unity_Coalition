@@ -1491,6 +1491,29 @@ footer p {
   }
 }
 
+/* Culture Section Specific Styling */
+.culture-content {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 30px;
+  flex-wrap: nowrap;
+}
+.culture-img {
+  max-width: 300px;
+  width: 100%;
+  flex-shrink: 0;
+}
+@media (max-width: 768px) {
+  .culture-content {
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  .culture-img {
+    max-width: 100%;
+  }
+}
+
 /* =========================================================
    22. Modern Volunteer Form - Trump-Inspired Styling
    ========================================================= */
