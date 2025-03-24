@@ -1561,6 +1561,29 @@ footer p {
   }
 }
 
+/* Fix heading alignment in all sections */
+h1, h2, h3, h4, h5, h6 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+/* Fix list alignment and spacing */
+ul, ol {
+  text-align: left;
+  margin-left: 20px;
+  margin-bottom: 15px;
+}
+
+li {
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+/* Style for bullet points with headings */
+li strong {
+  display: inline-block;
+  margin-right: 5px;
+}
 /* =========================================================
    22. Modern Volunteer Form - Trump-Inspired Styling
    ========================================================= */
