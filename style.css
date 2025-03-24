@@ -409,18 +409,29 @@ main, section {
   background-color: rgba(178, 34, 34, 0.4);
 }
 
-/* Starlings Banner Styling */
-.starlings-banner {
-  width: 100%;
-  margin-bottom: 20px;
+/* Starlings Section Specific Styling */
+.starlings-content {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 30px;
+  flex-wrap: nowrap;
 }
 .starlings-img {
+  max-width: 300px;
   width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 8px;
+  flex-shrink: 0;
 }
-
+@media (max-width: 768px) {
+  .starlings-content {
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  .starlings-img {
+    max-width: 100%;
+  }
+}
+/* Starlings Section End Specific Styling */
 /* Center text in sections */
 /* Section content styling */
 .section-content {
