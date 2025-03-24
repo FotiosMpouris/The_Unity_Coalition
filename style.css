@@ -943,36 +943,57 @@ main, section {
 /* =========================================================
    10. Donation Section (Black-ish)
    ========================================================= */
+/* =========================================================
+   10. Donation Section (Red/Blue themed)
+   ========================================================= */
 .section-black {
   width: 100%;
   margin: 0;
-  padding: 20px;
-  background-color: rgba(0, 0, 0, 0.6);
-  color: var(--white);
+  padding: 30px 20px;
+  background-color: var(--red);
+  color: white;
   text-align: center;
+  border-top: 3px solid white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-[data-theme="dark"] .section-black {
-  background-color: rgba(0, 0, 0, 0.5);
+
+.section-black h2 {
+  color: white;
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
-.section-black h2,
+
 .section-black p {
-  color: var(--white);
+  color: white;
+  max-width: 800px;
+  margin: 0 auto 20px;
 }
-[data-theme="dark"] .section-black h2,
-[data-theme="dark"] .section-black p {
-  color: #fff;
+
+[data-theme="dark"] .section-black {
+  background-color: var(--blue);
+  border-top: 3px solid white;
 }
+
 .donation-logos {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
   margin-top: 20px;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 15px;
+  border-radius: 8px;
+  display: inline-block;
+  margin-top: 10px;
 }
+
 .donation-logos img {
   max-width: 120px;
   height: auto;
+  filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.3));
 }
+
 @media (max-width: 768px) {
   .donation-logos img {
     max-width: 80px;
