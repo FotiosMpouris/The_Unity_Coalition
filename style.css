@@ -439,11 +439,11 @@ main, section {
 }
 
 .content-with-image .section-content {
-  text-align: center !important;
+  text-align: left;
 }
 
 .content-with-image .section-content h2 {
-  text-align: center !important;
+  text-align: center; /* Keep headings centered */
   width: 100%;
   border-bottom: 2px solid var(--red);
   padding-bottom: 5px;
@@ -451,7 +451,7 @@ main, section {
 }
 
 .content-with-image .section-content p {
-  text-align: center !important;
+  text-align: left;
   margin-bottom: 12px;
 }
 
