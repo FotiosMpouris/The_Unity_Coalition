@@ -409,8 +409,26 @@ main, section {
 }
 
 /* Center text in sections */
+/* Section content styling */
 .section-content {
-  text-align: left;
+  text-align: center;
+}
+
+.content-with-image .section-content {
+  text-align: center !important;
+}
+
+.content-with-image .section-content h2 {
+  text-align: center !important;
+  width: 100%;
+  border-bottom: 2px solid var(--red);
+  padding-bottom: 5px;
+  margin: 0 auto 15px auto;
+}
+
+.content-with-image .section-content p {
+  text-align: center !important;
+  margin-bottom: 12px;
 }
 
 .content-with-image .section-content h2 {
@@ -1287,11 +1305,27 @@ footer p {
   font-weight: bold;
 }
 .mobile-buttons-content a#mobileShopBtn {
-  background-color: var(--blue);
+  background-color: var(--blue) !important;
+  color: white !important;
+  border: 2px solid transparent;
 }
 [data-theme="dark"] .mobile-buttons-content a#mobileShopBtn {
-  background-color: var(--blue);
-  color: #fff;
+  background-color: var(--blue) !important;
+  color: white !important;
+  border: 2px solid white;
+}
+.mobile-buttons-content a#mobileShopBtn:hover {
+  background-color: #2c3b61 !important;
+}
+[data-theme="dark"] .mobile-buttons-content {
+  background-color: #333 !important;
+  color: white !important;
+}
+[data-theme="dark"] .mobile-buttons-content h3 {
+  color: var(--cyan-63C5DA) !important;
+}
+[data-theme="dark"] .close-mobile-btn {
+  color: white !important;
 }
 .mobile-buttons-content a#mobileContributeBtn {
   background-color: var(--red);
