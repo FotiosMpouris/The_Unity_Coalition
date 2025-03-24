@@ -1294,7 +1294,7 @@ footer p {
   color: #fff;
 }
 .mobile-buttons-content a#mobileContributeBtn {
-  background-color: var(--red);
+  background-color: var(--blue);
 }
 .mobile-buttons-content a:hover {
   background: linear-gradient(to right, var(--blue), var(--gold));
