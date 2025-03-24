@@ -84,11 +84,11 @@ document.addEventListener("DOMContentLoaded", function() {
     console.log("Creating popup...");
     let mobileButtonsOverlay = document.createElement("div");
     mobileButtonsOverlay.id = "mobileButtonsOverlay";
-    mobileButtonsOverlay.innerHTML = `
+   mobileButtonsOverlay.innerHTML = `
   <div class="mobile-buttons-content">
     <button class="close-mobile-btn">×</button>
-    <h3 style="color: white;">Check Out</h3>
-    <a href="https://www.amazon.com" id="mobileShopBtn" style="background-color: var(--blue); color: white;">Shop</a>
+    <h3>Check Out</h3>
+    <a href="https://www.amazon.com" id="mobileShopBtn">Shop</a>
     <a href="contact.html#contributeSection" id="mobileContributeBtn">Contribute</a>
   </div>
 `;
