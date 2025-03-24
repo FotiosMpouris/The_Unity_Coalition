@@ -440,6 +440,7 @@ main, section {
 
 .content-with-image .section-content {
   text-align: left;
+  padding: 0 15px; /* Add padding on both sides */
 }
 
 .content-with-image .section-content h2 {
@@ -453,12 +454,13 @@ main, section {
 .content-with-image .section-content p {
   text-align: left;
   margin-bottom: 12px;
+  padding-right: 15px; /* Add padding on the right for text */
 }
 
-.content-with-image .section-content h2 {
-  text-align: center;
-  width: 100%;
-  margin-bottom: 15px;
+.content-with-image .section-content ul {
+  text-align: left;
+  padding-left: 20px; /* Ensure bullet points are properly indented */
+  padding-right: 15px; /* Add padding on the right side */
 }
 
 /* =========================================================
