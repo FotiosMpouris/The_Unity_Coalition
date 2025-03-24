@@ -5,13 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Unity Coalition - Contact</title>
   <link rel="stylesheet" href="style.css" />
+  <!-- Google Fonts for Montserrat and Open Sans -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
   <!-- Top Banner -->
-<div class="top-banner">
-  People Are The Solution
-</div>
+  <div class="top-banner">
+    People Are The Solution
+  </div>
 
+  <!-- HEADER -->
   <header>
     <div class="logo-group">
       <img src="images/unitycoalitionlogo.png" alt="Unity Coalition Logo" class="logo" />
@@ -25,6 +28,7 @@
       <a href="projects.html">Projects</a>
       <a href="get-involved.html">Get Involved</a>
       <a href="contact.html" class="active">Contact</a>
+      <button class="theme-toggle"></button>
     </div>
 
     <div class="header-buttons">
@@ -37,148 +41,128 @@
       <div></div>
       <div></div>
     </div>
+
+    <!-- Dark Mode Toggle Button (mobile only) -->
+    <button class="theme-toggle mobile-only"></button>
   </header>
 
   <main>
     <!-- Contact info with contact.png to the right -->
-    <section class="translucent-blue" style="margin-bottom:10px;">
-      <div class="contact-top-content" style="display:flex; flex-wrap:wrap; align-items:start; gap:20px;">
-        <div class="contact-text" style="flex:1;">
-          <h1>Contact the Unity Coalition</h1>
-          <p>
-            Connecting with and supporting the Unity Coalition represents a direct
-            investment in America's civic revival. If you're interested in learning
-            more, sharing resources, or joining our efforts, please reach out:
-          </p>
-          <p>
-            <strong>Email:</strong>
-            <a href="mailto:placeholder@example.com">placeholder@example.com</a>
-          </p>
-          
-          <!-- Ways to Connect Section (New) -->
-          <h3 style="margin-top: 20px;">Three Ways to Connect With Us</h3>
-          <ul style="margin-left: 20px;">
-            <li><strong>Share Your Network:</strong> Help us connect with influential moderate independents, Republicans, and Democrats who may be interested in our bridge-building approach.</li>
-            <li><strong>Offer Your Expertise:</strong> Whether you have skills in communication, policy development, technology, or community organizing, your knowledge can strengthen our coalition.</li>
-            <li><strong>Join Local Initiatives:</strong> We're establishing local chapters in key districts—contact us to learn about or start activities in your area.</li>
-          </ul>
-        </div>
-        <img
-          src="images/contact.png"
-          alt="Contact"
-          class="contact-img"
-          style="max-width:300px; width:100%;"
-        />
+    <section class="translucent-blue content-with-image reverse" style="margin-bottom: 10px;">
+      <div class="section-image">
+        <img src="images/contact.png" alt="Contact" class="contact-img" />
+      </div>
+      <div class="section-content">
+        <h1>Contact the Unity Coalition</h1>
+        <p>
+          Connecting with and supporting the Unity Coalition represents a direct
+          investment in America's civic revival. If you're interested in learning
+          more, sharing resources, or joining our efforts, please reach out:
+        </p>
+        <p>
+          <strong>Email:</strong>
+          <a href="mailto:placeholder@example.com">placeholder@example.com</a>
+        </p>
+        <h3 style="margin-top: 20px;">Three Ways to Connect With Us</h3>
+        <ul style="margin-left: 20px;">
+          <li><strong>Share Your Network:</strong> Help us connect with influential moderate independents, Republicans, and Democrats who may be interested in our bridge-building approach.</li>
+          <li><strong>Offer Your Expertise:</strong> Whether you have skills in communication, policy development, technology, or community organizing, your knowledge can strengthen our coalition.</li>
+          <li><strong>Join Local Initiatives:</strong> We're establishing local chapters in key districts—contact us to learn about or start activities in your area.</li>
+        </ul>
       </div>
     </section>
 
-    <!-- Large text banner so "Contribute" link can jump here -->
-    <div id="contributeSection" class="contribute-banner" style="margin-top:0;">
-      Contribute
-    </div>
+    <!-- Contribute Banner -->
+    <section id="contributeSection" class="contribute-banner">
+      <h2>Contribute</h2>
+    </section>
 
+    <!-- Contribution Section -->
     <section class="translucent-red">
-      <p>
-        As a grassroots initiative built on principles of transparency and
-        collective action, we rely on crowd-sourced support to maintain our
-        independence and build the necessary infrastructure for lasting reform.
-        Every contribution directly funds our core operations, including
-        development of our communication platform, legal framework, and
-        coordination across our network of reform initiatives.
-      </p>
-      
-      <!-- Why Your Support Matters Section (New) -->
-      <h3>Why Your Support Matters</h3>
-      <p>
-        The Unity Coalition represents a different approach to political reform—one focused on building bridges rather than walls, and finding common ground rather than amplifying divisions. Your contribution helps create a sustainable infrastructure for this bridge-building work in several key ways:
-      </p>
-      
-      <ul style="margin-left: 20px; margin-bottom: 20px;">
-        <li><strong>Establishing Our Core Team:</strong> Your support helps maintain a dedicated team focused on coordinating reform efforts across the country.</li>
-        <li><strong>Building the Communication Hub:</strong> Contributions fund the development of our digital platform that connects reform-minded Americans across traditional divides.</li>
-        <li><strong>Creating Educational Resources:</strong> Your support enables us to develop and distribute materials that help Americans understand our current challenges in historical context.</li>
-        <li><strong>Organizing Connection Events:</strong> Funding supports summits and gatherings that bring together diverse stakeholders to coordinate reform efforts.</li>
-      </ul>
-      
-      <p>
-        We believe in complete transparency in our operations and funding, which
-        is why we've chosen to use Give Send Go as our donation platform, where
-        you can find detailed information about our funding goals.
-      </p>
-      <p>
-        Your support, at any level, helps ensure that this critical work of civic
-        renewal remains independent, effective, and true to its mission of unifying
-        reform efforts across America.
-      </p>
-
-      <div class="donation-logos">
-        <a href="https://www.givesendgo.com/building-the-unity-coalition">
-          <img
-            src="images/givesend-logo.png"
-            alt="GiveSendGo"
-          />
-        </a>
-        <a href="https://payments.google.com">
-          <img
-            src="images/googlepaylogo.png"
-            alt="Google Pay"
-          />
-        </a>
-        <img
-          id="bitcoinDonate"
-          src="images/unitybitcoin-logo.png"
-          alt="Donate with Bitcoin"  
-        />
-      </div>
-      
-      <!-- Monthly Giving Program Section (New) -->
-      <div style="background-color: rgba(28, 41, 81, 0.1); padding: 20px; border-radius: 6px; margin-top: 30px;">
-        <h3>Join Our Monthly Giving Program</h3>
+      <div class="section-content">
         <p>
-          Regular monthly contributions provide the sustainable funding needed for long-term planning and impact. By joining our monthly giving program, you become a foundational supporter of our work to create a more unified, effective political ecosystem.
+          As a grassroots initiative built on principles of transparency and
+          collective action, we rely on crowd-sourced support to maintain our
+          independence and build the necessary infrastructure for lasting reform.
+          Every contribution directly funds our core operations, including
+          development of our communication platform, legal framework, and
+          coordination across our network of reform initiatives.
+        </p>
+        <h3>Why Your Support Matters</h3>
+        <p>
+          The Unity Coalition represents a different approach to political reform—one focused on building bridges rather than walls, and finding common ground rather than amplifying divisions. Your contribution helps create a sustainable infrastructure for this bridge-building work in several key ways:
+        </p>
+        <ul style="margin-left: 20px; margin-bottom: 20px;">
+          <li><strong>Establishing Our Core Team:</strong> Your support helps maintain a dedicated team focused on coordinating reform efforts across the country.</li>
+          <li><strong>Building the Communication Hub:</strong> Contributions fund the development of our digital platform that connects reform-minded Americans across traditional divides.</li>
+          <li><strong>Creating Educational Resources:</strong> Your support enables us to develop and distribute materials that help Americans understand our current challenges in historical context.</li>
+          <li><strong>Organizing Connection Events:</strong> Funding supports summits and gatherings that bring together diverse stakeholders to coordinate reform efforts.</li>
+        </ul>
+        <p>
+          We believe in complete transparency in our operations and funding, which
+          is why we've chosen to use Give Send Go as our donation platform, where
+          you can find detailed information about our funding goals.
         </p>
         <p>
-          Monthly supporters receive special briefings on our progress, early access to events and resources, and direct communication channels with our team.
+          Your support, at any level, helps ensure that this critical work of civic
+          renewal remains independent, effective, and true to its mission of unifying
+          reform efforts across America.
         </p>
-        <p style="margin-bottom: 0;">
-          <strong>To become a monthly contributor, simply select the "Make this a monthly donation" option when contributing through GiveSendGo.</strong>
-        </p>
+        <div class="donation-logos">
+          <a href="https://www.givesendgo.com/building-the-unity-coalition">
+            <img src="images/givesend-logo.png" alt="GiveSendGo" />
+          </a>
+          <a href="https://payments.google.com">
+            <img src="images/googlepaylogo.png" alt="Google Pay" />
+          </a>
+          <img id="bitcoinDonate" src="images/unitybitcoin-logo.png" alt="Donate with Bitcoin" />
+        </div>
+        <!-- Monthly Giving Program -->
+        <div style="background-color: rgba(28, 41, 81, 0.1); padding: 20px; border-radius: 6px; margin-top: 30px;">
+          <h3>Join Our Monthly Giving Program</h3>
+          <p>
+            Regular monthly contributions provide the sustainable funding needed for long-term planning and impact. By joining our monthly giving program, you become a foundational supporter of our work to create a more unified, effective political ecosystem.
+          </p>
+          <p>
+            Monthly supporters receive special briefings on our progress, early access to events and resources, and direct communication channels with our team.
+          </p>
+          <p style="margin-bottom: 0;">
+            <strong>To become a monthly contributor, simply select the "Make this a monthly donation" option when contributing through GiveSendGo.</strong>
+          </p>
+        </div>
       </div>
     </section>
-    
-    <!-- Subscription Form Section (New) -->
+
+    <!-- Subscription Form Section -->
     <section class="translucent-blue">
-      <h2>Stay Informed</h2>
-      <p>
-        Subscribe to receive updates about our work, upcoming events, and opportunities to get involved:
-      </p>
-      
-      <div style="max-width: 500px; margin: 20px auto;">
-        <form action="#" method="POST" style="display: flex; flex-direction: column; gap: 15px;">
-          <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-            <div style="flex: 1; min-width: 200px;">
-              <input type="text" name="name" placeholder="Your Name" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;" />
+      <div class="section-content">
+        <h2>Stay Informed</h2>
+        <p>
+          Subscribe to receive updates about our work, upcoming events, and opportunities to get involved:
+        </p>
+        <div class="modern-form-wrapper" style="max-width: 500px; margin: 20px auto;">
+          <form action="#" method="POST" class="form-field-group">
+            <div class="form-field">
+              <input type="text" name="name" placeholder="Your Name" required />
             </div>
-            <div style="flex: 1; min-width: 200px;">
-              <input type="email" name="email" placeholder="Your Email" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;" />
+            <div class="form-field">
+              <input type="email" name="email" placeholder="Your Email" required />
             </div>
-          </div>
-          
-          <div>
-            <input type="text" name="zip" placeholder="Zip Code" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;" />
-          </div>
-          
-          <div style="display: flex; align-items: flex-start; margin-top: 10px;">
-            <input type="checkbox" id="privacy_policy" name="privacy_policy" required style="margin-top: 3px; margin-right: 10px;" />
-            <label for="privacy_policy" style="font-size: 0.9rem;">By providing this information, you acknowledge and agree to our Privacy Policy</label>
-          </div>
-          
-          <button type="submit" style="background-color: var(--blue); color: white; border: none; padding: 12px; border-radius: 4px; cursor: pointer; font-weight: bold; margin-top: 10px;">SUBSCRIBE</button>
-        </form>
+            <div class="form-field full-width">
+              <input type="text" name="zip" placeholder="Zip Code" />
+            </div>
+            <label class="modern-checkbox">
+              <input type="checkbox" id="privacy_policy" name="privacy_policy" required />
+              <span class="checkbox-text">By providing this information, you acknowledge and agree to our Privacy Policy</span>
+            </label>
+            <button type="submit" class="join-button">SUBSCRIBE</button>
+          </form>
+        </div>
       </div>
     </section>
   </main>
 
+  <!-- FOOTER -->
   <footer>
     <div class="footer-links">
       <a href="gallery.html">Gallery</a>
