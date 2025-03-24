@@ -1512,6 +1512,13 @@ footer p {
     margin: 0 auto;
     display: block;
   }
+
+   .content-with-image .section-content {
+    text-align: center !important;
+}
+.content-with-image .section-content * {
+    text-align: center !important;
+}
 }
 
 /* Culture Section Specific Styling */
