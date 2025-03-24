@@ -409,6 +409,18 @@ main, section {
   background-color: rgba(178, 34, 34, 0.4);
 }
 
+/* Starlings Banner Styling */
+.starlings-banner {
+  width: 100%;
+  margin-bottom: 20px;
+}
+.starlings-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
 /* Center text in sections */
 /* Section content styling */
 .section-content {
