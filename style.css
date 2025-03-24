@@ -101,8 +101,24 @@ h2 {
 .theme-toggle:hover {
   color: var(--gold);
 }
+
+/* Desktop toggle visibility */
+.nav-links .theme-toggle {
+  display: block;
+}
 @media (max-width: 768px) {
-  .theme-toggle {
+  .nav-links .theme-toggle {
+    display: none; /* Hide desktop toggle on mobile */
+  }
+}
+
+/* Mobile-only toggle visibility */
+.theme-toggle.mobile-only {
+  display: none;
+}
+@media (max-width: 768px) {
+  .theme-toggle.mobile-only {
+    display: block;
     position: absolute;
     top: 60px; /* Below hamburger */
     right: 20px;
@@ -116,7 +132,7 @@ h2 {
    ========================================================= */
 .top-banner {
   background-color: var(--red);
-  color: #fff; /* White in both modes */
+  color: #fff;
   text-align: center;
   padding: 10px;
   font-weight: bold;
@@ -131,7 +147,7 @@ h2 {
 }
 [data-theme="dark"] .top-banner {
   background-color: var(--red);
-  color: #fff; /* Ensure white in dark mode */
+  color: #fff;
 }
 
 @media (max-width: 768px) {
@@ -372,24 +388,24 @@ main, section {
    6. Translucent Boxes (Now Cards)
    ========================================================= */
 .translucent-blue {
-  background-color: rgba(28, 41, 81, 0.3); /* Deeper blue for light mode */
+  background-color: rgba(28, 41, 81, 0.3);
   padding: 30px;
   border-radius: 8px;
   margin-bottom: 5px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 .translucent-red {
-  background-color: rgba(178, 34, 34, 0.3); /* Deeper red for light mode */
+  background-color: rgba(178, 34, 34, 0.3);
   padding: 30px;
   border-radius: 8px;
   margin-bottom: 5px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 [data-theme="dark"] .translucent-blue {
-  background-color: rgba(99, 197, 218, 0.3); /* Adjusted for dark mode */
+  background-color: rgba(99, 197, 218, 0.3);
 }
 [data-theme="dark"] .translucent-red {
-  background-color: rgba(178, 34, 34, 0.4); /* Adjusted for dark mode */
+  background-color: rgba(178, 34, 34, 0.4);
 }
 
 /* Center text in sections */
@@ -441,7 +457,7 @@ main, section {
 [data-theme="dark"] .home-banner-overlay h1,
 [data-theme="dark"] .home-banner-overlay blockquote {
   background: rgba(28, 41, 81, 0.8);
-  color: var(--white);
+  color: #fff !important; /* Ensure white text in dark mode */
 }
 .founder-image {
   max-width: 150px;
@@ -479,7 +495,7 @@ main, section {
 }
 [data-theme="dark"] .hero-volunteer-btn,
 [data-theme="dark"] .hero-contribute-btn {
-  background-color: var(--red); /* Both red in dark mode */
+  background-color: var(--red);
   border-color: var(--red);
   color: #fff;
 }
@@ -510,7 +526,7 @@ main, section {
   [data-theme="dark"] .home-banner-overlay h1,
   [data-theme="dark"] .home-banner-overlay blockquote {
     background: rgba(28, 41, 81, 0.9);
-    color: var(--white);
+    color: #fff !important;
   }
   .founder-image {
     max-width: 80px;
@@ -802,14 +818,13 @@ main, section {
     max-width: 90px;
     margin-bottom: -20px;
   }
-  .united-we-stand-banner h2 {
-    font-size: 1.6rem;
-  }
   .united-we-stand-banner {
     padding: 10px 15px;
-    margin-top: 120px;
     position: static;
     bottom: auto;
+  }
+  .united-we-stand-banner h2 {
+    font-size: 1.6rem;
   }
 }
 
@@ -825,6 +840,7 @@ main, section {
   color: var(--white);
   text-align: center;
   padding: 20px;
+  width: 100%;
 }
 .join-movement-banner h2 {
   font-size: 1.8rem;
@@ -911,7 +927,7 @@ main, section {
   text-align: center;
 }
 [data-theme="dark"] .section-black {
-  background-color: rgba(0, 0, 0, 0.5); /* Slightly lighter in dark mode */
+  background-color: rgba(0, 0, 0, 0.5);
 }
 .section-black h2,
 .section-black p {
@@ -919,7 +935,7 @@ main, section {
 }
 [data-theme="dark"] .section-black h2,
 [data-theme="dark"] .section-black p {
-  color: #fff; /* Ensure white in dark mode */
+  color: #fff;
 }
 .donation-logos {
   display: flex;
@@ -1171,14 +1187,14 @@ main, section {
    18. Footer
    ========================================================= */
 footer {
-  background: linear-gradient(to right, #1c2951, #b22222); /* Gradient in light mode */
+  background: linear-gradient(to right, #1c2951, #b22222);
   padding: 20px;
   text-align: center;
   margin-top: 0;
   border-top: 2px solid var(--cyan-63C5DA);
 }
 [data-theme="dark"] footer {
-  background: var(--blue); /* Keep solid blue in dark mode */
+  background: var(--blue);
 }
 footer .footer-links {
   display: flex;
@@ -1191,7 +1207,7 @@ footer .footer-links a {
   text-transform: uppercase;
   color: var(--cyan-63C5DA);
   font-size: 0.9rem;
-  font-weight: bold; /* Bolder links */
+  font-weight: bold;
 }
 footer .footer-links a:hover {
   color: var(--gold);
@@ -1209,10 +1225,10 @@ footer .footer-logos a img {
 }
 footer p {
   font-size: 0.8rem;
-  color: #fff; /* Brighter white */
+  color: #fff;
 }
 [data-theme="dark"] footer p {
-  color: #fff; /* Ensure white in dark mode */
+  color: #fff;
 }
 
 /* =========================================================
@@ -1267,6 +1283,10 @@ footer p {
 .mobile-buttons-content a#mobileShopBtn {
   background-color: var(--blue);
 }
+[data-theme="dark"] .mobile-buttons-content a#mobileShopBtn {
+  background-color: var(--blue);
+  color: #fff;
+}
 .mobile-buttons-content a#mobileContributeBtn {
   background-color: var(--red);
 }
@@ -1299,6 +1319,7 @@ footer p {
   text-align: center;
   padding: 25px 20px;
   margin: 0;
+  width: 100%;
 }
 .join-movement-banner h2 {
   font-size: 2rem;
@@ -1393,12 +1414,19 @@ footer p {
 .content-with-image .section-image {
   flex: 0 0 auto;
   max-width: 250px;
+  width: 100%;
 }
 .content-with-image .section-image img {
   width: 100%;
   height: auto;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+@media (max-width: 768px) {
+  .content-with-image .section-image {
+    max-width: 100%;
+    min-width: 200px; /* Ensure visibility on mobile */
+  }
 }
 .content-with-image.reverse {
   flex-direction: row-reverse;
