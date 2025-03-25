@@ -152,34 +152,47 @@
 
     <!-- 10-slide presentation with audio -->
     <section class="translucent-blue">
-      <h2>Unity Coalition Dynamics</h2>
-      <div class="slider-container">    
-        <img src="images/UCDynamics1.png" alt="Slide 1" class="active" />
-        <img src="images/UCDynamics2.png" alt="Slide 2" />
-        <img src="images/UCDynamics3.png" alt="Slide 3" />
-        <img src="images/UCDynamics4.png" alt="Slide 4" />
-        <img src="images/UCDynamics5.png" alt="Slide 5" />
-        <img src="images/UCDynamics6.png" alt="Slide 6" />
-        <img src="images/UCDynamics7.png" alt="Slide 7" />
-        <img src="images/UCDynamics8.png" alt="Slide 8" />
-        <img src="images/UCDynamics9.png" alt="Slide 9" />
-        <img src="images/UCDynamics10.png" alt="Slide 10" />
-      </div>
-      
-      <!-- Audio element for slideshow -->
-      <audio id="slideAudio" src="audio/slidemusic.mp3" preload="auto"></audio>
-              
-      <div class="slider-controls">
-        <button type="button" id="prevSlideBtn">Prev</button>
-        <button type="button" id="startPresentationBtn">Start Presentation</button>
-        <button type="button" id="stopPresentationBtn">Stop</button>
-        <button type="button" id="nextSlideBtn">Next</button>
-      </div>
-      <p>
-        Click <strong>Start Presentation</strong> to view the slides with accompanying audio.
-        Click on any slide to stop the presentation.
-      </p>
-    </section>
+  <h2>Unity Coalition Dynamics</h2>
+  <div class="slider-container" role="region" aria-label="Slideshow">
+    <div class="slide-counter" aria-live="polite">1/10</div>
+    <img src="images/UCDynamics1.png" alt="Slide 1: Introduction to Unity Coalition" class="active" />
+    <img src="images/UCDynamics2.png" alt="Slide 2" />
+    <img src="images/UCDynamics3.png" alt="Slide 3" />
+    <img src="images/UCDynamics4.png" alt="Slide 4" />
+    <img src="images/UCDynamics5.png" alt="Slide 5" />
+    <img src="images/UCDynamics6.png" alt="Slide 6" />
+    <img src="images/UCDynamics7.png" alt="Slide 7" />
+    <img src="images/UCDynamics8.png" alt="Slide 8" />
+    <img src="images/UCDynamics9.png" alt="Slide 9" />
+    <img src="images/UCDynamics10.png" alt="Slide 10" />
+  </div>
+  
+  <!-- Audio element for slideshow -->
+  <audio id="slideAudio" src="audio/slidemusic.mp3" preload="auto"></audio>
+          
+  <div class="slider-controls">
+    <button type="button" id="prevSlideBtn" aria-label="Previous Slide">
+      <span class="icon">←</span> Prev
+    </button>
+    <button type="button" id="startPresentationBtn" aria-label="Start Presentation">
+      <span class="icon">▶</span> Start
+    </button>
+    <button type="button" id="stopPresentationBtn" aria-label="Stop Presentation">
+      <span class="icon">■</span> Stop
+    </button>
+    <button type="button" id="nextSlideBtn" aria-label="Next Slide">
+      Next <span class="icon">→</span>
+    </button>
+    <button type="button" id="muteAudioBtn" aria-label="Toggle Audio Mute">
+      <span class="icon">🔊</span> Mute
+    </button>
+  </div>
+  <div class="slider-dots" aria-label="Slide Navigation"></div>
+  <p>
+    Click <strong>Start</strong> to view the slides with accompanying audio.
+    Click on any slide to stop the presentation.
+  </p>
+</section>
 
     <!-- Founder section with clearfix -->
     <section class="translucent-red clearfix">
