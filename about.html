@@ -68,7 +68,7 @@
     </section>
 
     <!-- The Culture That Animates Us -->
-  <section class="translucent-blue">
+ <section class="translucent-blue">
   <h2>The Culture That Animates Us</h2>
   <div class="culture-content">
     <img src="images/culture.png" alt="Our Culture" class="culture-img" style="box-shadow: 0 2px 8px rgba(0,0,0,0.1); width: 100%; height: auto;" />
@@ -96,12 +96,15 @@
       }
       .culture-img {
         width: 100% !important;
-        max-width: 400px !important; /* Larger image for desktop */
+        max-width: 400px !important;
         float: left;
-        margin: 0 1em 1em 0;
+        margin: 0 2em 1em 0; /* Increase right margin to 2em for more space */
       }
       .culture-text {
-        text-align: left !important; /* Left-align text to flow around the image */
+        text-align: left !important;
+      }
+      .culture-text ul {
+        margin-left: 40px !important; /* Increase left margin of the list to indent further */
       }
     }
     /* Mobile: Stack the image and text */
@@ -120,7 +123,10 @@
         object-fit: cover;
       }
       .culture-text {
-        text-align: left !important; /* Keep centered text on mobile */
+        text-align: center !important;
+      }
+      .culture-text ul {
+        margin-left: 20px !important; /* Reset to original margin on mobile */
       }
     }
   </style>
