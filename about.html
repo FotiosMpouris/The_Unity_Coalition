@@ -68,9 +68,10 @@
     </section>
 
     <!-- The Culture That Animates Us -->
-   <section class="translucent-blue">
+  <section class="translucent-blue">
   <h2>The Culture That Animates Us</h2>
   <div class="culture-content">
+    <img src="images/culture.png" alt="Our Culture" class="culture-img" style="box-shadow: 0 2px 8px rgba(0,0,0,0.1); width: 100%; height: auto;" />
     <div class="culture-text">
       <p>
         At the Unity Coalition, we're guided by core values that shape all our work:
@@ -86,20 +87,40 @@
         These principles enable us to extract and amplify the virtuous aspects of both populist and globalist perspectives while minimizing their more destructive tendencies.
       </p>
     </div>
-    <img src="images/culture.png" alt="Our Culture" class="culture-img" style="box-shadow: 0 2px 8px rgba(0,0,0,0.1); width: 100%; height: auto; max-height: 400px; object-fit: cover;" />
   </div>
   <style>
+    /* Desktop: Float the image on the left */
+    @media (min-width: 769px) {
+      .culture-content {
+        display: block !important; /* Override flexbox */
+      }
+      .culture-img {
+        width: 100% !important;
+        max-width: 400px !important; /* Larger image for desktop */
+        float: left;
+        margin: 0 1em 1em 0;
+      }
+      .culture-text {
+        text-align: left !important; /* Left-align text to flow around the image */
+      }
+    }
+    /* Mobile: Stack the image and text */
     @media (max-width: 768px) {
+      .culture-content {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
       .culture-img {
         max-width: 100% !important;
         width: 100% !important;
         margin: 0 auto;
         display: block;
+        max-height: 400px;
+        object-fit: cover;
       }
-    }
-    @media (min-width: 769px) {
-      .culture-img {
-        max-width: 300px !important;
+      .culture-text {
+        text-align: center !important; /* Keep centered text on mobile */
       }
     }
   </style>
