@@ -1045,19 +1045,66 @@ main, section {
    12. Slider (About Page)
    ========================================================= */
 /* About Page Video */
+/* About Page Video */
+.video-wrapper {
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
 .about-video {
   width: 100%;
-  max-width: 600px;
   display: block;
-  margin: 0 auto;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   cursor: pointer;
 }
 
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.7);
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.video-wrapper.playing .play-button {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.play-button:hover {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.play-icon {
+  color: white;
+  font-size: 24px;
+  margin-left: 5px; /* Slight offset to center the play triangle */
+}
+
 @media (max-width: 768px) {
+  .video-wrapper {
+    max-width: 100%;
+  }
   .about-video {
     max-width: 100%;
+  }
+  .play-button {
+    width: 50px;
+    height: 50px;
+  }
+  .play-icon {
+    font-size: 20px;
   }
 }
 
