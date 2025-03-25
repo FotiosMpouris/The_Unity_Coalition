@@ -123,181 +123,153 @@ document.addEventListener("DOMContentLoaded", function() {
   /************************************************
    * 4. Advanced About Page Slider with Continuous Audio and Auto-Restart
    ***********************************************/
-  initSlidePresentation();
-  
-  function initSlidePresentation() {
-    const sliderContainer = document.querySelector(".slider-container");
-    const slideAudio = document.getElementById("slideAudio");
-    
-    if (!sliderContainer || !slideAudio) {
-      return;
-    }
-    
-    console.log("Initializing slide presentation with continuous audio and auto-restart");
-    
-    const slideConfig = [
-      { duration: 3300 },  // Slide 0
-      { duration: 6600 },  // Slide 1
-      { duration: 9000 },  // Slide 2
-      { duration: 6000 },  // Slide 3
-      { duration: 11500 }, // Slide 4
-      { duration: 17500 }, // Slide 5
-      { duration: 5500 },  // Slide 6
-      { duration: 8000 },  // Slide 7
-      { duration: 6000 },  // Slide 8
-      { duration: 1000 }   // Slide 9
-    ];
-    
-    let sliderIndex = 0;
-    let sliderTimer = null;
-    let isPlaying = false;
-    let hasCompletedFullCycle = false;
-    
-    const slides = document.querySelectorAll(".slider-container img");
-    slides.forEach((slide, index) => {
-      if (index === 0) {
-        slide.classList.add("active");
-      } else {
-        slide.classList.remove("active");
-      }
-      
-      slide.addEventListener("click", function() {
-        if (isPlaying) {
-          stopPresentation();
-        }
-      });
-    });
-    
-    // Simplified audio unlock
-    const unlockAudio = function() {
-      console.log("Attempting to unlock audio...");
-      slideAudio.muted = true;
-      slideAudio.play().then(() => {
-        slideAudio.muted = false;
-        console.log("Audio unlocked successfully");
-        document.removeEventListener("click", unlockAudio);
-      }).catch(e => {
-        console.log("Failed to unlock audio:", e);
-      });
-    };
-    document.addEventListener("click", unlockAudio, { once: true });
-    
-    const startBtn = document.getElementById("startPresentationBtn");
-    const stopBtn = document.getElementById("stopPresentationBtn");
-    const prevBtn = document.getElementById("prevSlideBtn");
-    const nextBtn = document.getElementById("nextSlideBtn");
-    
-    if (startBtn) startBtn.addEventListener("click", startPresentation);
-    if (stopBtn) stopBtn.addEventListener("click", stopPresentation);
-    if (prevBtn) prevBtn.addEventListener("click", prevSlide);
-    if (nextBtn) nextBtn.addEventListener("click", nextSlide);
-    
-    slideAudio.addEventListener('ended', function() {
-      if (isPlaying) {
-        console.log("Audio ended, restarting audio");
-        slideAudio.currentTime = 0;
-        slideAudio.play().catch(error => {
-          console.error("Error restarting audio:", error);
-        });
-      }
-    });
-    
-    function startPresentation() {
-      if (isPlaying) return;
-      
-      console.log("Starting presentation at slide", sliderIndex);
-      isPlaying = true;
-      
-      if (hasCompletedFullCycle || sliderIndex === 0) {
-        slideAudio.currentTime = 0;
-        hasCompletedFullCycle = false;
-      }
-      
-      const playPromise = slideAudio.play();
-      if (playPromise !== undefined) {
-        playPromise.then(() => {
-          console.log("Audio playing continuously");
-          scheduleNextSlide();
-        }).catch(error => {
-          console.error("Audio playback failed:", error);
-          isPlaying = false;
-          alert("Please click the Start Presentation button again to enable audio");
-        });
-      }
-    }
-    
-    function stopPresentation() {
-      if (!isPlaying) return;
-      
-      console.log("Stopping presentation");
-      isPlaying = false;
-      
-      if (sliderTimer) {
-        clearTimeout(sliderTimer);
-        sliderTimer = null;
-      }
-      
-      slideAudio.pause();
-    }
-    
-    function scheduleNextSlide() {
-      if (sliderTimer) {
-        clearTimeout(sliderTimer);
-      }
-      
-      if (isPlaying) {
-        console.log(`Scheduling next slide in ${slideConfig[sliderIndex].duration}ms`);
-        sliderTimer = setTimeout(() => {
-          nextSlide();
-        }, slideConfig[sliderIndex].duration);
-      }
-    }
-    
-    function nextSlide() {
-      sliderIndex++;
-      
-      if (sliderIndex >= slides.length) {
-        sliderIndex = 0;
-        hasCompletedFullCycle = true;
-        console.log("Completed full cycle, restarting from slide 0");
-      }
-      
-      console.log("Moving to next slide:", sliderIndex);
-      
-      slides.forEach((slide, index) => {
-        if (index === sliderIndex) {
-          slide.classList.add("active");
-        } else {
-          slide.classList.remove("active");
-        }
-      });
-      
-      if (isPlaying) {
-        scheduleNextSlide();
-      }
-    }
-    
-    function prevSlide() {
-      sliderIndex--;
-      if (sliderIndex < 0) {
-        sliderIndex = slides.length - 1;
-      }
-      
-      console.log("Moving to previous slide:", sliderIndex);
-      
-      slides.forEach((slide, index) => {
-        if (index === sliderIndex) {
-          slide.classList.add("active");
-        } else {
-          slide.classList.remove("active");
-        }
-      });
-      
-      if (isPlaying) {
-        scheduleNextSlide();
-      }
-    }
+  /************************************************
+ * 4. Modern Slideshow with Fade Transitions, Dots, and Touch Support
+ ***********************************************/
+initSlidePresentation();
+
+function initSlidePresentation() {
+  const sliderContainer = document.querySelector(".slider-container");
+  const slideAudio = document.getElementById("slideAudio");
+
+  if (!sliderContainer || !slideAudio) {
+    return;
   }
+
+  console.log("Initializing modern slide presentation");
+
+  const slides = document.querySelectorAll(".slider-container img");
+  const prevSlideBtn = document.getElementById("prevSlideBtn");
+  const nextSlideBtn = document.getElementById("nextSlideBtn");
+  const startPresentationBtn = document.getElementById("startPresentationBtn");
+  const stopPresentationBtn = document.getElementById("stopPresentationBtn");
+  const muteAudioBtn = document.getElementById("muteAudioBtn");
+  const slideCounter = document.querySelector(".slide-counter");
+  const sliderDots = document.querySelector(".slider-dots");
+  let currentSlide = 0;
+  let slideInterval;
+  let isMuted = false;
+
+  // Create navigation dots
+  slides.forEach((_, index) => {
+    const dot = document.createElement("span");
+    dot.classList.add("dot");
+    if (index === 0) dot.classList.add("active");
+    dot.setAttribute("aria-label", `Go to slide ${index + 1}`);
+    dot.addEventListener("click", () => {
+      stopPresentation();
+      showSlide(index);
+    });
+    sliderDots.appendChild(dot);
+  });
+
+  const dots = document.querySelectorAll(".slider-dots .dot");
+
+  function updateSlideCounter() {
+    slideCounter.textContent = `${currentSlide + 1}/${slides.length}`;
+  }
+
+  function updateDots() {
+    dots.forEach((dot, index) => {
+      dot.classList.toggle("active", index === currentSlide);
+    });
+  }
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.classList.toggle("active", i === index);
+    });
+    currentSlide = index;
+    updateSlideCounter();
+    updateDots();
+  }
+
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+  }
+
+  function prevSlide() {
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    showSlide(currentSlide);
+  }
+
+  function startPresentation() {
+    if (!isMuted) slideAudio.play();
+    slideInterval = setInterval(nextSlide, 5000);
+  }
+
+  function stopPresentation() {
+    clearInterval(slideInterval);
+    slideAudio.pause();
+    slideAudio.currentTime = 0;
+  }
+
+  function toggleMute() {
+    isMuted = !isMuted;
+    slideAudio.muted = isMuted;
+    muteAudioBtn.querySelector(".icon").textContent = isMuted ? "🔇" : "🔊";
+    muteAudioBtn.setAttribute("aria-label", isMuted ? "Unmute Audio" : "Mute Audio");
+  }
+
+  // Touch/swipe support
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  sliderContainer.addEventListener("touchstart", (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  });
+
+  sliderContainer.addEventListener("touchend", (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    if (touchStartX - touchEndX > 50) {
+      stopPresentation();
+      nextSlide();
+    }
+    if (touchEndX - touchStartX > 50) {
+      stopPresentation();
+      prevSlide();
+    }
+  });
+
+  // Event listeners
+  prevSlideBtn.addEventListener("click", () => {
+    stopPresentation();
+    prevSlide();
+  });
+
+  nextSlideBtn.addEventListener("click", () => {
+    stopPresentation();
+    nextSlide();
+  });
+
+  startPresentationBtn.addEventListener("click", startPresentation);
+
+  stopPresentationBtn.addEventListener("click", stopPresentation);
+
+  muteAudioBtn.addEventListener("click", toggleMute);
+
+  slides.forEach(slide => {
+    slide.addEventListener("click", stopPresentation);
+  });
+
+  // Keyboard navigation
+  sliderContainer.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft") {
+      stopPresentation();
+      prevSlide();
+    } else if (e.key === "ArrowRight") {
+      stopPresentation();
+      nextSlide();
+    }
+  });
+
+  // Pause when the slideshow loses focus
+  sliderContainer.addEventListener("focusout", stopPresentation);
+
+  // Initialize
+  updateSlideCounter();
+}
 
   /************************************************
    * 5. Home Page Video (Click-to-toggle-audio)
