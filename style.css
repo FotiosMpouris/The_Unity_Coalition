@@ -540,12 +540,21 @@ main, section {
 .hero-volunteer-btn {
   background-color: var(--blue);
   border-color: var(--blue);
+  color: #fff; /* Ensure text is visible in light mode */
+  padding: 12px 24px; /* Increase padding for more space */
+  min-width: 180px; /* Set a minimum width to prevent cramping */
+  text-align: center; /* Center the text within the button */
+  display: inline-block; /* Ensure proper display */
 }
 .hero-contribute-btn {
   background-color: var(--red);
   border-color: var(--red);
 }
-[data-theme="dark"] .hero-volunteer-btn,
+[data-theme="dark"] .hero-volunteer-btn {
+  background-color: var(--red);
+  border-color: var(--red);
+  color: #fff; /* Ensure text is visible in dark mode */
+}
 [data-theme="dark"] .hero-contribute-btn {
   background-color: var(--red);
   border-color: var(--red);
