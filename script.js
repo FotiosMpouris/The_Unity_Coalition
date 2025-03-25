@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function() {
    mobileButtonsOverlay.innerHTML = `
   <div class="mobile-buttons-content">
     <button class="close-mobile-btn">×</button>
-    <h3>Check Out</h3>
+    <h3>Check It Out</h3>
     <a href="https://www.amazon.com" id="mobileShopBtn">Shop</a>
     <a href="contact.html#contributeSection" id="mobileContributeBtn">Contribute</a>
   </div>
