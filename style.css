@@ -439,11 +439,12 @@ main, section {
 }
 
 .content-with-image .section-content {
-  text-align: center !important;
+  text-align: left;
+  padding: 0 15px; /* Add padding on both sides */
 }
 
 .content-with-image .section-content h2 {
-  text-align: center !important;
+  text-align: center; /* Keep headings centered */
   width: 100%;
   border-bottom: 2px solid var(--red);
   padding-bottom: 5px;
@@ -451,14 +452,15 @@ main, section {
 }
 
 .content-with-image .section-content p {
-  text-align: center !important;
+  text-align: left;
   margin-bottom: 12px;
+  padding-right: 15px; /* Add padding on the right for text */
 }
 
-.content-with-image .section-content h2 {
-  text-align: center;
-  width: 100%;
-  margin-bottom: 15px;
+.content-with-image .section-content ul {
+  text-align: left;
+  padding-left: 20px; /* Ensure bullet points are properly indented */
+  padding-right: 15px; /* Add padding on the right side */
 }
 
 /* =========================================================
@@ -1466,54 +1468,76 @@ footer p {
 /* =========================================================
    21. Content with Image Sections
    ========================================================= */
+/* Content with image section styling */
 .content-with-image {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 20px;
   margin-bottom: 20px;
+  text-align: center; /* Center the overall section content by default */
 }
+
 .content-with-image .section-content {
   flex: 1;
   min-width: 300px;
+  text-align: left; /* Left-align text content within the section */
+  padding: 0 15px;
 }
+
+.content-with-image .section-content h1,
+.content-with-image .section-content h2,
+.content-with-image .section-content h3 {
+  text-align: center; /* Center all headings */
+  width: 100%;
+  margin: 0 auto 15px auto;
+}
+
+.content-with-image .section-content h2 {
+  border-bottom: 2px solid var(--red);
+  padding-bottom: 5px;
+}
+
+.content-with-image .section-content p {
+  text-align: left;
+  margin-bottom: 12px;
+  padding-right: 15px;
+}
+
+.content-with-image .section-content ul {
+  text-align: left;
+  padding-left: 20px;
+  padding-right: 15px;
+}
+
 .content-with-image .section-image {
   flex: 0 0 auto;
   max-width: 250px;
   width: 100%;
+  margin: 0 auto; /* Center the image */
 }
+
 .content-with-image .section-image img {
   width: 100%;
   height: auto;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-@media (max-width: 768px) {
-  .content-with-image .section-image {
-    max-width: 100%;
-    min-width: 200px; /* Ensure visibility on mobile */
-  }
-}
-.content-with-image.reverse {
-  flex-direction: row-reverse;
+  display: block;
+  margin: 0 auto; /* Ensure image is centered */
 }
 
 @media (max-width: 768px) {
-  .content-with-image,
-  .content-with-image.reverse {
-    flex-direction: column;
-  }
   .content-with-image .section-image {
     max-width: 100%;
     margin: 0 auto;
   }
+  
   .content-with-image .section-image img {
     max-width: 250px;
     margin: 0 auto;
     display: block;
   }   
 }
-
 /* Culture Section Specific Styling */
 .culture-content {
   display: flex;
@@ -1537,6 +1561,59 @@ footer p {
   }
 }
 
+/* Fix heading alignment in all sections */
+h1, h2, h3, h4, h5, h6 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+/* Fix list alignment and spacing */
+ul, ol {
+  text-align: left;
+  margin-left: 20px;
+  margin-bottom: 15px;
+}
+
+li {
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+/* Style for bullet points with headings */
+li strong {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+/* Ensure consistent text alignment in all content sections */
+.translucent-blue p,
+.translucent-red p {
+  text-align: left;
+  padding: 0 15px;
+  margin-bottom: 15px;
+}
+
+/* Make all headings centered */
+.translucent-blue h1, .translucent-blue h2, .translucent-blue h3,
+.translucent-red h1, .translucent-red h2, .translucent-red h3 {
+  text-align: center;
+  width: 100%;
+  margin: 0 auto 15px auto;
+}
+
+/* Style list items consistently */
+.translucent-blue ul, .translucent-red ul,
+.translucent-blue ol, .translucent-red ol {
+  text-align: left;
+  padding-left: 35px;
+  padding-right: 15px;
+  margin-bottom: 20px;
+}
+
+.translucent-blue li, .translucent-red li {
+  text-align: left;
+  margin-bottom: 10px;
+}
 /* =========================================================
    22. Modern Volunteer Form - Trump-Inspired Styling
    ========================================================= */
@@ -1566,6 +1643,49 @@ footer p {
   background-color: #fff;
   padding: 30px;
   border-radius: 8px;
+}
+
+/* Global content alignment reset */
+section p, 
+section ul, 
+section ol,
+section li {
+  text-align: left;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* Ensure all headings are centered */
+h1, h2, h3, h4, h5, h6 {
+  text-align: center !important;
+  width: 100%;
+  margin: 0 auto 15px auto;
+}
+
+/* Bullet point styling */
+ul {
+  list-style-position: outside;
+  margin-left: 15px;
+  margin-bottom: 20px;
+}
+
+li {
+  margin-bottom: 10px;
+  padding-left: 10px;
+}
+
+/* Section images */
+.section-image {
+  margin: 0 auto;
+  text-align: center;
+  display: block;
+}
+
+/* Override any conflicting styles */
+.translucent-blue p,
+.translucent-red p,
+.content-with-image .section-content p {
+  text-align: left !important;
 }
 
 /* =========================================================
