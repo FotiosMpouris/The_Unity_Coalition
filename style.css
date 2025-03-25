@@ -1220,15 +1220,43 @@ main, section {
 .get-involved-banner {
   margin-top: 80px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: var(--cyan-63C5DA);
-  height: 200px;
+  background-color: var(--blue); /* Darker blue for better contrast */
+  padding: 40px 20px; /* Add padding for spacing */
+  min-height: 300px; /* Increase height to accommodate content */
 }
+
 .get-involved-banner h1 {
-  font-size: 2rem;
+  font-size: 2.5rem;
   color: #fff;
   text-transform: uppercase;
+  margin-bottom: 20px; /* Space between heading and image */
+}
+
+.banner-image-container {
+  max-width: 100%;
+  text-align: center;
+}
+
+.banner-img {
+  max-width: 100%;
+  height: auto;
+  max-height: 150px; /* Limit the image height */
+}
+
+@media (max-width: 768px) {
+  .get-involved-banner {
+    padding: 30px 15px;
+    min-height: 250px;
+  }
+  .get-involved-banner h1 {
+    font-size: 1.8rem;
+  }
+  .banner-img {
+    max-height: 120px;
+  }
 }
 
 .involved-side-by-side {
@@ -1243,11 +1271,42 @@ main, section {
   height: auto;
 }
 .involved-textbox {
-  background-color: var(--cyan-63C5DA);
+  background-color: rgba(28, 41, 81, 0.15); /* Match translucent-blue for consistency */
   flex: 1;
-  padding: 20px;
-  margin-left: 10px;
+  padding: 30px;
   border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.involved-textbox h2 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  color: #333; /* Dark text for light mode */
+  border-bottom: 2px solid var(--red);
+  padding-bottom: 5px;
+}
+
+.involved-textbox p {
+  color: #333; /* Dark text for light mode */
+  margin-bottom: 15px;
+}
+
+[data-theme="dark"] .involved-textbox {
+  background-color: rgba(99, 197, 218, 0.3);
+}
+
+[data-theme="dark"] .involved-textbox h2,
+[data-theme="dark"] .involved-textbox p {
+  color: #fff; /* White text for dark mode */
+}
+
+@media (max-width: 768px) {
+  .involved-textbox {
+    padding: 20px;
+  }
+  .involved-textbox h2 {
+    font-size: 1.5rem;
+  }
 }
 @media (max-width: 768px) {
   .involved-side-by-side {
