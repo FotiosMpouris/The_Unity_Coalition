@@ -1259,6 +1259,50 @@ main, section {
     margin: 0;
   }
 }
+/* =========================================================
+   15. Populism and Globalism Section (Resources Page)
+   ========================================================= */
+.populism-globalism {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.populism-globalism > div {
+  flex: 1;
+  min-width: 300px;
+}
+
+.populism-globalism h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #333; /* Dark text for light mode */
+}
+
+.populism-globalism h4 {
+  font-size: 1.2rem;
+  margin: 20px 0 10px; /* Add spacing above and below */
+  color: #333; /* Dark text for light mode */
+}
+
+.populism-globalism ul {
+  margin-left: 20px;
+  margin-bottom: 15px;
+  color: #333; /* Dark text for light mode */
+}
+
+.populism-globalism ul li {
+  margin-bottom: 8px; /* Add spacing between list items */
+  line-height: 1.5; /* Improve readability */
+}
+
+/* Dark mode adjustments */
+[data-theme="dark"] .populism-globalism h3,
+[data-theme="dark"] .populism-globalism h4,
+[data-theme="dark"] .populism-globalism ul {
+  color: #fff; /* White text for better contrast in dark mode */
+}
 
 /* =========================================================
    15. Gallery (Image Grid)
