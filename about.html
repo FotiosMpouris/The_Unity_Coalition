@@ -152,13 +152,18 @@
 
     <!-- 10-slide presentation with audio -->
        <!-- 10-slide presentation with audio -->
-    <section class="translucent-blue">
+   <section class="translucent-blue">
   <h2>Unity Coalition Dynamics</h2>
-  <video class="about-video" muted playsinline>
-    <source src="slidevideo.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-  <p>Click the video to toggle audio.</p>
+  <div class="video-wrapper">
+    <video class="about-video" muted playsinline poster="images/slidevideo-poster.jpg">
+      <source src="slidevideo.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <button class="play-button" aria-label="Play Video">
+      <span class="play-icon">▶</span>
+    </button>
+  </div>
+  <p>Click the play button to start the video. Click again to toggle audio.</p>
 </section>
 
     <!-- The Path Forward -->
