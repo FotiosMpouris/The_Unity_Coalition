@@ -1044,7 +1044,6 @@ main, section {
 /* =========================================================
    12. Slider (About Page)
    ========================================================= */
-/* About Page Slider Content */
 .slider-container {
   position: relative;
   max-width: 600px;
@@ -1052,58 +1051,15 @@ main, section {
   overflow: hidden;
 }
 
-/* Fade transition for slides */
 .slider-container img {
   width: 100%;
   display: none;
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
-  position: absolute;
-  top: 0;
-  left: 0;
 }
 
 .slider-container img.active {
   display: block;
-  opacity: 1;
-  position: relative;
 }
 
-/* Slide counter */
-.slide-counter {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  padding: 5px 10px;
-  border-radius: 12px;
-  font-size: 0.9rem;
-  z-index: 10;
-}
-
-/* Navigation dots */
-.slider-dots {
-  text-align: center;
-  margin-top: 10px;
-}
-
-.slider-dots .dot {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  background-color: #bbb;
-  border-radius: 50%;
-  margin: 0 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.slider-dots .dot.active {
-  background-color: var(--blue);
-}
-
-/* Slider controls */
 .slider-controls {
   text-align: center;
   margin-top: 10px;
@@ -1113,46 +1069,16 @@ main, section {
   background-color: var(--blue);
   color: white;
   border: none;
-  padding: 8px 16px;
+  padding: 10px 20px;
   margin: 0 5px;
   cursor: pointer;
-  border-radius: 20px;
+  border-radius: 5px;
   font-family: "Montserrat", sans-serif;
   font-size: 0.9rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  transition: background-color 0.3s, transform 0.1s;
 }
 
 .slider-controls button:hover {
   background-color: var(--red);
-  transform: scale(1.05);
-}
-
-.slider-controls button:active {
-  transform: scale(0.95);
-}
-
-.slider-controls .icon {
-  font-size: 1rem;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .slider-container {
-    max-width: 100%;
-  }
-  .slider-controls {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-  }
-  .slider-controls button {
-    padding: 8px 12px;
-    font-size: 0.8rem;
-  }
 }
 
 /* =========================================================
