@@ -123,21 +123,42 @@ document.addEventListener("DOMContentLoaded", function() {
   /************************************************
    * 4. Advanced About Page Slider with Continuous Audio and Auto-Restart
    ***********************************************/
-  /************************************************
- * 4. About Page Video (Click-to-toggle-audio)
+ /************************************************
+ * 4. About Page Video (Play Button, Toggle Audio, Pause on Scroll)
  ***********************************************/
 const aboutVideo = document.querySelector(".about-video");
-if (aboutVideo) {
+const videoWrapper = document.querySelector(".video-wrapper");
+const playButton = document.querySelector(".play-button");
+
+if (aboutVideo && videoWrapper && playButton) {
+  // Play video when play button is clicked
+  playButton.addEventListener("click", () => {
+    aboutVideo.play();
+    videoWrapper.classList.add("playing");
+  });
+
+  // Toggle audio when video is clicked (after playing)
   aboutVideo.addEventListener("click", () => {
-    if (aboutVideo.muted) {
-      aboutVideo.muted = false;
-      aboutVideo.play();
-    } else {
-      aboutVideo.muted = true;
+    if (videoWrapper.classList.contains("playing")) {
+      aboutVideo.muted = !aboutVideo.muted;
     }
   });
-}
 
+  // Pause video when it scrolls out of view
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting && !aboutVideo.paused) {
+          aboutVideo.pause();
+          videoWrapper.classList.remove("playing");
+        }
+      });
+    },
+    { threshold: 0.5 } // Pause when less than 50% of the video is visible
+  );
+
+  observer.observe(aboutVideo);
+}
   /************************************************
    * 5. Home Page Video (Click-to-toggle-audio)
    ***********************************************/
