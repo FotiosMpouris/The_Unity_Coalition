@@ -66,40 +66,104 @@
         <p>
           America's political landscape has evolved through four major eras, each with distinct party alignments that responded to the challenges of their time:
         </p>
-        <div style="margin: 20px 0; overflow-x: auto;">
-          <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
-            <tr style="background-color: rgba(28, 41, 81, 0.1);">
-              <th style="padding: 10px; border: 1px solid #ddd; text-align: center;">Era</th>
-              <th style="padding: 10px; border: 1px solid #ddd; text-align: center;">Years</th>
-              <th style="padding: 10px; border: 1px solid #ddd; text-align: center;">Major Events</th>
-              <th style="padding: 10px; border: 1px solid #ddd; text-align: center;">Political Alignment</th>
-            </tr>
-            <tr>
-              <td style="padding: 10px; border: 1px solid #ddd;"><strong>Federalization</strong></td>
-              <td style="padding: 10px; border: 1px solid #ddd;">1788-1860</td>
-              <td style="padding: 10px; border: 1px solid #ddd;">Independence, Revolution, Constitution, Era of Good Feelings, Manifest Destiny</td>
-              <td style="padding: 10px; border: 1px solid #ddd;">Federalists (strong central government) vs. Democratic-Republicans (strong state governments)</td>
-            </tr>
-            <tr style="background-color: rgba(28, 41, 81, 0.1);">
-              <td style="padding: 10px; border: 1px solid #ddd;"><strong>Industrialization</strong></td>
-              <td style="padding: 10px; border: 1px solid #ddd;">1860-1932</td>
-              <td style="padding: 10px; border: 1px solid #ddd;">Civil War, Emancipation, Reconstruction, Gilded Age, Progressive Era, Roaring Twenties</td>
-              <td style="padding: 10px; border: 1px solid #ddd;">Republicans (pro-capital) vs. Democrats (pro-labor)</td>
-            </tr>
-            <tr>
-              <td style="padding: 10px; border: 1px solid #ddd;"><strong>Globalization</strong></td>
-              <td style="padding: 10px; border: 1px solid #ddd;">1932-2016</td>
-              <td style="padding: 10px; border: 1px solid #ddd;">New Deal, World War II, United Nations, Cold War, Gilded Age II, War on Terror</td>
-              <td style="padding: 10px; border: 1px solid #ddd;">Republicans (strong military) vs. Democrats (strong diplomacy)</td>
-            </tr>
-            <tr style="background-color: rgba(28, 41, 81, 0.1);">
-              <td style="padding: 10px; border: 1px solid #ddd;"><strong>Informationalization</strong></td>
-              <td style="padding: 10px; border: 1px solid #ddd;">2016-2092</td>
-              <td style="padding: 10px; border: 1px solid #ddd;">Populist/Globalist Realignment, Progressive Era II?, United Federation of Nations?</td>
-              <td style="padding: 10px; border: 1px solid #ddd;">Populist Republicans vs. Globalist Democrats (with Independents bridging)</td>
-            </tr>
-          </table>
+        <!-- Table for Desktop, Card Layout for Mobile -->
+        <div class="political-evolution-container" style="margin: 20px 0;">
+          <!-- Desktop Table -->
+          <div class="political-evolution-table" style="display: block;">
+            <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+              <tr style="background-color: rgba(28, 41, 81, 0.1);">
+                <th style="padding: 10px; border: 1px solid #ddd; text-align: center;">Era</th>
+                <th style="padding: 10px; border: 1px solid #ddd; text-align: center;">Years</th>
+                <th style="padding: 10px; border: 1px solid #ddd; text-align: center;">Major Events</th>
+                <th style="padding: 10px; border: 1px solid #ddd; text-align: center;">Political Alignment</th>
+              </tr>
+              <tr>
+                <td style="padding: 10px; border: 1px solid #ddd;"><strong>Federalization</strong></td>
+                <td style="padding: 10px; border: 1px solid #ddd;">1788-1860</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Independence, Revolution, Constitution, Era of Good Feelings, Manifest Destiny</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Federalists (strong central government) vs. Democratic-Republicans (strong state governments)</td>
+              </tr>
+              <tr style="background-color: rgba(28, 41, 81, 0.1);">
+                <td style="padding: 10px; border: 1px solid #ddd;"><strong>Industrialization</strong></td>
+                <td style="padding: 10px; border: 1px solid #ddd;">1860-1932</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Civil War, Emancipation, Reconstruction, Gilded Age, Progressive Era, Roaring Twenties</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Republicans (pro-capital) vs. Democrats (pro-labor)</td>
+              </tr>
+              <tr>
+                <td style="padding: 10px; border: 1px solid #ddd;"><strong>Globalization</strong></td>
+                <td style="padding: 10px; border: 1px solid #ddd;">1932-2016</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">New Deal, World War II, United Nations, Cold War, Gilded Age II, War on Terror</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Republicans (strong military) vs. Democrats (strong diplomacy)</td>
+              </tr>
+              <tr style="background-color: rgba(28, 41, 81, 0.1);">
+                <td style="padding: 10px; border: 1px solid #ddd;"><strong>Informationalization</strong></td>
+                <td style="padding: 10px; border: 1px solid #ddd;">2016-2092</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Populist/Globalist Realignment, Progressive Era II?, United Federation of Nations?</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Populist Republicans vs. Globalist Democrats (with Independents bridging)</td>
+              </tr>
+            </table>
+          </div>
+          <!-- Mobile Card Layout -->
+          <div class="political-evolution-cards" style="display: none;">
+            <div class="era-card" style="background-color: rgba(28, 41, 81, 0.1); padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+              <h3 style="margin: 0 0 10px; font-size: 1.2rem;"><strong>Federalization</strong></h3>
+              <p style="margin: 5px 0;"><strong>Years:</strong> 1788-1860</p>
+              <p style="margin: 5px 0;"><strong>Major Events:</strong> Independence, Revolution, Constitution, Era of Good Feelings, Manifest Destiny</p>
+              <p style="margin: 5px 0;"><strong>Political Alignment:</strong> Federalists (strong central government) vs. Democratic-Republicans (strong state governments)</p>
+            </div>
+            <div class="era-card" style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+              <h3 style="margin: 0 0 10px; font-size: 1.2rem;"><strong>Industrialization</strong></h3>
+              <p style="margin: 5px 0;"><strong>Years:</strong> 1860-1932</p>
+              <p style="margin: 5px 0;"><strong>Major Events:</strong> Civil War, Emancipation, Reconstruction, Gilded Age, Progressive Era, Roaring Twenties</p>
+              <p style="margin: 5px 0;"><strong>Political Alignment:</strong> Republicans (pro-capital) vs. Democrats (pro-labor)</p>
+            </div>
+            <div class="era-card" style="background-color: rgba(28, 41, 81, 0.1); padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+              <h3 style="margin: 0 0 10px; font-size: 1.2rem;"><strong>Globalization</strong></h3>
+              <p style="margin: 5px 0;"><strong>Years:</strong> 1932-2016</p>
+              <p style="margin: 5px 0;"><strong>Major Events:</strong> New Deal, World War II, United Nations, Cold War, Gilded Age II, War on Terror</p>
+              <p style="margin: 5px 0;"><strong>Political Alignment:</strong> Republicans (strong military) vs. Democrats (strong diplomacy)</p>
+            </div>
+            <div class="era-card" style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+              <h3 style="margin: 0 0 10px; font-size: 1.2rem;"><strong>Informationalization</strong></h3>
+              <p style="margin: 5px 0;"><strong>Years:</strong> 2016-2092</p>
+              <p style="margin: 5px 0;"><strong>Major Events:</strong> Populist/Globalist Realignment, Progressive Era II?, United Federation of Nations?</p>
+              <p style="margin: 5px 0;"><strong>Political Alignment:</strong> Populist Republicans vs. Globalist Democrats (with Independents bridging)</p>
+            </div>
+          </div>
         </div>
+        <!-- Media Query to Switch Between Table and Cards -->
+        <style>
+          @media (max-width: 768px) {
+            .political-evolution-table {
+              display: none !important;
+            }
+            .political-evolution-cards {
+              display: block !important;
+            }
+            .era-card {
+              font-size: 1rem;
+              line-height: 1.5;
+            }
+            .era-card p {
+              margin: 8px 0;
+            }
+          }
+          @media (min-width: 769px) {
+            .political-evolution-table {
+              display: block !important;
+            }
+            .political-evolution-cards {
+              display: none !important;
+            }
+          }
+          /* Improve contrast in dark mode */
+          [data-theme="dark"] .era-card:nth-child(odd) {
+            background-color: rgba(255, 255, 255, 0.1) !important;
+          }
+          [data-theme="dark"] .era-card:nth-child(even) {
+            background-color: rgba(28, 41, 81, 0.2) !important;
+          }
+        </style>
         <p>
           Understanding this historical context helps us recognize that our current political realignment is part of a natural evolutionary cycle in American democracy—one that presents both challenges and opportunities for reform.
         </p>
