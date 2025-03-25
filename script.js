@@ -126,38 +126,54 @@ document.addEventListener("DOMContentLoaded", function() {
  /************************************************
  * 4. About Page Video (Play Button, Toggle Audio, Pause on Scroll)
  ***********************************************/
-const aboutVideo = document.querySelector(".about-video");
+/************************************************
+ * 4. About Page Video (Static Image, Play on Click, Pause on Scroll)
+ ***********************************************/
 const videoWrapper = document.querySelector(".video-wrapper");
 const playButton = document.querySelector(".play-button");
+const videoContainer = document.querySelector(".video-container");
 
-if (aboutVideo && videoWrapper && playButton) {
-  // Play video when play button is clicked
+if (videoWrapper && playButton && videoContainer) {
+  let aboutVideo = null;
+
+  // Create video element when play button is clicked
   playButton.addEventListener("click", () => {
+    if (!aboutVideo) {
+      aboutVideo = document.createElement("video");
+      aboutVideo.classList.add("about-video");
+      aboutVideo.setAttribute("playsinline", "");
+      aboutVideo.innerHTML = `
+        <source src="slidevideo.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      `;
+      videoContainer.appendChild(aboutVideo);
+    }
+
     aboutVideo.play();
     videoWrapper.classList.add("playing");
-  });
 
-  // Toggle audio when video is clicked (after playing)
-  aboutVideo.addEventListener("click", () => {
-    if (videoWrapper.classList.contains("playing")) {
-      aboutVideo.muted = !aboutVideo.muted;
-    }
+    // Toggle audio when video is clicked (after playing)
+    aboutVideo.addEventListener("click", () => {
+      if (videoWrapper.classList.contains("playing")) {
+        aboutVideo.muted = !aboutVideo.muted;
+      }
+    });
   });
 
   // Pause video when it scrolls out of view
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-        if (!entry.isIntersecting && !aboutVideo.paused) {
+        if (!entry.isIntersecting && aboutVideo && !aboutVideo.paused) {
           aboutVideo.pause();
           videoWrapper.classList.remove("playing");
         }
       });
     },
-    { threshold: 0.5 } // Pause when less than 50% of the video is visible
+    { threshold: 0.5 }
   );
 
-  observer.observe(aboutVideo);
+  observer.observe(videoWrapper);
 }
   /************************************************
    * 5. Home Page Video (Click-to-toggle-audio)
