@@ -76,7 +76,7 @@
       <p>
         At the Unity Coalition, we're guided by core values that shape all our work:
       </p>
-      <ul style="margin-left: 20px; margin-bottom: 15px;">
+      <ul style="margin-bottom: 15px;">
         <li><strong>Transparency:</strong> We lead with positive values before policies, creating a foundation of trust.</li>
         <li><strong>Focus:</strong> We emphasize reform and bridging divides rather than overturning and dividing.</li>
         <li><strong>Humility:</strong> We appreciate complexity and focus on managing and balancing issues rather than oversimplifying them.</li>
@@ -92,19 +92,19 @@
     /* Desktop: Float the image on the left */
     @media (min-width: 769px) {
       .culture-content {
-        display: block !important; /* Override flexbox */
+        display: block !important;
       }
       .culture-img {
         width: 100% !important;
         max-width: 400px !important;
         float: left;
-        margin: 0 2em 1em 0; /* Increase right margin to 2em for more space */
+        margin: 0 2em 1em 0;
       }
       .culture-text {
         text-align: left !important;
       }
       .culture-text ul {
-        margin-left: 40px !important; /* Increase left margin of the list to indent further */
+        margin-left: 40px !important;
       }
     }
     /* Mobile: Stack the image and text */
@@ -126,7 +126,14 @@
         text-align: center !important;
       }
       .culture-text ul {
-        margin-left: 20px !important; /* Reset to original margin on mobile */
+        text-align: left !important; /* Left-align the list */
+        margin: 0 auto 15px !important; /* Center the list block, but left-align text */
+        padding-left: 20px; /* Space for bullets */
+        max-width: 90%; /* Prevent the list from touching the edges */
+      }
+      .culture-text ul li {
+        margin-bottom: 10px; /* Add space between list items */
+        line-height: 1.5; /* Improve readability */
       }
     }
   </style>
