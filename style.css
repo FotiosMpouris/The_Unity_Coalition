@@ -1044,41 +1044,21 @@ main, section {
 /* =========================================================
    12. Slider (About Page)
    ========================================================= */
-.slider-container {
-  position: relative;
-  max-width: 600px;
-  margin: 0 auto;
-  overflow: hidden;
-}
-
-.slider-container img {
+/* About Page Video */
+.about-video {
   width: 100%;
-  display: none;
-}
-
-.slider-container img.active {
+  max-width: 600px;
   display: block;
-}
-
-.slider-controls {
-  text-align: center;
-  margin-top: 10px;
-}
-
-.slider-controls button {
-  background-color: var(--blue);
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  margin: 0 5px;
+  margin: 0 auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  border-radius: 5px;
-  font-family: "Montserrat", sans-serif;
-  font-size: 0.9rem;
 }
 
-.slider-controls button:hover {
-  background-color: var(--red);
+@media (max-width: 768px) {
+  .about-video {
+    max-width: 100%;
+  }
 }
 
 /* =========================================================
