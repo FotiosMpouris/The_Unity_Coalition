@@ -394,6 +394,10 @@ main, section {
   margin-bottom: 5px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
+[data-theme="dark"] .translucent-blue {
+  border: 1px solid var(--light-border);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+}
 .translucent-red {
   background-color: rgba(178, 34, 34, 0.15);
   padding: 30px;
