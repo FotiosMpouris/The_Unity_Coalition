@@ -1336,7 +1336,7 @@ footer p {
   border: 2px solid transparent;
 }
 [data-theme="dark"] .mobile-buttons-content a#mobileShopBtn {
-  background-color: var(--blue) !important;
+  background-color: #1c2951 !important;
   color: white !important;
   border: 2px solid white;
 }
@@ -1348,7 +1348,7 @@ footer p {
   color: white !important;
 }
 [data-theme="dark"] .mobile-buttons-content h3 {
-  color: var(--cyan-63C5DA) !important;
+  color: white !important;
 }
 [data-theme="dark"] .close-mobile-btn {
   color: white !important;
