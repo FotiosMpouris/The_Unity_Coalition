@@ -1338,7 +1338,7 @@ footer p {
 [data-theme="dark"] .mobile-buttons-content a#mobileShopBtn {
   background-color: #1c2951 !important;
   color: white !important;
-  border: 2px solid white;
+  border: 2px #1c2951;
 }
 .mobile-buttons-content a#mobileShopBtn:hover {
   background-color: #2c3b61 !important;
