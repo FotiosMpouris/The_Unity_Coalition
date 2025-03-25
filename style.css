@@ -1,12 +1,12 @@
-/* =========================================================
-   style.css – Tidied Up & Adjusted for Better Alignment
-   ========================================================= */
-
 /* Import Google Fonts for Montserrat and Open Sans */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap');
 
 /* =========================================================
-   1. Basic Resets & Global Colors
+   1. Basic Resets & Colors
+   - Resets for margin, padding, and box-sizing
+   - Sets global font family and line height
+   - Defines color variables in :root with dark mode variant
+   - Sets body background and link styling
    ========================================================= */
 * {
   margin: 0;
@@ -28,6 +28,7 @@ html, body {
   --gold: #FFD700;
 }
 
+/* Dark mode variant */
 [data-theme="dark"] {
   --white: #1c2951;
   --blue: #ffffff;
@@ -59,50 +60,31 @@ a:hover {
   transform: scale(1.05);
 }
 
-/* =========================================================
-   2. Headings & Typography
-   ========================================================= */
+/* Headings with Montserrat */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  line-height: 1.3;
-  text-align: left;     /* Default to left-aligned */
-  margin: 15px 0;       /* Some vertical spacing */
-  width: auto;
 }
-
-h1 { font-size: 2rem; }
-h2 { 
-  font-size: 1.75rem;
+h1 {
+  font-size: 3rem;
+  text-align: center;
+}
+h2 {
+  font-size: 2rem;
+  text-align: center;
   border-bottom: 2px solid var(--red);
   padding-bottom: 5px;
+  margin-bottom: 15px;
 }
-h3 { font-size: 1.4rem; }
-
-@media (min-width: 769px) {
-  h1 { font-size: 3rem; }
-  h2 { font-size: 2rem; }
-  h3 { font-size: 1.6rem; }
+@media (max-width: 768px) {
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.6rem; }
 }
-
-/* Paragraphs and lists inside sections */
-section p, 
-section ul, 
-section ol,
-section li {
-  text-align: left;     /* Ensure text is left-aligned */
-  margin-bottom: 1em;
-  padding-left: 0;      /* Remove excessive left padding */
-  padding-right: 0;
-}
-
-/* If you want a bit of horizontal padding inside sections, you can do:
-   section p, section ul, section ol { margin: 0 20px 1em 20px; }
-   But the above removal ensures they're not pushed too far to the right.
-*/
 
 /* =========================================================
-   3. Dark Mode Toggle 
+   Dark Mode Toggle Button
+   - Now uses moon emoji, positioned in nav-links on desktop
+   - Adjusted for mobile to avoid overlap
    ========================================================= */
 .theme-toggle {
   background: none;
@@ -146,7 +128,7 @@ section li {
 }
 
 /* =========================================================
-   4. Top Banner
+   Top Banner
    ========================================================= */
 .top-banner {
   background-color: var(--red);
@@ -176,7 +158,7 @@ section li {
 }
 
 /* =========================================================
-   5. Header
+   2. Header
    ========================================================= */
 header {
   position: fixed;
@@ -210,6 +192,7 @@ header.mobile-scrolled {
   background-color: rgba(28, 41, 81, 0.3);
 }
 
+/* Logo and logo text grouping */
 .logo-group {
   display: flex;
   align-items: center;
@@ -238,8 +221,7 @@ header.mobile-scrolled {
     display: none;
   }
 }
-.nav-links a,
-.nav-links button {
+.nav-links a, .nav-links button {
   text-transform: uppercase;
   font-size: 0.9rem;
 }
@@ -269,6 +251,7 @@ header.mobile-scrolled {
   border: 2px solid var(--blue);
   transition: all 0.3s ease;
 }
+
 #shop-btn {
   background-color: var(--blue);
   color: var(--white);
@@ -278,6 +261,7 @@ header.mobile-scrolled {
   background-color: var(--white);
   color: var(--blue);
 }
+
 #contribute-btn {
   background-color: var(--red);
   border-color: var(--red);
@@ -291,7 +275,7 @@ header.mobile-scrolled {
 }
 
 /* =========================================================
-   6. Hamburger Menu (Mobile)
+   3. Hamburger for Mobile
    ========================================================= */
 .hamburger {
   display: none;
@@ -310,6 +294,7 @@ header.mobile-scrolled {
     display: flex;
   }
 }
+
 .hamburger.scrolled-mobile div {
   background-color: var(--red);
 }
@@ -317,7 +302,9 @@ header.mobile-scrolled {
   background-color: var(--cyan-63C5DA);
 }
 
-/* Mobile Nav Overlay (partial coverage) */
+/* =========================================================
+   4. Mobile Nav Overlay (partial coverage)
+   ========================================================= */
 .mobile-nav-overlay {
   position: fixed;
   top: 50%;
@@ -340,6 +327,7 @@ header.mobile-scrolled {
 [data-theme="dark"] .mobile-nav-overlay {
   background-color: rgba(255, 255, 255, 0.1);
 }
+
 .mobile-nav-overlay a {
   display: block;
   background-color: rgba(178, 34, 34, 0.7);
@@ -347,8 +335,7 @@ header.mobile-scrolled {
   margin: 15px 0;
   padding: 12px;
   text-transform: uppercase;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000,
-               -1px 1px 0 #000, 1px 1px 0 #000;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   border-radius: 4px;
   font-weight: bold;
 }
@@ -358,7 +345,7 @@ header.mobile-scrolled {
 }
 
 /* =========================================================
-   7. Main / Section Spacing
+   5. Main / Section Spacing
    ========================================================= */
 main, section {
   margin-top: 110px;
@@ -368,14 +355,37 @@ main, section {
 .home-banner-container {
   margin-top: 150px;
 }
+
 @media (max-width: 768px) {
   .home-banner-container {
     margin-top: 120px;
   }
 }
 
+.banner-desktop, .banner-mobile {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+@media (max-width: 768px) {
+  .banner-desktop {
+    display: none;
+  }
+  .banner-mobile {
+    display: block;
+    margin-top: 0;
+  }
+  .home-banner-container {
+    margin-top: 90px;
+    padding-top: 0;
+  }
+}
+
 /* =========================================================
-   8. Translucent Background Sections
+   6. Translucent Boxes (Now Cards)
    ========================================================= */
 .translucent-blue {
   background-color: rgba(28, 41, 81, 0.15);
@@ -391,6 +401,7 @@ main, section {
   margin-bottom: 5px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
+}
 [data-theme="dark"] .translucent-blue {
   background-color: rgba(99, 197, 218, 0.3);
 }
@@ -398,9 +409,7 @@ main, section {
   background-color: rgba(178, 34, 34, 0.4);
 }
 
-/* Example of a side-by-side structure like "About" top content */
-.about-top-content,
-.culture-content,
+/* Starlings Section Specific Styling */
 .starlings-content {
   display: flex;
   flex-direction: row;
@@ -408,33 +417,52 @@ main, section {
   gap: 30px;
   flex-wrap: nowrap;
 }
-.about-img,
-.culture-img,
 .starlings-img {
   max-width: 300px;
   width: 100%;
   flex-shrink: 0;
 }
 @media (max-width: 768px) {
-  .about-top-content,
-  .culture-content,
   .starlings-content {
     flex-direction: column;
+    flex-wrap: wrap;
   }
-  .about-img,
-  .culture-img,
   .starlings-img {
     max-width: 100%;
   }
 }
-.clearfix::after {
-  content: "";
-  display: block;
-  clear: both;
+/* Starlings Section End Specific Styling */
+/* Center text in sections */
+/* Section content styling */
+.section-content {
+  text-align: center;
+}
+
+.content-with-image .section-content {
+  text-align: center !important;
+}
+
+.content-with-image .section-content h2 {
+  text-align: center !important;
+  width: 100%;
+  border-bottom: 2px solid var(--red);
+  padding-bottom: 5px;
+  margin: 0 auto 15px auto;
+}
+
+.content-with-image .section-content p {
+  text-align: center !important;
+  margin-bottom: 12px;
+}
+
+.content-with-image .section-content h2 {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 15px;
 }
 
 /* =========================================================
-   9. Home Banner & Hero Overlay
+   7. Home Banner & Hero Overlay
    ========================================================= */
 .home-banner-container {
   position: relative;
@@ -447,6 +475,7 @@ main, section {
   display: block;
   height: auto;
 }
+
 .home-banner-overlay {
   position: absolute;
   top: 60%;
@@ -476,13 +505,14 @@ main, section {
 [data-theme="dark"] .home-banner-overlay h1,
 [data-theme="dark"] .home-banner-overlay blockquote {
   background: rgba(28, 41, 81, 0.8);
-  color: #fff !important;
+  color: #fff !important; /* Ensure white text in dark mode */
 }
 .founder-image {
   max-width: 150px;
   margin: 10px auto 20px auto;
   display: block;
 }
+
 .hero-buttons-group {
   display: flex;
   gap: 10px;
@@ -537,6 +567,10 @@ main, section {
     padding: 8px;
     margin-bottom: 6px;
   }
+  .home-banner-overlay h1,
+  .home-banner-overlay blockquote {
+    background: rgba(255, 255, 255, 0.9);
+  }
   [data-theme="dark"] .home-banner-overlay h1,
   [data-theme="dark"] .home-banner-overlay blockquote {
     background: rgba(28, 41, 81, 0.9);
@@ -567,7 +601,7 @@ main, section {
 }
 
 /* =========================================================
-   10. Centered Logo & Map Overlap
+   Centered Logo & Map Overlap 
    ========================================================= */
 .centered-logo-container {
   text-align: center;
@@ -591,6 +625,165 @@ main, section {
   box-shadow: none;
 }
 
+.centered-logo-container::before,
+.centered-logo-container::after,
+.centered-logo::before,
+.centered-logo::after {
+  content: none;
+  display: none;
+}
+
+/* =========================================================
+   Modern Volunteer Form Layout 
+   ========================================================= */
+.modern-volunteer-form .form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.modern-volunteer-form .form-field {
+  flex: 1;
+  min-width: 200px;
+}
+.modern-volunteer-form .form-field input,
+.modern-volunteer-form .form-field textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.modern-volunteer-form .form-field input:focus,
+.modern-volunteer-form .form-field textarea:focus {
+  border-color: var(--blue);
+  outline: none;
+  box-shadow: 0 0 5px var(--cyan-63C5DA);
+}
+.modern-volunteer-form .form-field.full-width {
+  width: 100%;
+}
+.modern-volunteer-form textarea {
+  width: 100%;
+  height: 120px;
+  resize: vertical;
+}
+.modern-volunteer-form .three-column .form-field {
+  min-width: 100px;
+}
+
+.checkbox-container {
+  margin: 25px 0;
+}
+.modern-checkbox {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+.modern-checkbox input[type="checkbox"] {
+  margin-top: 3px;
+  margin-right: 10px;
+  min-width: 16px;
+  height: 16px;
+}
+.checkbox-text {
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.modern-submit-btn {
+  background-color: var(--blue);
+  color: var(--white);
+  border: none;
+  border-radius: 4px;
+  padding: 12px 30px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: block;
+  margin: 0 auto;
+  min-width: 150px;
+}
+.modern-submit-btn:hover {
+  background: linear-gradient(to right, var(--blue), var(--gold));
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 768px) {
+  .modern-volunteer-form .form-row {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .modern-volunteer-form .form-field {
+    width: 100%;
+  }
+  .modern-volunteer-banner h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* =========================================================
+   24. Mission Images Row
+   ========================================================= */
+.mission-images-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+.mission-image {
+  flex: 1;
+  max-width: calc(33.333% - 10px);
+  height: auto;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .mission-images-row {
+    display: none;
+  }
+}
+
+.mission-container {
+  position: relative;
+  margin-top: 110px;
+}
+
+.mission-text-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  width: 80%;
+  max-width: 800px;
+}
+
+.mission-images-row {
+  position: relative;
+  margin-top: 0;
+}
+
+@media (min-width: 769px) {
+  .mission-text-overlay .translucent-blue {
+    color: white;
+    background-color: rgba(28, 41, 81, 0.7);
+  }
+  .mission-text-overlay h1 {
+    color: white;
+  }
+}
+
+/* =========================================================
+   Map Container
+   ========================================================= */
 .map-container {
   position: relative;
   width: 100%;
@@ -609,6 +802,45 @@ main, section {
   border: 3px solid var(--blue);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
+
+/* Ensure map overlay text is white */
+.map-container > div > div {
+  background-color: rgba(28, 41, 81, 0.8);
+  color: #fff !important;
+}
+.map-container > div > div p {
+  color: #fff !important;
+}
+
+@media (max-width: 768px) {
+  .home-banner-container {
+    margin-top: 120px;
+  }
+  .centered-logo-container {
+    margin-top: 70px;
+  }
+  .centered-logo {
+    max-width: 75px;
+    margin-top: 10px;
+    margin-bottom: -15px;
+  }
+  .map-container {
+    margin-top: 40px;
+  }
+  .hero-buttons-group {
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .centered-logo {
+    max-width: 70px;
+  }
+}
+
+/* =========================================================
+   United We Stand Banner
+   ========================================================= */
 .united-we-stand-banner {
   width: 100%;
   background-color: rgba(28, 41, 81, 0.8);
@@ -645,7 +877,7 @@ main, section {
 }
 
 /* =========================================================
-   11. Join Our Movement Section
+   8. Join Our Movement Section
    ========================================================= */
 .join-movement-section {
   margin-top: 0;
@@ -662,78 +894,65 @@ main, section {
   font-size: 1.8rem;
   margin: 0;
   text-transform: uppercase;
+  color: var(--white);
 }
 .join-movement-form-container {
   background-color: #fff;
   padding: 20px;
   text-align: center;
 }
-.modern-form-wrapper {
-  max-width: 600px;
-  margin: 0 auto;
-  background-color: #fff;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-}
-.form-field-group {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  margin-bottom: 20px;
-}
-.form-field {
+.join-movement-form {
+  display: inline-block;
   text-align: left;
 }
-.form-field span {
+.join-movement-form label {
+  display: block;
+  margin-bottom: 15px;
+}
+.join-movement-form span {
   display: block;
   font-weight: bold;
-  margin-bottom: 8px;
-  color: #333;
+  margin-bottom: 5px;
 }
-.form-field input {
+.join-movement-form input {
   width: 100%;
-  padding: 12px 15px;
-  border: 1px solid #ddd;
+  max-width: 250px;
+  padding: 8px;
+  border: 1px solid #999;
   border-radius: 4px;
-  font-size: 1rem;
   transition: border-color 0.3s, box-shadow 0.3s;
 }
-.form-field input:focus {
+.join-movement-form input:focus {
   border-color: var(--blue);
   box-shadow: 0 0 5px var(--cyan-63C5DA);
 }
-.join-button {
+.join-movement-form button {
+  margin-top: 10px;
+  display: inline-block;
+  padding: 8px 15px;
+  text-transform: uppercase;
   background-color: var(--blue);
-  color: var(--white);
+  color: #fff;
   border: none;
   border-radius: 4px;
-  padding: 12px 30px;
-  font-size: 1rem;
-  text-transform: uppercase;
-  font-weight: bold;
   cursor: pointer;
   transition: all 0.3s;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-.join-button:hover {
+.join-movement-form button:hover {
   background: linear-gradient(to right, var(--blue), var(--gold));
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
-@media (min-width: 768px) {
-  .form-field-group {
-    flex-direction: row;
-  }
-  .form-field {
-    flex: 1;
-  }
+/* Ensure join form message text is white */
+.join-movement-form-container > div:last-child {
+  background-color: var(--blue);
+  color: var(--white) !important;
+}
+.join-movement-form-container > div:last-child p {
+  color: var(--white) !important;
 }
 
 /* =========================================================
-   12. Home Page Video
+   9. Home Page Video
    ========================================================= */
 .home-video {
   width: 100%;
@@ -745,7 +964,10 @@ main, section {
 }
 
 /* =========================================================
-   13. Donation Section (Black-ish)
+   10. Donation Section (Black-ish)
+   ========================================================= */
+/* =========================================================
+   10. Donation Section (Black-ish)
    ========================================================= */
 .section-black {
   width: 100%;
@@ -782,9 +1004,41 @@ main, section {
     max-width: 80px;
   }
 }
+/* =========================================================
+   11. About Page Top Content
+   ========================================================= */
+.about-top-content {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 30px;
+  flex-wrap: nowrap;
+}
+.about-img {
+  max-width: 300px;
+  width: 100%;
+  flex-shrink: 0;
+}
+.about-text {
+  flex: 1;
+}
+@media (max-width: 768px) {
+  .about-top-content {
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  .about-img {
+    max-width: 100%;
+  }
+}
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
 
 /* =========================================================
-   14. Slider (About Page)
+   12. Slider (About Page)
    ========================================================= */
 .slider-container {
   position: relative;
@@ -818,7 +1072,7 @@ main, section {
 }
 
 /* =========================================================
-   15. Projects Hero
+   13. Projects Hero (background image)
    ========================================================= */
 .projects-hero {
   background: url("images/projects.png") center center / cover no-repeat;
@@ -840,8 +1094,62 @@ main, section {
 }
 
 /* =========================================================
-   16. Get Involved Page
+   14. Get Involved Page
    ========================================================= */
+.volunteer-banner {
+  background-color: var(--red);
+  color: var(--white);
+  padding: 20px;
+  text-align: center;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.volunteer-form {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.volunteer-form input,
+.volunteer-form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #999;
+  border-radius: 4px;
+}
+.form-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.form-row div {
+  flex: 1;
+}
+.volunteer-form button {
+  background-color: var(--blue);
+  color: var(--white);
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  margin-top: 10px;
+}
+.volunteer-form button:hover {
+  background-color: var(--red);
+}
+.checkboxes {
+  flex-direction: column;
+  align-items: flex-start;
+}
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 10px;
+}
+
 .get-involved-banner {
   margin-top: 80px;
   display: flex;
@@ -856,7 +1164,6 @@ main, section {
   text-transform: uppercase;
 }
 
-/* Side-by-side content in "Get Involved" */
 .involved-side-by-side {
   display: flex;
   flex-wrap: wrap;
@@ -887,7 +1194,7 @@ main, section {
 }
 
 /* =========================================================
-   17. Gallery (Image Grid)
+   15. Gallery (Image Grid)
    ========================================================= */
 .gallery-grid {
   display: grid;
@@ -902,7 +1209,7 @@ main, section {
 }
 
 /* =========================================================
-   18. Projects Collaborators
+   16. Projects Collaborator Grid
    ========================================================= */
 .collaborators {
   display: grid;
@@ -927,7 +1234,7 @@ main, section {
 }
 
 /* =========================================================
-   19. Footer
+   18. Footer
    ========================================================= */
 footer {
   background: linear-gradient(to right, #1c2951, #b22222);
@@ -975,7 +1282,7 @@ footer p {
 }
 
 /* =========================================================
-   20. Timed Overlay for Shop/Contribute Popup (Mobile Only)
+   19. Timed Overlay - Mobile Only
    ========================================================= */
 #mobileButtonsOverlay {
   display: none;
@@ -1061,4 +1368,202 @@ footer p {
   font-size: 1.5rem;
   cursor: pointer;
   color: var(--red);
+}
+
+/* =========================================================
+   20. Modern Join Movement Section
+   ========================================================= */
+.join-movement-section {
+  position: relative;
+  margin-top: 0;
+  padding: 0;
+  background-color: #fff;
+}
+.join-movement-banner {
+  background-color: var(--red);
+  color: #fff;
+  text-align: center;
+  padding: 25px 20px;
+  margin: 0;
+  width: 100%;
+}
+.join-movement-banner h2 {
+  font-size: 2rem;
+  margin: 0;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+.join-movement-form-container {
+  background-color: #f5f5f5;
+  padding: 30px 20px;
+  text-align: center;
+}
+.modern-form-wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+.form-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.form-field {
+  text-align: left;
+}
+.form-field span {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #333;
+}
+.form-field input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.form-field input:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 5px var(--cyan-63C5DA);
+}
+.join-button {
+  background-color: var(--blue);
+  color: var(--white);
+  border: none;
+  border-radius: 4px;
+  padding: 12px 30px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.join-button:hover {
+  background: linear-gradient(to right, var(--blue), var(--gold));
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+@media (min-width: 768px) {
+  .form-field-group {
+    flex-direction: row;
+  }
+  .form-field {
+    flex: 1;
+  }
+}
+
+/* =========================================================
+   21. Content with Image Sections
+   ========================================================= */
+.content-with-image {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.content-with-image .section-content {
+  flex: 1;
+  min-width: 300px;
+}
+.content-with-image .section-image {
+  flex: 0 0 auto;
+  max-width: 250px;
+  width: 100%;
+}
+.content-with-image .section-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+@media (max-width: 768px) {
+  .content-with-image .section-image {
+    max-width: 100%;
+    min-width: 200px; /* Ensure visibility on mobile */
+  }
+}
+.content-with-image.reverse {
+  flex-direction: row-reverse;
+}
+
+@media (max-width: 768px) {
+  .content-with-image,
+  .content-with-image.reverse {
+    flex-direction: column;
+  }
+  .content-with-image .section-image {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  .content-with-image .section-image img {
+    max-width: 250px;
+    margin: 0 auto;
+    display: block;
+  }   
+}
+
+/* Culture Section Specific Styling */
+.culture-content {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 30px;
+  flex-wrap: nowrap;
+}
+.culture-img {
+  max-width: 300px;
+  width: 100%;
+  flex-shrink: 0;
+}
+@media (max-width: 768px) {
+  .culture-content {
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  .culture-img {
+    max-width: 100%;
+  }
+}
+
+/* =========================================================
+   22. Modern Volunteer Form - Trump-Inspired Styling
+   ========================================================= */
+.modern-volunteer-banner {
+  background-color: var(--red);
+  color: var(--white);
+  padding: 25px 20px;
+  text-align: center;
+  margin-bottom: 0;
+  width: 100%;
+}
+.modern-volunteer-banner h2 {
+  font-size: 2rem;
+  margin: 0;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+.modern-form-container {
+  background-color: #f5f5f5;
+  padding: 30px 20px;
+  margin-bottom: 30px;
+}
+.modern-volunteer-form {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 8px;
 }
