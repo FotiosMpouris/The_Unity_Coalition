@@ -1227,7 +1227,9 @@ main, section {
   padding: 40px 20px; /* Add padding for spacing */
   min-height: 300px; /* Increase height to accommodate content */
 }
-
+[data-theme="dark"] .get-involved-banner {
+  background-color: #1c2951; /* Dark blue in dark mode for contrast */
+}
 .get-involved-banner h1 {
   font-size: 2.5rem;
   color: #fff;
