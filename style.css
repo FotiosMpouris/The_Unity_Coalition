@@ -1567,3 +1567,76 @@ footer p {
   padding: 30px;
   border-radius: 8px;
 }
+
+/* =========================================================
+   Contact Page Specific Fixes
+   ========================================================= */
+/* Fix section content alignment */
+.translucent-blue .section-content,
+.translucent-red .section-content {
+  text-align: left;
+}
+
+/* Center all headings */
+.translucent-blue h1, 
+.translucent-blue h2, 
+.translucent-blue h3,
+.translucent-red h1, 
+.translucent-red h2, 
+.translucent-red h3 {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+/* Left-align all paragraphs */
+.translucent-blue p,
+.translucent-red p {
+  text-align: left;
+  padding: 0 15px;
+  margin-bottom: 15px;
+}
+
+/* Fix list formatting */
+.translucent-blue ul,
+.translucent-red ul {
+  text-align: left;
+  margin-left: 35px;
+  margin-bottom: 15px;
+}
+
+.translucent-blue li,
+.translucent-red li {
+  text-align: left;
+  margin-bottom: 10px;
+  padding-right: 15px;
+}
+
+/* Content with image fixes */
+.content-with-image .section-content {
+  flex: 1;
+  min-width: 300px;
+  text-align: left;
+}
+
+.content-with-image .section-content h1,
+.content-with-image .section-content h2,
+.content-with-image .section-content h3 {
+  text-align: center;
+}
+
+.content-with-image .section-content p {
+  text-align: left;
+}
+
+.content-with-image .section-content ul {
+  text-align: left;
+  margin-left: 20px;
+}
+
+/* Center images */
+.section-image img,
+.contact-img {
+  display: block;
+  margin: 0 auto;
+}
