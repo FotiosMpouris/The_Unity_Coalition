@@ -1761,4 +1761,103 @@ footer p {
   border-radius: 8px;
 }
 
+/* =========================================================
+   Resources Page List Styling Fixes
+   ========================================================= */
 
+/* Unified list styling for resources page */
+.section-content ul {
+  margin-left: 0;
+  padding-left: 20px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.section-content ul li {
+  margin-bottom: 8px;
+  line-height: 1.5;
+  text-align: left;
+  padding-left: 5px;
+}
+
+/* Fix for .populism-globalism section */
+.populism-globalism h3,
+.populism-globalism h4 {
+  text-align: left;
+}
+
+.populism-globalism ul {
+  margin-left: 0;
+  padding-left: 20px;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+/* Make lists in resources page consistent */
+.translucent-blue ul,
+.translucent-red ul {
+  text-align: left;
+  padding-left: 20px;
+}
+
+/* Additional spacing for better readability */
+.section-content li,
+.translucent-blue li,
+.translucent-red li {
+  padding-bottom: 8px;
+}
+
+/* Last item in list doesn't need bottom padding */
+.section-content li:last-child,
+.translucent-blue li:last-child,
+.translucent-red li:last-child {
+  padding-bottom: 0;
+}
+
+/* Keep section headings centered but subheadings left-aligned */
+.section-content h2 {
+  text-align: center;
+}
+
+.section-content h3 {
+  text-align: left;
+  margin-bottom: 15px;
+}
+
+/* Improve dark mode list visibility */
+[data-theme="dark"] .section-content ul li,
+[data-theme="dark"] .populism-globalism ul li,
+[data-theme="dark"] .translucent-blue ul li,
+[data-theme="dark"] .translucent-red ul li {
+  color: #fff;
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 768px) {
+  .section-content ul,
+  .populism-globalism ul,
+  .translucent-blue ul,
+  .translucent-red ul {
+    padding-left: 15px;
+  }
+  
+  .section-content ul li,
+  .populism-globalism ul li {
+    margin-bottom: 10px;
+  }
+}
+
+/* Fix for collaborator cards on mobile */
+.collaborator {
+  text-align: center;
+}
+
+.collaborator p, 
+.collaborator h3 {
+  text-align: center;
+}
+
+.collaborator a {
+  display: inline-block;
+  margin-top: 5px;
+}
