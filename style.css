@@ -157,30 +157,6 @@ h2 {
   }
 }
 
-/* General list styling */
-ul {
-  margin-left: 20px;
-  margin-bottom: 15px;
-  padding-left: 20px;
-  list-style: none;
-}
-ul li {
-  margin-bottom: 10px;
-  line-height: 1.6;
-  padding-left: 20px;
-  position: relative;
-}
-ul li:before {
-  content: "•";
-  position: absolute;
-  left: 0;
-  color: var(--red);
-  font-size: 1.2rem;
-}
-[data-theme="dark"] ul li:before {
-  color: var(--gold);
-}
-
 /* =========================================================
    2. Header
    ========================================================= */
@@ -405,12 +381,6 @@ main, section {
   .home-banner-container {
     margin-top: 90px;
     padding-top: 0;
-  }
-}
-
-@media (max-width: 768px) {
-  .section-content {
-    padding: 15px;
   }
 }
 
@@ -1444,9 +1414,6 @@ main, section {
 /* =========================================================
    15. Populism and Globalism Section (Resources Page)
    ========================================================= */
-/* =========================================================
-   15. Populism and Globalism Section (Resources Page)
-   ========================================================= */
 .populism-globalism {
   display: flex;
   flex-wrap: wrap;
@@ -1472,7 +1439,14 @@ main, section {
 }
 
 .populism-globalism ul {
+  margin-left: 20px;
+  margin-bottom: 15px;
   color: #333; /* Dark text for light mode */
+}
+
+.populism-globalism ul li {
+  margin-bottom: 8px; /* Add spacing between list items */
+  line-height: 1.5; /* Improve readability */
 }
 
 /* Dark mode adjustments */
@@ -1482,35 +1456,6 @@ main, section {
   color: #fff; /* White text for better contrast in dark mode */
 }
 
-/* Mobile adjustments */
-@media (max-width: 768px) {
-  .populism-globalism h3 {
-    font-size: 1.3rem;
-  }
-  .populism-globalism h4 {
-    font-size: 1.1rem;
-    margin: 15px 0 8px;
-  }
-  .populism-globalism ul {
-    margin-left: 25px;
-    margin-bottom: 15px;
-    padding-left: 15px;
-  }
-  .populism-globalism ul li {
-    font-size: 0.95rem;
-    margin-bottom: 12px;
-    line-height: 1.6;
-    padding-left: 20px;
-    position: relative;
-  }
-  .populism-globalism ul li:before {
-    content: "•";
-    position: absolute;
-    left: 0;
-    color: var(--red);
-    font-size: 1.1rem;
-  }
-}
 /* =========================================================
    15. Gallery (Image Grid)
    ========================================================= */
@@ -1599,115 +1544,6 @@ footer p {
   color: #fff;
 }
 
-/* =========================================================
-   17. Useful Links Section (Resources Page)
-   ========================================================= */
-.useful-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  margin-top: 20px;
-}
-
-.useful-links > div {
-  flex: 1;
-  min-width: 300px;
-}
-
-.useful-links h3 {
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-  color: #333; /* Dark text for light mode */
-}
-
-.useful-links ul {
-  color: #333; /* Dark text for light mode */
-}
-
-/* Dark mode adjustments */
-[data-theme="dark"] .useful-links h3,
-[data-theme="dark"] .useful-links ul {
-  color: #fff; /* White text for dark mode */
-}
-
-/* Mobile adjustments */
-@media (max-width: 768px) {
-  .useful-links h3 {
-    font-size: 1.3rem;
-  }
-  .useful-links ul {
-    margin-left: 25px;
-    margin-bottom: 15px;
-    padding-left: 15px;
-  }
-  .useful-links ul li {
-    font-size: 0.95rem;
-    margin-bottom: 12px;
-    line-height: 1.6;
-    padding-left: 20px;
-    position: relative;
-  }
-  .useful-links ul li:before {
-    content: "•";
-    position: absolute;
-    left: 0;
-    color: var(--red);
-    font-size: 1.1rem;
-  }
-}
-
-/* =========================================================
-   18. Educational Tools Section (Resources Page)
-   ========================================================= */
-@media (max-width: 768px) {
-  .educational-tools h3 {
-    font-size: 1.3rem;
-  }
-  .educational-tools ul {
-    margin-left: 25px;
-    margin-bottom: 15px;
-    padding-left: 15px;
-  }
-  .educational-tools ul li {
-    font-size: 0.95rem;
-    margin-bottom: 12px;
-    line-height: 1.6;
-    padding-left: 20px;
-    position: relative;
-  }
-  .educational-tools ul li:before {
-    content: "•";
-    position: absolute;
-    left: 0;
-    color: var(--red);
-    font-size: 1.1rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .recommended-reading h3 {
-    font-size: 1.3rem;
-  }
-  .recommended-reading ul {
-    margin-left: 25px;
-    margin-bottom: 15px;
-    padding-left: 15px;
-  }
-  .recommended-reading ul li {
-    font-size: 0.95rem;
-    margin-bottom: 12px;
-    line-height: 1.6;
-    padding-left: 20px;
-    position: relative;
-  }
-  .recommended-reading ul li:before {
-    content: "•";
-    position: absolute;
-    left: 0;
-    color: var(--red);
-    font-size: 1.1rem;
-  }
-}
 /* =========================================================
    19. Timed Overlay - Mobile Only
    ========================================================= */
@@ -1924,3 +1760,5 @@ footer p {
   padding: 30px;
   border-radius: 8px;
 }
+
+
