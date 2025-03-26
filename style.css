@@ -1369,6 +1369,48 @@ main, section {
     font-size: 1.2rem;
   }
 }
+
+/* =========================================================
+   16. Help Cards (Get Involved Page - What We Need From You)
+   ========================================================= */
+.help-card {
+  background-color: rgba(255, 255, 255, 0.8); /* Slight background for separation */
+  padding: 20px;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px 0; /* Spacing between cards */
+  text-align: center; /* Center the content */
+}
+
+[data-theme="dark"] .help-card {
+  background-color: rgba(28, 41, 81, 0.3);
+}
+
+.help-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  color: #333; /* Dark text for light mode */
+}
+
+.help-card p {
+  color: #333; /* Dark text for light mode */
+  line-height: 1.6;
+}
+
+[data-theme="dark"] .help-card h3,
+[data-theme="dark"] .help-card p {
+  color: #fff; /* White text for dark mode */
+}
+
+@media (max-width: 768px) {
+  .help-card {
+    padding: 15px;
+    margin: 15px 0;
+  }
+  .help-card h3 {
+    font-size: 1.2rem;
+  }
+}
 /* =========================================================
    15. Populism and Globalism Section (Resources Page)
    ========================================================= */
