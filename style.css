@@ -1874,20 +1874,6 @@ footer p {
 }
 
 
-/* Fix for collaborator cards on mobile */
-.collaborator {
-  text-align: center;
-}
-
-.collaborator p, 
-.collaborator h3 {
-  text-align: center;
-}
-
-.collaborator a {
-  display: inline-block;
-  margin-top: 5px;
-}
 
 /* Fix text visibility in dark mode for collaborator cards */
 [data-theme="dark"] .collaborator {
