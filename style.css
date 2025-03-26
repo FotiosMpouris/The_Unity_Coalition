@@ -1847,3 +1847,67 @@ footer p {
   }
 }
 
+/* Fix for collaborator logos centering */
+.collaborator img {
+  display: block;
+  margin: 0 auto 15px;
+  max-width: 80%;
+  height: auto;
+}
+
+/* Ensure consistent height for logo containers */
+.collaborator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 4px;
+}
+
+/* Dark mode adjustments */
+[data-theme="dark"] .collaborator {
+  background-color: #333;
+  border-color: #555;
+}
+
+
+/* Fix for collaborator cards on mobile */
+.collaborator {
+  text-align: center;
+}
+
+.collaborator p, 
+.collaborator h3 {
+  text-align: center;
+}
+
+.collaborator a {
+  display: inline-block;
+  margin-top: 5px;
+}
+
+/* Fix text visibility in dark mode for collaborator cards */
+[data-theme="dark"] .collaborator {
+  background-color: #333;
+  border-color: #555;
+  color: #fff;
+}
+
+[data-theme="dark"] .collaborator h3 {
+  color: #fff;
+}
+
+[data-theme="dark"] .collaborator p {
+  color: #ddd;
+}
+
+[data-theme="dark"] .collaborator a {
+  color: #63C5DA;
+}
+
+[data-theme="dark"] .collaborator a:hover {
+  color: #FFD700;
+}
