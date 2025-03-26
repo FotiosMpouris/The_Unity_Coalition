@@ -1847,13 +1847,22 @@ footer p {
   }
 }
 
-/* Fix for collaborator logos centering */
-.collaborator img {
-  display: block;
-  margin: 0 auto 15px;
-  max-width: 80%;
-  height: auto;
+/* Fix for collaborator cards on mobile */
+.collaborator {
+  text-align: center;
 }
+
+.collaborator p, 
+.collaborator h3 {
+  text-align: center;
+}
+
+.collaborator a {
+  display: inline-block;
+  margin-top: 5px;
+}
+
+
 
 /* Ensure consistent height for logo containers */
 .collaborator {
