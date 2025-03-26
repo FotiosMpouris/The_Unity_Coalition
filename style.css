@@ -161,11 +161,24 @@ h2 {
 ul {
   margin-left: 20px;
   margin-bottom: 15px;
-  padding-left: 0;
+  padding-left: 20px;
+  list-style: none;
 }
 ul li {
-  margin-bottom: 8px;
-  line-height: 1.5;
+  margin-bottom: 10px;
+  line-height: 1.6;
+  padding-left: 20px;
+  position: relative;
+}
+ul li:before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--red);
+  font-size: 1.2rem;
+}
+[data-theme="dark"] ul li:before {
+  color: var(--gold);
 }
 
 /* =========================================================
@@ -392,6 +405,12 @@ main, section {
   .home-banner-container {
     margin-top: 90px;
     padding-top: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-content {
+    padding: 15px;
   }
 }
 
@@ -1473,14 +1492,15 @@ main, section {
     margin: 15px 0 8px;
   }
   .populism-globalism ul {
-    margin-left: 15px;
-    margin-bottom: 10px;
+    margin-left: 25px;
+    margin-bottom: 15px;
+    padding-left: 15px;
   }
   .populism-globalism ul li {
     font-size: 0.95rem;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     line-height: 1.6;
-    padding-left: 10px;
+    padding-left: 20px;
     position: relative;
   }
   .populism-globalism ul li:before {
@@ -1488,7 +1508,7 @@ main, section {
     position: absolute;
     left: 0;
     color: var(--red);
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 }
 /* =========================================================
@@ -1616,14 +1636,15 @@ footer p {
     font-size: 1.3rem;
   }
   .useful-links ul {
-    margin-left: 15px;
-    margin-bottom: 10px;
+    margin-left: 25px;
+    margin-bottom: 15px;
+    padding-left: 15px;
   }
   .useful-links ul li {
     font-size: 0.95rem;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     line-height: 1.6;
-    padding-left: 10px;
+    padding-left: 20px;
     position: relative;
   }
   .useful-links ul li:before {
@@ -1631,47 +1652,27 @@ footer p {
     position: absolute;
     left: 0;
     color: var(--red);
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 }
 
 /* =========================================================
    18. Educational Tools Section (Resources Page)
    ========================================================= */
-.educational-tools {
-  margin-top: 20px;
-}
-
-.educational-tools h3 {
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-  color: #333; /* Dark text for light mode */
-}
-
-.educational-tools ul {
-  color: #333; /* Dark text for light mode */
-}
-
-/* Dark mode adjustments */
-[data-theme="dark"] .educational-tools h3,
-[data-theme="dark"] .educational-tools ul {
-  color: #fff; /* White text for dark mode */
-}
-
-/* Mobile adjustments */
 @media (max-width: 768px) {
   .educational-tools h3 {
     font-size: 1.3rem;
   }
   .educational-tools ul {
-    margin-left: 15px;
-    margin-bottom: 10px;
+    margin-left: 25px;
+    margin-bottom: 15px;
+    padding-left: 15px;
   }
   .educational-tools ul li {
     font-size: 0.95rem;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     line-height: 1.6;
-    padding-left: 10px;
+    padding-left: 20px;
     position: relative;
   }
   .educational-tools ul li:before {
@@ -1679,7 +1680,32 @@ footer p {
     position: absolute;
     left: 0;
     color: var(--red);
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .recommended-reading h3 {
+    font-size: 1.3rem;
+  }
+  .recommended-reading ul {
+    margin-left: 25px;
+    margin-bottom: 15px;
+    padding-left: 15px;
+  }
+  .recommended-reading ul li {
+    font-size: 0.95rem;
+    margin-bottom: 12px;
+    line-height: 1.6;
+    padding-left: 20px;
+    position: relative;
+  }
+  .recommended-reading ul li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--red);
+    font-size: 1.1rem;
   }
 }
 /* =========================================================
