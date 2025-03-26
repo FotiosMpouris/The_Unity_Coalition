@@ -1861,3 +1861,22 @@ footer p {
   display: inline-block;
   margin-top: 5px;
 }
+/* Fix for collaborator grid alignment */
+.collaborators {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+  justify-content: center;
+  align-items: stretch;
+}
+
+/* On mobile, ensure cards are centered */
+@media (max-width: 768px) {
+  .collaborators {
+    grid-template-columns: 1fr;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
