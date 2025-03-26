@@ -157,6 +157,17 @@ h2 {
   }
 }
 
+/* General list styling */
+ul {
+  margin-left: 20px;
+  margin-bottom: 15px;
+  padding-left: 0;
+}
+ul li {
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
 /* =========================================================
    2. Header
    ========================================================= */
@@ -1414,6 +1425,9 @@ main, section {
 /* =========================================================
    15. Populism and Globalism Section (Resources Page)
    ========================================================= */
+/* =========================================================
+   15. Populism and Globalism Section (Resources Page)
+   ========================================================= */
 .populism-globalism {
   display: flex;
   flex-wrap: wrap;
@@ -1439,14 +1453,7 @@ main, section {
 }
 
 .populism-globalism ul {
-  margin-left: 20px;
-  margin-bottom: 15px;
   color: #333; /* Dark text for light mode */
-}
-
-.populism-globalism ul li {
-  margin-bottom: 8px; /* Add spacing between list items */
-  line-height: 1.5; /* Improve readability */
 }
 
 /* Dark mode adjustments */
@@ -1456,6 +1463,34 @@ main, section {
   color: #fff; /* White text for better contrast in dark mode */
 }
 
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .populism-globalism h3 {
+    font-size: 1.3rem;
+  }
+  .populism-globalism h4 {
+    font-size: 1.1rem;
+    margin: 15px 0 8px;
+  }
+  .populism-globalism ul {
+    margin-left: 15px;
+    margin-bottom: 10px;
+  }
+  .populism-globalism ul li {
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+    line-height: 1.6;
+    padding-left: 10px;
+    position: relative;
+  }
+  .populism-globalism ul li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--red);
+    font-size: 1.2rem;
+  }
+}
 /* =========================================================
    15. Gallery (Image Grid)
    ========================================================= */
@@ -1544,6 +1579,109 @@ footer p {
   color: #fff;
 }
 
+/* =========================================================
+   17. Useful Links Section (Resources Page)
+   ========================================================= */
+.useful-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.useful-links > div {
+  flex: 1;
+  min-width: 300px;
+}
+
+.useful-links h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #333; /* Dark text for light mode */
+}
+
+.useful-links ul {
+  color: #333; /* Dark text for light mode */
+}
+
+/* Dark mode adjustments */
+[data-theme="dark"] .useful-links h3,
+[data-theme="dark"] .useful-links ul {
+  color: #fff; /* White text for dark mode */
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .useful-links h3 {
+    font-size: 1.3rem;
+  }
+  .useful-links ul {
+    margin-left: 15px;
+    margin-bottom: 10px;
+  }
+  .useful-links ul li {
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+    line-height: 1.6;
+    padding-left: 10px;
+    position: relative;
+  }
+  .useful-links ul li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--red);
+    font-size: 1.2rem;
+  }
+}
+
+/* =========================================================
+   18. Educational Tools Section (Resources Page)
+   ========================================================= */
+.educational-tools {
+  margin-top: 20px;
+}
+
+.educational-tools h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #333; /* Dark text for light mode */
+}
+
+.educational-tools ul {
+  color: #333; /* Dark text for light mode */
+}
+
+/* Dark mode adjustments */
+[data-theme="dark"] .educational-tools h3,
+[data-theme="dark"] .educational-tools ul {
+  color: #fff; /* White text for dark mode */
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .educational-tools h3 {
+    font-size: 1.3rem;
+  }
+  .educational-tools ul {
+    margin-left: 15px;
+    margin-bottom: 10px;
+  }
+  .educational-tools ul li {
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+    line-height: 1.6;
+    padding-left: 10px;
+    position: relative;
+  }
+  .educational-tools ul li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--red);
+    font-size: 1.2rem;
+  }
+}
 /* =========================================================
    19. Timed Overlay - Mobile Only
    ========================================================= */
