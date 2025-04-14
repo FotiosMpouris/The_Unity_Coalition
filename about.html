@@ -5,8 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Unity Coalition - About</title>
   <link rel="stylesheet" href="style.css" />
+   <!-- Google Fonts for Montserrat and Open Sans -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="about-page"> <!-- Added page class -->
   <!-- Top Banner -->
   <div class="top-banner">
     People Are The Solution
@@ -26,169 +28,181 @@
       <a href="projects.html">Projects</a>
       <a href="get-involved.html">Get Involved</a>
       <a href="contact.html">Contact</a>
-      <button class="theme-toggle" aria-label="Toggle Dark Mode"></button>
+      <button class="theme-toggle" aria-label="Toggle Theme"></button>
     </div>
 
     <div class="header-buttons">
-      <a href="https://www.amazon.com" id="shop-btn">Shop</a>
+      <a href="https://www.amazon.com" target="_blank" rel="noopener noreferrer" id="shop-btn">Shop</a> <!-- Added target blank -->
       <a href="contact.html#contributeSection" id="contribute-btn">Contribute</a>
     </div>
 
-    <div class="hamburger">
+    <div class="hamburger" aria-label="Toggle Menu" tabindex="0">
       <div></div>
       <div></div>
       <div></div>
     </div>
-    <button class="theme-toggle mobile-only" aria-label="Toggle Dark Mode"></button>
+    <button class="theme-toggle mobile-only" aria-label="Toggle Theme"></button>
   </header>
 
+   <!-- Mobile Nav Overlay -->
+   <div class="mobile-nav-overlay">
+       <a href="index.html">Home</a>
+       <a href="about.html" class="active">About</a>
+       <a href="mission.html">Mission</a>
+       <a href="projects.html">Projects</a>
+       <a href="get-involved.html">Get Involved</a>
+       <a href="contact.html">Contact</a>
+   </div>
+
   <main>
-    <!-- About top section with about.png on the left and text on the right -->
+    <!-- About top section -->
     <section class="translucent-blue about-top-section">
-      <h1>About Unity Coalition</h1>
-      <div class="about-top-content">
-        <img src="images/about.png" alt="About the Unity Coalition" class="about-img" style="box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />
-        <div class="about-text">
-          <p>
-            The Unity Coalition stands as a groundbreaking infrastructure connecting
-            reform-minded Americans across traditional divides. Operating as both
-            a cultural movement and a structured platform, we bring together populist,
-            independent, and reform-oriented voices to address our nation's
-            most critical challenges.
-          </p>
-          <p>
-            Through our innovative digital hub, we create dedicated spaces
-            where leaders, organizations, and citizens can collaborate beyond
-            conventional silos. Our approach is guided by core values of transparency,
-            focus, humility, dignity, and responsiveness, enabling us to serve as the
-            vital bridge between different political perspectives.
-          </p>
+      <div class="section-content"> <!-- Wrap content for max-width -->
+        <h1>About Unity Coalition</h1>
+        <div class="about-top-content">
+          <img src="images/about.png" alt="About the Unity Coalition" class="about-img" /> <!-- Use class styling -->
+          <div class="about-text">
+            <p>
+              The Unity Coalition stands as a groundbreaking infrastructure connecting
+              reform-minded Americans across traditional divides. Operating as both
+              a cultural movement and a structured platform, we bring together populist,
+              independent, and reform-oriented voices to address our nation's
+              most critical challenges.
+            </p>
+            <p>
+              Through our innovative digital hub, we create dedicated spaces
+              where leaders, organizations, and citizens can collaborate beyond
+              conventional silos. Our approach is guided by core values of transparency,
+              focus, humility, dignity, and responsiveness, enabling us to serve as the
+              vital bridge between different political perspectives.
+            </p>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- The Culture That Animates Us -->
- <section class="translucent-blue">
-  <h2>The Culture That Animates Us</h2>
-  <div class="culture-content">
-    <img src="images/culture.png" alt="Our Culture" class="culture-img" style="box-shadow: 0 2px 8px rgba(0,0,0,0.1); width: 100%; height: auto;" />
-    <div class="culture-text">
-      <p>
-        At the Unity Coalition, we're guided by core values that shape all our work:
-      </p>
-      <ul style="margin-bottom: 15px;">
-        <li><strong>Transparency:</strong> We lead with positive values before policies, creating a foundation of trust.</li>
-        <li><strong>Focus:</strong> We emphasize reform and bridging divides rather than overturning and dividing.</li>
-        <li><strong>Humility:</strong> We appreciate complexity and focus on managing and balancing issues rather than oversimplifying them.</li>
-        <li><strong>Dignity:</strong> We promote civic revival with basic decorum, elevating public discourse.</li>
-        <li><strong>Responsiveness:</strong> We function as a support group, think tank, and action network, adapting to evolving needs.</li>
-      </ul>
-      <p>
-        These principles enable us to extract and amplify the virtuous aspects of both populist and globalist perspectives while minimizing their more destructive tendencies.
-      </p>
-    </div>
-  </div>
-  <style>
-    /* Desktop: Float the image on the left */
-    @media (min-width: 769px) {
-      .culture-content {
-        display: block !important;
-      }
-      .culture-img {
-        width: 100% !important;
-        max-width: 400px !important;
-        float: left;
-        margin: 0 2em 1em 0;
-      }
-      .culture-text {
-        text-align: left !important;
-      }
-      .culture-text ul {
-        margin-left: 40px !important;
-      }
-    }
-    /* Mobile: Stack the image and text */
-    @media (max-width: 768px) {
-      .culture-content {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-      }
-      .culture-img {
-        max-width: 100% !important;
-        width: 100% !important;
-        margin: 0 auto;
-        display: block;
-        max-height: 400px;
-        object-fit: cover;
-      }
-      .culture-text {
-        text-align: center !important;
-      }
-      .culture-text ul {
-        text-align: left !important; /* Left-align the list */
-        margin: 0 auto 15px !important; /* Center the list block, but left-align text */
-        padding-left: 20px; /* Space for bullets */
-        max-width: 90%; /* Prevent the list from touching the edges */
-      }
-      .culture-text ul li {
-        margin-bottom: 10px; /* Add space between list items */
-        line-height: 1.5; /* Improve readability */
-      }
-    }
-  </style>
-</section>
+    <section class="translucent-red"> <!-- Alternating color -->
+      <div class="section-content"> <!-- Wrap content -->
+        <h2>The Culture That Animates Us</h2>
+        <div class="culture-content">
+          <img src="images/culture.png" alt="Our Culture Illustration" class="culture-img" /> <!-- Use class styling -->
+          <div class="culture-text">
+            <p>
+              At the Unity Coalition, we're guided by core values that shape all our work:
+            </p>
+            <ul> <!-- Use class styling -->
+              <li><strong>Transparency:</strong> We lead with positive values before policies, creating a foundation of trust.</li>
+              <li><strong>Focus:</strong> We emphasize reform and bridging divides rather than overturning and dividing.</li>
+              <li><strong>Humility:</strong> We appreciate complexity and focus on managing and balancing issues rather than oversimplifying them.</li>
+              <li><strong>Dignity:</strong> We promote civic revival with basic decorum, elevating public discourse.</li>
+              <li><strong>Responsiveness:</strong> We function as a support group, think tank, and action network, adapting to evolving needs.</li>
+            </ul>
+            <p>
+              These principles enable us to extract and amplify the virtuous aspects of both populist and globalist perspectives while minimizing their more destructive tendencies.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Historical Context Section -->
-    <section class="translucent-red">
-      <h2>Understanding Our Historical Moment</h2>
-      <img src="images/historicalmoment.png" alt="Historical Moment Map" style="width: 100%; max-width: 300px; float: left; margin: 0 1em 1em 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />
-      <p>
-        America stands at a pivotal moment in its 250-year journey. Our nation has evolved through distinct eras—from Federalization (1788-1860) under Washington to Lincoln's Industrialization era (1860-1932), Roosevelt's Globalization period (1932-2016), and now into the Informationalization age that began taking shape in 2016.
-      </p>
-      <p>
-        Each transition has brought profound realignments in our political landscape, with parties transforming to address the challenges of their time. Today, we stand at another critical juncture where populist and globalist forces must find common ground for America to thrive. The Unity Coalition serves as the vital hinge connecting these perspectives, creating space for productive dialogue and collaborative action.
-      </p>
+    <section class="translucent-blue"> <!-- Alternating color -->
+      <div class="section-content"> <!-- Wrap content -->
+          <h2>Understanding Our Historical Moment</h2>
+          <div class="content-with-image"> <!-- Use flex container for layout -->
+             <div class="section-image" style="max-width: 300px;"> <!-- Control image size -->
+                 <img src="images/historicalmoment.png" alt="Historical Moment Map" class="about-img"/> <!-- Use class -->
+             </div>
+             <div class="section-content"> <!-- Text content -->
+                  <p>
+                    America stands at a pivotal moment in its 250-year journey. Our nation has evolved through distinct eras—from Federalization (1788-1860) under Washington to Lincoln's Industrialization era (1860-1932), Roosevelt's Globalization period (1932-2016), and now into the Informationalization age that began taking shape in 2016.
+                  </p>
+                  <p>
+                    Each transition has brought profound realignments in our political landscape, with parties transforming to address the challenges of their time. Today, we stand at another critical juncture where populist and globalist forces must find common ground for America to thrive. The Unity Coalition serves as the vital hinge connecting these perspectives, creating space for productive dialogue and collaborative action.
+                  </p>
+             </div>
+          </div>
+      </div>
     </section>
 
-    <!-- 10-slide presentation with audio -->
-       <!-- 10-slide presentation with audio -->
-  <!-- Home page video (click-to-toggle-audio) -->
-    <section class="translucent-blue">
-      <h2>Unity Coalition Dynamics</h2>
-      <video
-        class="home-video"
-        src="slidevideo.mp4"
-        autoplay
-        loop
-        muted
-        playsinline
-        poster="images/homepage.png"
-      >
-        Sorry, your browser doesn't support embedded videos.
-      </video>
+    <!-- Unity Coalition Dynamics Video Section -->
+    <section class="translucent-red"> <!-- Alternating color -->
+       <div class="section-content">
+          <h2>Unity Coalition Dynamics</h2>
+          <p class="center-text" style="margin-bottom: 20px;">Explore the dynamics and principles driving our coalition.</p> <!-- Added context -->
+          <!-- Updated Video Structure -->
+          <div class="video-wrapper">
+              <!-- IMPORTANT: Verify poster path is correct -->
+              <img src="images/homepage.png" alt="Video preview" class="video-preview"> <!-- Poster as preview -->
+              <button class="play-button" aria-label="Play Video">
+                  <span class="play-icon">▶</span>
+              </button>
+              <div class="video-container">
+                  <video class="about-video" playsinline controls poster="images/homepage.png"> <!-- Added controls for accessibility -->
+                      <!-- IMPORTANT: Verify this path is correct relative to about.html -->
+                      <!-- Example: If video is in root: src="slidevideo.mp4" -->
+                      <!-- Example: If video is in videos folder: src="videos/slidevideo.mp4" -->
+                      <source src="slidevideo.mp4" type="video/mp4">
+                      Sorry, your browser doesn't support embedded videos.
+                  </video>
+              </div>
+          </div>
+       </div>
     </section>
-  </main>
-    
-  
+
     <!-- The Path Forward -->
-    <section class="translucent-blue">
-      <h2>The Path Forward: Our 30-Year Vision</h2>
-      <p>
-        The Unity Coalition operates with both immediate action and long-term vision. Our strategic timeline reflects our commitment to steady, deliberate progress:
-      </p>
-      <ul style="margin-left: 20px; margin-bottom: 15px;">
-        <li><strong>2025:</strong> Focus on agenda refinement, recruitment, cultural development, and infrastructure building</li>
-        <li><strong>2026:</strong> Run our first slate of independent candidates in strategically selected districts</li>
-        <li><strong>2027-2028:</strong> Collaborate with populist Republicans to influence party reform</li>
-        <li><strong>2029-2032:</strong> Work with globalist Democrats to advance international cooperation frameworks</li>
-        <li><strong>2033-2055:</strong> Foster unified independents' collaboration with transformed Republican and Democratic parties</li>
-      </ul>
-      <p>
-        This methodical approach ensures that our coalition builds sustainable momentum while fostering the gradual evolution of America's political landscape toward greater cooperation, effectiveness, and representation.
-      </p>
+    <section class="translucent-blue"> <!-- Alternating color -->
+     <div class="section-content">
+        <h2>The Path Forward: Our 30-Year Vision</h2>
+        <p>
+          The Unity Coalition operates with both immediate action and long-term vision. Our strategic timeline reflects our commitment to steady, deliberate progress:
+        </p>
+        <ul> <!-- Use class styling -->
+          <li><strong>2025:</strong> Focus on agenda refinement, recruitment, cultural development, and infrastructure building</li>
+          <li><strong>2026:</strong> Run our first slate of independent candidates in strategically selected districts</li>
+          <li><strong>2027-2028:</strong> Collaborate with populist Republicans to influence party reform</li>
+          <li><strong>2029-2032:</strong> Work with globalist Democrats to advance international cooperation frameworks</li>
+          <li><strong>2033-2055:</strong> Foster unified independents' collaboration with transformed Republican and Democratic parties</li>
+        </ul>
+        <p>
+          This methodical approach ensures that our coalition builds sustainable momentum while fostering the gradual evolution of America's political landscape toward greater cooperation, effectiveness, and representation.
+        </p>
+     </div>
     </section>
-  </main>
 
+    <!-- ======================= -->
+    <!-- NEW: About the Founder Section -->
+    <!-- ======================= -->
+    <section class="founder-section translucent-red"> <!-- Alternating color -->
+        <div class="section-content">
+            <h2>About the Founder</h2>
+            <div class="founder-content">
+                 <!-- IMPORTANT: Verify image path is correct -->
+                <img src="images/founderimage.png" alt="Patrick Clerkin, Founder of Unity Coalition" class="founder-img">
+                <div class="founder-text">
+                    <p>
+                        Patrick Clerkin’s path to establishing the Unity Coalition emerged
+                        from a unique combination of technical expertise and civic engagement.
+                        His journey from mechanical engineer to community organizer has been
+                        marked by consistent efforts to bridge divides and foster collaboration.
+                    </p>
+                    <p>
+                        Through extensive cross-country travels, local political involvement,
+                        and leadership in grassroots initiatives, Patrick developed a deep
+                        understanding of America’s challenges at both local and national levels.
+                        This experience shaped his vision for creating a platform where
+                        reform-minded citizens can effectively work together beyond partisan
+                        boundaries to achieve lasting positive change.
+                   </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  </main> <!-- Close main content -->
+
+  <!-- FOOTER -->
   <footer>
     <div class="footer-links">
       <a href="gallery.html">Gallery</a>
@@ -196,13 +210,13 @@
       <a href="contact.html">Contact</a>
     </div>
     <div class="footer-logos">
-      <a href="https://www.mightynetworks.com/">
+      <a href="https://www.mightynetworks.com/" target="_blank" rel="noopener noreferrer">
         <img src="images/mightylogo.png" alt="Mighty Networks Logo" />
       </a>
-      <a href="#">
+      <a href="#" target="_blank" rel="noopener noreferrer"> <!-- Add X link -->
         <img src="images/xlogo.png" alt="X Logo" />
       </a>
-      <a href="#">
+      <a href="#" target="_blank" rel="noopener noreferrer"> <!-- Add Facebook link -->
         <img src="images/facebooklogo.png" alt="Facebook Logo" />
       </a>
     </div>
