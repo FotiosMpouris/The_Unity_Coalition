@@ -3,88 +3,111 @@
 
 /* =========================================================
    1. Basic Resets & Colors
-   - Resets for margin, padding, and box-sizing
-   - Sets global font family and line height
-   - Defines color variables in :root with dark mode variant
-   - Sets body background and link styling
    ========================================================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+html {
+  scroll-behavior: smooth; /* Enable smooth scrolling for anchor links */
+}
 html, body {
-  overflow-x: hidden;
+  overflow-x: hidden; /* Prevent horizontal scroll */
   font-family: 'Open Sans', Arial, sans-serif;
   line-height: 1.6;
 }
 :root {
   --white: #ffffff;
-  --blue: #1c2951;
-  --red: #b22222;
+  --blue: #1c2951; /* Primary Blue */
+  --red: #b22222; /* Primary Red */
   --black: #000000;
   --light-border: #ccc;
-  --cyan-63C5DA: #63C5DA;
-  --gold: #FFD700;
+  --cyan-63C5DA: #63C5DA; /* Accent Cyan */
+  --gold: #FFD700; /* Accent Gold */
+  --light-gray-bg: #f8f8f8; /* Subtle background */
+  --text-light: #333;
+  --text-dark: #ddd;
+  --translucent-blue-bg-light: rgba(28, 41, 81, 0.1); /* Adjusted opacity */
+  --translucent-red-bg-light: rgba(178, 34, 34, 0.1); /* Adjusted opacity */
+  --translucent-blue-bg-dark: rgba(99, 197, 218, 0.2); /* Dark mode blue bg */
+  --translucent-red-bg-dark: rgba(178, 34, 34, 0.3); /* Dark mode red bg */
+  --header-height: 82px; /* Approx height: top banner + header + borders */
 }
 
 /* Dark mode variant */
 [data-theme="dark"] {
-  --white: #1c2951;
-  --blue: #ffffff;
-  --red: #b22222;
-  --black: #ffffff;
-  --light-border: #555;
-  --cyan-63C5DA: #63C5DA;
-  --gold: #FFD700;
+  --white: #121a33; /* Darker background for dark mode */
+  --blue: #ffffff; /* Inverted: Text/Accent */
+  --red: #e06666; /* Lighter red for dark mode */
+  --black: #ffffff; /* Inverted: Text */
+  --light-border: #444; /* Darker border */
+  --cyan-63C5DA: #87ceeb; /* Lighter cyan */
+  --gold: #ffd700; /* Gold remains same */
+  --light-gray-bg: #2a2a2a;
+  --text-light: #ddd;
+  --text-dark: #333;
+  --translucent-blue-bg-light: var(--translucent-blue-bg-dark);
+  --translucent-red-bg-light: var(--translucent-red-bg-dark);
 }
 
+/* ADD PADDING-TOP TO BODY TO PUSH CONTENT DOWN */
 body {
-  background-color: var(--white);
-  color: #333;
+    padding-top: var(--header-height); /* Push all content down */
+    background-color: var(--white);
+    color: var(--text-light);
 }
-[data-theme="dark"] body {
-  background-color: var(--white);
-  color: #ddd;
-}
+
 
 /* Global link styling */
 a {
   color: var(--blue);
   text-decoration: none;
   font-weight: normal;
-  transition: color 0.3s ease, transform 0.2s ease;
+  transition: color 0.3s ease; /* Removed transform for less jumpiness */
 }
 a:hover {
   color: var(--red);
-  transform: scale(1.05);
 }
 
 /* Headings with Montserrat */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
+  color: var(--text-light); /* Ensure headings follow theme color */
 }
 h1 {
-  font-size: 3rem;
+  font-size: 2.8rem; /* Slightly adjusted */
   text-align: center;
+  margin-bottom: 20px; /* Added margin */
 }
 h2 {
   font-size: 2rem;
   text-align: center;
   border-bottom: 2px solid var(--red);
-  padding-bottom: 5px;
-  margin-bottom: 15px;
+  padding-bottom: 8px; /* Increased padding */
+  margin-bottom: 25px; /* Increased margin */
+  display: inline-block; /* Allows centering with auto margins if needed */
+  width: auto; /* Don't force full width */
+  max-width: 90%; /* Prevent overflow */
 }
+h3 {
+    font-size: 1.5rem; /* Larger h3 */
+    margin-bottom: 15px;
+    color: var(--blue); /* Use primary blue */
+}
+[data-theme="dark"] h3 {
+    color: var(--cyan-63C5DA); /* Use cyan in dark mode */
+}
+
 @media (max-width: 768px) {
   h1 { font-size: 2rem; }
-  h2 { font-size: 1.6rem; }
+  h2 { font-size: 1.6rem; margin-bottom: 20px; }
+  h3 { font-size: 1.3rem; }
 }
 
 /* =========================================================
    Dark Mode Toggle Button
-   - Now uses moon emoji, positioned in nav-links on desktop
-   - Adjusted for mobile to avoid overlap
    ========================================================= */
 .theme-toggle {
   background: none;
@@ -93,14 +116,26 @@ h2 {
   cursor: pointer;
   padding: 5px;
   color: var(--blue);
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, transform 0.2s ease; /* Add transform */
 }
 .theme-toggle::before {
-  content: "🌙"; /* Half-moon emoji */
+  content: "🌙"; /* Moon emoji */
 }
 .theme-toggle:hover {
   color: var(--gold);
+  transform: scale(1.1); /* Add hover effect */
 }
+/* Apply dark mode icon */
+[data-theme="dark"] .theme-toggle::before {
+    content: "☀️"; /* Sun emoji */
+}
+[data-theme="dark"] .theme-toggle {
+    color: var(--gold); /* Gold sun */
+}
+[data-theme="dark"] .theme-toggle:hover {
+    color: var(--white);
+}
+
 
 /* Desktop toggle visibility */
 .nav-links .theme-toggle {
@@ -120,10 +155,11 @@ h2 {
   .theme-toggle.mobile-only {
     display: block;
     position: absolute;
-    top: 60px; /* Below hamburger */
-    right: 20px;
-    font-size: 1rem;
+    top: 55px; /* Adjusted position */
+    right: 65px; /* Position next to hamburger */
+    font-size: 1.1rem; /* Slightly larger */
     padding: 3px;
+    z-index: 1001; /* Ensure it's above overlay */
   }
 }
 
@@ -134,26 +170,23 @@ h2 {
   background-color: var(--red);
   color: #fff;
   text-align: center;
-  padding: 10px;
+  padding: 8px 10px; /* Slightly reduced padding */
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 1px;
-  font-size: 1rem;
+  font-size: 0.9rem; /* Slightly reduced font size */
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
-}
-[data-theme="dark"] .top-banner {
-  background-color: var(--red);
-  color: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Add subtle shadow */
 }
 
 @media (max-width: 768px) {
   .top-banner {
-    font-size: 0.9rem;
-    padding: 8px;
+    font-size: 0.8rem;
+    padding: 6px 8px;
   }
 }
 
@@ -162,7 +195,7 @@ h2 {
    ========================================================= */
 header {
   position: fixed;
-  top: 36px;
+  top: 34px; /* Adjusted for slightly smaller top banner */
   left: 0;
   right: 0;
   z-index: 999;
@@ -171,25 +204,29 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 20px;
-  transition: background-color 0.3s ease;
+  padding: 8px 20px; /* Reduced padding */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Add shadow */
 }
 [data-theme="dark"] header {
-  background-color: var(--white);
+  background-color: var(--white); /* Dark bg */
   border-bottom-color: var(--light-border);
+  box-shadow: 0 2px 5px rgba(255,255,255,0.1);
 }
 
 @media (min-width: 769px) {
   header {
-    padding: 20px 20px;
+    padding: 10px 30px; /* Adjusted padding */
   }
 }
 
+/* Transparent header on mobile scroll */
 header.mobile-scrolled {
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.85); /* Less transparent */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 [data-theme="dark"] header.mobile-scrolled {
-  background-color: rgba(28, 41, 81, 0.3);
+  background-color: rgba(18, 26, 51, 0.85); /* Match dark bg */
 }
 
 /* Logo and logo text grouping */
@@ -198,16 +235,13 @@ header.mobile-scrolled {
   align-items: center;
 }
 .logo {
-  max-height: 70px;
+  max-height: 60px; /* Slightly smaller logo */
   margin-right: 10px;
 }
 .logo-text {
-  font-size: 1.5rem;
-  font-weight: 300;
-  color: var(--black);
-}
-[data-theme="dark"] .logo-text {
-  color: var(--black);
+  font-size: 1.4rem; /* Slightly smaller text */
+  font-weight: 400; /* Lighter weight */
+  color: var(--text-light);
 }
 
 /* Navigation links (desktop) */
@@ -223,21 +257,40 @@ header.mobile-scrolled {
 }
 .nav-links a, .nav-links button {
   text-transform: uppercase;
-  font-size: 0.9rem;
+  font-size: 0.85rem; /* Smaller font */
+  padding: 5px 0; /* Add padding for hover effect */
+  position: relative;
+  color: var(--text-light);
+  background: none; /* Ensure no bg */
+  border: none; /* Ensure no border */
+}
+.nav-links a::after { /* Underline effect */
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--red);
+    transition: width 0.3s ease;
+}
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    width: 100%;
 }
 .nav-links a.active {
   font-weight: 700;
-  background-color: rgba(178, 34, 34, 0.9);
-  color: var(--white);
-  padding: 4px 8px;
-  border-radius: 4px;
+  color: var(--red); /* Highlight active link color */
+  background-color: transparent; /* Remove background */
+  padding: 5px 0; /* Consistent padding */
+  border-radius: 0; /* Remove border radius */
 }
 
 /* Header buttons (desktop) */
 .header-buttons {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 15px; /* Increased gap */
 }
 @media (max-width: 768px) {
   .header-buttons {
@@ -246,10 +299,13 @@ header.mobile-scrolled {
 }
 .header-buttons a {
   text-transform: uppercase;
-  font-size: 0.9rem;
-  padding: 8px 12px;
-  border: 2px solid var(--blue);
+  font-size: 0.85rem;
+  padding: 8px 15px; /* Adjusted padding */
+  border: 2px solid; /* Use border shorthand */
+  border-radius: 4px; /* Add radius */
   transition: all 0.3s ease;
+  font-weight: 600; /* Slightly bolder */
+  text-align: center;
 }
 
 #shop-btn {
@@ -261,17 +317,34 @@ header.mobile-scrolled {
   background-color: var(--white);
   color: var(--blue);
 }
+[data-theme="dark"] #shop-btn {
+    background-color: var(--cyan-63C5DA);
+    color: #1c2951; /* Dark text on cyan */
+    border-color: var(--cyan-63C5DA);
+}
+[data-theme="dark"] #shop-btn:hover {
+    background-color: var(--white); /* Dark bg */
+    color: var(--cyan-63C5DA);
+}
+
 
 #contribute-btn {
   background-color: var(--red);
   border-color: var(--red);
   color: var(--white);
-  font-size: 1rem;
-  font-weight: bold;
 }
 #contribute-btn:hover {
-  background-color: transparent;
+  background-color: var(--white);
   color: var(--red);
+}
+[data-theme="dark"] #contribute-btn {
+    background-color: var(--red);
+    border-color: var(--red);
+    color: var(--white);
+}
+[data-theme="dark"] #contribute-btn:hover {
+    background-color: var(--white); /* Dark bg */
+    color: var(--red);
 }
 
 /* =========================================================
@@ -280,14 +353,20 @@ header.mobile-scrolled {
 .hamburger {
   display: none;
   flex-direction: column;
-  gap: 4px;
+  gap: 5px; /* Increased gap */
   cursor: pointer;
+  z-index: 1002; /* Above overlay */
+  padding: 5px; /* Easier to click */
+  position: absolute; /* Position explicitly */
+  top: 15px;
+  right: 15px;
 }
 .hamburger div {
-  width: 25px;
+  width: 28px; /* Slightly wider */
   height: 3px;
   background-color: var(--blue);
   transition: background-color 0.3s ease;
+  border-radius: 1px; /* Rounded ends */
 }
 @media (max-width: 768px) {
   .hamburger {
@@ -296,173 +375,282 @@ header.mobile-scrolled {
 }
 
 .hamburger.scrolled-mobile div {
-  background-color: var(--red);
+  background-color: var(--red); /* Keep red on scroll */
 }
 [data-theme="dark"] .hamburger div {
-  background-color: var(--cyan-63C5DA);
+  background-color: var(--cyan-63C5DA); /* Use cyan in dark */
 }
 
 /* =========================================================
-   4. Mobile Nav Overlay (partial coverage)
+   4. Mobile Nav Overlay
    ========================================================= */
 .mobile-nav-overlay {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgba(28, 41, 81, 0.9);
-  padding: 30px;
-  border-radius: 10px;
+  top: var(--header-height); /* Position below header */
+  left: 0;
+  width: 100%;
+  height: calc(100vh - var(--header-height)); /* Full height below header */
+  background-color: rgba(28, 41, 81, 0.98); /* More opaque */
+  padding: 30px 20px;
   text-align: center;
-  display: none;
-  z-index: 9999;
-  min-width: 250px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease;
+  display: none; /* Hidden by default */
+  flex-direction: column; /* Stack links vertically */
+  align-items: center; /* Center links */
+  justify-content: flex-start; /* Start links from top */
+  z-index: 998; /* Below header but above content */
+  opacity: 0; /* Start invisible */
+  transform: translateY(-20px); /* Start slightly up */
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 .mobile-nav-overlay.show {
-  display: block;
-  transform: translate(-50%, -50%);
+  display: flex; /* Use flex to enable centering */
+  opacity: 1;
+  transform: translateY(0);
 }
 [data-theme="dark"] .mobile-nav-overlay {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(18, 26, 51, 0.98); /* Match dark header bg */
 }
 
 .mobile-nav-overlay a {
   display: block;
-  background-color: rgba(178, 34, 34, 0.7);
-  color: #fff;
+  background-color: transparent; /* No background */
+  color: #fff; /* White text */
   margin: 15px 0;
-  padding: 12px;
+  padding: 10px 0; /* Padding top/bottom only */
   text-transform: uppercase;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-  border-radius: 4px;
-  font-weight: bold;
+  text-shadow: none; /* Remove shadow */
+  border: none; /* Remove border */
+  border-radius: 0; /* Remove radius */
+  font-weight: 600; /* Slightly bolder */
+  font-size: 1.1rem; /* Larger font */
+  width: 80%; /* Control width */
+  max-width: 300px; /* Max width */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3); /* Subtle separator */
+  transition: color 0.3s ease;
 }
 .mobile-nav-overlay a:hover,
 .mobile-nav-overlay a.active {
-  background-color: rgba(178, 34, 34, 0.9);
+  background-color: transparent;
+  color: var(--gold); /* Highlight with gold */
+  border-bottom-color: var(--gold); /* Highlight separator */
+}
+.mobile-nav-overlay a:last-child {
+    border-bottom: none; /* Remove border from last link */
 }
 
 /* =========================================================
-   5. Main / Section Spacing
+   5. Main / Section Spacing & Structure
    ========================================================= */
-main, section {
-  margin-top: 110px;
-  padding: 20px;
+main {
+  /* REMOVE default top margin, body padding handles it */
+  margin-top: 0;
+  padding: 30px 20px; /* Keep general padding */
+}
+section {
+  padding: 40px 20px; /* Increased section padding */
+  margin-bottom: 0; /* Remove default bottom margin for sections */
+  /* Use padding for spacing */
 }
 
+/* Add specific spacing between major content blocks/sections */
+.translucent-blue + .translucent-red,
+.translucent-red + .translucent-blue,
+.translucent-blue + .translucent-blue,
+.translucent-red + .translucent-red,
+section + section, /* General spacing between sections */
+.home-banner-container + .map-container, /* Space below hero banner */
+.map-container + .join-movement-section, /* Space below map/video */
+.join-movement-section + main, /* Space below join section */
+main section + section, /* Space between sections inside main */
+main section + .section-black, /* Space before black donation section */
+section + footer /* Space before footer */
+{
+    margin-top: 20px; /* Space between consecutive blocks */
+}
+
+
+/* Home page specific spacing */
 .home-banner-container {
-  margin-top: 150px;
+  /* REMOVE margin-top from here */
+  margin-top: 0;
+  padding-top: 0;
+  margin-bottom: 0; /* Reset bottom margin */
 }
 
-@media (max-width: 768px) {
-  .home-banner-container {
-    margin-top: 120px;
-  }
+/* Reset map/video container margin */
+.map-container {
+    /* Spacing handled by '+' selector above */
+    margin-top: 20px;
+    margin-bottom: 0;
+    /* Keep other map-container styles */
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+    background: transparent;
+    overflow: hidden;
+    border: 3px solid var(--blue);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
 }
+[data-theme="dark"] .map-container {
+    border-color: var(--cyan-63C5DA); /* Cyan border in dark mode */
+}
+
+/* Join section margin */
+.join-movement-section {
+    margin-top: 0; /* Ensure it touches the map-container */
+    padding: 0;
+    background-color: var(--light-gray-bg);
+}
+
+/* Main content spacing on home page (inside <main>) */
+body.home-page main {
+     padding-top: 20px; /* Add space before first section IN main */
+     margin-top: 0; /* Ensure main itself has no top margin */
+}
+
 
 .banner-desktop, .banner-mobile {
   display: block;
   width: 100%;
   height: auto;
-  margin-top: 0;
-  padding-top: 0;
 }
 
+/* Mobile adjustments */
 @media (max-width: 768px) {
+  body {
+      padding-top: var(--header-height); /* Apply padding on mobile too */
+  }
+  main {
+      padding: 20px 15px;
+  }
+  section {
+      padding: 30px 15px;
+  }
   .banner-desktop {
     display: none;
   }
   .banner-mobile {
     display: block;
-    margin-top: 0;
   }
   .home-banner-container {
-    margin-top: 90px;
-    padding-top: 0;
+    margin-top: 0; /* Ensure no margin */
   }
+   .map-container {
+    margin-top: 20px;
+    border-width: 2px;
+  }
+   /* Adjust spacing between blocks on mobile if needed */
+    .translucent-blue + .translucent-red,
+    .translucent-red + .translucent-blue,
+    .translucent-blue + .translucent-blue,
+    .translucent-red + .translucent-red,
+    section + section,
+    .home-banner-container + .map-container,
+    .map-container + .join-movement-section,
+    .join-movement-section + main,
+    main section + section,
+    main section + .section-black,
+    section + footer
+    {
+        margin-top: 15px; /* Slightly reduce spacing on mobile */
+    }
 }
 
 /* =========================================================
-   6. Translucent Boxes (Now Cards)
+   6. Translucent Boxes / Cards
    ========================================================= */
-.translucent-blue {
-  background-color: rgba(28, 41, 81, 0.15);
+.translucent-blue,
+.translucent-red {
+  background-color: var(--translucent-blue-bg-light);
   padding: 30px;
   border-radius: 8px;
-  margin-bottom: 5px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-[data-theme="dark"] .translucent-blue {
-  border: 1px solid var(--light-border);
-  box-shadow: 0 4px 12px rgba(255, 255, 0, 1);
+  /* Remove margin-bottom here, handled by '+' selector above */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Softer shadow */
+  border: 1px solid rgba(0,0,0,0.05); /* Subtle border */
 }
 .translucent-red {
-  background-color: rgba(178, 34, 34, 0.15);
-  padding: 30px;
-  border-radius: 8px;
-  margin-bottom: 5px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: var(--translucent-red-bg-light);
 }
 
+/* Dark Mode Adjustments */
 [data-theme="dark"] .translucent-blue {
-  background-color: rgba(99, 197, 218, 0.3);
+  background-color: var(--translucent-blue-bg-dark);
+  border-color: rgba(255,255,255,0.1);
+  box-shadow: none; /* Remove potential yellow glow */
 }
 [data-theme="dark"] .translucent-red {
-  background-color: rgba(178, 34, 34, 0.4);
+  background-color: var(--translucent-red-bg-dark);
+  border-color: rgba(255,255,255,0.1);
+  box-shadow: none;
 }
 
-/* Starlings Section Specific Styling */
-.starlings-content {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  gap: 30px;
-  flex-wrap: nowrap;
-}
-.starlings-img {
-  max-width: 300px;
-  width: 100%;
-  flex-shrink: 0;
-}
-@media (max-width: 768px) {
-  .starlings-content {
-    flex-direction: column;
-    flex-wrap: wrap;
-  }
-  .starlings-img {
-    max-width: 100%;
-  }
-}
-/* Starlings Section End Specific Styling */
-/* Center text in sections */
-/* Section content styling */
+/* Section content base */
 .section-content {
-  text-align: center;
+  max-width: 900px; /* Limit content width */
+  margin: 0 auto; /* Center content */
 }
 
-.content-with-image .section-content {
-  text-align: center !important;
+/* Fix text alignment within sections */
+.section-content p,
+.section-content ul,
+.section-content ol,
+.section-content table,
+/* Target divs likely containing text, exclude structural/layout divs */
+.section-content div:not([class*='grid']):not([class*='container']):not([class*='wrapper']):not([class*='content']):not([class*='logos']):not([class*='buttons']) {
+  text-align: left; /* Default to left align */
+  margin-bottom: 15px; /* Consistent spacing */
+}
+.section-content > p:last-child,
+.section-content > ul:last-child,
+.section-content > ol:last-child,
+.section-content > table:last-child,
+/* Adjust last-child selection for nested elements */
+.section-content > div:not([class*='grid']):not([class*='container']):not([class*='wrapper']):not([class*='content']):not([class*='logos']):not([class*='buttons']):last-of-type > *:last-child {
+    margin-bottom: 0; /* Remove bottom margin from last element */
 }
 
-.content-with-image .section-content h2 {
-  text-align: center !important;
-  width: 100%;
-  border-bottom: 2px solid var(--red);
-  padding-bottom: 5px;
-  margin: 0 auto 15px auto;
+
+/* Center specific elements if needed */
+.section-content .center-text {
+    text-align: center;
+}
+.section-content .center-text p,
+.section-content .center-text ul,
+.section-content .center-text ol {
+    text-align: center; /* Override left-align if centered class is used */
+}
+.section-content .center-text ul,
+.section-content .center-text ol {
+    display: inline-block; /* Allow centering of list block */
+    text-align: left; /* Keep list item text left-aligned */
 }
 
-.content-with-image .section-content p {
-  text-align: center !important;
-  margin-bottom: 12px;
-}
 
-.content-with-image .section-content h2 {
-  text-align: center;
-  width: 100%;
-  margin-bottom: 15px;
+/* List Styling (Desktop) */
+@media (min-width: 769px) {
+  .section-content ul, .section-content ol {
+    padding-left: 25px; /* Indent lists */
+    margin-left: 10px; /* Add slight margin */
+    list-style-position: outside; /* Ensure bullets are outside */
+  }
+  .section-content li {
+    margin-bottom: 10px; /* Space between items */
+    line-height: 1.7; /* Improve readability */
+  }
+}
+/* Mobile list adjustments */
+@media (max-width: 768px) {
+   .section-content ul, .section-content ol {
+        padding-left: 20px;
+        margin-left: 5px;
+    }
+    .section-content li {
+        margin-bottom: 8px;
+    }
 }
 
 /* =========================================================
@@ -471,1250 +659,391 @@ main, section {
 .home-banner-container {
   position: relative;
   width: 100%;
-  margin-bottom: 20px;
-  padding: 0;
 }
-.home-banner-container img {
+.home-banner-container img.banner-desktop,
+.home-banner-container img.banner-mobile {
   width: 100%;
   display: block;
   height: auto;
+  object-fit: cover; /* Ensure banner covers area */
+  max-height: 60vh; /* Limit banner height */
 }
 
 .home-banner-overlay {
   position: absolute;
-  top: 60%;
-  left: 50%;
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
   transform: translate(-50%, -50%);
   text-align: center;
-  color: var(--white);
+  color: var(--white); /* White text for overlay */
   width: 90%;
-  max-width: 600px;
+  max-width: 700px; /* Increase max width */
+  padding: 20px;
+  background-color: rgba(28, 41, 81, 0.6); /* Semi-transparent blue background */
+  border-radius: 8px;
+}
+[data-theme="dark"] .home-banner-overlay {
+   background-color: rgba(18, 26, 51, 0.7); /* Darker overlay */
 }
 .home-banner-overlay h1 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  background: rgba(255, 255, 255, 0.8);
-  color: var(--black);
-  padding: 10px;
-  border-radius: 4px;
+  font-size: 2.5rem; /* Adjusted size */
+  margin-bottom: 15px;
+  color: var(--white); /* Ensure white */
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* Add shadow */
+  background: none; /* Remove specific background */
+  padding: 0;
+  border-radius: 0;
+  border-bottom: none; /* Remove heading border */
 }
 .home-banner-overlay blockquote {
   font-style: italic;
-  background: rgba(255, 255, 255, 0.8);
-  color: var(--black);
-  padding: 10px;
-  border-left: 5px solid var(--red);
+  font-size: 1.2rem; /* Adjusted size */
+  background: none; /* Remove specific background */
+  color: var(--white); /* Ensure white */
+  padding: 10px 0;
+  border-left: none; /* Remove border */
   margin-bottom: 20px;
-}
-[data-theme="dark"] .home-banner-overlay h1,
-[data-theme="dark"] .home-banner-overlay blockquote {
-  background: rgba(28, 41, 81, 0.8);
-  color: #fff !important; /* Ensure white text in dark mode */
+  border-bottom: 1px solid rgba(255,255,255,0.4); /* Subtle line */
+  display: inline-block;
 }
 .founder-image {
-  max-width: 150px;
-  margin: 10px auto 20px auto;
+  max-width: 120px; /* Adjusted size */
+  border-radius: 50%; /* Make it round */
+  border: 3px solid var(--white);
+  margin: 10px auto 25px auto; /* Adjusted margin */
   display: block;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
 }
 
 .hero-buttons-group {
   display: flex;
-  gap: 10px;
+  gap: 15px; /* Increased gap */
   justify-content: center;
-  margin-top: 10px;
+  margin-top: 20px; /* More space above buttons */
 }
 .hero-buttons-group a {
   display: inline-block;
-  padding: 10px 18px;
-  background-color: var(--blue);
-  color: #fff;
+  padding: 12px 25px; /* Larger padding */
   text-transform: uppercase;
-  border-radius: 4px;
-  border: 2px solid var(--blue);
+  border-radius: 5px; /* Slightly more rounded */
+  border: 2px solid; /* Defined border */
   font-weight: bold;
+  min-width: 160px; /* Ensure same width */
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  color: #fff; /* Default text color */
 }
 .hero-buttons-group a:hover {
-  background: linear-gradient(to right, var(--blue), var(--gold));
-  border-color: var(--gold);
+  transform: translateY(-2px); /* Lift effect */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
 .hero-volunteer-btn {
   background-color: var(--blue);
   border-color: var(--blue);
-  color: #fff; /* Ensure text is visible in light mode */
-  padding: 12px 24px; /* Increase padding for more space */
-  min-width: 180px; /* Set a minimum width to prevent cramping */
-  text-align: center; /* Center the text within the button */
-  display: inline-block; /* Ensure proper display */
+  /* color: #fff; Inherited */
+}
+.hero-volunteer-btn:hover {
+  background-color: var(--white);
+  color: var(--blue);
 }
 .hero-contribute-btn {
   background-color: var(--red);
   border-color: var(--red);
+   /* color: #fff; Inherited */
+}
+.hero-contribute-btn:hover {
+  background-color: var(--white);
+  color: var(--red);
 }
 [data-theme="dark"] .hero-volunteer-btn {
-  background-color: var(--red);
-  border-color: var(--red);
-  color: #fff; /* Ensure text is visible in dark mode */
+  background-color: var(--cyan-63C5DA);
+  border-color: var(--cyan-63C5DA);
+  color: #1c2951; /* Dark text */
+}
+[data-theme="dark"] .hero-volunteer-btn:hover {
+  background-color: var(--white); /* Dark bg */
+  color: var(--cyan-63C5DA);
 }
 [data-theme="dark"] .hero-contribute-btn {
   background-color: var(--red);
   border-color: var(--red);
-  color: #fff;
-}
-.hero-contribute-btn:hover {
-  background: linear-gradient(to right, var(--red), var(--gold));
   color: var(--white);
 }
-
-@media (max-width: 768px) {
-  .home-banner-overlay {
-    top: 70%;
-    width: 90%;
-  }
-  .home-banner-overlay h1 {
-    font-size: 1.6rem;
-    padding: 8px;
-    margin-bottom: 6px;
-  }
-  .home-banner-overlay blockquote {
-    font-size: 0.85rem;
-    padding: 8px;
-    margin-bottom: 6px;
-  }
-  .home-banner-overlay h1,
-  .home-banner-overlay blockquote {
-    background: rgba(255, 255, 255, 0.9);
-  }
-  [data-theme="dark"] .home-banner-overlay h1,
-  [data-theme="dark"] .home-banner-overlay blockquote {
-    background: rgba(28, 41, 81, 0.9);
-    color: #fff !important;
-  }
-  .founder-image {
-    max-width: 80px;
-    margin: 3px auto 8px auto;
-  }
-  .hero-buttons-group a {
-    padding: 8px 14px;
-    font-size: 0.9rem;
-  }
-}
-@media (min-width: 769px) {
-  .home-banner-overlay {
-    max-width: 650px;
-  }
-  .home-banner-overlay h1 {
-    font-size: 2.9rem;
-  }
-  .home-banner-overlay blockquote {
-    font-size: 1.5rem;
-  }
-  .founder-image {
-    max-width: 225px;
-  }
-}
-
-/* =========================================================
-   Centered Logo & Map Overlap 
-   ========================================================= */
-.centered-logo-container {
-  text-align: center;
-  padding: 0;
-  margin: 0 auto;
-  position: relative;
-  z-index: 10;
-  max-width: 100%;
-  background: transparent;
-}
-.centered-logo {
-  max-width: 220px;
-  width: auto;
-  height: auto;
-  margin: 0 auto;
-  display: block;
-  position: relative;
-  z-index: 20;
-  background-color: transparent;
-  border-radius: 0;
-  box-shadow: none;
-}
-
-.centered-logo-container::before,
-.centered-logo-container::after,
-.centered-logo::before,
-.centered-logo::after {
-  content: none;
-  display: none;
-}
-
-/* =========================================================
-   Modern Volunteer Form Layout 
-   ========================================================= */
-.modern-volunteer-form .form-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  margin-bottom: 20px;
-}
-.modern-volunteer-form .form-field {
-  flex: 1;
-  min-width: 200px;
-}
-.modern-volunteer-form .form-field input,
-.modern-volunteer-form .form-field textarea {
-  width: 100%;
-  padding: 12px 15px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 1rem;
-  transition: border-color 0.3s, box-shadow 0.3s;
-}
-.modern-volunteer-form .form-field input:focus,
-.modern-volunteer-form .form-field textarea:focus {
-  border-color: var(--blue);
-  outline: none;
-  box-shadow: 0 0 5px var(--cyan-63C5DA);
-}
-.modern-volunteer-form .form-field.full-width {
-  width: 100%;
-}
-.modern-volunteer-form textarea {
-  width: 100%;
-  height: 120px;
-  resize: vertical;
-}
-.modern-volunteer-form .three-column .form-field {
-  min-width: 100px;
-}
-
-.checkbox-container {
-  margin: 25px 0;
-}
-.modern-checkbox {
-  display: flex;
-  align-items: flex-start;
-  margin-bottom: 15px;
-  cursor: pointer;
-}
-.modern-checkbox input[type="checkbox"] {
-  margin-top: 3px;
-  margin-right: 10px;
-  min-width: 16px;
-  height: 16px;
-}
-.checkbox-text {
-  font-size: 0.95rem;
-  line-height: 1.4;
-}
-
-.modern-submit-btn {
-  background-color: var(--blue);
-  color: var(--white);
-  border: none;
-  border-radius: 4px;
-  padding: 12px 30px;
-  font-size: 1rem;
-  text-transform: uppercase;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  display: block;
-  margin: 0 auto;
-  min-width: 150px;
-}
-.modern-submit-btn:hover {
-  background: linear-gradient(to right, var(--blue), var(--gold));
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-}
-
-@media (max-width: 768px) {
-  .modern-volunteer-form .form-row {
-    flex-direction: column;
-    gap: 15px;
-  }
-  .modern-volunteer-form .form-field {
-    width: 100%;
-  }
-  .modern-volunteer-banner h2 {
-    font-size: 1.5rem;
-  }
-}
-
-/* =========================================================
-   24. Mission Images Row
-   ========================================================= */
-.mission-images-row {
-  display: flex;
-  justify-content: space-between;
-  gap: 15px;
-  margin-bottom: 20px;
-  width: 100%;
-}
-.mission-image {
-  flex: 1;
-  max-width: calc(33.333% - 10px);
-  height: auto;
-  object-fit: cover;
-}
-
-@media (max-width: 768px) {
-  .mission-images-row {
-    display: none;
-  }
-}
-
-.mission-container {
-  position: relative;
-  margin-top: 110px;
-}
-
-.mission-text-overlay {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 10;
-  width: 80%;
-  max-width: 800px;
-}
-
-.mission-images-row {
-  position: relative;
-  margin-top: 0;
-}
-
-@media (min-width: 769px) {
-  .mission-text-overlay .translucent-blue {
-    color: white;
-    background-color: rgba(28, 41, 81, 0.7);
-  }
-  .mission-text-overlay h1 {
-    color: white;
-  }
-}
-
-/* =========================================================
-   Map Container
-   ========================================================= */
-.map-container {
-  position: relative;
-  width: 100%;
-  max-width: 1000px;
-  margin: -30px auto 0;
-  padding: 0;
-  background: transparent;
-  overflow: visible;
-}
-.usa-map {
-  width: 100%;
-  display: block;
-  height: auto;
-  margin: 0 auto;
-  background: transparent;
-  border: 3px solid var(--blue);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-}
-
-/* Ensure map overlay text is white */
-.map-container > div > div {
-  background-color: rgba(28, 41, 81, 0.8);
-  color: #fff !important;
-}
-.map-container > div > div p {
-  color: #fff !important;
-}
-
-@media (max-width: 768px) {
-  .home-banner-container {
-    margin-top: 120px;
-  }
-  .centered-logo-container {
-    margin-top: 70px;
-  }
-  .centered-logo {
-    max-width: 75px;
-    margin-top: 10px;
-    margin-bottom: -15px;
-  }
-  .map-container {
-    margin-top: 40px;
-  }
-  .hero-buttons-group {
-    margin-bottom: 20px;
-  }
-}
-
-@media (max-width: 480px) {
-  .centered-logo {
-    max-width: 70px;
-  }
-}
-
-/* =========================================================
-   United We Stand Banner
-   ========================================================= */
-.united-we-stand-banner {
-  width: 100%;
-  background-color: rgba(28, 41, 81, 0.8);
-  text-align: center;
-  padding: 15px 20px;
-  margin: 0;
-  position: relative;
-  bottom: 0;
-  left: 0;
-}
-.united-we-stand-banner h2 {
-  font-size: 2.5rem;
-  color: var(--white);
-  text-transform: uppercase;
-  margin: 0;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  letter-spacing: 2px;
-  font-weight: bold;
-}
-
-@media (max-width: 768px) {
-  .centered-logo {
-    max-width: 90px;
-    margin-bottom: -20px;
-  }
-  .united-we-stand-banner {
-    padding: 10px 15px;
-    position: static;
-    bottom: auto;
-  }
-  .united-we-stand-banner h2 {
-    font-size: 1.6rem;
-  }
-}
-
-/* =========================================================
-   8. Join Our Movement Section
-   ========================================================= */
-.join-movement-section {
-  margin-top: 0;
-  padding: 0;
-}
-.join-movement-banner {
-  background-color: var(--red);
-  color: var(--white);
-  text-align: center;
-  padding: 20px;
-  width: 100%;
-}
-.join-movement-banner h2 {
-  font-size: 1.8rem;
-  margin: 0;
-  text-transform: uppercase;
-  color: var(--white);
-}
-.join-movement-form-container {
-  background-color: #fff;
-  padding: 20px;
-  text-align: center;
-}
-.join-movement-form {
-  display: inline-block;
-  text-align: left;
-}
-.join-movement-form label {
-  display: block;
-  margin-bottom: 15px;
-}
-.join-movement-form span {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-.join-movement-form input {
-  width: 100%;
-  max-width: 250px;
-  padding: 8px;
-  border: 1px solid #999;
-  border-radius: 4px;
-  transition: border-color 0.3s, box-shadow 0.3s;
-}
-.join-movement-form input:focus {
-  border-color: var(--blue);
-  box-shadow: 0 0 5px var(--cyan-63C5DA);
-}
-.join-movement-form button {
-  margin-top: 10px;
-  display: inline-block;
-  padding: 8px 15px;
-  text-transform: uppercase;
-  background-color: var(--blue);
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-.join-movement-form button:hover {
-  background: linear-gradient(to right, var(--blue), var(--gold));
-}
-
-/* Ensure join form message text is white */
-.join-movement-form-container > div:last-child {
-  background-color: var(--blue);
-  color: var(--white) !important;
-}
-.join-movement-form-container > div:last-child p {
-  color: var(--white) !important;
-}
-
-/* =========================================================
-   9. Home Page Video
-   ========================================================= */
-.home-video {
-  width: 100%;
-  max-width: 900px;
-  display: block;
-  margin: 20px auto;
-  cursor: pointer;
-  border: 2px solid #ccc;
-}
-
-/* =========================================================
-   10. Donation Section (Black-ish)
-   ========================================================= */
-/* =========================================================
-   10. Donation Section (Black-ish)
-   ========================================================= */
-.section-black {
-  width: 100%;
-  margin: 0;
-  padding: 20px;
-  background-color: rgba(0, 0, 0, 0.6);
-  color: var(--white);
-  text-align: center;
-}
-[data-theme="dark"] .section-black {
-  background-color: rgba(0, 0, 0, 0.5);
-}
-.section-black h2,
-.section-black p {
-  color: var(--white);
-}
-[data-theme="dark"] .section-black h2,
-[data-theme="dark"] .section-black p {
-  color: #fff;
-}
-.donation-logos {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 20px;
-}
-.donation-logos img {
-  max-width: 120px;
-  height: auto;
-}
-@media (max-width: 768px) {
-  .donation-logos img {
-    max-width: 80px;
-  }
-}
-/* =========================================================
-   11. About Page Top Content
-   ========================================================= */
-.about-top-content {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  gap: 30px;
-  flex-wrap: nowrap;
-}
-.about-img {
-  max-width: 300px;
-  width: 100%;
-  flex-shrink: 0;
-}
-.about-text {
-  flex: 1;
-}
-@media (max-width: 768px) {
-  .about-top-content {
-    flex-direction: column;
-    flex-wrap: wrap;
-  }
-  .about-img {
-    max-width: 100%;
-  }
-}
-.clearfix::after {
-  content: "";
-  display: block;
-  clear: both;
-}
-
-/* =========================================================
-   12. Slider (About Page)
-   ========================================================= */
-/* About Page Video */
-/* About Page Video */
-.video-wrapper {
-  position: relative;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.video-preview {
-  width: 100%;
-  display: block;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.video-container {
-  display: none;
-}
-
-.video-wrapper.playing .video-preview {
-  display: none;
-}
-
-.video-wrapper.playing .video-container {
-  display: block;
-}
-
-.about-video {
-  width: 100%;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-}
-
-.play-button {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.7);
-  border: none;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: opacity 0.3s ease;
-}
-
-.video-wrapper.playing .play-button {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.play-button:hover {
-  background-color: rgba(0, 0, 0, 0.9);
-}
-
-.play-icon {
-  color: white;
-  font-size: 24px;
-  margin-left: 5px; /* Slight offset to center the play triangle */
-}
-
-@media (max-width: 768px) {
-  .video-wrapper {
-    max-width: 100%;
-  }
-  .video-preview {
-    max-width: 100%;
-  }
-  .about-video {
-    max-width: 100%;
-  }
-  .play-button {
-    width: 50px;
-    height: 50px;
-  }
-  .play-icon {
-    font-size: 20px;
-  }
-}
-
-/* =========================================================
-   13. Projects Hero (background image)
-   ========================================================= */
-.projects-hero {
-  background: url("images/projects.png") center center / cover no-repeat;
-  padding: 60px 20px;
-  text-align: center;
-}
-
-/* Contribute Banner */
-.contribute-banner {
-  background-color: var(--red);
-  color: var(--white);
-  padding: 20px;
-  text-align: center;
-  font-size: 1.5rem;
-  text-transform: uppercase;
-  margin-bottom: 10px;
-  font-weight: bold;
-  width: 100%;
-}
-
-/* =========================================================
-   14. Get Involved Page
-   ========================================================= */
-.volunteer-banner {
-  background-color: var(--red);
-  color: var(--white);
-  padding: 20px;
-  text-align: center;
-  font-size: 1.5rem;
-  text-transform: uppercase;
-  margin-bottom: 10px;
-}
-.volunteer-form {
-  max-width: 600px;
-  margin: 0 auto;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-.volunteer-form input,
-.volunteer-form textarea {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #999;
-  border-radius: 4px;
-}
-.form-row {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-.form-row div {
-  flex: 1;
-}
-.volunteer-form button {
-  background-color: var(--blue);
-  color: var(--white);
-  padding: 10px 15px;
-  border: none;
-  cursor: pointer;
-  text-transform: uppercase;
-  margin-top: 10px;
-}
-.volunteer-form button:hover {
-  background-color: var(--red);
-}
-.checkboxes {
-  flex-direction: column;
-  align-items: flex-start;
-}
-.checkbox-label {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  margin-top: 10px;
-}
-
-.get-involved-banner {
-  margin-top: 80px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--blue); /* Darker blue for better contrast */
-  padding: 40px 20px; /* Add padding for spacing */
-  min-height: 300px; /* Increase height to accommodate content */
-}
-[data-theme="dark"] .get-involved-banner {
-  background-color: #1c2951; /* Dark blue in dark mode for contrast */
-}
-.get-involved-banner h1 {
-  font-size: 2.5rem;
-  color: #fff;
-  text-transform: uppercase;
-  margin-bottom: 20px; /* Space between heading and image */
-}
-
-.banner-image-container {
-  max-width: 100%;
-  text-align: center;
-}
-
-.banner-img {
-  max-width: 100%;
-  height: auto;
-  max-height: 150px; /* Limit the image height */
-}
-
-@media (max-width: 768px) {
-  .get-involved-banner {
-    padding: 30px 15px;
-    min-height: 250px;
-  }
-  .get-involved-banner h1 {
-    font-size: 1.8rem;
-  }
-  .banner-img {
-    max-height: 120px;
-  }
-}
-
-.involved-side-by-side {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  margin-top: 0;
-  padding: 20px;
-}
-.involved-side-by-side .involved-img {
-  max-width: 50%;
-  height: auto;
-}
-.involved-textbox {
-  background-color: rgba(28, 41, 81, 0.15); /* Match translucent-blue for consistency */
-  flex: 1;
-  padding: 30px;
-  border-radius: 6px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.involved-textbox h2 {
-  font-size: 1.8rem;
-  margin-bottom: 15px;
-  color: #333; /* Dark text for light mode */
-  border-bottom: 2px solid var(--red);
-  padding-bottom: 5px;
-}
-
-.involved-textbox p {
-  color: #333; /* Dark text for light mode */
-  margin-bottom: 15px;
-}
-
-[data-theme="dark"] .involved-textbox {
-  background-color: rgba(99, 197, 218, 0.3);
-}
-
-[data-theme="dark"] .involved-textbox h2,
-[data-theme="dark"] .involved-textbox p {
-  color: #fff; /* White text for dark mode */
-}
-
-@media (max-width: 768px) {
-  .involved-textbox {
-    padding: 20px;
-  }
-  .involved-textbox h2 {
-    font-size: 1.5rem;
-  }
-}
-@media (max-width: 768px) {
-  .involved-side-by-side {
-    flex-direction: column;
-  }
-  .involved-side-by-side .involved-img,
-  .involved-textbox {
-    max-width: 100%;
-    margin: 0;
-  }
-}
-
-/* =========================================================
-   15. Initiatives Grid (Get Involved Page)
-   ========================================================= */
-.initiatives-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  margin-top: 20px;
-}
-
-.initiatives-grid > div {
-  flex: 1;
-  min-width: 300px;
-  background-color: rgba(255, 255, 255, 0.8); /* Slight background for separation */
-  padding: 20px;
-  border-radius: 6px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  text-align: center; /* Center the content */
-}
-
-[data-theme="dark"] .initiatives-grid > div {
-  background-color: rgba(28, 41, 81, 0.3);
-}
-
-.initiatives-grid h3 {
-  font-size: 1.4rem;
-  margin-bottom: 10px;
-  color: #333; /* Dark text for light mode */
-}
-
-.initiatives-grid p {
-  color: #333; /* Dark text for light mode */
-  line-height: 1.6;
-}
-
-[data-theme="dark"] .initiatives-grid h3,
-[data-theme="dark"] .initiatives-grid p {
-  color: #fff; /* White text for dark mode */
-}
-
-@media (max-width: 768px) {
-  .initiatives-grid > div {
-    padding: 15px;
-  }
-  .initiatives-grid h3 {
-    font-size: 1.2rem;
-  }
-}
-
-/* =========================================================
-   16. Help Cards (Get Involved Page - What We Need From You)
-   ========================================================= */
-.help-card {
-  background-color: rgba(255, 255, 255, 0.8); /* Slight background for separation */
-  padding: 20px;
-  border-radius: 6px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  margin: 20px 0; /* Spacing between cards */
-  text-align: center; /* Center the content */
-}
-
-[data-theme="dark"] .help-card {
-  background-color: rgba(28, 41, 81, 0.3);
-}
-
-.help-card h3 {
-  font-size: 1.4rem;
-  margin-bottom: 10px;
-  color: #333; /* Dark text for light mode */
-}
-
-.help-card p {
-  color: #333; /* Dark text for light mode */
-  line-height: 1.6;
-}
-
-[data-theme="dark"] .help-card h3,
-[data-theme="dark"] .help-card p {
-  color: #fff; /* White text for dark mode */
-}
-
-@media (max-width: 768px) {
-  .help-card {
-    padding: 15px;
-    margin: 15px 0;
-  }
-  .help-card h3 {
-    font-size: 1.2rem;
-  }
-}
-/* =========================================================
-   15. Populism and Globalism Section (Resources Page)
-   ========================================================= */
-.populism-globalism {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  margin-top: 20px;
-}
-
-.populism-globalism > div {
-  flex: 1;
-  min-width: 300px;
-}
-
-.populism-globalism h3 {
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-  color: #333; /* Dark text for light mode */
-}
-
-.populism-globalism h4 {
-  font-size: 1.2rem;
-  margin: 20px 0 10px; /* Add spacing above and below */
-  color: #333; /* Dark text for light mode */
-}
-
-.populism-globalism ul {
-  margin-left: 20px;
-  margin-bottom: 15px;
-  color: #333; /* Dark text for light mode */
-}
-
-.populism-globalism ul li {
-  margin-bottom: 8px; /* Add spacing between list items */
-  line-height: 1.5; /* Improve readability */
-}
-
-/* Dark mode adjustments */
-[data-theme="dark"] .populism-globalism h3,
-[data-theme="dark"] .populism-globalism h4,
-[data-theme="dark"] .populism-globalism ul {
-  color: #fff; /* White text for better contrast in dark mode */
-}
-
-/* =========================================================
-   15. Gallery (Image Grid)
-   ========================================================= */
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 20px;
-  margin-top: 20px;
-}
-.gallery-grid img {
-  width: 100%;
-  height: auto;
-  border: 2px solid #ccc;
-}
-
-/* =========================================================
-   16. Projects Collaborator Grid
-   ========================================================= */
-.collaborators {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
-  margin-top: 20px;
-}
-.collaborator {
-  background-color: #f8f8f8;
-  border: 1px solid #ddd;
-  padding: 20px;
-  border-radius: 4px;
-}
-.collaborator img {
-  max-width: 100%;
-  display: block;
-  margin-bottom: 10px;
-}
-.collaborator h3 {
-  color: var(--blue);
-  margin-bottom: 10px;
-}
-
-/* =========================================================
-   18. Footer
-   ========================================================= */
-footer {
-  background: linear-gradient(to right, #1c2951, #b22222);
-  padding: 20px;
-  text-align: center;
-  margin-top: 0;
-  border-top: 2px solid var(--cyan-63C5DA);
-}
-[data-theme="dark"] footer {
-  background: var(--blue);
-}
-footer .footer-links {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 30px;
-  margin-bottom: 15px;
-}
-footer .footer-links a {
-  text-transform: uppercase;
-  color: var(--cyan-63C5DA);
-  font-size: 0.9rem;
-  font-weight: bold;
-}
-footer .footer-links a:hover {
-  color: var(--gold);
-}
-footer .footer-logos {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  margin-bottom: 15px;
-}
-footer .footer-logos a img {
-  max-width: 40px;
-  height: auto;
-}
-footer p {
-  font-size: 0.8rem;
-  color: #fff;
-}
-[data-theme="dark"] footer p {
-  color: #fff;
-}
-
-/* =========================================================
-   19. Timed Overlay - Mobile Only
-   ========================================================= */
-#mobileButtonsOverlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
-  justify-content: center;
-  align-items: center;
-  z-index: 10000;
-}
-#mobileButtonsOverlay.show {
-  display: flex !important;
-}
-.mobile-buttons-content {
-  background-color: #fff;
-  padding: 25px;
-  border-radius: 6px;
-  text-align: center;
-  width: 80%;
-  max-width: 300px;
-  position: relative;
-  min-height: 200px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-}
-[data-theme="dark"] .mobile-buttons-content {
-  background-color: #333;
-  color: #ddd;
-}
-.mobile-buttons-content h3 {
-  margin-bottom: 20px;
-  color: var(--blue);
-  font-size: 1.3rem;
-}
-.mobile-buttons-content a {
-  display: block;
-  margin: 15px auto;
-  padding: 12px 20px;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: #fff;
-  width: 80%;
-  border-radius: 4px;
-  font-weight: bold;
-}
-.mobile-buttons-content a#mobileShopBtn {
-  background-color: var(--blue) !important;
-  color: white !important;
-  border: 2px solid transparent;
-}
-[data-theme="dark"] .mobile-buttons-content a#mobileShopBtn {
-  background-color: #1c2951 !important;
-  color: white !important;
-  border: 2px #1c2951;
-}
-.mobile-buttons-content a#mobileShopBtn:hover {
-  background-color: #2c3b61 !important;
-}
-[data-theme="dark"] .mobile-buttons-content {
-  background-color: #333 !important;
-  color: white !important;
-}
-[data-theme="dark"] .mobile-buttons-content h3 {
-  color: white !important;
-}
-[data-theme="dark"] .close-mobile-btn {
-  color: white !important;
-}
-.mobile-buttons-content a#mobileContributeBtn {
-  background-color: var(--red);
-}
-.mobile-buttons-content a:hover {
-  background: linear-gradient(to right, var(--blue), var(--gold));
-}
-.close-mobile-btn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
+[data-theme="dark"] .hero-contribute-btn:hover {
+  background-color: var(--white); /* Dark bg */
   color: var(--red);
 }
 
-/* =========================================================
-   20. Modern Join Movement Section
-   ========================================================= */
-.join-movement-section {
-  position: relative;
-  margin-top: 0;
-  padding: 0;
-  background-color: #fff;
+
+@media (max-width: 768px) {
+  .home-banner-container img.banner-desktop,
+  .home-banner-container img.banner-mobile {
+      max-height: 45vh; /* Shorter banner on mobile */
+  }
+  .home-banner-overlay {
+    top: 50%; /* Re-center */
+    width: 90%;
+    padding: 15px;
+  }
+  .home-banner-overlay h1 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+  }
+  .home-banner-overlay blockquote {
+    font-size: 1rem;
+    margin-bottom: 15px;
+  }
+  .founder-image {
+    max-width: 80px;
+    margin-bottom: 20px;
+  }
+  .hero-buttons-group {
+    flex-direction: column; /* Stack buttons */
+    gap: 10px;
+    align-items: center;
+  }
+  .hero-buttons-group a {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    min-width: 200px; /* Wider buttons on mobile */
+  }
 }
+@media (min-width: 769px) and (max-width: 1024px) {
+    .home-banner-overlay h1 { font-size: 2.2rem; }
+    .home-banner-overlay blockquote { font-size: 1.1rem; }
+    .founder-image { max-width: 100px; }
+}
+
+
+/* =========================================================
+   Home Page - Map/Video Section
+   ========================================================= */
+/* Map container styles are defined in section 5 now */
+
+/* Video replacement for the map */
+.usa-map-video { /* New class for the video */
+  width: 100%;
+  display: block;
+  height: auto; /* Maintain aspect ratio */
+  margin: 0 auto;
+  background: var(--black); /* Black bg incase video fails */
+  /* Remove border from video itself */
+}
+
+/* Text overlay styles */
+.map-text-overlay { /* Wrapper for the text */
+  position: absolute;
+  top: 20px; /* Position from top */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  width: 80%;
+  max-width: 500px; /* Limit width */
+}
+.map-text-overlay div { /* Inner div with background */
+  background-color: rgba(28, 41, 81, 0.85); /* Slightly more opaque blue */
+  color: white;
+  text-align: center;
+  padding: 12px 15px; /* Adjusted padding */
+  border-radius: 6px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+.map-text-overlay p {
+  font-size: 1.3rem; /* Larger font */
+  font-weight: bold;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: white !important; /* Ensure white text */
+}
+
+.united-we-stand-banner {
+  width: 100%;
+  background: linear-gradient(to right, rgba(28, 41, 81, 0.9), rgba(178, 34, 34, 0.9)); /* Gradient background */
+  text-align: center;
+  padding: 18px 20px; /* Increased padding */
+  position: absolute; /* Position over video */
+  bottom: 0;
+  left: 0;
+  z-index: 6; /* Above video but below overlay text if needed */
+}
+.united-we-stand-banner h2 {
+  font-size: 2.2rem; /* Adjusted size */
+  color: var(--white);
+  text-transform: uppercase;
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+  letter-spacing: 2px;
+  font-weight: bold;
+  border-bottom: none; /* Remove border from h2 */
+}
+
+@media (max-width: 768px) {
+  .map-text-overlay {
+      top: 10px;
+      width: 90%;
+  }
+  .map-text-overlay div {
+      padding: 8px 10px;
+  }
+  .map-text-overlay p {
+      font-size: 1rem;
+  }
+  .united-we-stand-banner {
+    padding: 12px 15px;
+  }
+  .united-we-stand-banner h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Error message for video */
+#video-error-msg {
+    display: none; /* Hidden by default */
+    text-align: center;
+    color: var(--red);
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.8);
+    border-top: 1px solid #ddd;
+    position: absolute; /* Position over video area */
+    bottom: 0; /* Position at bottom */
+    left: 0;
+    width: 100%;
+    z-index: 7; /* Above banner */
+}
+[data-theme="dark"] #video-error-msg {
+    background: rgba(28, 41, 81, 0.8);
+    color: var(--red);
+    border-top-color: #555;
+}
+
+
+/* =========================================================
+   8. Join Our Movement Section (Modernized)
+   ========================================================= */
+/* Join movement styles defined in section 5 now (spacing) */
 .join-movement-banner {
-  background-color: var(--red);
-  color: #fff;
+  background: linear-gradient(to right, var(--red), #d13a3a); /* Red gradient */
+  color: var(--white);
   text-align: center;
   padding: 25px 20px;
-  margin: 0;
   width: 100%;
 }
 .join-movement-banner h2 {
-  font-size: 2rem;
+  font-size: 1.8rem;
   margin: 0;
   text-transform: uppercase;
+  color: var(--white);
   font-weight: bold;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
+  border-bottom: none; /* Remove border */
 }
 .join-movement-form-container {
-  background-color: #f5f5f5;
-  padding: 30px 20px;
+  background-color: transparent; /* Remove inner container bg */
+  padding: 40px 20px; /* Increased padding */
   text-align: center;
 }
-.modern-form-wrapper {
-  max-width: 600px;
-  margin: 0 auto;
+.modern-form-wrapper { /* Reusing class from volunteer form */
+  max-width: 700px; /* Wider form */
+  margin: 0 auto 0 auto; /* REMOVE Margin below form */
   background-color: #fff;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 35px; /* Increased padding */
+  border-radius: 8px 8px 0 0; /* Round top corners only */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: none; /* Remove bottom border */
+}
+[data-theme="dark"] .modern-form-wrapper {
+    background-color: #2c2c2c; /* Dark form background */
+    border-color: #444;
 }
 .form-field-group {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  margin-bottom: 20px;
+  gap: 25px; /* Increased gap */
+  margin-bottom: 25px;
 }
 .form-field {
   text-align: left;
 }
 .form-field span {
   display: block;
-  font-weight: bold;
+  font-weight: 600; /* Slightly bolder */
   margin-bottom: 8px;
-  color: #333;
+  color: var(--text-light);
+  font-size: 0.9rem;
 }
 .form-field input {
   width: 100%;
   padding: 12px 15px;
-  border: 1px solid #ddd;
+  border: 1px solid #ccc; /* Lighter border */
   border-radius: 4px;
   font-size: 1rem;
   transition: border-color 0.3s, box-shadow 0.3s;
+  background-color: #fdfdfd;
+}
+[data-theme="dark"] .form-field input {
+    background-color: #444;
+    border-color: #666;
+    color: var(--text-light);
 }
 .form-field input:focus {
   border-color: var(--blue);
-  box-shadow: 0 0 5px var(--cyan-63C5DA);
+  box-shadow: 0 0 0 3px rgba(28, 41, 81, 0.15); /* Focus ring */
+  outline: none;
 }
+[data-theme="dark"] .form-field input:focus {
+    border-color: var(--cyan-63C5DA);
+    box-shadow: 0 0 0 3px rgba(99, 197, 218, 0.3);
+}
+
 .join-button {
-  background-color: var(--blue);
+  background: linear-gradient(to right, var(--blue), #2a3f75); /* Blue gradient */
   color: var(--white);
   border: none;
-  border-radius: 4px;
-  padding: 12px 30px;
+  border-radius: 5px;
+  padding: 12px 35px; /* Adjusted padding */
   font-size: 1rem;
   text-transform: uppercase;
   font-weight: bold;
   cursor: pointer;
   transition: all 0.3s;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
 }
 .join-button:hover {
-  background: linear-gradient(to right, var(--blue), var(--gold));
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+[data-theme="dark"] .join-button {
+    background: linear-gradient(to right, var(--cyan-63C5DA), #87ceeb);
+    color: #1c2951; /* Dark text */
+}
+[data-theme="dark"] .join-button:hover {
+    color: #1c2951;
+}
+
+/* Text below the join form */
+.join-movement-message { /* Added class for styling */
+  background: linear-gradient(to right, var(--blue), var(--red)); /* Gradient */
+  color: white !important;
+  text-align: center;
+  padding: 20px; /* Increased padding */
+  margin-top: 0; /* Remove top margin if form wrapper has bottom margin */
+  border-radius: 0 0 8px 8px; /* Match form rounding */
+  max-width: 700px; /* Match form width */
+  margin-left: auto;
+  margin-right: auto;
+}
+.join-movement-message p {
+  font-size: 1.4rem; /* Larger font */
+  font-weight: bold;
+  margin: 0;
+  color: white !important;
+  letter-spacing: 1px;
+}
+[data-theme="dark"] .join-movement-message {
+    background: linear-gradient(to right, var(--cyan-63C5DA), var(--red));
 }
 
 @media (min-width: 768px) {
@@ -1727,212 +1056,1396 @@ footer p {
 }
 
 /* =========================================================
-   21. Content with Image Sections
+   9. Home Page Video (Secondary)
    ========================================================= */
+.video-section { /* Wrapper for the secondary video section */
+    /* Spacing handled by '+' selector */
+}
+.video-section .section-content {
+    text-align: center; /* Center heading and video */
+}
+.home-video { /* Styling for the secondary home video */
+  width: 100%;
+  max-width: 900px;
+  display: block;
+  margin: 20px auto 5px auto; /* Adjusted margin */
+  cursor: pointer;
+  border: 3px solid var(--light-border); /* Match theme border */
+  border-radius: 8px; /* Add radius */
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+[data-theme="dark"] .home-video {
+    border-color: var(--light-border);
+}
 
 /* =========================================================
-   22. Modern Volunteer Form - Trump-Inspired Styling
+   10. Donation Section (Bottom)
    ========================================================= */
+.section-black {
+  width: 100%;
+  margin: 0;
+  padding: 30px 20px; /* Increased padding */
+  background-color: #222; /* Darker background */
+  color: #eee; /* Lighter text */
+  text-align: center;
+  border-top: 3px solid var(--gold); /* Gold accent border */
+}
+[data-theme="dark"] .section-black {
+  background-color: #1a1a1a; /* Even darker */
+}
+.section-black h2 {
+  color: var(--white); /* White heading */
+  margin-bottom: 10px;
+  border-bottom: none; /* Remove border */
+}
+.section-black p {
+  color: #ccc; /* Lighter paragraph text */
+  margin-bottom: 25px; /* More space */
+  max-width: 600px; /* Limit width */
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center; /* Ensure centered */
+}
+.donation-logos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px; /* Increased gap */
+  margin-top: 20px;
+}
+.donation-logos img,
+.donation-logos a img {
+  max-width: 130px; /* Larger logos */
+  height: auto;
+  opacity: 0.9;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.donation-logos a:hover img,
+.donation-logos img:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+#homeBitcoinLogo, #bitcoinDonate { /* Target both BTC logos */
+  cursor: pointer; /* Indicate clickable */
+}
+
+@media (max-width: 768px) {
+  .donation-logos img,
+  .donation-logos a img {
+    max-width: 90px;
+  }
+}
+
+/* =========================================================
+   11. About Page Sections
+   ========================================================= */
+.about-top-section {
+    /* Spacing handled by '+' selector */
+}
+.about-top-content {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start; /* Align items to the top */
+  gap: 35px; /* Increased gap */
+}
+.about-img {
+  max-width: 350px; /* Slightly larger */
+  width: 100%;
+  flex-shrink: 0;
+  border-radius: 8px; /* Add radius */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.about-text {
+  flex: 1;
+  text-align: left; /* Ensure text is left-aligned */
+}
+.about-text p {
+    margin-bottom: 15px;
+}
+.about-text ul {
+    margin-left: 20px;
+    padding-left: 0;
+    margin-bottom: 15px;
+    list-style-position: outside;
+}
+.about-text li {
+    margin-bottom: 8px;
+}
+
+@media (max-width: 768px) {
+  .about-top-content {
+    flex-direction: column;
+    align-items: center; /* Center items on mobile */
+    gap: 25px;
+  }
+  .about-img {
+    max-width: 90%; /* Limit width */
+  }
+  .about-text {
+      text-align: center; /* Center text block on mobile */
+  }
+  .about-text p, .about-text ul {
+      text-align: left; /* Keep paragraphs/lists left on mobile */
+  }
+  .about-text ul {
+      display: inline-block; /* Allow centering of list block */
+      margin-left: 0;
+      padding-left: 20px; /* Indent for bullets */
+      max-width: 90%;
+  }
+}
+
+/* Founder Section */
+.founder-section {
+    /* Spacing handled by '+' selector */
+}
+.founder-content {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 30px;
+}
+.founder-img {
+  max-width: 250px; /* Adjust size as needed */
+  width: 100%;
+  height: auto;
+  flex-shrink: 0;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.founder-text {
+  flex: 1;
+  text-align: left;
+}
+.founder-text p {
+  margin-bottom: 15px;
+}
+
+@media (max-width: 768px) {
+  .founder-content {
+    flex-direction: column;
+    align-items: center;
+  }
+  .founder-img {
+    max-width: 80%;
+    margin-bottom: 20px;
+  }
+  .founder-text {
+    text-align: left; /* Keep text left on mobile */
+  }
+}
+
+/* Culture Section Layout Fix */
+.culture-content {
+    /* Base mobile styles (flex column) */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+.culture-img {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 auto;
+    display: block;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.culture-text {
+    text-align: center !important;
+    width: 100%;
+}
+.culture-text p {
+    text-align: left !important; /* Keep text left */
+    margin-bottom: 15px;
+}
+.culture-text ul {
+    text-align: left !important; /* Left-align the list */
+    margin: 0 auto 15px !important; /* Center the list block */
+    padding-left: 20px !important; /* Space for bullets */
+    max-width: 90%; /* Prevent list touching edges */
+    list-style-position: outside;
+}
+.culture-text ul li {
+    margin-bottom: 10px; /* Add space between list items */
+    line-height: 1.5; /* Improve readability */
+}
+
+/* Desktop Specific Styles for Culture Section */
+@media (min-width: 769px) {
+  .culture-content {
+    display: flex !important; /* Use flex for alignment */
+    flex-direction: row;
+    align-items: flex-start; /* Align top */
+    gap: 30px;
+  }
+  .culture-img {
+    width: 40% !important; /* Image takes ~40% */
+    max-width: 400px !important; /* Max width */
+    height: auto;
+    object-fit: contain; /* Ensure whole image is visible */
+    float: none !important; /* Remove float */
+    margin: 0 !important; /* Reset margin */
+    flex-shrink: 0;
+  }
+  .culture-text {
+    flex: 1; /* Text takes remaining space */
+    text-align: left !important;
+  }
+  .culture-text ul {
+    margin-left: 0 !important; /* Remove large margin */
+    padding-left: 20px !important; /* Standard list padding */
+    max-width: 100%;
+  }
+  .culture-text ul li {
+      line-height: 1.7;
+      margin-bottom: 10px;
+  }
+}
+
+
+/* =========================================================
+   12. Videos (General Styling & About Page Specific)
+   ========================================================= */
+/* General video container */
+.video-wrapper {
+  position: relative;
+  max-width: 800px; /* Consistent max width */
+  margin: 30px auto; /* Add margin */
+  background-color: #000; /* Black background for letterboxing */
+  border-radius: 8px;
+  overflow: hidden; /* Hide anything outside radius */
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+/* Placeholder/Preview image */
+.video-preview {
+  width: 100%;
+  display: block;
+  aspect-ratio: 16 / 9; /* Maintain aspect ratio */
+  object-fit: cover; /* Cover the area */
+  border-radius: 8px; /* Match wrapper */
+}
+
+/* The actual video container */
+.video-container {
+  display: none; /* Hidden until played */
+  line-height: 0; /* Prevent extra space */
+}
+
+.video-wrapper.playing .video-preview {
+  display: none; /* Hide preview when playing */
+}
+
+.video-wrapper.playing .video-container {
+  display: block; /* Show video when playing */
+}
+
+/* The video element itself */
+video.about-video { /* Specific to about page video */
+  width: 100%;
+  display: block;
+  border-radius: 8px; /* Match wrapper */
+  aspect-ratio: 16 / 9; /* Maintain aspect ratio */
+  cursor: pointer; /* Indicate clickable for audio toggle */
+}
+
+/* Play button overlay */
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.6);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  width: 70px; /* Larger button */
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+  z-index: 10; /* Above preview */
+}
+.play-button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Hide play button when playing */
+.video-wrapper.playing .play-button {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Play icon (triangle) */
+.play-icon {
+  color: white;
+  font-size: 28px; /* Larger icon */
+  margin-left: 5px; /* Offset for centering */
+}
+
+@media (max-width: 768px) {
+  .video-wrapper {
+    max-width: 100%;
+  }
+  .play-button {
+    width: 55px;
+    height: 55px;
+  }
+  .play-icon {
+    font-size: 22px;
+  }
+}
+
+
+/* =========================================================
+   13. Projects Hero (background image)
+   ========================================================= */
+.projects-hero {
+  background: url("images/projects.png") center center / cover no-repeat;
+  padding: 80px 20px; /* Increased padding */
+  text-align: center;
+  position: relative; /* Needed for overlay */
+  color: var(--white); /* Text color for contrast */
+  border-radius: 8px; /* Optional rounding */
+  overflow: hidden; /* Contain overlay */
+  /* Spacing handled by '+' selector */
+}
+.projects-hero::before { /* Dark overlay for text readability */
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(28, 41, 81, 0.6); /* Blue overlay */
+    z-index: 1;
+}
+.projects-hero > .translucent-blue { /* Target the inner div */
+    position: relative; /* Bring content above overlay */
+    z-index: 2;
+    background-color: transparent !important; /* Make inner div transparent */
+    padding: 20px; /* Add padding to content */
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+    max-width: 800px;
+    margin: auto;
+}
+.projects-hero h1, .projects-hero p {
+    color: var(--white) !important; /* Ensure white text */
+}
+.projects-hero h1 {
+    border-bottom: none;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    margin-bottom: 15px;
+}
+.projects-hero p {
+    margin-bottom: 10px;
+    text-align: center;
+}
+.projects-hero p:last-child {
+    margin-bottom: 0;
+}
+
+/* =========================================================
+   14. Contribute & Volunteer Banners / Forms
+   ========================================================= */
+.contribute-banner,
 .modern-volunteer-banner {
-  background-color: var(--red);
+  background: linear-gradient(to right, var(--red), #d13a3a); /* Red gradient */
   color: var(--white);
   padding: 25px 20px;
   text-align: center;
-  margin-bottom: 0;
+  margin-bottom: 0; /* Remove margin, use padding */
   width: 100%;
 }
+.contribute-banner h2,
 .modern-volunteer-banner h2 {
   font-size: 2rem;
   margin: 0;
   text-transform: uppercase;
   font-weight: bold;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
+  color: var(--white);
+  border-bottom: none; /* Remove border */
 }
+
+/* Modern Form Container */
 .modern-form-container {
-  background-color: #f5f5f5;
-  padding: 30px 20px;
-  margin-bottom: 30px;
+  background-color: var(--light-gray-bg);
+  padding: 40px 20px;
+  margin-bottom: 0; /* Remove margin */
 }
+
+/* Volunteer Form Specifics */
 .modern-volunteer-form {
   max-width: 800px;
   margin: 0 auto;
   background-color: #fff;
-  padding: 30px;
+  padding: 35px;
   border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+[data-theme="dark"] .modern-volunteer-form {
+    background-color: #2c2c2c; /* Dark form background */
+    border-color: #444;
+}
+.modern-volunteer-form .form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.modern-volunteer-form .form-field {
+  flex: 1;
+  min-width: calc(50% - 10px); /* Default to 2 columns */
+}
+.modern-volunteer-form .form-field input,
+.modern-volunteer-form .form-field textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  background-color: #fdfdfd;
+}
+[data-theme="dark"] .modern-volunteer-form .form-field input,
+[data-theme="dark"] .modern-volunteer-form .form-field textarea {
+    background-color: #444;
+    border-color: #666;
+    color: var(--text-light);
+}
+.modern-volunteer-form .form-field input:focus,
+.modern-volunteer-form .form-field textarea:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(28, 41, 81, 0.15);
+  outline: none;
+}
+[data-theme="dark"] .modern-volunteer-form .form-field input:focus,
+[data-theme="dark"] .modern-volunteer-form .form-field textarea:focus {
+    border-color: var(--cyan-63C5DA);
+    box-shadow: 0 0 0 3px rgba(99, 197, 218, 0.3);
+}
+.modern-volunteer-form .form-field.full-width {
+  min-width: 100%; /* Full width field */
+}
+.modern-volunteer-form textarea {
+  min-height: 120px; /* Minimum height */
+  resize: vertical;
+}
+.modern-volunteer-form .three-column .form-field {
+  min-width: calc(33.33% - 14px); /* Adjust for 3 columns */
+}
+
+.checkbox-container {
+  margin: 25px 0;
+  text-align: left; /* Align checkboxes left */
+}
+.modern-checkbox {
+  display: flex;
+  align-items: flex-start; /* Align checkbox with start of text */
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+.modern-checkbox input[type="checkbox"] {
+  margin-top: 3px; /* Align checkbox better */
+  margin-right: 10px;
+  min-width: 16px; /* Explicit size */
+  height: 16px;
+  flex-shrink: 0; /* Prevent shrinking */
+}
+.checkbox-text {
+  font-size: 0.9rem; /* Slightly smaller */
+  line-height: 1.4;
+  color: var(--text-light);
+}
+
+.modern-submit-btn {
+  background: linear-gradient(to right, var(--blue), #2a3f75); /* Blue gradient */
+  color: var(--white);
+  border: none;
+  border-radius: 5px;
+  padding: 12px 35px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  display: block; /* Center button */
+  margin: 20px auto 0 auto; /* Margin top */
+  min-width: 180px;
+}
+.modern-submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+[data-theme="dark"] .modern-submit-btn {
+    background: linear-gradient(to right, var(--cyan-63C5DA), #87ceeb);
+    color: #1c2951; /* Dark text */
+}
+[data-theme="dark"] .modern-submit-btn:hover {
+    color: #1c2951;
+}
+
+
+@media (max-width: 768px) {
+  .modern-volunteer-form .form-row {
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 15px;
+  }
+  .modern-volunteer-form .form-field,
+  .modern-volunteer-form .three-column .form-field {
+    min-width: 100%; /* Stack fields on mobile */
+  }
+  .contribute-banner h2,
+  .modern-volunteer-banner h2 {
+    font-size: 1.5rem;
+  }
 }
 
 /* =========================================================
-   Resources Page List Styling Fixes
+   15. Get Involved Page Specifics
    ========================================================= */
-
-/* Unified list styling for resources page */
-.section-content ul {
-  margin-left: 0;
-  padding-left: 20px;
-  margin-bottom: 20px;
-  text-align: left;
+.involved-side-by-side {
+  display: flex; /* Now always flex */
+  flex-wrap: wrap;
+  align-items: center;
+  /* Spacing handled by '+' selector */
+  padding: 40px 20px; /* Match section padding */
+  gap: 30px; /* Add gap */
+  background-color: var(--translucent-blue-bg-light); /* Use translucent bg */
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  border: 1px solid rgba(0,0,0,0.05);
+}
+[data-theme="dark"] .involved-side-by-side {
+    background-color: var(--translucent-blue-bg-dark);
+    border-color: rgba(255,255,255,0.1);
+    box-shadow: none;
 }
 
-.section-content ul li {
-  margin-bottom: 8px;
-  line-height: 1.5;
-  text-align: left;
-  padding-left: 5px;
+.involved-textbox {
+  background-color: transparent; /* Remove inner background */
+  flex: 1;
+  padding: 0; /* Remove inner padding */
+  border-radius: 0;
+  box-shadow: none;
+  text-align: left; /* Left align text */
 }
-
-/* Fix for .populism-globalism section */
-.populism-globalism h3,
-.populism-globalism h4 {
-  text-align: left;
-}
-
-.populism-globalism ul {
-  margin-left: 0;
-  padding-left: 20px;
+.involved-textbox h2 {
+  font-size: 1.8rem;
   margin-bottom: 15px;
-  text-align: left;
-}
-
-/* Make lists in resources page consistent */
-.translucent-blue ul,
-.translucent-red ul {
-  text-align: left;
-  padding-left: 20px;
-}
-
-/* Additional spacing for better readability */
-.section-content li,
-.translucent-blue li,
-.translucent-red li {
+  color: var(--text-light);
+  border-bottom: 2px solid var(--red);
   padding-bottom: 8px;
+  text-align: left; /* Left align heading */
+  display: block; /* Ensure block display */
+}
+.involved-textbox p {
+  color: var(--text-light);
+  margin-bottom: 15px;
+  text-align: left; /* Left align paragraphs */
 }
 
-/* Last item in list doesn't need bottom padding */
-.section-content li:last-child,
-.translucent-blue li:last-child,
-.translucent-red li:last-child {
-  padding-bottom: 0;
+/* Help Cards Styling (Get Involved) */
+.help-card {
+  background-color: rgba(255, 255, 255, 0.8); /* Light background */
+  padding: 25px; /* Increased padding */
+  border-radius: 8px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 25px; /* Spacing */
+  text-align: left; /* Left align content */
+  border: 1px solid rgba(0,0,0,0.05);
+}
+.help-card:last-of-type {
+    margin-bottom: 0; /* Remove bottom margin from last card in a group */
+}
+[data-theme="dark"] .help-card {
+  background-color: rgba(40, 40, 40, 0.8); /* Dark background */
+  border-color: #555;
+}
+.help-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  color: var(--blue); /* Use blue for heading */
+  text-align: left;
+}
+[data-theme="dark"] .help-card h3 {
+    color: var(--cyan-63C5DA); /* Cyan in dark mode */
+}
+.help-card p {
+  color: var(--text-light);
+  line-height: 1.6;
+  text-align: left;
 }
 
-/* Keep section headings centered but subheadings left-aligned */
-.section-content h2 {
+/* Content with Image Styling (e.g., Get Involved - Join Our Team) */
+.content-with-image {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 30px;
+  padding: 40px 20px; /* Match section padding */
+  background-color: var(--translucent-blue-bg-light); /* Example bg */
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  border: 1px solid rgba(0,0,0,0.05);
+}
+.content-with-image.reverse {
+  flex-direction: row-reverse; /* Reverse order */
+}
+[data-theme="dark"] .content-with-image {
+    background-color: var(--translucent-blue-bg-dark);
+    border-color: rgba(255,255,255,0.1);
+    box-shadow: none;
+}
+.content-with-image .section-image {
+  flex: 1;
+  min-width: 250px; /* Min width for image */
+  max-width: 40%; /* Max width for image */
+}
+.content-with-image .section-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.content-with-image .section-content {
+  flex: 1;
+  min-width: 55%; /* Min width for text */
+  text-align: left;
+  padding: 0; /* Remove padding if already in parent */
+  max-width: 100%; /* Override global max-width */
+  margin: 0; /* Reset margin */
+}
+.content-with-image .section-content h2 {
+  text-align: left;
+  border-bottom: 2px solid var(--red);
+  padding-bottom: 8px;
+  margin-bottom: 20px;
+  display: block;
+}
+.content-with-image .section-content p {
+  text-align: left;
+  margin-bottom: 15px;
+}
+
+@media (max-width: 768px) {
+  .content-with-image,
+  .content-with-image.reverse {
+    flex-direction: column; /* Stack on mobile */
+  }
+  .content-with-image .section-image {
+    max-width: 80%; /* Adjust image size */
+    margin-bottom: 20px;
+  }
+  .content-with-image .section-content {
+    min-width: 100%;
+    text-align: center; /* Center text block on mobile */
+  }
+   .content-with-image .section-content h2,
+   .content-with-image .section-content p {
+       text-align: left; /* Keep text itself left-aligned */
+   }
+   .content-with-image .section-content h2 {
+       display: block; /* Ensure heading is block */
+       width: 100%;
+       text-align: center; /* Center the heading text */
+   }
+}
+
+/* =========================================================
+   16. Resources Page Layout Fixes
+   ========================================================= */
+/* Apply to resources page specifically if needed using a body class */
+body.resources-page .section-content p,
+body.resources-page .section-content ul,
+body.resources-page .section-content ol {
+  text-align: left;
+}
+
+/* Political Evolution Table/Cards */
+.political-evolution-container table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9rem;
+}
+.political-evolution-container th,
+.political-evolution-container td {
+  padding: 10px 12px;
+  border: 1px solid var(--light-border);
+  text-align: left;
+  vertical-align: top; /* Align text top */
+}
+.political-evolution-container th {
+  background-color: rgba(28, 41, 81, 0.1); /* Header bg */
+  font-weight: bold;
   text-align: center;
 }
+[data-theme="dark"] .political-evolution-container th {
+    background-color: rgba(99, 197, 218, 0.2);
+}
+.political-evolution-container tr:nth-child(even) td {
+   background-color: rgba(0,0,0,0.02); /* Subtle striping */
+}
+[data-theme="dark"] .political-evolution-container tr:nth-child(even) td {
+   background-color: rgba(255,255,255,0.04);
+}
 
-.section-content h3 {
-  text-align: left;
+.political-evolution-cards .era-card {
+  background-color: rgba(28, 41, 81, 0.05);
+  padding: 20px;
+  border-radius: 8px;
   margin-bottom: 15px;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+.era-card h3 {
+  margin: 0 0 10px;
+  font-size: 1.2rem;
+  color: var(--blue);
+}
+.era-card p {
+  margin: 8px 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+.era-card strong {
+    font-weight: 600;
+    margin-right: 5px;
+}
+[data-theme="dark"] .era-card {
+    background-color: rgba(99, 197, 218, 0.1);
+    border-color: rgba(255,255,255,0.1);
+}
+[data-theme="dark"] .era-card h3 {
+    color: var(--cyan-63C5DA);
 }
 
-/* Improve dark mode list visibility */
-[data-theme="dark"] .section-content ul li,
-[data-theme="dark"] .populism-globalism ul li,
-[data-theme="dark"] .translucent-blue ul li,
-[data-theme="dark"] .translucent-red ul li {
-  color: #fff;
+/* Media query switcher */
+@media (max-width: 900px) { /* Switch to cards earlier */
+  .political-evolution-table { display: none !important; }
+  .political-evolution-cards { display: block !important; }
+}
+@media (min-width: 901px) {
+  .political-evolution-table { display: table !important; } /* Use table display */
+  .political-evolution-cards { display: none !important; }
 }
 
-/* Mobile-specific adjustments */
-@media (max-width: 768px) {
-  .section-content ul,
-  .populism-globalism ul,
-  .translucent-blue ul,
-  .translucent-red ul {
-    padding-left: 15px;
-  }
-  
-  .section-content ul li,
-  .populism-globalism ul li {
+/* Populism / Globalism Definitions */
+.populism-globalism {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px; /* Increased gap */
+  margin-top: 20px;
+}
+.populism-globalism > div {
+  flex: 1;
+  min-width: 300px; /* Min width for columns */
+  text-align: left;
+}
+.populism-globalism h3 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: var(--blue);
+  text-align: left;
+}
+[data-theme="dark"] .populism-globalism h3 { color: var(--cyan-63C5DA); }
+
+.populism-globalism h4 {
+  font-size: 1.2rem;
+  margin: 20px 0 10px;
+  color: var(--text-light);
+  font-weight: 600;
+  text-align: left;
+  border-bottom: 1px solid var(--light-border); /* Separator line */
+  padding-bottom: 5px;
+}
+.populism-globalism ul {
+  margin-left: 0; /* Remove default indent */
+  padding-left: 20px; /* Use padding for indent */
+  margin-bottom: 20px;
+  text-align: left;
+  list-style-position: outside; /* Bullets outside */
+}
+.populism-globalism ul li {
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
+
+/* Reading List / Useful Links / Educational Tools Sections */
+.recommended-reading-section, .useful-links-section, .educational-tools-section {
+    /* Spacing handled by '+' selector */
+}
+/* Using flexbox for two-column layout where applicable */
+.two-column-layout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-top: 20px;
+}
+.two-column-layout > div {
+    flex: 1;
+    min-width: 300px;
+    text-align: left;
+}
+.two-column-layout h3 { /* Apply to h3 within the columns */
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: var(--blue);
+    text-align: left;
+}
+[data-theme="dark"] .two-column-layout h3 {
+    color: var(--cyan-63C5DA);
+}
+.two-column-layout ul {
+    margin-left: 0;
+    padding-left: 20px;
+    margin-bottom: 15px;
+    text-align: left;
+    list-style-position: outside;
+}
+.two-column-layout ul li {
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+.two-column-layout ul li a {
+    word-break: break-word; /* Prevent long URLs breaking layout */
+}
+
+/* Educational Tools specific styling if not in columns */
+.educational-tools-section ul { /* Target specifically if needed */
+    margin-left: 0;
+    padding-left: 20px;
+    margin-bottom: 15px;
+    text-align: left;
+    list-style-position: outside;
+}
+.educational-tools-section ul li {
     margin-bottom: 10px;
-  }
+    line-height: 1.6;
 }
+.educational-tools-section strong {
+    font-weight: 600;
+}
+
+
 /* =========================================================
-   Projects Page Collaborator Styles
+   17. Gallery Page
    ========================================================= */
-/* Fix for collaborator grid alignment */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Larger min size */
+  gap: 25px; /* Increased gap */
+  margin-top: 25px;
+}
+.gallery-grid img,
+.gallery-grid > div { /* Style placeholder divs too */
+  width: 100%;
+  height: 200px; /* Fixed height for consistency */
+  object-fit: cover; /* Crop images nicely */
+  border: 1px solid var(--light-border);
+  border-radius: 6px; /* Rounded corners */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.gallery-grid img:hover {
+    transform: scale(1.03); /* Slight zoom on hover */
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+.gallery-grid > div { /* Placeholder styling */
+    background-color: var(--light-gray-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+}
+.gallery-grid > div p {
+    font-style: italic;
+    color: #888;
+    text-align: center;
+    margin-bottom: 0; /* Remove margin from p */
+}
+[data-theme="dark"] .gallery-grid > div {
+    background-color: #333;
+}
+[data-theme="dark"] .gallery-grid > div p {
+    color: #aaa;
+}
+
+/* Gallery category buttons */
+.gallery-categories { /* Assuming a wrapper div */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 15px;
+    justify-content: center;
+}
+.gallery-categories .hero-volunteer-btn { /* Re-use button style */
+    /* Styles inherited */
+    text-decoration: none; /* Ensure links look like buttons */
+}
+
+/* =========================================================
+   18. Projects Page Collaborators
+   ========================================================= */
 .collaborators {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
-  margin: 20px auto;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Adjusted min size */
+  gap: 30px; /* Increased gap */
+  margin: 30px auto; /* Increased margin */
   max-width: 1200px;
-  justify-content: center;
+  justify-content: center; /* Center grid items if they don't fill row */
 }
-
-/* Collaborator card styling */
 .collaborator {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  background-color: #f8f8f8;
-  border: 1px solid #ddd;
-  padding: 20px;
-  border-radius: 4px;
+  background-color: var(--white); /* White background */
+  border: 1px solid #eee; /* Lighter border */
+  padding: 25px; /* Increased padding */
+  border-radius: 8px; /* More rounding */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* Softer shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
+.collaborator:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
 .collaborator img {
-  max-width: 80%;
-  display: block;
-  margin: 0 auto 15px;
+  max-width: 60%; /* Control logo size */
   height: auto;
+  margin-bottom: 20px; /* More space below logo */
 }
-
 .collaborator h3 {
   color: var(--blue);
   margin-bottom: 10px;
   text-align: center;
+  font-size: 1.3rem;
 }
-
 .collaborator p {
   text-align: center;
-  margin-bottom: 10px;
+  margin-bottom: 15px; /* Space below text */
+  color: var(--text-light);
+  font-size: 0.95rem;
+  flex-grow: 1; /* Allow text to push link down */
 }
-
 .collaborator a {
   display: inline-block;
-  margin-top: 5px;
+  margin-top: auto; /* Push link to bottom */
+  padding: 8px 15px;
+  background-color: var(--blue);
+  color: var(--white);
+  border-radius: 4px;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+}
+.collaborator a:hover {
+    background-color: var(--red);
+    color: var(--white);
 }
 
-/* Center single card on mobile */
-@media (max-width: 768px) {
-  .collaborators {
-    grid-template-columns: minmax(0, 1fr);
-    max-width: 90%;
-  }
-  
-  .collaborator {
-    margin: 0 auto;
-    max-width: 400px;
-  }
-}
 /* Dark mode adjustments */
 [data-theme="dark"] .collaborator {
-  background-color: #333;
-  border-color: #555;
+  background-color: #2c2c2c;
+  border-color: #444;
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
 }
-
-
-
-/* Fix text visibility in dark mode for collaborator cards */
-[data-theme="dark"] .collaborator {
-  background-color: #333;
-  border-color: #555;
-  color: #fff;
+[data-theme="dark"] .collaborator:hover {
+    box-shadow: 0 8px 15px rgba(255, 255, 255, 0.1);
 }
-
 [data-theme="dark"] .collaborator h3 {
-  color: #fff;
+  color: var(--cyan-63C5DA);
+}
+[data-theme="dark"] .collaborator p {
+  color: #ccc;
+}
+[data-theme="dark"] .collaborator a {
+  background-color: var(--cyan-63C5DA);
+  color: #1c2951; /* Dark text */
+}
+[data-theme="dark"] .collaborator a:hover {
+  background-color: var(--red);
+  color: var(--white);
 }
 
-[data-theme="dark"] .collaborator p {
+/* =========================================================
+   19. Footer
+   ========================================================= */
+footer {
+  background: #1a1a1a; /* Darker footer */
+  padding: 30px 20px; /* Increased padding */
+  text-align: center;
+  margin-top: 0; /* Remove top margin, handled by '+' selector */
+  border-top: 4px solid var(--blue); /* Thicker blue border */
+}
+[data-theme="dark"] footer {
+  background: #111; /* Even darker */
+  border-top-color: var(--cyan-63C5DA); /* Cyan border in dark */
+}
+footer .footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px 40px; /* Row and column gap */
+  margin-bottom: 25px; /* More space below links */
+}
+footer .footer-links a {
+  text-transform: uppercase;
+  color: #ccc; /* Lighter link color */
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+footer .footer-links a:hover {
+  color: var(--gold);
+}
+footer .footer-logos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center; /* Vertically align logos */
+  gap: 25px; /* Increased gap */
+  margin-bottom: 20px;
+}
+footer .footer-logos a img {
+  max-width: 35px; /* Slightly smaller logos */
+  height: auto;
+  opacity: 0.8;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+footer .footer-logos a:hover img {
+  opacity: 1;
+  transform: scale(1.1);
+}
+footer p {
+  font-size: 0.85rem; /* Slightly larger copyright */
+  color: #aaa; /* Lighter copyright text */
+  margin-top: 10px; /* Space above copyright */
+}
+[data-theme="dark"] footer p {
+  color: #888; /* Dimmer copyright in dark */
+}
+
+/* =========================================================
+   20. Timed Popup Overlay (Shop/Contribute)
+   ========================================================= */
+#mobileButtonsOverlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.75); /* Darker overlay */
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  opacity: 0; /* Start hidden */
+  transition: opacity 0.4s ease;
+}
+#mobileButtonsOverlay.show {
+  display: flex !important;
+  opacity: 1; /* Fade in */
+}
+.mobile-buttons-content {
+  background-color: #fff;
+  padding: 30px; /* More padding */
+  border-radius: 8px; /* More rounding */
+  text-align: center;
+  width: 90%; /* Wider on small screens */
+  max-width: 350px; /* Increased max width */
+  position: relative;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+  transform: scale(0.95); /* Start slightly small */
+  transition: transform 0.4s ease;
+}
+#mobileButtonsOverlay.show .mobile-buttons-content {
+    transform: scale(1); /* Scale up */
+}
+
+[data-theme="dark"] .mobile-buttons-content {
+  background-color: #2c2c2c; /* Dark popup bg */
   color: #ddd;
 }
-
-[data-theme="dark"] .collaborator a {
-  color: #63C5DA;
+.mobile-buttons-content h3 {
+  margin-bottom: 25px; /* More space */
+  color: var(--blue);
+  font-size: 1.4rem; /* Larger heading */
+}
+[data-theme="dark"] .mobile-buttons-content h3 {
+    color: var(--cyan-63C5DA);
+}
+.mobile-buttons-content a {
+  display: block;
+  margin: 15px auto;
+  padding: 12px 20px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #fff;
+  width: 90%; /* Wider buttons */
+  max-width: 250px;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+}
+.mobile-buttons-content a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+.mobile-buttons-content a#mobileShopBtn {
+  background-color: var(--blue) !important;
+  color: white !important;
+  border: none;
+}
+[data-theme="dark"] .mobile-buttons-content a#mobileShopBtn {
+  background-color: var(--cyan-63C5DA) !important;
+  color: #1c2951 !important; /* Dark text */
+}
+.mobile-buttons-content a#mobileContributeBtn {
+  background-color: var(--red) !important;
+  color: white !important;
+  border: none;
+}
+[data-theme="dark"] .mobile-buttons-content a#mobileContributeBtn {
+    background-color: var(--red) !important; /* Keep red consistent */
+}
+.close-mobile-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 1.8rem; /* Larger close button */
+  cursor: pointer;
+  color: #aaa; /* Dim color */
+  padding: 5px;
+  line-height: 1;
+  transition: color 0.3s ease;
+}
+.close-mobile-btn:hover {
+    color: var(--red);
+}
+[data-theme="dark"] .close-mobile-btn {
+    color: #777;
+}
+[data-theme="dark"] .close-mobile-btn:hover {
+    color: var(--red);
 }
 
-[data-theme="dark"] .collaborator a:hover {
-  color: #FFD700;
+/* =========================================================
+   21. Mission Page Specifics
+   ========================================================= */
+.mission-container {
+  position: relative;
+   /* Remove top margin, body padding handles it */
+  margin-top: 0;
+  padding: 0; /* Remove padding */
+  line-height: 0; /* Prevent extra space */
+}
+.mission-images-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 0; /* Remove gap between images */
+  position: relative; /* For overlay */
+  width: 100%;
+  max-height: 45vh; /* Limit height */
+  overflow: hidden; /* Hide overflow */
+}
+.mission-image {
+  flex: 1; /* Each image takes equal space */
+  width: 33.333%; /* Force width */
+  height: 100%; /* Fill container height */
+  object-fit: cover; /* Cover the area */
+  display: block; /* Remove inline space */
+}
+.mission-text-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  width: 85%;
+  max-width: 850px;
+  text-align: center;
+}
+/* Style the inner translucent box for the overlay */
+.mission-text-overlay .translucent-blue {
+  background-color: rgba(28, 41, 81, 0.8); /* Darker blue overlay */
+  color: white;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  border: none;
+}
+.mission-text-overlay h1 {
+  color: white;
+  font-size: 2.2rem;
+  margin-bottom: 15px;
+  border-bottom: 1px solid rgba(255,255,255,0.5); /* Subtle line */
+  padding-bottom: 10px;
+}
+.mission-text-overlay p {
+  color: white;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.mission-text-overlay p:last-child {
+    margin-bottom: 0;
+}
+
+/* Mission Strategy Section */
+.mission-strategy { /* Add a class to the wrapper div if needed */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    margin-top: 20px;
+}
+.mission-strategy > div { /* Target the strategy items */
+    flex: 1 1 240px; /* Flex grow, shrink, basis */
+    min-width: 240px;
+    background-color: rgba(255,255,255,0.03); /* Very subtle bg */
+    padding: 20px;
+    border-radius: 6px;
+    border: 1px solid rgba(0,0,0,0.05);
+    text-align: left;
+}
+[data-theme="dark"] .mission-strategy > div {
+    background-color: rgba(255,255,255,0.05);
+    border-color: rgba(255,255,255,0.1);
+}
+.mission-strategy h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: var(--blue);
+}
+[data-theme="dark"] .mission-strategy h3 { color: var(--cyan-63C5DA); }
+.mission-strategy p {
+    margin-bottom: 0; /* Remove margin from p */
+}
+
+/* Starlings Section (Mission & Home) */
+.starlings-content {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 30px;
+}
+.starlings-img {
+  max-width: 300px;
+  width: 100%;
+  flex-shrink: 0;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.starlings-text {
+  flex: 1;
+  text-align: left;
+}
+.starlings-text h2 { /* Style heading within starlings text */
+    text-align: left;
+    display: block; /* Ensure block */
+    border-bottom: 2px solid var(--red);
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+}
+.starlings-text ul {
+    margin-left: 0;
+    padding-left: 20px;
+    margin-bottom: 15px;
+    text-align: left;
+}
+.starlings-text li {
+    margin-bottom: 8px;
+}
+
+@media (max-width: 768px) {
+  /* Mobile mission banner */
+  .mission-images-row.banner-desktop {
+    display: none; /* Hide desktop row */
+  }
+   /* Mobile banner using pseudo-element */
+   .mission-container::before {
+       content: '';
+       display: block;
+       background: url('images/missionbanner.png') center center / cover no-repeat; /* Check path */
+       padding-top: 40%; /* Aspect ratio padding */
+       width: 100%;
+       /* Spacing handled by body padding and '+' selectors */
+   }
+   .mission-text-overlay {
+       position: static; /* Remove absolute positioning */
+       transform: none;
+       width: 100%;
+       max-width: 100%;
+       margin-top: 20px; /* Add space below banner */
+       padding: 0 15px; /* Add side padding */
+   }
+   .mission-text-overlay .translucent-blue {
+       padding: 20px;
+       background-color: var(--translucent-blue-bg-light); /* Use standard translucent box */
+       color: var(--text-light); /* Standard text color */
+       box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+       border: 1px solid rgba(0,0,0,0.05);
+   }
+   [data-theme="dark"] .mission-text-overlay .translucent-blue {
+        background-color: var(--translucent-blue-bg-dark);
+        border-color: rgba(255,255,255,0.1);
+        box-shadow: none;
+        color: var(--text-light);
+   }
+   .mission-text-overlay h1 {
+       font-size: 1.8rem;
+       color: var(--text-light); /* Standard heading color */
+       border-bottom: 2px solid var(--red); /* Standard heading border */
+       text-shadow: none;
+    }
+   .mission-text-overlay p {
+       font-size: 0.9rem;
+       color: var(--text-light); /* Standard text color */
+       text-align: left; /* Left align text */
+   }
+   [data-theme="dark"] .mission-text-overlay h1,
+   [data-theme="dark"] .mission-text-overlay p {
+        color: var(--text-light); /* Ensure dark mode text color */
+   }
+
+
+   .starlings-content {
+        flex-direction: column;
+        align-items: center;
+   }
+   .starlings-img {
+       max-width: 80%;
+       margin-bottom: 20px;
+   }
+   .starlings-text {
+       text-align: center;
+   }
+    .starlings-text h2 {
+        text-align: center; /* Center heading on mobile */
+    }
+   .starlings-text ul {
+       display: inline-block;
+       text-align: left;
+       padding-left: 20px;
+   }
+}
+
+
+/* =========================================================
+    Final Cleanup & Utilities
+   ========================================================= */
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
 }
