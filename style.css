@@ -792,6 +792,19 @@ main, section {
    }
 }
 
+/* --- Checkbox Text Alignment Fix --- */
+.modern-checkbox .checkbox-text {
+  text-align: left !important; /* Force left alignment */
+  display: inline; /* Let it flow naturally next to the checkbox */
+  vertical-align: top; /* Align with the top of the line */
+}
+
+/* Optional: Ensure the label itself respects text-align */
+.modern-checkbox {
+   text-align: left; /* Default alignment for content inside */
+   /* Keep existing display: flex; align-items: flex-start; */
+}
+
 /* --- Resetting Base Styles (Just in case) --- */
 /* Apply these directly if the specific selectors above don't fully override */
 .modern-checkbox {
