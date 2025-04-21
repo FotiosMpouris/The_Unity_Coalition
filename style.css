@@ -743,44 +743,63 @@ main, section {
 
 /* --- Volunteer Form Interest Checkbox Styling 4 21 25--- */
 
-/* Target the grid container specifically */
+/* --- Volunteer Form Interest Checkbox Styling (Revision 3) --- */
+
+/* Grid container */
 .volunteer-interests .checkbox-grid {
-  /* Ensures items align nicely at the top even if text heights differ */
-  align-items: start; 
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5px 20px; /* Reduced row gap, kept column gap */
+  align-items: start;
 }
 
-/* Improve alignment WITHIN each checkbox label */
+/* The label itself (acting as flex container for input + text) */
 .volunteer-interests .modern-checkbox {
-  display: flex;       /* Use flexbox for internal alignment */
-  align-items: flex-start; /* Align checkbox to the top of the text */
-  margin-bottom: 15px; /* Add a bit more space below each item */
-  /* Remove break-inside if it causes issues with grid/flex */
+  display: flex;           /* Align input and text horizontally */
+  align-items: flex-start; /* Align tops */
+  margin-bottom: 10px;   /* Consistent spacing */
+  /* Remove width: 100% if it causes issues, let grid cell define width */
 }
 
-/* Style the actual checkbox input */
+/* The checkbox input */
 .volunteer-interests .modern-checkbox input[type="checkbox"] {
-  margin-top: 2px;     /* Fine-tune vertical position relative to text */
-  margin-right: 12px;  /* Increase space between checkbox and text */
-  flex-shrink: 0;    /* Prevent checkbox from shrinking */
+  margin: 2px 10px 0 0;  /* Top, Right, Bottom, Left margins. Reduced right margin slightly. */
+  flex-shrink: 0;        /* Keep checkbox size fixed */
+  /* Let's use standard input size, remove min-width/height if they existed */
 }
 
-/* Ensure the text takes up remaining space */
+/* The text span */
 .volunteer-interests .modern-checkbox .checkbox-text {
-  line-height: 1.4;   /* Adjust line spacing if needed */
-  flex-grow: 1;      /* Allow text to fill available space */
+  line-height: 1.45;      /* Slightly increase for readability */
+  padding: 0;           /* Ensure no extra padding */
+  /* Let the text take up the available space naturally */
 }
 
-/* --- Responsive Adjustments for Checkbox Grid --- */
+/* --- Responsive Adjustments --- */
 @media (max-width: 768px) {
-  /* Stack to single column on smaller screens */
   .volunteer-interests .checkbox-grid {
     grid-template-columns: 1fr; /* Single column */
-    gap: 0 10px; /* Reduce horizontal gap */
+    gap: 0; /* No gap needed for single column */
   }
-  
+
   .volunteer-interests .modern-checkbox {
-     margin-bottom: 12px; /* Slightly less space on mobile */
+    margin-bottom: 15px; /* Slightly more space in single column */
+    padding-right: 5px;  /* Add slight padding on right to prevent touching edge */
   }
+
+   .volunteer-interests .modern-checkbox input[type="checkbox"] {
+      margin-top: 3px; /* Minor adjustment for mobile font size if needed */
+   }
+}
+
+/* --- Resetting Base Styles (Just in case) --- */
+/* Apply these directly if the specific selectors above don't fully override */
+.modern-checkbox {
+  padding: 0;
+}
+.checkbox-text {
+  padding: 0;
+  margin: 0; /* Ensure no base margin */
 }
 /*end of 4 21 25 add on */
 
