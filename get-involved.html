@@ -148,8 +148,7 @@
       <h2>SIGN UP TO VOLUNTEER</h2>
     </section>
 
-        <section class="modern-form-container">
-      <!-- Note: The action="#" will be replaced when we set up the API Gateway endpoint -->
+    <section class="modern-form-container">
       <form class="modern-volunteer-form" action="#" method="POST" id="volunteerForm">
         <div class="form-row">
           <div class="form-field">
@@ -165,74 +164,95 @@
             <input type="email" name="email" placeholder="Email" required />
           </div>
           <div class="form-field">
-            <input type="tel" name="phone" placeholder="Phone" required /> <!-- Changed type to "tel" -->
+            <input type="text" name="phone" placeholder="Phone" required /> <!-- Consider type="tel" -->
           </div>
         </div>
 
         <div class="form-row three-column">
           <div class="form-field">
-            <input type="text" name="zip" placeholder="Zip" required pattern="\d{5}(-\d{4})?" title="Enter a 5 or 9 digit ZIP code" /> <!-- Added basic pattern validation -->
+            <input type="text" name="zip" placeholder="Zip" required /> <!-- Consider pattern attribute for validation -->
           </div>
           <div class="form-field">
             <input type="text" name="city" placeholder="City" required />
           </div>
           <div class="form-field">
-            <input type="text" name="state" placeholder="State" required maxlength="2" /> <!-- Added maxlength, consider dropdown later -->
+            <input type="text" name="state" placeholder="State" required /> <!-- Consider datalist or select for states -->
           </div>
         </div>
 
-               <!-- START: Modified Volunteer Interests Section with INLINE STYLES -->
+        <!-- START: Added Volunteer Interests Section -->
         <div class="form-field full-width volunteer-interests">
           <h3 style="margin-bottom: 15px; text-align: left; font-size: 1.2rem; color: #333;">Areas of Interest (Select all that apply):</h3>
-          <!-- Using CSS Grid for better 2-column layout -->
-          <div class="checkbox-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 5px 20px; align-items: start;">
-
-            <label class="modern-checkbox" style="display: flex; align-items: flex-start; margin-bottom: 10px; text-align: left;">
-              <input type="checkbox" name="interest" value="corporate-capture" id="interest-corporate-capture" style="margin: 2px 10px 0 0; flex-shrink: 0;" />
-              <span class="checkbox-text" style="text-align: left; line-height: 1.45; padding: 0; margin: 0;">Corporate capture of institutions and erosion of middle class</span>
-            </label>
-            <label class="modern-checkbox" style="display: flex; align-items: flex-start; margin-bottom: 10px; text-align: left;">
-              <input type="checkbox" name="interest" value="immigration-reform" id="interest-immigration-reform" style="margin: 2px 10px 0 0; flex-shrink: 0;" />
-              <span class="checkbox-text" style="text-align: left; line-height: 1.45; padding: 0; margin: 0;">Immigration system reform, balancing legal and humanitarian concerns</span>
-            </label>
-            <label class="modern-checkbox" style="display: flex; align-items: flex-start; margin-bottom: 10px; text-align: left;">
-              <input type="checkbox" name="interest" value="eco-sustainability" id="interest-eco-sustainability" style="margin: 2px 10px 0 0; flex-shrink: 0;" />
-              <span class="checkbox-text" style="text-align: left; line-height: 1.45; padding: 0; margin: 0;">Ecological sustainability and environmental stewardship</span>
-            </label>
-            <label class="modern-checkbox" style="display: flex; align-items: flex-start; margin-bottom: 10px; text-align: left;">
-              <input type="checkbox" name="interest" value="privacy-expression" id="interest-privacy-expression" style="margin: 2px 10px 0 0; flex-shrink: 0;" />
-              <span class="checkbox-text" style="text-align: left; line-height: 1.45; padding: 0; margin: 0;">Privacy protections, free expression, and reducing censorship</span>
-            </label>
-            <label class="modern-checkbox" style="display: flex; align-items: flex-start; margin-bottom: 10px; text-align: left;">
-              <input type="checkbox" name="interest" value="geopolitical-stability" id="interest-geopolitical-stability" style="margin: 2px 10px 0 0; flex-shrink: 0;" />
-              <span class="checkbox-text" style="text-align: left; line-height: 1.45; padding: 0; margin: 0;">Geopolitical stability and ending forever wars</span>
-            </label>
-            <label class="modern-checkbox" style="display: flex; align-items: flex-start; margin-bottom: 10px; text-align: left;">
-              <input type="checkbox" name="interest" value="financial-reform" id="interest-financial-reform" style="margin: 2px 10px 0 0; flex-shrink: 0;" />
-              <span class="checkbox-text" style="text-align: left; line-height: 1.45; padding: 0; margin: 0;">Financial reform, debt burden, and currency stability</span>
-            </label>
-            <label class="modern-checkbox" style="display: flex; align-items: flex-start; margin-bottom: 10px; text-align: left;">
-              <input type="checkbox" name="interest" value="health-improvement" id="interest-health-improvement" style="margin: 2px 10px 0 0; flex-shrink: 0;" />
-              <span class="checkbox-text" style="text-align: left; line-height: 1.45; padding: 0; margin: 0;">Physical and mental health improvement</span>
-            </label>
-            <label class="modern-checkbox" style="display: flex; align-items: flex-start; margin-bottom: 10px; text-align: left;">
-              <input type="checkbox" name="interest" value="election-integrity" id="interest-election-integrity" style="margin: 2px 10px 0 0; flex-shrink: 0;" />
-              <span class="checkbox-text" style="text-align: left; line-height: 1.45; padding: 0; margin: 0;">Election integrity and democratic processes</span>
-            </label>
-            <label class="modern-checkbox" style="display: flex; align-items: flex-start; margin-bottom: 10px; text-align: left;">
-              <input type="checkbox" name="interest" value="civic-renewal" id="interest-civic-renewal" style="margin: 2px 10px 0 0; flex-shrink: 0;" />
-              <span class="checkbox-text" style="text-align: left; line-height: 1.45; padding: 0; margin: 0;">Civic renewal and community engagement</span>
-            </label>
-            <label class="modern-checkbox" style="display: flex; align-items: flex-start; margin-bottom: 10px; text-align: left;">
-              <input type="checkbox" name="interest" value="ethical-tech" id="interest-ethical-tech" style="margin: 2px 10px 0 0; flex-shrink: 0;" />
-              <span class="checkbox-text" style="text-align: left; line-height: 1.45; padding: 0; margin: 0;">Ethical, human-centered technology development</span>
-            </label>
-
+          <div class="checkbox-group" style="columns: 2; -webkit-columns: 2; -moz-columns: 2;">
+            <!-- Column 1 -->
+            <div style="margin-bottom: 10px; break-inside: avoid-column;">
+              <label class="modern-checkbox">
+                <input type="checkbox" name="interest" value="corporate-capture" id="interest-corporate-capture" />
+                <span class="checkbox-text">Corporate capture of institutions and erosion of middle class</span>
+              </label>
+            </div>
+            <div style="margin-bottom: 10px; break-inside: avoid-column;">
+              <label class="modern-checkbox">
+                <input type="checkbox" name="interest" value="immigration-reform" id="interest-immigration-reform" />
+                <span class="checkbox-text">Immigration system reform, balancing legal and humanitarian concerns</span>
+              </label>
+            </div>
+            <div style="margin-bottom: 10px; break-inside: avoid-column;">
+              <label class="modern-checkbox">
+                <input type="checkbox" name="interest" value="eco-sustainability" id="interest-eco-sustainability" />
+                <span class="checkbox-text">Ecological sustainability and environmental stewardship</span>
+              </label>
+            </div>
+            <div style="margin-bottom: 10px; break-inside: avoid-column;">
+              <label class="modern-checkbox">
+                <input type="checkbox" name="interest" value="privacy-expression" id="interest-privacy-expression" />
+                <span class="checkbox-text">Privacy protections, free expression, and reducing censorship</span>
+              </label>
+            </div>
+            <div style="margin-bottom: 10px; break-inside: avoid-column;">
+              <label class="modern-checkbox">
+                <input type="checkbox" name="interest" value="geopolitical-stability" id="interest-geopolitical-stability" />
+                <span class="checkbox-text">Geopolitical stability and ending forever wars</span>
+              </label>
+            </div>
+            <!-- Column 2 -->
+             <div style="margin-bottom: 10px; break-inside: avoid-column;">
+              <label class="modern-checkbox">
+                <input type="checkbox" name="interest" value="financial-reform" id="interest-financial-reform" />
+                <span class="checkbox-text">Financial reform, debt burden, and currency stability</span>
+              </label>
+            </div>
+             <div style="margin-bottom: 10px; break-inside: avoid-column;">
+              <label class="modern-checkbox">
+                <input type="checkbox" name="interest" value="health-improvement" id="interest-health-improvement" />
+                <span class="checkbox-text">Physical and mental health improvement</span>
+              </label>
+            </div>
+             <div style="margin-bottom: 10px; break-inside: avoid-column;">
+              <label class="modern-checkbox">
+                <input type="checkbox" name="interest" value="election-integrity" id="interest-election-integrity" />
+                <span class="checkbox-text">Election integrity and democratic processes</span>
+              </label>
+            </div>
+             <div style="margin-bottom: 10px; break-inside: avoid-column;">
+              <label class="modern-checkbox">
+                <input type="checkbox" name="interest" value="civic-renewal" id="interest-civic-renewal" />
+                <span class="checkbox-text">Civic renewal and community engagement</span>
+              </label>
+            </div>
+             <div style="margin-bottom: 10px; break-inside: avoid-column;">
+              <label class="modern-checkbox">
+                <input type="checkbox" name="interest" value="ethical-tech" id="interest-ethical-tech" />
+                <span class="checkbox-text">Ethical, human-centered technology development</span>
+              </label>
+            </div>
           </div>
         </div>
-        <!-- END: Modified Volunteer Interests Section with INLINE STYLES -->
-       
-        <!-- REMOVED the textarea for "How would you like to help?" -->
+        <!-- END: Added Volunteer Interests Section -->
+
+        <div class="form-field full-width">
+          <textarea name="message" placeholder="How would you like to help? (Skills, availability, interests, etc.)"></textarea>
+        </div>
 
         <div class="checkbox-container">
           <label class="modern-checkbox">
@@ -248,6 +268,8 @@
         <button type="submit" class="modern-submit-btn">SUBMIT</button>
       </form>
     </section>
+  </main>
+
   <!-- FOOTER -->
   <footer>
     <div class="footer-links">
