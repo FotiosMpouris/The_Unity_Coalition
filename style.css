@@ -741,6 +741,49 @@ main, section {
   }
 }
 
+/* --- Volunteer Form Interest Checkbox Styling 4 21 25--- */
+
+/* Target the grid container specifically */
+.volunteer-interests .checkbox-grid {
+  /* Ensures items align nicely at the top even if text heights differ */
+  align-items: start; 
+}
+
+/* Improve alignment WITHIN each checkbox label */
+.volunteer-interests .modern-checkbox {
+  display: flex;       /* Use flexbox for internal alignment */
+  align-items: flex-start; /* Align checkbox to the top of the text */
+  margin-bottom: 15px; /* Add a bit more space below each item */
+  /* Remove break-inside if it causes issues with grid/flex */
+}
+
+/* Style the actual checkbox input */
+.volunteer-interests .modern-checkbox input[type="checkbox"] {
+  margin-top: 2px;     /* Fine-tune vertical position relative to text */
+  margin-right: 12px;  /* Increase space between checkbox and text */
+  flex-shrink: 0;    /* Prevent checkbox from shrinking */
+}
+
+/* Ensure the text takes up remaining space */
+.volunteer-interests .modern-checkbox .checkbox-text {
+  line-height: 1.4;   /* Adjust line spacing if needed */
+  flex-grow: 1;      /* Allow text to fill available space */
+}
+
+/* --- Responsive Adjustments for Checkbox Grid --- */
+@media (max-width: 768px) {
+  /* Stack to single column on smaller screens */
+  .volunteer-interests .checkbox-grid {
+    grid-template-columns: 1fr; /* Single column */
+    gap: 0 10px; /* Reduce horizontal gap */
+  }
+  
+  .volunteer-interests .modern-checkbox {
+     margin-bottom: 12px; /* Slightly less space on mobile */
+  }
+}
+/*end of 4 21 25 add on */
+
 /* =========================================================
    24. Mission Images Row
    ========================================================= */
