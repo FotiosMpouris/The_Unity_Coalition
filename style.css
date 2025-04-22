@@ -773,6 +773,27 @@ main, section {
   margin: 0;
   padding: 0;
 }
+/* =========================================================
+   23.5 adding on to figure out the spacing between the checkbox and text */
+
+/* Reduce gap between checkbox and text */
+.modern-volunteer-form .volunteer-interests .modern-checkbox input[type="checkbox"] {
+  margin-right: 8px !important;
+  margin-top: 0.2em !important;
+  margin-left: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* Ensure text starts right after checkbox */
+.modern-volunteer-form .volunteer-interests .checkbox-text {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+}
+
+/* For flex-based spacing, override any gap property */
+.modern-volunteer-form .volunteer-interests .modern-checkbox {
+  gap: 8px !important;
+}
 
 /* =========================================================
    24. Mission Images Row
