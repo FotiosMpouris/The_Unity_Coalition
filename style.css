@@ -746,32 +746,48 @@ main, section {
    ========================================================= */
 
 /* Force two-column layout for desktop */
-/* Adjust the checkbox and text spacing */
+.modern-volunteer-form .volunteer-interests .checkbox-columns-container {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 0 40px !important;
+  justify-content: space-between !important;
+  margin-top: 10px;
+  text-align: left !important;
+}
+
+.modern-volunteer-form .volunteer-interests .checkbox-column {
+  flex: 1 1 45% !important;
+  min-width: 250px;
+  max-width: 48%;
+  margin: 0;
+  padding: 0;
+  text-align: left !important;
+}
+
 .modern-volunteer-form .volunteer-interests .modern-checkbox {
-  display: flex;
-  align-items: flex-start;
-  margin-bottom: 10px;
-  text-align: left;
+  display: flex !important;
+  align-items: flex-start !important;
+  margin-bottom: 10px !important;
+  text-align: left !important;
 }
 
 .modern-volunteer-form .volunteer-interests .modern-checkbox input[type="checkbox"] {
   margin-top: 0.2em;
-  margin-right: 8px !important; /* Bring checkbox and text closer together */
+  margin-right: 8px;
   flex-shrink: 0;
 }
 
-.modern-volunteer-form .volunteer-interests .checkbox-text {
-  flex: 1;
-  margin: 0; /* Remove any default margins */
-  padding: 0; /* Remove any default padding */
-}
-
-/* Ensure no extra spacing from parent elements */
-.modern-volunteer-form .volunteer-interests .checkbox-column > div {
-  display: block;
-  width: 100%;
-  margin: 0;
-  padding: 0;
+/* Keep mobile as single column */
+@media (max-width: 768px) {
+  .modern-volunteer-form .volunteer-interests .checkbox-columns-container {
+    flex-direction: column !important;
+    gap: 0 !important;
+  }
+  
+  .modern-volunteer-form .volunteer-interests .checkbox-column {
+    flex: 1 1 100% !important;
+    max-width: 100% !important;
+  }
 }
 /* =========================================================
    23.5 adding on to figure out the spacing between the checkbox and text */
