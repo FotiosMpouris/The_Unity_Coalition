@@ -745,45 +745,52 @@ main, section {
    23.5. Volunteer Form Checkbox Grid (Get Involved Page)
    ========================================================= */
 
-/* In style.css, find the rule starting like this: */
-.volunteer-interests .checkbox-group {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  /* ADD THIS LINE: */
-  grid-auto-flow: column; /* Fill column-by-column */
-  /* End of added line */
-  gap: 5px 20px;
+/* =========================================================
+   25. Volunteer Form Checkbox Columns (Get Involved Page)
+   ========================================================= */
+
+/* Container for the two columns */
+.volunteer-interests .checkbox-columns-container {
+  display: flex;
+  flex-wrap: wrap; /* Allow columns to wrap on mobile */
+  gap: 0 20px; /* No gap between rows (when stacked), 20px between columns */
   margin-top: 10px;
-  padding: 0;
 }
 
-/* --- Keep the other rules (.modern-checkbox, @media, [data-theme="dark"]) below this as they were --- */
+/* Styling for each column */
+.volunteer-interests .checkbox-column {
+  flex: 1; /* Each column tries to take equal space */
+  min-width: 250px; /* Minimum width before wrapping/stacking */
+}
 
-/* Ensure the labels inside the grid align nicely */
+/* Styling for items within columns remains the same */
 .volunteer-interests .modern-checkbox {
-  margin-bottom: 5px;
+  margin-bottom: 10px; /* Consistent spacing between items */
   display: flex;
-  align-items: start;
+  align-items: flex-start; /* Align checkbox top with first line of text */
 }
 
 .volunteer-interests .modern-checkbox input[type="checkbox"] {
-  margin-top: 0.2em;
+  margin-top: 0.2em; /* Fine-tune checkbox vertical alignment */
+  margin-right: 8px; /* Space between checkbox and text */
 }
 
-/* Responsive behavior: Switch to single column on smaller screens */
+/* Responsive: Stack columns explicitly on smaller screens */
 @media (max-width: 768px) {
-  .volunteer-interests .checkbox-group {
-    grid-template-columns: 1fr;
-    grid-auto-flow: row; /* Explicitly revert to row flow for single column */
-    gap: 10px;
+  .volunteer-interests .checkbox-columns-container {
+    flex-direction: column;
+    gap: 0; /* Remove horizontal gap when stacked */
+  }
+  /* Add space between the stacked columns if desired */
+  .volunteer-interests .checkbox-column:first-child {
+     margin-bottom: 10px; /* Space below the first group when stacked */
   }
 }
 
-/* Dark mode adjustments for the new H3 */
+/* Dark mode adjustments for the H3 */
 [data-theme="dark"] .volunteer-interests h3 {
     color: #fff;
 }
-
 /* =========================================================
    24. Mission Images Row
    ========================================================= */
