@@ -741,59 +741,6 @@ main, section {
   }
 }
 
-/* --- Volunteer Form Checkbox Grid --- */
-
-.volunteer-interests .checkbox-group {
-  display: grid; /* Use Grid layout */
-  grid-template-columns: repeat(2, 1fr); /* Create two equal-width columns */
-  gap: 10px 25px; /* 10px gap between rows, 25px gap between columns */
-  margin-top: 10px; /* Add some space above the group */
-  align-items: start; /* Align items to the top of their grid cell */
-}
-
-/* Target the individual checkbox/label containers (the divs we kept) */
-/* No specific styling needed for the inner div currently, */
-/* as the label inside handles the layout fine. */
-
-/* Ensure the label takes full width within the grid cell */
-.volunteer-interests .checkbox-group .modern-checkbox {
-    display: flex; /* Already likely set, but ensures alignment */
-    align-items: flex-start; /* Align checkbox top with text start */
-    width: 100%; /* Make label take full cell width */
-}
-
-/* Adjust checkbox position slightly if needed */
-.volunteer-interests .checkbox-group .modern-checkbox input[type="checkbox"] {
-  margin-top: 5px; /* Align checkbox slightly better with first line of text */
-  flex-shrink: 0; /* Prevent checkbox from shrinking */
-}
-
-.volunteer-interests .checkbox-group .modern-checkbox .checkbox-text {
-   margin-left: 8px; /* Space between checkbox and text */
-   line-height: 1.4; /* Adjust line height for wrapped text */
-}
-
-
-/* Responsive behavior: Switch to single column on smaller screens */
-@media (max-width: 768px) { /* Using the existing breakpoint */
-  .volunteer-interests .checkbox-group {
-    grid-template-columns: 1fr; /* Single column */
-    gap: 15px; /* Adjust vertical gap for single column */
-  }
-}
-
-/* Optional: Slightly smaller text on very small screens if needed */
-@media (max-width: 480px) {
-    .volunteer-interests .checkbox-group .modern-checkbox .checkbox-text {
-        font-size: 0.9rem; /* Make text slightly smaller if needed */
-    }
-}
-
-/* Dark mode adjustments for the heading inside the form */
-[data-theme="dark"] .volunteer-interests h3 {
- color: #ddd; /* Ensure heading text is visible */
-}
-
 /* =========================================================
    24. Mission Images Row
    ========================================================= */
