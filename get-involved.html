@@ -144,12 +144,14 @@
     </section>
 
     <!-- Modern Volunteer banner and form -->
+       <!-- Modern Volunteer banner and form -->
     <section id="volunteerSection" class="modern-volunteer-banner">
       <h2>SIGN UP TO VOLUNTEER</h2>
     </section>
 
     <section class="modern-form-container">
-      <form class="modern-volunteer-form" action="#" method="POST" id="volunteerForm">
+      <!-- NOTE: Removed action="#" and method="POST" for now, as JS will handle submission -->
+      <form class="modern-volunteer-form" id="volunteerForm">
         <div class="form-row">
           <div class="form-field">
             <input type="text" name="firstName" placeholder="First Name" required />
@@ -164,28 +166,28 @@
             <input type="email" name="email" placeholder="Email" required />
           </div>
           <div class="form-field">
-            <input type="text" name="phone" placeholder="Phone" required /> <!-- Consider type="tel" -->
+            <input type="tel" name="phone" placeholder="Phone" required /> <!-- Changed type to tel -->
           </div>
         </div>
 
         <div class="form-row three-column">
           <div class="form-field">
-            <input type="text" name="zip" placeholder="Zip" required /> <!-- Consider pattern attribute for validation -->
+            <input type="text" name="zip" placeholder="Zip" required pattern="\d{5}(-\d{4})?" title="Please enter a valid 5 or 9 digit ZIP code"/> <!-- Added basic zip pattern -->
           </div>
           <div class="form-field">
             <input type="text" name="city" placeholder="City" required />
           </div>
           <div class="form-field">
-            <input type="text" name="state" placeholder="State" required /> <!-- Consider datalist or select for states -->
+            <input type="text" name="state" placeholder="State" required /> <!-- Consider select later -->
           </div>
         </div>
 
-                <!-- START: Updated Volunteer Interests Section (Inline styles removed) -->
+        <!-- START: Volunteer Interests Section (Inline styles removed) -->
         <div class="form-field full-width volunteer-interests">
           <h3 style="margin-bottom: 15px; text-align: left; font-size: 1.2rem; color: #333;">Areas of Interest (Select all that apply):</h3>
-          <!-- The CSS Grid rules will target this div -->
+          <!-- The class "checkbox-group" will be styled by style.css -->
           <div class="checkbox-group">
-            <!-- Column 1 Flow -->
+            <!-- Column 1 Content (HTML remains the same, just removed inline style) -->
             <div>
               <label class="modern-checkbox">
                 <input type="checkbox" name="interest" value="corporate-capture" id="interest-corporate-capture" />
@@ -216,7 +218,7 @@
                 <span class="checkbox-text">Geopolitical stability and ending forever wars</span>
               </label>
             </div>
-            <!-- Column 2 Flow -->
+            <!-- Column 2 Content (HTML remains the same, just removed inline style) -->
              <div>
               <label class="modern-checkbox">
                 <input type="checkbox" name="interest" value="financial-reform" id="interest-financial-reform" />
@@ -249,12 +251,12 @@
             </div>
           </div>
         </div>
-        <!-- END: Updated Volunteer Interests Section -->
+        <!-- END: Volunteer Interests Section -->
 
-        <!-- Note: I see you mentioned you removed the textarea below, so make sure it's gone from your file too if desired -->
-        <!-- <div class="form-field full-width"> -->
-        <!--   <textarea name="message" placeholder="How would you like to help? (Skills, availability, interests, etc.)"></textarea> -->
-        <!-- </div> -->
+        <!-- REMOVED the textarea for free-text interests -->
+        <!-- <div class="form-field full-width">
+          <textarea name="message" placeholder="How would you like to help? (Skills, availability, interests, etc.)"></textarea>
+        </div> -->
 
         <div class="checkbox-container">
           <label class="modern-checkbox">
