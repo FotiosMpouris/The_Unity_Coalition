@@ -745,116 +745,49 @@ main, section {
    23.5. Volunteer Form Checkbox Grid (Get Involved Page)
    ========================================================= */
 
-/* =========================================================
-   25. Volunteer Form Checkbox Columns (Get Involved Page)
-   ========================================================= */
-
-/* Container for the two columns */
-.volunteer-interests .checkbox-columns-container {
-  display: flex;
-  flex-wrap: wrap; /* Allow columns to wrap on mobile */
-  gap: 0 20px; /* No gap between rows (when stacked), 20px between columns */
+/* Force two-column layout for desktop */
+.modern-volunteer-form .volunteer-interests .checkbox-columns-container {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 0 40px !important;
+  justify-content: space-between !important;
   margin-top: 10px;
+  text-align: left !important;
 }
 
-/* Styling for each column */
-.volunteer-interests .checkbox-column {
-  flex: 1; /* Each column tries to take equal space */
-  min-width: 250px; /* Minimum width before wrapping/stacking */
-}
-
-/* Styling for items within columns remains the same */
-.volunteer-interests .modern-checkbox {
-  margin-bottom: 10px; /* Consistent spacing between items */
-  display: flex;
-  align-items: flex-start; /* Align checkbox top with first line of text */
-}
-
-.volunteer-interests .modern-checkbox input[type="checkbox"] {
-  margin-top: 0.2em; /* Fine-tune checkbox vertical alignment */
-  margin-right: 8px; /* Space between checkbox and text */
-}
-
-/* Responsive: Stack columns explicitly on smaller screens */
-@media (max-width: 768px) {
-  .volunteer-interests .checkbox-columns-container {
-    flex-direction: column;
-    gap: 0; /* Remove horizontal gap when stacked */
-  }
-  /* Add space between the stacked columns if desired */
-  .volunteer-interests .checkbox-column:first-child {
-     margin-bottom: 10px; /* Space below the first group when stacked */
-  }
-}
-
-/* Dark mode adjustments for the H3 */
-[data-theme="dark"] .volunteer-interests h3 {
-    color: #fff;
-}
-
-/* Specific overrides for volunteer interests section only */
-.form-field.full-width.volunteer-interests {
-  text-align: left; /* Override any center alignment */
-}
-
-.volunteer-interests .checkbox-columns-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0 20px;
-  margin-top: 10px;
-  text-align: left; /* Override center alignment */
-}
-
-.volunteer-interests .checkbox-column {
-  flex: 1;
+.modern-volunteer-form .volunteer-interests .checkbox-column {
+  flex: 1 1 45% !important;
   min-width: 250px;
-  text-align: left; /* Ensure left alignment */
+  max-width: 48%;
+  margin: 0;
+  padding: 0;
+  text-align: left !important;
 }
 
-.volunteer-interests .checkbox-column > div {
-  display: block;  /* Ensure each checkbox container is block */
-  width: 100%;     /* Take full width of column */
-  text-align: left; /* Align contents left */
+.modern-volunteer-form .volunteer-interests .modern-checkbox {
+  display: flex !important;
+  align-items: flex-start !important;
+  margin-bottom: 10px !important;
+  text-align: left !important;
 }
 
-.volunteer-interests .modern-checkbox {
-  margin-bottom: 10px;
-  display: flex;
-  align-items: flex-start;
-  text-align: left; /* Override any center alignment */
-}
-
-.volunteer-interests .modern-checkbox input[type="checkbox"] {
+.modern-volunteer-form .volunteer-interests .modern-checkbox input[type="checkbox"] {
   margin-top: 0.2em;
   margin-right: 8px;
+  flex-shrink: 0;
 }
 
-.volunteer-interests h3 {
-  margin-bottom: 15px;
-  text-align: left;
-  font-size: 1.2rem;
-  color: #333;
-}
-
-/* Mobile specific - maintain current behavior */
+/* Keep mobile as single column */
 @media (max-width: 768px) {
-  .volunteer-interests .checkbox-columns-container {
-    flex-direction: column;
-    gap: 0;
+  .modern-volunteer-form .volunteer-interests .checkbox-columns-container {
+    flex-direction: column !important;
+    gap: 0 !important;
   }
   
-  .volunteer-interests .checkbox-column:first-child {
-    margin-bottom: 10px;
+  .modern-volunteer-form .volunteer-interests .checkbox-column {
+    flex: 1 1 100% !important;
+    max-width: 100% !important;
   }
-}
-/* Diagnostic styling - delete after testing */
-.volunteer-interests .checkbox-columns-container {
-  border: 2px solid red;
-}
-
-.volunteer-interests .checkbox-column {
-  border: 2px solid blue;
-  padding: 10px;
 }
 
 /* =========================================================
