@@ -847,6 +847,15 @@ main, section {
     margin-bottom: 10px;
   }
 }
+/* Diagnostic styling - delete after testing */
+.volunteer-interests .checkbox-columns-container {
+  border: 2px solid red;
+}
+
+.volunteer-interests .checkbox-column {
+  border: 2px solid blue;
+  padding: 10px;
+}
 
 /* =========================================================
    24. Mission Images Row
