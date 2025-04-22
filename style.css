@@ -742,6 +742,42 @@ main, section {
 }
 
 /* =========================================================
+   23.5. Volunteer Form Checkbox Grid (Get Involved Page)
+   ========================================================= */
+
+.volunteer-interests .checkbox-group {
+  display: grid; /* Use Grid layout */
+  grid-template-columns: repeat(2, 1fr); /* Create two equal-width columns */
+  gap: 5px 20px; /* 5px gap between rows, 20px gap between columns */
+  margin-top: 10px; /* Add some space above the group */
+  padding: 0; /* Reset padding if any inherited */
+}
+
+/* Ensure the labels inside the grid align nicely */
+.volunteer-interests .modern-checkbox {
+  margin-bottom: 5px; /* Reduce bottom margin slightly if needed */
+  display: flex; /* Ensure checkbox and text align */
+  align-items: start; /* Align items to the top */
+}
+
+.volunteer-interests .modern-checkbox input[type="checkbox"] {
+  margin-top: 0.2em; /* Fine-tune checkbox vertical alignment */
+}
+
+/* Responsive behavior: Switch to single column on smaller screens */
+@media (max-width: 768px) { /* Using the existing breakpoint */
+  .volunteer-interests .checkbox-group {
+    grid-template-columns: 1fr; /* Single column */
+    gap: 10px; /* Adjust gap for single column */
+  }
+}
+
+/* Dark mode adjustments for the new H3 */
+[data-theme="dark"] .volunteer-interests h3 {
+    color: #fff; /* Ensure heading is visible in dark mode */
+}
+
+/* =========================================================
    24. Mission Images Row
    ========================================================= */
 .mission-images-row {
