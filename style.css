@@ -2008,4 +2008,24 @@ footer p {
 }
 
 
+/* Override any existing margins/padding creating the gap */
+.modern-volunteer-form .volunteer-interests .modern-checkbox input[type="checkbox"] {
+  margin: 0.2em 8px 0 0 !important;
+  padding: 0 !important;
+}
 
+.modern-volunteer-form .volunteer-interests .checkbox-text {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Remove any flex gap that might be creating space */
+.modern-volunteer-form .volunteer-interests .modern-checkbox {
+  gap: 0 !important;
+}
+
+/* Ensure label doesn't create additional spacing */
+.modern-volunteer-form .volunteer-interests .modern-checkbox label {
+  margin: 0 !important;
+  padding: 0 !important;
+}
