@@ -745,36 +745,43 @@ main, section {
    23.5. Volunteer Form Checkbox Grid (Get Involved Page)
    ========================================================= */
 
+/* In style.css, find the rule starting like this: */
 .volunteer-interests .checkbox-group {
-  display: grid; /* Use Grid layout */
-  grid-template-columns: repeat(2, 1fr); /* Create two equal-width columns */
-  gap: 5px 20px; /* 5px gap between rows, 20px gap between columns */
-  margin-top: 10px; /* Add some space above the group */
-  padding: 0; /* Reset padding if any inherited */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  /* ADD THIS LINE: */
+  grid-auto-flow: column; /* Fill column-by-column */
+  /* End of added line */
+  gap: 5px 20px;
+  margin-top: 10px;
+  padding: 0;
 }
+
+/* --- Keep the other rules (.modern-checkbox, @media, [data-theme="dark"]) below this as they were --- */
 
 /* Ensure the labels inside the grid align nicely */
 .volunteer-interests .modern-checkbox {
-  margin-bottom: 5px; /* Reduce bottom margin slightly if needed */
-  display: flex; /* Ensure checkbox and text align */
-  align-items: start; /* Align items to the top */
+  margin-bottom: 5px;
+  display: flex;
+  align-items: start;
 }
 
 .volunteer-interests .modern-checkbox input[type="checkbox"] {
-  margin-top: 0.2em; /* Fine-tune checkbox vertical alignment */
+  margin-top: 0.2em;
 }
 
 /* Responsive behavior: Switch to single column on smaller screens */
-@media (max-width: 768px) { /* Using the existing breakpoint */
+@media (max-width: 768px) {
   .volunteer-interests .checkbox-group {
-    grid-template-columns: 1fr; /* Single column */
-    gap: 10px; /* Adjust gap for single column */
+    grid-template-columns: 1fr;
+    grid-auto-flow: row; /* Explicitly revert to row flow for single column */
+    gap: 10px;
   }
 }
 
 /* Dark mode adjustments for the new H3 */
 [data-theme="dark"] .volunteer-interests h3 {
-    color: #fff; /* Ensure heading is visible in dark mode */
+    color: #fff;
 }
 
 /* =========================================================
