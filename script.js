@@ -286,7 +286,7 @@ document.addEventListener("DOMContentLoaded", function() {
    * 8. API Form Submission Handling
    ***********************************************/
   // Selectors might need adjustment based on final HTML structure
-  const joinFormHome = document.querySelector(".join-movement-form-container form"); // Target home page join form
+  const joinFormHome = document.querySelector(".join-movement-form-container .modern-form-wrapper form"); // Target home page join form
   // Ensure the selector below uniquely identifies the Contact page form
   const subscribeFormContact = document.querySelector("main form:not(#volunteerForm):not(.join-movement-form-container form)"); // Attempt to select non-volunteer/join forms in main
   const volunteerForm = document.getElementById("volunteerForm"); // Target volunteer form by ID
@@ -361,7 +361,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     console.log(`Submitting ${formType} payload:`, JSON.stringify(dataPayload, null, 2));
 
-    if (!apiGatewayUrl || apiGatewayUrl === "YOUR_API_GATEWAY_INVOKE_URL_HERE") {
+    if (!apiGatewayUrl || apiGatewayUrl === "https://po1s6ptb9g.execute-api.us-east-2.amazonaws.com/dev") {
         console.error("API Gateway URL is not configured!");
         alert("Error: API endpoint is not configured. Please contact support.");
         submitButton.disabled = false;
