@@ -292,7 +292,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const volunteerForm = document.getElementById("volunteerForm"); // Target volunteer form by ID
 
   // !!! IMPORTANT: Replace with your actual API Gateway Invoke URL !!!
-  const apiGatewayUrl = "https://po1s6ptb9g.execute-api.us-east-2.amazonaws.com/dev"; // e.g., https://xxxxxx.execute-api.us-east-1.amazonaws.com/dev/submit
+  const apiGatewayUrl = "https://po1s6ptb9g.execute-api.us-east-2.amazonaws.com/dev/submit"; // e.g., https://xxxxxx.execute-api.us-east-1.amazonaws.com/dev/submit
 
   // --- Function to handle form submission ---
   async function handleFormSubmit(event, formType) {
@@ -361,7 +361,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     console.log(`Submitting ${formType} payload:`, JSON.stringify(dataPayload, null, 2));
 
-    if (!apiGatewayUrl || apiGatewayUrl === "https://po1s6ptb9g.execute-api.us-east-2.amazonaws.com/dev") {
+    if (!apiGatewayUrl || apiGatewayUrl === "YOUR_API_GATEWAY_INVOKE_URL_HERE") {
         console.error("API Gateway URL is not configured!");
         alert("Error: API endpoint is not configured. Please contact support.");
         submitButton.disabled = false;
