@@ -482,104 +482,121 @@ main, section {
 
 .home-banner-overlay {
   position: absolute;
-  top: 60%;
+  top: 60%; /* Adjust as needed for vertical centering */
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  color: var(--white);
-  width: 90%;
-  max-width: 600px;
+  color: var(--white); /* Default text color for overlay */
+  width: 90%; /* Responsive width */
+  max-width: 600px; /* Max width for larger screens */
 }
 .home-banner-overlay h1 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  background: rgba(255, 255, 255, 0.8);
-  color: var(--black);
+  font-size: 2rem; /* Base font size */
+  margin-bottom: 15px; /* Consistent spacing */
+  background: rgba(255, 255, 255, 0.8); /* Light mode background */
+  color: var(--black); /* Light mode text */
   padding: 10px;
   border-radius: 4px;
 }
 .home-banner-overlay blockquote {
   font-style: italic;
-  background: rgba(255, 255, 255, 0.8);
-  color: var(--black);
+  background: rgba(255, 255, 255, 0.8); /* Light mode background */
+  color: var(--black); /* Light mode text */
   padding: 10px;
   border-left: 5px solid var(--red);
-  margin-bottom: 20px;
+  margin-bottom: 20px; /* Consistent spacing */
 }
 [data-theme="dark"] .home-banner-overlay h1,
 [data-theme="dark"] .home-banner-overlay blockquote {
-  background: rgba(28, 41, 81, 0.8);
+  background: rgba(28, 41, 81, 0.8); /* Dark mode background */
   color: #fff !important; /* Ensure white text in dark mode */
 }
 .founder-image {
-  max-width: 150px;
-  margin: 10px auto 20px auto;
+  max-width: 150px; /* Base size */
+  margin: 10px auto 20px auto; /* Centering and spacing */
   display: block;
 }
 
 .hero-buttons-group {
   display: flex;
-  gap: 10px;
+  gap: 15px; /* Increased gap slightly for better separation */
   justify-content: center;
-  margin-top: 10px;
+  margin-top: 15px; /* Consistent spacing */
 }
+/* Base styles for BOTH hero buttons */
 .hero-buttons-group a {
-  display: inline-block;
-  padding: 10px 18px;
-  background-color: var(--blue);
-  color: #fff;
+  display: inline-block; /* Needed for padding/width */
+  padding: 10px 18px;   /* Consistent padding for both buttons */
+  min-width: 150px;     /* Consistent minimum width (adjust if needed) */
+  text-align: center;    /* Consistent text alignment */
+  color: #fff;           /* Default text color */
   text-transform: uppercase;
   border-radius: 4px;
-  border: 2px solid var(--blue);
+  border: 2px solid transparent; /* Start with transparent border */
   font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease; /* Smooth transition for hover */
 }
+/* Hover effect for BOTH buttons (using background is simpler) */
 .hero-buttons-group a:hover {
-  background: linear-gradient(to right, var(--blue), var(--gold));
-  border-color: var(--gold);
-}
-.hero-volunteer-btn {
-  background-color: var(--blue);
-  border-color: var(--blue);
-  color: #fff; /* Ensure text is visible in light mode */
-  padding: 12px 24px; /* Increase padding for more space */
-  min-width: 180px; /* Set a minimum width to prevent cramping */
-  text-align: center; /* Center the text within the button */
-  display: inline-block; /* Ensure proper display */
-}
-.hero-contribute-btn {
-  background-color: var(--red);
-  border-color: var(--red);
-}
-[data-theme="dark"] .hero-volunteer-btn {
-  background-color: var(--red);
-  border-color: var(--red);
-  color: #fff; /* Ensure text is visible in dark mode */
-}
-[data-theme="dark"] .hero-contribute-btn {
-  background-color: var(--red);
-  border-color: var(--red);
-  color: #fff;
-}
-.hero-contribute-btn:hover {
-  background: linear-gradient(to right, var(--red), var(--gold));
-  color: var(--white);
+  opacity: 0.9; /* Slight fade on hover */
+  transform: scale(1.03); /* Slight grow effect */
 }
 
+/* Specific styles for Volunteer button */
+.hero-volunteer-btn {
+  background-color: var(--blue);
+  border-color: var(--blue); /* Match border to background */
+}
+
+/* Specific styles for Contribute button */
+.hero-contribute-btn {
+  background-color: var(--red);
+  border-color: var(--red); /* Match border to background */
+}
+
+/* Dark mode overrides only for color changes if necessary (example) */
+/*
+[data-theme="dark"] .hero-volunteer-btn {
+   background-color: var(--some-other-color);
+   border-color: var(--some-other-color);
+}
+[data-theme="dark"] .hero-contribute-btn {
+   background-color: var(--some-other-dark-red);
+   border-color: var(--some-other-dark-red);
+}
+*/
+/* The dark mode rules you had before just changed colors, which is fine */
+/* Re-adding your existing dark mode rules for accuracy: */
+[data-theme="dark"] .hero-volunteer-btn {
+  background-color: var(--red); /* You had volunteer button turn red in dark */
+  border-color: var(--red);
+  /* color: #fff; is already set in base rule */
+}
+[data-theme="dark"] .hero-contribute-btn {
+  /* Inherits red from light mode, which is fine if intended */
+  /* background-color: var(--red); */
+  /* border-color: var(--red); */
+   color: #fff; /* Ensure white text if base rule changes */
+}
+
+/* Media Query for Mobile Adjustments */
 @media (max-width: 768px) {
   .home-banner-overlay {
-    top: 70%;
-    width: 90%;
+    top: 70%; /* Adjust vertical position for mobile */
+    width: 95%; /* Slightly wider on mobile */
   }
   .home-banner-overlay h1 {
-    font-size: 1.6rem;
+    font-size: 1.5rem; /* Smaller heading on mobile */
     padding: 8px;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
   }
   .home-banner-overlay blockquote {
-    font-size: 0.85rem;
+    font-size: 0.9rem; /* Smaller quote on mobile */
     padding: 8px;
-    margin-bottom: 6px;
+    margin-bottom: 12px;
   }
+  /* Ensure high contrast backgrounds on mobile too */
   .home-banner-overlay h1,
   .home-banner-overlay blockquote {
     background: rgba(255, 255, 255, 0.9);
@@ -590,27 +607,35 @@ main, section {
     color: #fff !important;
   }
   .founder-image {
-    max-width: 80px;
-    margin: 3px auto 8px auto;
+    max-width: 80px; /* Smaller founder image */
+    margin: 5px auto 10px auto; /* Adjust spacing */
   }
+  /* Adjust base button styles for mobile */
   .hero-buttons-group a {
-    padding: 8px 14px;
-    font-size: 0.9rem;
+    padding: 8px 14px; /* Smaller padding */
+    font-size: 0.9rem;  /* Smaller font */
+    min-width: 120px;   /* Adjust min-width for mobile */
+  }
+  .hero-buttons-group {
+    gap: 10px; /* Slightly smaller gap */
   }
 }
+
+/* Media Query for Larger Desktop Adjustments */
 @media (min-width: 769px) {
   .home-banner-overlay {
-    max-width: 650px;
+    max-width: 700px; /* Allow slightly wider overlay */
   }
   .home-banner-overlay h1 {
-    font-size: 2.9rem;
+    font-size: 2.5rem; /* Larger heading */
   }
   .home-banner-overlay blockquote {
-    font-size: 1.5rem;
+    font-size: 1.3rem; /* Larger quote */
   }
   .founder-image {
-    max-width: 225px;
+    max-width: 180px; /* Larger founder image */
   }
+  /* Base button styles for desktop are set above the mobile media query */
 }
 
 /* =========================================================
