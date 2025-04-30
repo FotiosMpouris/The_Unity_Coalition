@@ -144,69 +144,86 @@ document.addEventListener("DOMContentLoaded", function() {
    * 4. About Page Video (Static Image, Play on Click, Pause on Scroll)
    ***********************************************/
   // NOTE: Ensure these selectors match your About page HTML if the video section exists there
-  const videoWrapper = document.querySelector(".video-wrapper"); // Assuming you have a .video-wrapper div
-  const playButton = document.querySelector(".play-button"); // Assuming you have a .play-button
-  const videoContainer = document.querySelector(".video-container"); // Assuming you have a .video-container
-  const homePageVideo = document.querySelector("main section video.home-video"); // Select the other video
+ /************************************************
+ * 4. About Page Video (Static Image, Play on Click, Pause on Scroll)
+ ***********************************************/
+// NOTE: This code ONLY runs if the specific elements for the About page video exist.
+const videoWrapper = document.querySelector(".video-wrapper"); // Specific wrapper for About page video
+const playButton = document.querySelector(".play-button"); // Specific play button for About page video
+const videoContainer = document.querySelector(".video-container"); // Specific container for About page video
 
-  if (videoWrapper && playButton && videoContainer) {
-      let aboutVideo = null; // Renamed to avoid conflict if another video exists
+if (videoWrapper && playButton && videoContainer) {
+    console.log("About page video elements found. Initializing player.");
+    let aboutPageVideo = null; // Variable specifically for the about page video
 
-      // Create video element when play button is clicked
-      playButton.addEventListener("click", () => {
-          if (!aboutVideo) {
-              aboutVideo = document.createElement("video");
-              aboutVideo.classList.add("about-video"); // Add a class if needed for specific styling
-              aboutVideo.setAttribute("playsinline", "");
-              aboutVideo.setAttribute("controls", ""); // Add controls for easier interaction
-              aboutVideo.innerHTML = `
-                  <source src="slidevideo.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                  `;
-              videoContainer.innerHTML = ''; // Clear container before adding
-              videoContainer.appendChild(aboutVideo);
-          }
+    // Create video element when play button is clicked
+    playButton.addEventListener("click", () => {
+        if (!aboutPageVideo) {
+            aboutPageVideo = document.createElement("video");
+            aboutPageVideo.classList.add("about-video");
+            aboutPageVideo.setAttribute("playsinline", "");
+            aboutPageVideo.setAttribute("controls", ""); // Add controls
+            aboutPageVideo.innerHTML = `
+                <source src="slidevideo.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+                `;
+            videoContainer.innerHTML = ''; // Clear container
+            videoContainer.appendChild(aboutPageVideo);
+        }
+        aboutPageVideo.play().catch(e => console.error("Error playing about page video:", e));
+        videoWrapper.classList.add("playing"); // Hide preview/button
+    });
 
-          aboutVideo.play();
-          videoWrapper.classList.add("playing"); // Hide preview/button
+    // Pause video when it scrolls out of view
+    const aboutObserver = new IntersectionObserver( // Use a different observer variable name
+        (entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting && aboutPageVideo && !aboutPageVideo.paused) {
+                    console.log("About page video scrolled out of view, pausing.");
+                    aboutPageVideo.pause();
+                }
+            });
+        }, { threshold: 0.1 }
+    );
+    aboutObserver.observe(videoWrapper);
 
-          // Toggle audio is handled by controls now, removed click listener for mute
-      });
-
-      // Pause video when it scrolls out of view
-      const observer = new IntersectionObserver(
-          (entries) => {
-              entries.forEach((entry) => {
-                  if (!entry.isIntersecting && aboutVideo && !aboutVideo.paused) {
-                      aboutVideo.pause();
-                      // Optionally, restore the preview image when paused?
-                      // videoWrapper.classList.remove("playing");
-                  }
-              });
-          }, { threshold: 0.1 } // Lower threshold means it pauses sooner when scrolling out
-      );
-
-      observer.observe(videoWrapper);
-  } else if (homePageVideo) {
-      // Fallback or alternative logic if the about page video elements aren't found,
-      // but the homepage video element IS found (on the current page).
-      console.log("About page video elements not found. Checking homepage video.");
-      homePageVideo.addEventListener("click", () => {
-          homePageVideo.muted = !homePageVideo.muted;
-          if (!homePageVideo.muted) {
-              homePageVideo.play().catch(e => console.error("Error playing video:", e));
-          }
-      });
-  } else {
-      console.log("No video elements found matching About page or Homepage selectors.");
-  }
+} else {
+    console.log("About page video elements (.video-wrapper, .play-button, .video-container) not found on this page.");
+}
 
 
   /************************************************
    * 5. Home Page Video (Click-to-toggle-audio) - Covered partially above
    ***********************************************/
    // The logic in section 4 now handles the homepage video if the about page video isn't present.
+/************************************************
+ * 5. Homepage Videos (Click-to-toggle-audio)
+ ***********************************************/
+// This specifically targets videos with class="home-video"
+const homePageVideos = document.querySelectorAll("video.home-video"); // Select ALL videos with this class
 
+if (homePageVideos.length > 0) {
+    console.log(`Found ${homePageVideos.length} videos with class .home-video.`);
+    homePageVideos.forEach(video => { // Loop through each one
+        // Ensure autoplay videos start muted (redundant if 'muted' attribute is set, but safe)
+        video.muted = true;
+
+        video.addEventListener("click", () => {
+            console.log("Clicked homepage video:", video.src);
+            // Toggle mute for the specific video clicked
+            if (video.muted) {
+                video.muted = false;
+                video.play().catch(e => console.warn("Video play() failed:", e)); // Attempt to play if needed
+                console.log("Homepage video unmuted.");
+            } else {
+                video.muted = true;
+                console.log("Homepage video muted.");
+            }
+        });
+    });
+} else {
+    console.log("No videos with class .home-video found on this page.");
+}
 
   /************************************************
    * 6. Bitcoin "Coming Soon" Popup
