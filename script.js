@@ -191,40 +191,51 @@ if (videoWrapper && playButton && videoContainer) {
     console.log("About page video elements (.video-wrapper, .play-button, .video-container) not found on this page.");
 }
 
-
-  /************************************************
-   * 5. Home Page Video (Click-to-toggle-audio) - Covered partially above
-   ***********************************************/
-   // The logic in section 4 now handles the homepage video if the about page video isn't present.
 /************************************************
- * 5. Homepage Videos (Click-to-toggle-audio)
+ * 5. Homepage Videos (Click-to-toggle-audio, Exclusive Audio)
  ***********************************************/
 // This specifically targets videos with class="home-video"
 const homePageVideos = document.querySelectorAll("video.home-video"); // Select ALL videos with this class
 
 if (homePageVideos.length > 0) {
-    console.log(`Found ${homePageVideos.length} videos with class .home-video.`);
+    console.log(`Found ${homePageVideos.length} videos with class .home-video for exclusive audio control.`);
     homePageVideos.forEach(video => { // Loop through each one
-        // Ensure autoplay videos start muted (redundant if 'muted' attribute is set, but safe)
+        // Ensure autoplay videos start muted
         video.muted = true;
 
         video.addEventListener("click", () => {
             console.log("Clicked homepage video:", video.src);
-            // Toggle mute for the specific video clicked
+
+            // Check if the clicked video IS currently muted (i.e., user wants to unmute THIS one)
             if (video.muted) {
+                console.log("Attempting to unmute:", video.src);
+
+                // **NEW LOGIC: Mute all OTHER videos in the NodeList first**
+                homePageVideos.forEach(otherVideo => {
+                    // Check if it's a different video than the one clicked
+                    if (otherVideo !== video) {
+                        if (!otherVideo.muted) { // Only mute if it's currently unmuted
+                            console.log("Muting other video:", otherVideo.src);
+                            otherVideo.muted = true;
+                        }
+                    }
+                });
+
+                // NOW, unmute the video that was actually clicked
                 video.muted = false;
                 video.play().catch(e => console.warn("Video play() failed:", e)); // Attempt to play if needed
-                console.log("Homepage video unmuted.");
+                console.log("Homepage video unmuted:", video.src);
+
             } else {
+                // If the clicked video was already unmuted, just mute it.
                 video.muted = true;
-                console.log("Homepage video muted.");
+                console.log("Homepage video muted:", video.src);
             }
         });
     });
 } else {
-    console.log("No videos with class .home-video found on this page.");
+    console.log("No videos with class .home-video found on this page for exclusive audio control.");
 }
-
   /************************************************
    * 6. Bitcoin "Coming Soon" Popup
    ***********************************************/
