@@ -3,88 +3,127 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Join ARL (QR)</title> <!-- Simplified Title -->
-    <link rel="stylesheet" href="style.css" />
+    <title>Join ARL (QR)</title>
+    <link rel="stylesheet" href="style.css" /> <!-- Main styles -->
     <style>
         /* QR Page Specific Styles */
         body {
             padding: 20px;
-            background-color: var(--white); /* Or a specific QR page background */
+            background-color: var(--blue); /* Main theme blue background */
+            color: var(--white); /* Default text color white for contrast */
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
             text-align: center;
+            font-family: 'Open Sans', Arial, sans-serif;
         }
         .qr-container {
-            background-color: rgba(255, 255, 255, 0.9); /* Slight transparency if desired */
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            background-color: var(--white); /* White container for the form */
+            color: var(--blue); /* Dark blue text inside the container */
+            padding: 30px 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
             width: 100%;
-            max-width: 400px; /* Optimized for mobile */
+            max-width: 420px;
         }
+        /* Dark mode adjustments for the container itself if needed, body handles main theme */
         [data-theme="dark"] .qr-container {
-            background-color: rgba(28, 41, 81, 0.9); /* Dark mode background */
+             background-color: #121a33; /* Darker container background */
+             color: var(--white); /* Ensure text inside is light */
         }
+         [data-theme="dark"] .qr-container .form-field span {
+            color: #e0e0e0; /* Lighter span text in dark mode */
+        }
+        [data-theme="dark"] .qr-container .form-field input {
+            background-color: #2c3a5c;
+            color: var(--white);
+            border-color: #4a5b80;
+        }
+         [data-theme="dark"] .qr-container .join-button { /* Dark mode button */
+            background-color: var(--red); /* Red like other ARL buttons */
+            color: var(--white);
+        }
+        [data-theme="dark"] .qr-container .join-button:hover {
+            background-color: #c83c3c; /* Slightly lighter red on hover */
+        }
+
+
         .qr-logo {
-            max-width: 100px; /* Smaller logo for mobile */
-            margin-bottom: 15px;
+            max-width: 100px;
+            margin-bottom: 20px;
         }
         .qr-container h1 {
-            font-size: 1.8rem; /* Slightly smaller H1 */
-            margin-bottom: 20px;
-            color: var(--blue);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--red); /* Use theme red for heading */
         }
-        [data-theme="dark"] .qr-container h1 {
-             color: var(--white);
+        .qr-container p.subtitle { /* Added a class for the subtitle */
+            margin-bottom: 25px;
+            font-size: 1rem;
+            color: var(--blue); /* Dark blue for subtitle text */
         }
-        /* Re-use form field styles from main style.css, but ensure they adapt */
-        .form-field span { /* Make labels prominent */
+         [data-theme="dark"] .qr-container p.subtitle {
+            color: #b0c4de; /* Lighter blue for dark mode subtitle */
+        }
+
+        .form-field span {
             font-weight: bold;
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 6px;
             color: var(--blue);
             text-align: left;
-        }
-        [data-theme="dark"] .form-field span {
-            color: var(--white);
+            font-size: 0.9rem;
         }
         .form-field input {
             width: 100%;
-            padding: 12px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            padding: 12px 15px;
+            margin-bottom: 18px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
             font-size: 1rem;
+            box-sizing: border-box;
         }
-        .join-button { /* Ensure button is styled well for mobile */
+        .form-field input:focus {
+            border-color: var(--blue);
+            box-shadow: 0 0 0 2px rgba(28, 41, 81, 0.2);
+            outline: none;
+        }
+        .join-button { /* Main button style */
             width: 100%;
-            padding: 12px;
+            padding: 14px;
             font-size: 1.1rem;
+            background-color: var(--red); /* Theme red */
+            color: var(--white);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: background-color 0.2s ease;
+        }
+        .join-button:hover {
+            background-color: #c83c3c; /* Darker red */
         }
         .qr-footer-text {
-            margin-top: 20px;
-            font-size: 0.8rem;
-            color: #777;
+            margin-top: 25px;
+            font-size: 0.9rem;
+            color: var(--blue);
         }
         [data-theme="dark"] .qr-footer-text {
-            color: #ccc;
+            color: #aaa;
         }
     </style>
 </head>
 <body>
     <div class="qr-container">
-        <img src="images/unitycoalitionlogo.png" alt="American Reformers League Logo" class="qr-logo" /> <!-- Update image path/alt if needed -->
+        <img src="images/unitycoalitionlogo.png" alt="American Reformers League Logo" class="qr-logo" />
         <h1>Join Our Movement</h1>
-        <p style="margin-bottom: 20px; color: var(--blue);">Enter your email and zip code to stay connected!</p>
-         [data-theme="dark"] p {
-             color: var(--white);
-        }
+        <p class="subtitle">Enter your email and zip code to stay connected!</p>
         
-        <!-- Form structure similar to index.html's join form -->
-        <form id="qrJoinForm"> <!-- Give it a unique ID if needed, or rely on script.js general selector if appropriate -->
+        <form id="qrJoinForm">
             <div class="form-field-group">
                 <div class="form-field">
                     <span>Email Address</span>
@@ -103,18 +142,24 @@
 
     <script src="script.js"></script>
     <script>
-        // Specific JS for this QR page, if any, can go here.
-        // For now, we rely on the main script.js to find this form IF the selectors match.
-
-        // We might need to add a specific listener if the main script.js selectors don't pick this up:
-        const qrJoinForm = document.getElementById('qrJoinForm');
-        if (qrJoinForm && typeof handleFormSubmit === 'function') { // Check if handleFormSubmit is available from main script
-            qrJoinForm.addEventListener('submit', (event) => handleFormSubmit(event, 'join'));
-            console.log("QR Join form listener explicitly added.");
-        } else if (qrJoinForm) {
-            console.error("handleFormSubmit function not found from main script.js for qrJoinForm.");
-        }
-
+        // This inline script ensures the event listener is specifically for this page's form
+        document.addEventListener('DOMContentLoaded', function() {
+            const qrForm = document.getElementById('qrJoinForm');
+            if (qrForm) {
+                if (typeof handleFormSubmit === 'function') {
+                    qrForm.addEventListener('submit', (event) => {
+                        console.log("QR Join Form submit event triggered."); // Add this log
+                        handleFormSubmit(event, 'join');
+                    });
+                    console.log("QR Join form listener explicitly added.");
+                } else {
+                    console.error("CRITICAL: handleFormSubmit function not found. Main script.js might not be loaded or is errored.");
+                    alert("Error: Page setup incomplete. Please try again later or contact support.");
+                }
+            } else {
+                console.error("QR Join Form element with ID 'qrJoinForm' not found.");
+            }
+        });
     </script>
 </body>
 </html>
