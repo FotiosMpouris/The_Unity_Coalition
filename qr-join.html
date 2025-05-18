@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Join ARL (QR)</title> <!-- Simplified Title -->
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        /* QR Page Specific Styles */
+        body {
+            padding: 20px;
+            background-color: var(--white); /* Or a specific QR page background */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+        .qr-container {
+            background-color: rgba(255, 255, 255, 0.9); /* Slight transparency if desired */
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px; /* Optimized for mobile */
+        }
+        [data-theme="dark"] .qr-container {
+            background-color: rgba(28, 41, 81, 0.9); /* Dark mode background */
+        }
+        .qr-logo {
+            max-width: 100px; /* Smaller logo for mobile */
+            margin-bottom: 15px;
+        }
+        .qr-container h1 {
+            font-size: 1.8rem; /* Slightly smaller H1 */
+            margin-bottom: 20px;
+            color: var(--blue);
+        }
+        [data-theme="dark"] .qr-container h1 {
+             color: var(--white);
+        }
+        /* Re-use form field styles from main style.css, but ensure they adapt */
+        .form-field span { /* Make labels prominent */
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+            color: var(--blue);
+            text-align: left;
+        }
+        [data-theme="dark"] .form-field span {
+            color: var(--white);
+        }
+        .form-field input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        .join-button { /* Ensure button is styled well for mobile */
+            width: 100%;
+            padding: 12px;
+            font-size: 1.1rem;
+        }
+        .qr-footer-text {
+            margin-top: 20px;
+            font-size: 0.8rem;
+            color: #777;
+        }
+        [data-theme="dark"] .qr-footer-text {
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="qr-container">
+        <img src="images/unitycoalitionlogo.png" alt="American Reformers League Logo" class="qr-logo" /> <!-- Update image path/alt if needed -->
+        <h1>Join Our Movement</h1>
+        <p style="margin-bottom: 20px; color: var(--blue);">Enter your email and zip code to stay connected!</p>
+         [data-theme="dark"] p {
+             color: var(--white);
+        }
+        
+        <!-- Form structure similar to index.html's join form -->
+        <form id="qrJoinForm"> <!-- Give it a unique ID if needed, or rely on script.js general selector if appropriate -->
+            <div class="form-field-group">
+                <div class="form-field">
+                    <span>Email Address</span>
+                    <input type="email" name="email" placeholder="Your Email" required />
+                </div>
+                <div class="form-field">
+                    <span>Zip Code</span>
+                    <input type="text" name="zip" placeholder="Zip Code" required />
+                </div>
+            </div>
+            <button type="submit" class="join-button">JOIN</button>
+        </form>
+
+        <p class="qr-footer-text">American Reformers League</p>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Specific JS for this QR page, if any, can go here.
+        // For now, we rely on the main script.js to find this form IF the selectors match.
+
+        // We might need to add a specific listener if the main script.js selectors don't pick this up:
+        const qrJoinForm = document.getElementById('qrJoinForm');
+        if (qrJoinForm && typeof handleFormSubmit === 'function') { // Check if handleFormSubmit is available from main script
+            qrJoinForm.addEventListener('submit', (event) => handleFormSubmit(event, 'join'));
+            console.log("QR Join form listener explicitly added.");
+        } else if (qrJoinForm) {
+            console.error("handleFormSubmit function not found from main script.js for qrJoinForm.");
+        }
+
+    </script>
+</body>
+</html>
