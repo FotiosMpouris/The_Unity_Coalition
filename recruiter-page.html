@@ -45,7 +45,7 @@
             border-radius: 10px;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
             width: 100%;
-            max-width: 600px; /* Can be wider to accommodate two columns */
+            max-width: 850px; /* Increased max-width for three items */
             margin-top: 20px;
             margin-bottom: 20px;
             box-sizing: border-box;
@@ -62,14 +62,18 @@
         .access-options {
             display: flex;
             flex-direction: column; /* Stack sections vertically first */
-            gap: 30px;
+            gap: 20px; /* Adjusted gap */
         }
 
         .option-section {
             padding: 15px;
             border: 1px solid #e0e0e0;
             border-radius: 8px;
-            background-color: #f9f9f9; /* Slight off-white for section background */
+            background-color: #f9f9f9;
+            display: flex; /* For better internal alignment */
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between; /* Pushes button to bottom if content heights vary */
         }
 
         .option-section h2 {
@@ -80,23 +84,27 @@
             margin-bottom: 15px;
         }
 
+        .qr-code-display {
+            margin-bottom: 15px; /* Space between QR and button */
+        }
+
         .qr-code-display img {
-            max-width: 200px; /* Adjust size as needed */
+            max-width: 180px; /* Slightly smaller QR for three items */
             height: auto;
             border: 1px solid #ccc;
             padding: 5px;
-            background-color: white; /* Ensure QR code background is white if transparent */
+            background-color: white;
             margin-bottom: 10px;
         }
         .qr-code-display p {
             font-size: 0.9rem;
-            margin-bottom: 15px;
+            margin-bottom: 0; /* Removed bottom margin as .qr-code-display handles it */
         }
 
         .direct-link-button {
             display: inline-block;
-            padding: 12px 25px;
-            font-size: 1rem;
+            padding: 12px 20px; /* Adjusted padding */
+            font-size: 0.95rem; /* Adjusted font size */
             background-color: var(--qr-button-bg);
             color: var(--qr-button-text);
             border: none;
@@ -106,6 +114,8 @@
             text-decoration: none;
             text-transform: uppercase;
             transition: background-color 0.2s ease;
+            width: 90%; /* Make buttons more uniform in width */
+            max-width: 250px;
         }
         .direct-link-button:hover {
             background-color: var(--qr-button-hover-bg);
@@ -114,13 +124,20 @@
         .recruiter-footer-text { margin-top: 25px; font-size: 0.85rem; color: var(--qr-text-primary); }
 
         /* Responsive adjustments for side-by-side on wider screens */
-        @media (min-width: 550px) {
+        @media (min-width: 700px) { /* Adjusted breakpoint for 3 items to go side-by-side */
             .access-options {
-                flex-direction: row; /* Side-by-side */
-                justify-content: space-around;
+                flex-direction: row;
+                justify-content: space-around; /* Distributes space around items */
+                align-items: stretch; /* Makes option-sections same height */
             }
             .option-section {
-                flex-basis: 45%; /* Each section takes up roughly half */
+                flex-basis: 31%; /* Each section takes up roughly a third, accounts for gap */
+                margin-bottom: 0;
+            }
+        }
+         @media (min-width: 500px) and (max-width: 699px) { /* For 2 items per row if needed, or keep stacked */
+            .access-options {
+                /* You could style for 2 then 1, or just let them stack */
             }
         }
     </style>
@@ -148,6 +165,15 @@
                     <p>Scan for Volunteer Form</p>
                 </div>
                 <a href="qr-volunteer.html" class="direct-link-button" target="_blank">Open Volunteer Form</a>
+            </div>
+
+            <div class="option-section">
+                <h2>Stay Informed</h2>
+                <div class="qr-code-display">
+                    <img src="images/informedQR.png" alt="QR Code for Stay Informed Page" />
+                    <p>Scan for Subscribe Form</p>
+                </div>
+                <a href="stay-informed.html" class="direct-link-button" target="_blank">Open Subscribe Form</a>
             </div>
         </div>
 
