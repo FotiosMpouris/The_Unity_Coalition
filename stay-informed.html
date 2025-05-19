@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Stay Informed - ARL (QR)</title>
+    <!-- No link to main style.css -->
+    <style>
+        /* QR Page Specific Styles - FORCED LIGHT MODE */
+        :root {
+            --qr-blue: #1c2951;
+            --qr-white: #ffffff;
+            --qr-red: #d9534f;
+            --qr-text-primary: #1c2951;
+            --qr-text-secondary: #555;
+            --qr-border-light: #ddd;
+            --qr-focus-shadow: rgba(28, 41, 81, 0.2);
+        }
+
+        html {
+            --blue: var(--qr-blue);
+            --white: var(--qr-white);
+            --red: var(--qr-red);
+        }
+
+        body {
+            padding: 20px;
+            background-color: var(--qr-blue);
+            color: var(--qr-white);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center; /* Center for shorter forms */
+            min-height: 100vh;
+            text-align: center;
+            font-family: 'Open Sans', Arial, sans-serif;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .qr-visual-container {
+            background-color: var(--qr-white);
+            color: var(--qr-text-primary);
+            padding: 30px 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 480px; /* Max width for this form */
+            margin-top: 20px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        .qr-logo { max-width: 100px; margin-bottom: 15px; }
+        .qr-visual-container h1 { /* Changed from h2 for semantic main title */
+            font-family: 'Montserrat', sans-serif; font-size: 1.8rem; margin-bottom: 10px; color: var(--qr-red);
+        }
+        .qr-visual-container p.subtitle { margin-bottom: 20px; font-size: 0.95rem; color: var(--qr-text-primary); }
+        
+        /* Form styling from contact.html's modern-form-wrapper, adapted */
+        .form-field-group {
+            margin-bottom: 15px;
+        }
+        .form-field {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .form-field span {
+            font-weight: bold; display: block; margin-bottom: 5px; color: var(--qr-text-primary);
+            font-size: 0.85rem;
+        }
+        .form-field input[type="text"],
+        .form-field input[type="email"] {
+            width: 100%; padding: 10px 12px;
+            border: 1px solid var(--qr-border-light); border-radius: 5px; font-size: 0.95rem; box-sizing: border-box;
+            color: var(--qr-text-primary);
+            background-color: var(--qr-white);
+        }
+        .form-field input:focus {
+            border-color: var(--qr-blue); box-shadow: 0 0 0 2px var(--qr-focus-shadow); outline: none;
+        }
+        .checkbox-container { text-align: left; margin-bottom: 20px; }
+        .modern-checkbox {
+            display: flex; align-items: flex-start; cursor: pointer;
+        }
+        .modern-checkbox input[type="checkbox"] { margin-top: 3px; margin-right: 8px; transform: scale(0.9); }
+        .checkbox-text { font-size: 0.85rem; line-height: 1.3; color: var(--qr-text-primary); }
+
+        .subscribe-button { /* Unique class for this button to avoid conflicts if join-button has specific global styles */
+            width: 100%; padding: 14px; font-size: 1.1rem; background-color: var(--qr-red);
+            color: var(--qr-white); border: none; border-radius: 5px; cursor: pointer;
+            font-weight: bold; text-transform: uppercase; transition: background-color 0.2s ease;
+        }
+        .subscribe-button:hover { background-color: #c83c3c; }
+        .qr-footer-text { margin-top: 20px; font-size: 0.85rem; color: var(--qr-text-primary); }
+    </style>
+</head>
+<body>
+    <div class="qr-visual-container">
+        <img src="images/unitycoalitionlogo.png" alt="American Reformers League Logo" class="qr-logo" />
+        <h1>Stay Informed</h1>
+        <p class="subtitle">Subscribe to receive updates about our work, upcoming events, and opportunities to get involved.</p>
+        
+        <!-- Form structure based on contact.html -->
+        <!-- The 'main' tag isn't strictly needed here for the selector to work if the form is unique enough -->
+        <form> <!-- JS should find this form -->
+            <div class="form-field-group">
+                <div class="form-field">
+                    <span>Your Name</span>
+                    <input type="text" name="name" placeholder="Your Name" required />
+                </div>
+                <div class="form-field">
+                    <span>Your Email</span>
+                    <input type="email" name="email" placeholder="Your Email" required />
+                </div>
+            </div>
+            <div class="form-field full-width"> <!-- Assuming 'full-width' class is not critical for layout here -->
+                <span>Zip Code</span>
+                <input type="text" name="zip" placeholder="Zip Code" /> <!-- Not required in original, keeping it optional -->
+            </div>
+            <div class="checkbox-container">
+                <label class="modern-checkbox">
+                    <input type="checkbox" id="privacy_policy_qr" name="privacy_policy" required /> <!-- Unique ID if needed -->
+                    <span class="checkbox-text">By providing this information, you acknowledge and agree to our Privacy Policy</span>
+                </label>
+            </div>
+            <button type="submit" class="subscribe-button">SUBSCRIBE</button>
+        </form>
+        <p class="qr-footer-text">American Reformers League</p>
+    </div>
+
+    <script src="script.js"></script> <!-- For form submission logic -->
+    <script>
+        // Ensure this page always uses a light theme visually
+        document.documentElement.setAttribute('data-theme', 'light');
+        // localStorage.setItem('theme', 'light'); // Optional
+        console.log("QR Stay Informed page: Light theme enforced.");
+    </script>
+</body>
+</html>
