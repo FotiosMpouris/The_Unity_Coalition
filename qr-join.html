@@ -4,13 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Join ARL (QR)</title>
-    <link rel="stylesheet" href="style.css" /> <!-- Main styles -->
+    <link rel="stylesheet" href="style.css" />
     <style>
-        /* QR Page Specific Styles */
+        /* QR Page Specific Styles (same as before, for aesthetics) */
         body {
             padding: 20px;
-            background-color: var(--blue); /* Main theme blue background */
-            color: var(--white); /* Default text color white for contrast */
+            background-color: var(--blue);
+            color: var(--white);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -19,147 +19,83 @@
             text-align: center;
             font-family: 'Open Sans', Arial, sans-serif;
         }
-        .qr-container {
-            background-color: var(--white); /* White container for the form */
-            color: var(--blue); /* Dark blue text inside the container */
+        .qr-container { /* Renamed from join-movement-form-container to avoid selector conflict,
+                           but we'll wrap it to match index.html structure */
+            background-color: var(--white);
+            color: var(--blue);
             padding: 30px 25px;
             border-radius: 10px;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
             width: 100%;
             max-width: 420px;
         }
-        /* Dark mode adjustments for the container itself if needed, body handles main theme */
         [data-theme="dark"] .qr-container {
-             background-color: #121a33; /* Darker container background */
-             color: var(--white); /* Ensure text inside is light */
+             background-color: #121a33;
+             color: var(--white);
         }
-         [data-theme="dark"] .qr-container .form-field span {
-            color: #e0e0e0; /* Lighter span text in dark mode */
+         [data-theme="dark"] .qr-container .form-field span { color: #e0e0e0; }
+         [data-theme="dark"] .qr-container .form-field input {
+            background-color: #2c3a5c; color: var(--white); border-color: #4a5b80;
         }
-        [data-theme="dark"] .qr-container .form-field input {
-            background-color: #2c3a5c;
-            color: var(--white);
-            border-color: #4a5b80;
+         [data-theme="dark"] .qr-container .join-button {
+            background-color: var(--red); color: var(--white);
         }
-         [data-theme="dark"] .qr-container .join-button { /* Dark mode button */
-            background-color: var(--red); /* Red like other ARL buttons */
-            color: var(--white);
-        }
-        [data-theme="dark"] .qr-container .join-button:hover {
-            background-color: #c83c3c; /* Slightly lighter red on hover */
-        }
-
-
-        .qr-logo {
-            max-width: 100px;
-            margin-bottom: 20px;
-        }
+         [data-theme="dark"] .qr-container .join-button:hover { background-color: #c83c3c; }
+        .qr-logo { max-width: 100px; margin-bottom: 20px; }
         .qr-container h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2rem;
-            margin-bottom: 10px;
-            color: var(--red); /* Use theme red for heading */
+            font-family: 'Montserrat', sans-serif; font-size: 2rem; margin-bottom: 10px; color: var(--red);
         }
-        .qr-container p.subtitle { /* Added a class for the subtitle */
-            margin-bottom: 25px;
-            font-size: 1rem;
-            color: var(--blue); /* Dark blue for subtitle text */
-        }
-         [data-theme="dark"] .qr-container p.subtitle {
-            color: #b0c4de; /* Lighter blue for dark mode subtitle */
-        }
-
+        .qr-container p.subtitle { margin-bottom: 25px; font-size: 1rem; color: var(--blue); }
+         [data-theme="dark"] .qr-container p.subtitle { color: #b0c4de; }
         .form-field span {
-            font-weight: bold;
-            display: block;
-            margin-bottom: 6px;
-            color: var(--blue);
-            text-align: left;
-            font-size: 0.9rem;
+            font-weight: bold; display: block; margin-bottom: 6px; color: var(--blue);
+            text-align: left; font-size: 0.9rem;
         }
         .form-field input {
-            width: 100%;
-            padding: 12px 15px;
-            margin-bottom: 18px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-            box-sizing: border-box;
+            width: 100%; padding: 12px 15px; margin-bottom: 18px; border: 1px solid #ddd;
+            border-radius: 5px; font-size: 1rem; box-sizing: border-box;
         }
         .form-field input:focus {
-            border-color: var(--blue);
-            box-shadow: 0 0 0 2px rgba(28, 41, 81, 0.2);
-            outline: none;
+            border-color: var(--blue); box-shadow: 0 0 0 2px rgba(28, 41, 81, 0.2); outline: none;
         }
-        .join-button { /* Main button style */
-            width: 100%;
-            padding: 14px;
-            font-size: 1.1rem;
-            background-color: var(--red); /* Theme red */
-            color: var(--white);
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            text-transform: uppercase;
-            transition: background-color 0.2s ease;
+        .join-button { /* Using class from index.html form */
+            width: 100%; padding: 14px; font-size: 1.1rem; background-color: var(--red);
+            color: var(--white); border: none; border-radius: 5px; cursor: pointer;
+            font-weight: bold; text-transform: uppercase; transition: background-color 0.2s ease;
         }
-        .join-button:hover {
-            background-color: #c83c3c; /* Darker red */
-        }
-        .qr-footer-text {
-            margin-top: 25px;
-            font-size: 0.9rem;
-            color: var(--blue);
-        }
-        [data-theme="dark"] .qr-footer-text {
-            color: #aaa;
-        }
+        .join-button:hover { background-color: #c83c3c; }
+        .qr-footer-text { margin-top: 25px; font-size: 0.9rem; color: var(--blue); }
+        [data-theme="dark"] .qr-footer-text { color: #aaa; }
     </style>
 </head>
 <body>
-    <div class="qr-container">
-        <img src="images/unitycoalitionlogo.png" alt="American Reformers League Logo" class="qr-logo" />
-        <h1>Join Our Movement</h1>
-        <p class="subtitle">Enter your email and zip code to stay connected!</p>
-        
-        <form id="qrJoinForm">
-            <div class="form-field-group">
-                <div class="form-field">
-                    <span>Email Address</span>
-                    <input type="email" name="email" placeholder="Your Email" required />
-                </div>
-                <div class="form-field">
-                    <span>Zip Code</span>
-                    <input type="text" name="zip" placeholder="Zip Code" required />
-                </div>
+    <!-- Mimicking index.html structure for the form -->
+    <div class="join-movement-form-container"> <!-- Outer container from index.html -->
+        <div class="qr-container"> <!-- Our QR page visual container -->
+            <img src="images/unitycoalitionlogo.png" alt="American Reformers League Logo" class="qr-logo" />
+            <h1>Join Our Movement</h1>
+            <p class="subtitle">Enter your email and zip code to stay connected!</p>
+            
+            <div class="modern-form-wrapper"> <!-- Inner wrapper from index.html -->
+                <form> <!-- No ID, relying on main script.js selector -->
+                    <div class="form-field-group">
+                        <div class="form-field">
+                            <span>Email Address</span>
+                            <input type="email" name="email" placeholder="Your Email" required />
+                        </div>
+                        <div class="form-field">
+                            <span>Zip Code</span>
+                            <input type="text" name="zip" placeholder="Zip Code" required />
+                        </div>
+                    </div>
+                    <button type="submit" class="join-button">JOIN</button>
+                </form>
             </div>
-            <button type="submit" class="join-button">JOIN</button>
-        </form>
-
-        <p class="qr-footer-text">American Reformers League</p>
+            <p class="qr-footer-text">American Reformers League</p>
+        </div>
     </div>
 
     <script src="script.js"></script>
-    <script>
-        // This inline script ensures the event listener is specifically for this page's form
-        document.addEventListener('DOMContentLoaded', function() {
-            const qrForm = document.getElementById('qrJoinForm');
-            if (qrForm) {
-                if (typeof handleFormSubmit === 'function') {
-                    qrForm.addEventListener('submit', (event) => {
-                        console.log("QR Join Form submit event triggered."); // Add this log
-                        handleFormSubmit(event, 'join');
-                    });
-                    console.log("QR Join form listener explicitly added.");
-                } else {
-                    console.error("CRITICAL: handleFormSubmit function not found. Main script.js might not be loaded or is errored.");
-                    alert("Error: Page setup incomplete. Please try again later or contact support.");
-                }
-            } else {
-                console.error("QR Join Form element with ID 'qrJoinForm' not found.");
-            }
-        });
-    </script>
+    <!-- NO INLINE SCRIPT BLOCK NEEDED IF THE ABOVE WORKS -->
 </body>
 </html>
