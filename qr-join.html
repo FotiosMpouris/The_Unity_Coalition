@@ -5,68 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Join ARL (QR)</title>
     <link rel="stylesheet" href="style.css" />
-    <style>
-        /* QR Page Specific Styles (same as before, for aesthetics) */
-        body {
-            padding: 20px;
-            background-color: var(--blue);
-            color: var(--white);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            text-align: center;
-            font-family: 'Open Sans', Arial, sans-serif;
-        }
-        .qr-container { /* Renamed from join-movement-form-container to avoid selector conflict,
-                           but we'll wrap it to match index.html structure */
-            background-color: var(--white);
-            color: var(--blue);
-            padding: 30px 25px;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-            width: 100%;
-            max-width: 420px;
-        }
-        [data-theme="dark"] .qr-container {
-             background-color: #121a33;
-             color: var(--white);
-        }
-         [data-theme="dark"] .qr-container .form-field span { color: #e0e0e0; }
-         [data-theme="dark"] .qr-container .form-field input {
-            background-color: #2c3a5c; color: var(--white); border-color: #4a5b80;
-        }
-         [data-theme="dark"] .qr-container .join-button {
-            background-color: var(--red); color: var(--white);
-        }
-         [data-theme="dark"] .qr-container .join-button:hover { background-color: #c83c3c; }
-        .qr-logo { max-width: 100px; margin-bottom: 20px; }
-        .qr-container h1 {
-            font-family: 'Montserrat', sans-serif; font-size: 2rem; margin-bottom: 10px; color: var(--red);
-        }
-        .qr-container p.subtitle { margin-bottom: 25px; font-size: 1rem; color: var(--blue); }
-         [data-theme="dark"] .qr-container p.subtitle { color: #b0c4de; }
-        .form-field span {
-            font-weight: bold; display: block; margin-bottom: 6px; color: var(--blue);
-            text-align: left; font-size: 0.9rem;
-        }
-        .form-field input {
-            width: 100%; padding: 12px 15px; margin-bottom: 18px; border: 1px solid #ddd;
-            border-radius: 5px; font-size: 1rem; box-sizing: border-box;
-        }
-        .form-field input:focus {
-            border-color: var(--blue); box-shadow: 0 0 0 2px rgba(28, 41, 81, 0.2); outline: none;
-        }
-        .join-button { /* Using class from index.html form */
-            width: 100%; padding: 14px; font-size: 1.1rem; background-color: var(--red);
-            color: var(--white); border: none; border-radius: 5px; cursor: pointer;
-            font-weight: bold; text-transform: uppercase; transition: background-color 0.2s ease;
-        }
-        .join-button:hover { background-color: #c83c3c; }
-        .qr-footer-text { margin-top: 25px; font-size: 0.9rem; color: var(--blue); }
-        [data-theme="dark"] .qr-footer-text { color: #aaa; }
-    </style>
+    ```html
+<style>
+    /* QR Page Specific Styles - FORCED DARK THEME LOOK */
+    body {
+        padding: 20px;
+        background-color: var(--blue); /* Main theme blue background (already darkish) */
+        color: var(--white); 
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        text-align: center;
+        font-family: 'Open Sans', Arial, sans-serif;
+    }
+    .qr-container {
+        background-color: #121a33; /* Darker container background - FORCED */
+        color: var(--white);       /* Light text inside - FORCED */
+        padding: 30px 25px;
+        border-radius: 10px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4); /* Slightly stronger shadow for dark */
+        width: 100%;
+        max-width: 420px;
+    }
+    .qr-container .form-field span {
+        color: #e0e0e0; /* Lighter span text - FORCED */
+    }
+    .qr-container .form-field input {
+        background-color: #2c3a5c; /* Dark input background - FORCED */
+        color: var(--white);       /* Light input text - FORCED */
+        border-color: #4a5b80;    /* Darker border - FORCED */
+    }
+    .qr-container .join-button { 
+        background-color: var(--red); /* Red like other ARL buttons - FORCED */
+        color: var(--white);
+    }
+    .qr-container .join-button:hover {
+        background-color: #c83c3c; /* Slightly lighter red on hover */
+    }
+    .qr-logo { max-width: 100px; margin-bottom: 20px; }
+    .qr-container h1 {
+        font-family: 'Montserrat', sans-serif; font-size: 2rem; margin-bottom: 10px; color: var(--red); /* Red heading */
+    }
+    .qr-container p.subtitle { 
+        margin-bottom: 25px; font-size: 1rem; color: #b0c4de; /* Lighter blue for dark mode subtitle - FORCED */
+    }
+    .form-field input:focus { /* Keep focus style distinct */
+        border-color: var(--gold); /* Gold focus to stand out on dark */
+        box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.3); 
+        outline: none;
+    }
+    .qr-footer-text { 
+        margin-top: 25px; font-size: 0.9rem; color: #aaa; /* Lighter footer text - FORCED */
+    }
+</style>
+
 </head>
 <body>
     <!-- Mimicking index.html structure for the form -->
