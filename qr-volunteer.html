@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Volunteer - ARL (QR)</title>
+    <link rel="stylesheet" href="style.css" /> <!-- Main styles -->
+    <style>
+        /* QR Page Specific Styles (mostly copied from qr-join.html) */
+        body {
+            padding: 20px;
+            background-color: var(--blue);
+            color: var(--white);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* justify-content: center; -- Remove this for longer forms to allow scrolling */
+            min-height: 100vh;
+            text-align: center;
+            font-family: 'Open Sans', Arial, sans-serif;
+        }
+        .qr-container {
+            background-color: var(--white);
+            color: var(--blue);
+            padding: 30px 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 480px; /* Slightly wider for more fields */
+            margin-top: 20px; /* Add some margin at the top */
+            margin-bottom: 20px; /* Add margin at bottom for scroll */
+        }
+        [data-theme="dark"] .qr-container {
+             background-color: #121a33; color: var(--white);
+        }
+        [data-theme="dark"] .qr-container .form-field span,
+        [data-theme="dark"] .qr-container .areas-of-interest-heading,
+        [data-theme="dark"] .qr-container .please-check-heading {
+            color: #e0e0e0;
+        }
+        [data-theme="dark"] .qr-container .form-field input,
+        [data-theme="dark"] .qr-container .form-field textarea { /* Added textarea styling for dark mode */
+            background-color: #2c3a5c; color: var(--white); border-color: #4a5b80;
+        }
+        [data-theme="dark"] .qr-container .modern-submit-btn { /* Adjusted class for volunteer button */
+            background-color: var(--red); color: var(--white);
+        }
+        [data-theme="dark"] .qr-container .modern-submit-btn:hover {
+            background-color: #c83c3c;
+        }
+        .qr-logo { max-width: 100px; margin-bottom: 20px; }
+        .qr-container h1 {
+            font-family: 'Montserrat', sans-serif; font-size: 2rem; margin-bottom: 10px; color: var(--red);
+        }
+        .qr-container p.subtitle { margin-bottom: 25px; font-size: 1rem; color: var(--blue); }
+        [data-theme="dark"] .qr-container p.subtitle { color: #b0c4de; }
+
+        /* Volunteer form specific styles - reusing from style.css where possible */
+        .modern-volunteer-form .form-row {
+            display: flex;
+            flex-wrap: wrap; /* Allow wrapping on small screens */
+            gap: 15px; /* Spacing between fields in a row */
+            margin-bottom: 15px;
+        }
+        .modern-volunteer-form .form-field {
+            flex: 1;
+            min-width: calc(50% - 10px); /* Aim for two fields per row, adjust as needed */
+            text-align: left;
+        }
+         .modern-volunteer-form .form-field.full-width { /* For elements like textarea */
+            min-width: 100%;
+        }
+        .modern-volunteer-form .three-column .form-field { /* For zip, city, state */
+            min-width: calc(33.33% - 10px);
+        }
+
+        .form-field span { /* Label for input fields */
+            font-weight: bold; display: block; margin-bottom: 6px; color: var(--blue);
+            font-size: 0.9rem;
+        }
+        .form-field input, .form-field textarea {
+            width: 100%; padding: 10px 12px; margin-bottom: 0; /* Remove margin-bottom from input, handle with .form-field */
+            border: 1px solid #ddd; border-radius: 5px; font-size: 1rem; box-sizing: border-box;
+        }
+        .form-field input:focus, .form-field textarea:focus {
+            border-color: var(--blue); box-shadow: 0 0 0 2px rgba(28, 41, 81, 0.2); outline: none;
+        }
+        .areas-of-interest-heading, .please-check-heading { /* Class for the h3 before checkboxes */
+             margin-bottom: 15px; text-align: left; font-size: 1.2rem; color: var(--blue);
+             font-family: 'Montserrat', sans-serif;
+        }
+        .checkbox-container { margin: 10px 0 20px 0; text-align: left; }
+        .modern-checkbox {
+            display: flex; align-items: flex-start; margin-bottom: 10px; cursor: pointer;
+        }
+        .modern-checkbox input[type="checkbox"] { margin-top: 3px; margin-right: 10px; }
+        .checkbox-text { font-size: 0.95rem; line-height: 1.4; }
+
+        .modern-submit-btn { /* Button style from get-involved.html */
+            width: 100%; padding: 14px; font-size: 1.1rem; background-color: var(--red);
+            color: var(--white); border: none; border-radius: 5px; cursor: pointer;
+            font-weight: bold; text-transform: uppercase; transition: background-color 0.2s ease;
+            margin-top: 20px; /* Add some space above button */
+        }
+        .modern-submit-btn:hover { background-color: #c83c3c; }
+        .qr-footer-text { margin-top: 25px; font-size: 0.9rem; color: var(--blue); }
+        [data-theme="dark"] .qr-footer-text { color: #aaa; }
+
+        /* Responsive adjustments for very small screens if needed */
+        @media (max-width: 380px) {
+            .modern-volunteer-form .form-field,
+            .modern-volunteer-form .three-column .form-field {
+                min-width: 100%; /* Stack fields on very small screens */
+            }
+            .qr-container { padding: 20px 15px; }
+            .qr-container h1 { font-size: 1.7rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="qr-container">
+        <img src="images/unitycoalitionlogo.png" alt="American Reformers League Logo" class="qr-logo" />
+        <h1>Volunteer With Us</h1>
+        <p class="subtitle">Join our team and make a difference!</p>
+        
+        <!-- Volunteer form structure copied from get-involved.html -->
+        <form class="modern-volunteer-form" id="volunteerForm">
+            <div class="form-row">
+              <div class="form-field">
+                <span>First Name</span>
+                <input type="text" name="firstName" placeholder="First Name" required />
+              </div>
+              <div class="form-field">
+                <span>Last Name</span>
+                <input type="text" name="lastName" placeholder="Last Name" required />
+              </div>
+            </div>
+    
+            <div class="form-row">
+              <div class="form-field">
+                <span>Email</span>
+                <input type="email" name="email" placeholder="Email" required />
+              </div>
+              <div class="form-field">
+                <span>Phone</span>
+                <input type="tel" name="phone" placeholder="Phone" required />
+              </div>
+            </div>
+    
+            <div class="form-row three-column">
+              <div class="form-field">
+                <span>Zip Code</span>
+                <input type="text" name="zip" placeholder="Zip" required pattern="\d{5}(-\d{4})?" title="Please enter a valid 5 or 9 digit ZIP code"/>
+              </div>
+              <div class="form-field">
+                <span>City</span>
+                <input type="text" name="city" placeholder="City" required />
+              </div>
+              <div class="form-field">
+                <span>State</span>
+                <input type="text" name="state" placeholder="State" required />
+              </div>
+            </div>
+                    
+            <h3 class="areas-of-interest-heading">Areas of Interest (Select all that apply):</h3>
+            <!-- Copied from get-involved.html, ensure nesting of checkbox-containers is correct -->
+            <div class="checkbox-container">
+                <label class="modern-checkbox">
+                    <input type="checkbox" name="interest" value="corporate-capture" id="interest-corporate-capture" />
+                    <span class="checkbox-text">Corporate capture of institutions and erosion of middle class</span>
+                </label>
+                <label class="modern-checkbox">
+                    <input type="checkbox" name="interest" value="immigration-reform" id="interest-immigration-reform" />
+                    <span class="checkbox-text">Immigration system reform, balancing legal and humanitarian concerns</span>
+                </label>
+                <label class="modern-checkbox">
+                    <input type="checkbox" name="interest" value="eco-sustainability" id="interest-eco-sustainability" />
+                    <span class="checkbox-text">Ecological sustainability and environmental stewardship</span>
+                </label>
+                <label class="modern-checkbox">
+                    <input type="checkbox" name="interest" value="privacy-expression" id="interest-privacy-expression" />
+                    <span class="checkbox-text">Privacy protections, free expression, and reducing censorship</span>
+                </label>
+                <label class="modern-checkbox">
+                    <input type="checkbox" name="interest" value="geopolitical-stability" id="interest-geopolitical-stability" />
+                    <span class="checkbox-text">Geopolitical stability and ending forever wars</span>
+                </label>
+                <label class="modern-checkbox">
+                    <input type="checkbox" name="interest" value="financial-reform" id="interest-financial-reform" />
+                    <span class="checkbox-text">Financial reform, debt burden, and currency stability</span>
+                </label>
+                <label class="modern-checkbox">
+                    <input type="checkbox" name="interest" value="health-improvement" id="interest-health-improvement" />
+                    <span class="checkbox-text">Physical and mental health improvement</span>
+                </label>
+                <label class="modern-checkbox">
+                    <input type="checkbox" name="interest" value="election-integrity" id="interest-election-integrity" />
+                    <span class="checkbox-text">Election integrity and democratic processes</span>
+                </label>
+                <label class="modern-checkbox">
+                    <input type="checkbox" name="interest" value="civic-renewal" id="interest-civic-renewal" />
+                    <span class="checkbox-text">Civic renewal and community engagement</span>
+                </label>
+                <label class="modern-checkbox">
+                    <input type="checkbox" name="interest" value="ethical-tech" id="interest-ethical-tech" />
+                    <span class="checkbox-text">Ethical, human-centered technology development</span>
+                </label>      
+            </div>
+    
+            <h3 class="please-check-heading">Please also check below:</h3>
+            <div class="checkbox-container">
+              <label class="modern-checkbox">
+                <input type="checkbox" name="not_robot" required />
+                <span class="checkbox-text">I'm not a robot</span>
+              </label>
+              <label class="modern-checkbox">
+                <input type="checkbox" name="privacy_policy" required />
+                <span class="checkbox-text">By providing this information you are acknowledging and agreeing to the Privacy Policy</span>
+              </label>
+            </div>
+    
+            <button type="submit" class="modern-submit-btn">SUBMIT</button>
+        </form>
+
+        <p class="qr-footer-text">American Reformers League</p>
+    </div>
+
+    <script src="script.js"></script>
+    <!-- No inline script, relying on main script.js to find the form by its ID "volunteerForm" -->
+</body>
+</html>
