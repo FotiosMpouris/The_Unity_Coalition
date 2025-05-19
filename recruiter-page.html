@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>ARL Recruiter Hub (QR)</title>
+    <!-- No link to main style.css -->
+    <style>
+        /* Recruiter Page Specific Styles - FORCED LIGHT MODE */
+        :root {
+            --qr-blue: #1c2951;
+            --qr-white: #ffffff;
+            --qr-red: #d9534f;
+            --qr-text-primary: #1c2951;
+            --qr-text-secondary: #555;
+            --qr-button-bg: var(--qr-red);
+            --qr-button-text: var(--qr-white);
+            --qr-button-hover-bg: #c83c3c;
+        }
+
+        html {
+            --blue: var(--qr-blue);
+            --white: var(--qr-white);
+            --red: var(--qr-red);
+        }
+
+        body {
+            padding: 20px 15px;
+            background-color: var(--qr-blue);
+            color: var(--qr-white);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            font-family: 'Open Sans', Arial, sans-serif;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .recruiter-container {
+            background-color: var(--qr-white);
+            color: var(--qr-text-primary);
+            padding: 25px 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 600px; /* Can be wider to accommodate two columns */
+            margin-top: 20px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        .recruiter-logo { max-width: 100px; margin-bottom: 15px; }
+        .recruiter-container h1 {
+            font-family: 'Montserrat', sans-serif; font-size: 1.8rem; margin-bottom: 20px; color: var(--qr-red);
+        }
+        .recruiter-container p.intro {
+            margin-bottom: 25px; font-size: 0.95rem;
+        }
+
+        .access-options {
+            display: flex;
+            flex-direction: column; /* Stack sections vertically first */
+            gap: 30px;
+        }
+
+        .option-section {
+            padding: 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background-color: #f9f9f9; /* Slight off-white for section background */
+        }
+
+        .option-section h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            color: var(--qr-blue);
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .qr-code-display img {
+            max-width: 200px; /* Adjust size as needed */
+            height: auto;
+            border: 1px solid #ccc;
+            padding: 5px;
+            background-color: white; /* Ensure QR code background is white if transparent */
+            margin-bottom: 10px;
+        }
+        .qr-code-display p {
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .direct-link-button {
+            display: inline-block;
+            padding: 12px 25px;
+            font-size: 1rem;
+            background-color: var(--qr-button-bg);
+            color: var(--qr-button-text);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: background-color 0.2s ease;
+        }
+        .direct-link-button:hover {
+            background-color: var(--qr-button-hover-bg);
+        }
+
+        .recruiter-footer-text { margin-top: 25px; font-size: 0.85rem; color: var(--qr-text-primary); }
+
+        /* Responsive adjustments for side-by-side on wider screens */
+        @media (min-width: 550px) {
+            .access-options {
+                flex-direction: row; /* Side-by-side */
+                justify-content: space-around;
+            }
+            .option-section {
+                flex-basis: 45%; /* Each section takes up roughly half */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="recruiter-container">
+        <img src="images/unitycoalitionlogo.png" alt="American Reformers League Logo" class="recruiter-logo" />
+        <h1>Recruiter Quick Access</h1>
+        <p class="intro">Use the QR codes or direct links below for quick sign-ups.</p>
+
+        <div class="access-options">
+            <div class="option-section">
+                <h2>Join Our Movement</h2>
+                <div class="qr-code-display">
+                    <img src="images/joinQR.png" alt="QR Code for Join Our Movement Page" />
+                    <p>Scan for Join Form</p>
+                </div>
+                <a href="qr-join.html" class="direct-link-button" target="_blank">Open Join Form</a>
+            </div>
+
+            <div class="option-section">
+                <h2>Sign Up to Volunteer</h2>
+                <div class="qr-code-display">
+                    <img src="images/volunteerQR.png" alt="QR Code for Volunteer Page" />
+                    <p>Scan for Volunteer Form</p>
+                </div>
+                <a href="qr-volunteer.html" class="direct-link-button" target="_blank">Open Volunteer Form</a>
+            </div>
+        </div>
+
+        <p class="recruiter-footer-text">American Reformers League</p>
+    </div>
+
+    <script>
+        // Ensure this page always uses a light theme visually
+        document.documentElement.setAttribute('data-theme', 'light');
+        // localStorage.setItem('theme', 'light'); // Optional
+        console.log("Recruiter page: Light theme enforced.");
+    </script>
+    <!-- No need for script.js as this page only has links, no forms to submit -->
+</body>
+</html>
