@@ -6,44 +6,45 @@
     <title>Volunteer - ARL (QR)</title>
     <link rel="stylesheet" href="style.css" /> <!-- Main styles -->
    <style>
-    /* QR Page Specific Styles (mostly copied from qr-join.html) */
+    /* QR Page Specific Styles - Harmonized for Volunteer Page */
     body {
         padding: 20px;
-        background-color: var(--blue);
-        color: var(--white);
+        background-color: var(--blue); /* Main theme blue background */
+        color: var(--white); /* Default text color white for contrast */
         display: flex;
         flex-direction: column;
         align-items: center;
-        /* justify-content: center; -- Removed for longer forms */
+        /* justify-content: center; -- Removed for long forms to allow scrolling */
         min-height: 100vh;
         text-align: center;
         font-family: 'Open Sans', Arial, sans-serif;
     }
     .qr-container {
-        background-color: var(--white);
-        color: var(--blue);
+        background-color: var(--white); /* White container for the form */
+        color: var(--blue); /* Dark blue text inside the container */
         padding: 30px 25px;
         border-radius: 10px;
         box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
         width: 100%;
-        max-width: 420px; /* Consistent max-width with join QR page */
-        margin-top: 20px;
-        margin-bottom: 20px;
+        max-width: 520px; /* Slightly wider for volunteer form, adjust if needed */
+        margin-top: 30px; 
+        margin-bottom: 30px;
     }
+    /* Dark mode adjustments for the container */
     [data-theme="dark"] .qr-container {
-         background-color: #121a33; color: var(--white);
+         background-color: #121a33; /* Darker container background */
+         color: var(--white); 
     }
     [data-theme="dark"] .qr-container .form-field span,
-    [data-theme="dark"] .qr-container .areas-of-interest-heading, /* Updated to target new classes */
-    [data-theme="dark"] .qr-container .please-check-heading, /* Updated to target new classes */
-    [data-theme="dark"] .qr-container .checkbox-container .checkbox-text { /* Target checkbox text */
-        color: #e0e0e0;
+    [data-theme="dark"] .qr-container .areas-of-interest-heading, /* Target specific h3 */
+    [data-theme="dark"] .qr-container .please-check-heading {    /* Target specific h3 */
+        color: #e0e0e0; 
     }
     [data-theme="dark"] .qr-container .form-field input,
     [data-theme="dark"] .qr-container .form-field textarea {
         background-color: #2c3a5c; color: var(--white); border-color: #4a5b80;
     }
-    [data-theme="dark"] .qr-container .modern-submit-btn {
+    [data-theme="dark"] .qr-container .modern-submit-btn { /* Volunteer button */
         background-color: var(--red); color: var(--white);
     }
     [data-theme="dark"] .qr-container .modern-submit-btn:hover {
@@ -51,61 +52,74 @@
     }
 
     .qr-logo { max-width: 100px; margin-bottom: 20px; }
-    .qr-container h1 {
+    .qr-container h1 { /* Main page title inside container */
         font-family: 'Montserrat', sans-serif; font-size: 2rem; margin-bottom: 10px; color: var(--red);
     }
     .qr-container p.subtitle { margin-bottom: 25px; font-size: 1rem; color: var(--blue); }
     [data-theme="dark"] .qr-container p.subtitle { color: #b0c4de; }
 
-    /* --- STYLING FOR VOLUNTEER FORM --- */
+    /* Form field styling */
+    .modern-volunteer-form .form-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-bottom: 15px;
+    }
     .modern-volunteer-form .form-field {
-        margin-bottom: 18px; /* Consistent spacing below each field */
+        flex: 1;
+        min-width: calc(50% - 10px); /* Two fields per row for most */
         text-align: left;
     }
-    .modern-volunteer-form .form-field span { /* Label for input fields */
+    .modern-volunteer-form .three-column .form-field {
+        min-width: calc(33.33% - 10px); /* Three fields for address row */
+    }
+    .form-field span { /* Labels for input fields */
         font-weight: bold; display: block; margin-bottom: 6px; color: var(--blue);
         font-size: 0.9rem;
     }
-    .modern-volunteer-form .form-field input[type="text"],
-    .modern-volunteer-form .form-field input[type="email"],
-    .modern-volunteer-form .form-field input[type="tel"],
-    .modern-volunteer-form .form-field textarea {
-        width: 100%; padding: 12px 15px; /* Slightly more padding */
+    .form-field input {
+        width: 100%; padding: 10px 12px; margin-bottom: 0;
         border: 1px solid #ddd; border-radius: 5px; font-size: 1rem; box-sizing: border-box;
     }
-    .modern-volunteer-form .form-field input:focus,
-    .modern-volunteer-form .form-field textarea:focus {
+    .form-field input:focus {
         border-color: var(--blue); box-shadow: 0 0 0 2px rgba(28, 41, 81, 0.2); outline: none;
     }
-
-    /* No need for .form-row or .three-column if we stack everything */
-    .modern-volunteer-form .form-row,
-    .modern-volunteer-form .three-column {
-        display: block; /* Override flex to stack */
-    }
-
+    /* Headings for checkbox sections */
     .areas-of-interest-heading, .please-check-heading {
-         font-weight: bold; display: block; margin-bottom: 10px; margin-top: 20px; color: var(--blue);
-         font-size: 1rem; text-align: left; font-family: 'Montserrat', sans-serif;
+         margin-top: 10px; /* Added some space above these headings */
+         margin-bottom: 10px; 
+         text-align: left; 
+         font-size: 1.1rem; /* Slightly smaller than main h1 */
+         color: var(--blue); /* Match other text in container */
+         font-family: 'Montserrat', sans-serif;
+         font-weight: bold;
     }
-    .checkbox-container { margin: 0 0 15px 0; text-align: left; } /* Remove top margin */
+    .checkbox-container { margin: 0 0 15px 0; text-align: left; } /* Reduced bottom margin */
     .modern-checkbox {
-        display: flex; align-items: flex-start; margin-bottom: 12px; cursor: pointer;
+        display: flex; align-items: flex-start; margin-bottom: 8px; cursor: pointer;
     }
-    .modern-checkbox input[type="checkbox"] { margin-top: 3px; margin-right: 10px; }
-    .checkbox-text { font-size: 0.95rem; line-height: 1.4; color: var(--blue); } /* Added color */
-    [data-theme="dark"] .checkbox-text { color: #e0e0e0; }
+    .modern-checkbox input[type="checkbox"] { margin-top: 3px; margin-right: 8px; }
+    .checkbox-text { font-size: 0.9rem; line-height: 1.3; } /* Slightly smaller checkbox text */
 
-
-    .modern-submit-btn {
-        width: 100%; padding: 14px; font-size: 1.1rem; background-color: var(--red);
+    .modern-submit-btn { /* Volunteer submit button */
+        width: 100%; padding: 14px; font-size: 1.1rem; background-color: var(--red); /* Theme red */
         color: var(--white); border: none; border-radius: 5px; cursor: pointer;
         font-weight: bold; text-transform: uppercase; transition: background-color 0.2s ease;
-        margin-top: 25px;
+        margin-top: 25px; 
     }
-    .modern-submit-btn:hover { background-color: #c83c3c; }
+    .modern-submit-btn:hover { background-color: #c83c3c; } /* Darker red */
     .qr-footer-text { margin-top: 25px; font-size: 0.9rem; color: var(--blue); }
     [data-theme="dark"] .qr-footer-text { color: #aaa; }
+
+    @media (max-width: 420px) { /* Adjust breakpoint if needed */
+        .modern-volunteer-form .form-field,
+        .modern-volunteer-form .three-column .form-field {
+            min-width: 100%; /* Stack fields on smaller screens */
+        }
+        .qr-container { padding: 25px 20px; max-width: 95%; }
+        .qr-container h1 { font-size: 1.7rem; }
+        .areas-of-interest-heading, .please-check-heading { font-size: 1rem; }
+    }
 </style>
     
 </head>
