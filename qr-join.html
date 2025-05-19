@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Join ARL (QR)</title>
     <link rel="stylesheet" href="style.css" />
-    ```html
+
 <style>
-    /* QR Page Specific Styles - FORCED DARK THEME LOOK */
+    /* QR Page Specific Styles - FORCED LIGHT THEME LOOK */
     body {
         padding: 20px;
-        background-color: var(--blue); /* Main theme blue background (already darkish) */
-        color: var(--white); 
+        background-color: var(--blue); /* Main theme blue background */
+        color: var(--white); /* Default text on body (outside container) */
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -21,43 +21,46 @@
         font-family: 'Open Sans', Arial, sans-serif;
     }
     .qr-container {
-        background-color: #121a33; /* Darker container background - FORCED */
-        color: var(--white);       /* Light text inside - FORCED */
+        background-color: var(--white); /* White container background - FORCED LIGHT */
+        color: var(--blue);           /* Dark blue text inside container - FORCED LIGHT */
         padding: 30px 25px;
         border-radius: 10px;
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4); /* Slightly stronger shadow for dark */
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
         width: 100%;
         max-width: 420px;
     }
+    /* No specific dark mode overrides needed for .qr-container elements if forcing light */
+    
     .qr-container .form-field span {
-        color: #e0e0e0; /* Lighter span text - FORCED */
+        color: var(--blue); /* Dark blue span text - FORCED LIGHT */
     }
     .qr-container .form-field input {
-        background-color: #2c3a5c; /* Dark input background - FORCED */
-        color: var(--white);       /* Light input text - FORCED */
-        border-color: #4a5b80;    /* Darker border - FORCED */
+        background-color: var(--white); /* White input background - FORCED LIGHT */
+        color: var(--blue);           /* Dark blue input text - FORCED LIGHT */
+        border-color: #ddd;           /* Standard light border - FORCED LIGHT */
     }
     .qr-container .join-button { 
-        background-color: var(--red); /* Red like other ARL buttons - FORCED */
+        background-color: var(--red); /* Red button - FORCED */
         color: var(--white);
     }
     .qr-container .join-button:hover {
-        background-color: #c83c3c; /* Slightly lighter red on hover */
+        background-color: #c83c3c; 
     }
+
     .qr-logo { max-width: 100px; margin-bottom: 20px; }
     .qr-container h1 {
-        font-family: 'Montserrat', sans-serif; font-size: 2rem; margin-bottom: 10px; color: var(--red); /* Red heading */
+        font-family: 'Montserrat', sans-serif; font-size: 2rem; margin-bottom: 10px; color: var(--red);
     }
     .qr-container p.subtitle { 
-        margin-bottom: 25px; font-size: 1rem; color: #b0c4de; /* Lighter blue for dark mode subtitle - FORCED */
+        margin-bottom: 25px; font-size: 1rem; color: var(--blue); /* Dark blue for subtitle - FORCED LIGHT */
     }
-    .form-field input:focus { /* Keep focus style distinct */
-        border-color: var(--gold); /* Gold focus to stand out on dark */
-        box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.3); 
+    .form-field input:focus { /* Standard light mode focus */
+        border-color: var(--blue); 
+        box-shadow: 0 0 0 2px rgba(28, 41, 81, 0.2); 
         outline: none;
     }
     .qr-footer-text { 
-        margin-top: 25px; font-size: 0.9rem; color: #aaa; /* Lighter footer text - FORCED */
+        margin-top: 25px; font-size: 0.9rem; color: var(--blue); /* Dark blue footer - FORCED LIGHT */
     }
 </style>
 
