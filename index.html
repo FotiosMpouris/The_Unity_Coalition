@@ -6,9 +6,9 @@
   <title>American Reformers League - Home</title>
   <link rel="stylesheet" href="style.css" />
   <!-- Google Fonts for Montserrat and Open Sans -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 </head>
-<body>
+<body id="home-page">
   <!-- Top Banner -->
   <div class="top-banner">
     People Are The Solution
@@ -20,8 +20,6 @@
       <img src="images/unitycoalitionlogo.png" alt="Unity Coalition Logo" class="logo" />
       <span class="logo-text">American Reformers League</span>
     </div>
-
-    <!-- Main nav (desktop) -->
     <div class="nav-links">
       <a href="index.html" class="active">Home</a>
       <a href="about.html">About</a>
@@ -31,214 +29,117 @@
       <a href="contact.html">Contact</a>
       <button class="theme-toggle"></button>
     </div>
-
     <div class="header-buttons">
       <a href="https://www.amazon.com" id="shop-btn">Shop</a>
       <a href="contact.html#contributeSection" id="contribute-btn">Contribute</a>
     </div>
-
-    <!-- Hamburger (mobile) -->
     <div class="hamburger">
       <div></div>
       <div></div>
       <div></div>
     </div>
-
-    <!-- Dark Mode Toggle Button (mobile only) -->
     <button class="theme-toggle mobile-only"></button>
   </header>
 
-  <!-- HERO SECTION -->
-  <div class="home-banner-container">
-    <!-- Desktop Banner with Dark Mode Swap -->
-    <img
-      src="images/homebanner.png"
-      alt="Home Banner Desktop"
-      class="banner-desktop"
-      data-light="images/homebanner.png"
-      data-dark="images/homebannerdark.png"
-    />
-    <!-- Mobile Banner (uncomment if needed) 
-    <img
-      src="images/homebanner2.png"
-      alt="Home Banner Mobile"
-      class="banner-mobile"-->
-    />
-
-    <div class="home-banner-overlay">
-      <h1>Reuniting America</h1>
-      <blockquote>
-       It Matters That We're United
-      </blockquote>
-      <!-- <img
-        src="images/homebanner2.png"
-        alt="Founder of Unity Coalition"
-        class="founder-image"-->
-      />
-
-      <!-- Volunteer & Contribute Buttons in the hero -->
+  <!-- HERO SECTION REIMAGINED V2 -->
+  <section class="hero-impact">
+    <div class="hero-impact-content">
+      <h1 class="hero-outline-text">Reuniting</h1>
+      <h2 class="hero-solid-text">America</h2>
+      <p class="hero-subheadline">It Matters That We're United</p>
       <div class="hero-buttons-group">
         <a href="get-involved.html#volunteerSection" class="hero-volunteer-btn">Volunteer</a>
         <a href="contact.html#contributeSection" class="hero-contribute-btn">Contribute</a>
       </div>
     </div>
-  </div>
-  
-  <!-- Centered Logo Above Map Section
-  <div class="centered-logo-container">
-    <img 
-      src="images/homebanner2.png" 
-      alt="Unity Logo" 
-      class="centered-logo"
-    />
-  </div>--> 
+  </section>
 
-  <!-- Map Section with United We Stand Banner at Bottom 
-  <div class="map-container">-->
-    <!-- Text overlay on map 
-    <div style="position: absolute; top: 0; left: 0; right: 0; z-index: 5; margin-top: 20px;">
-      <div style="background-color: rgba(28, 41, 81, 0.8); color: white; text-align: center; padding: 15px; margin: 0 auto; max-width: 80%;">
-        <p style="font-size: 1.2rem; font-weight: bold; margin: 0;">American Reformers League</p>
+  <!-- FULL BLEED VIDEO 1 WITH ANGLED CUT -->
+  <div class="angled-section top-angle">
+    <section class="video-full-bleed">
+      <div class="video-overlay-text">
+        <h2>A Framework For Unity</h2>
       </div>
-    </div>
-    
-    <img 
-      src="images/homebanner1.png" 
-      alt="USA Map" 
-      class="usa-map"
-    />
-    <div class="united-we-stand-banner">
-      <h2>United We Stand</h2>
-    </div>
-  </div>-->
-
-      <!-- Home page video (click-to-toggle-audio) -->
-  </main>
-    <section>
-      <video
-        class="home-video"
-        src="arlaboutpage.mp4"
-        autoplay
-        loop
-        muted
-        playsinline
-        poster="images/homepage.png"
-      >
+      <video class="home-video" src="arlaboutpage.mp4" autoplay loop muted playsinline poster="images/homepage.png">
         Sorry, your browser doesn't support embedded videos.
       </video>
     </section>
-
-
+  </div>
   
-  <!-- "Join Our Movement" Section -->
-  <section class="join-movement-section" style="margin-bottom:0;">
+  <!-- JOIN OUR MOVEMENT SECTION -->
+  <section class="join-movement-section" style="margin:0;">
     <div class="join-movement-banner">
       <h2>JOIN OUR MOVEMENT</h2>
     </div>
     <div class="join-movement-form-container">
       <div class="modern-form-wrapper">
         <form>
-        <div class="form-field-group">
-          <div class="form-field">
-            <span>Email Address</span>
-            <input type="email" name="email" placeholder="Your Email" required />
+          <div class="form-field-group">
+            <div class="form-field">
+              <span>Email Address</span>
+              <input type="email" name="email" placeholder="Your Email" required />
+            </div>
+            <div class="form-field">
+              <span>Zip Code</span>
+              <input type="text" name="zip" placeholder="Zip Code" required />
+            </div>
           </div>
-          <div class="form-field">
-            <span>Zip Code</span>
-            <input type="text" name="zip" placeholder="Zip Code" required />
-          </div>
-        </div>
-        <button type="submit" class="join-button">JOIN</button>
+          <button type="submit" class="join-button">JOIN</button>
         </form>
       </div>
-      <!-- Text below the join form -->
-      <div style="background-color: var(--blue); color: white; text-align: center; padding: 15px; margin-top: 20px; border-radius: 4px;">
-        <p style="font-size: 1.3rem; font-weight: bold; margin: 0;">LET’S UNITE AMERICA TOGETHER</p>
+      <div class="unite-together-banner">
+        <p>LET’S UNITE AMERICA TOGETHER</p>
       </div>
     </div>
   </section>
 
+  <!-- DYNAMIC CONTENT CARDS WITH ANGLED CUT -->
+  <div class="angled-section bottom-angle">
+    <main class="home-content-wrapper">
+      <section class="dynamic-card-section blue-card">
+        <div class="card-image-wrapper">
+           <img src="images/homebanner2.png" alt="Reform Movement" class="card-image"/>
+        </div>
+        <div class="card-text-content">
+          <h2>Uniting America's Reform Movement</h2>
+          <p>The American Reformers League serves as the essential bridge connecting the constructive elements of both populist and globalist perspectives, creating a unified framework for a new American center.</p>
+        </div>
+      </section>
 
-  <main>
-    <!-- Reform Movement Section with reform.png at the top -->
-   <section class="translucent-blue">
-  <h2>Uniting America's Reform Movement</h2>
-  <div class="starlings-content">
-    <div class="starlings-text" style="text-align: center;">
-      <p>
-        In an era of unprecedented division and civic decline, the Unity Coalition 
-        emerges as a pioneering framework for reuniting Americans across traditional 
-        political and social boundaries.
-      </p>
-      <p>
-        The American Reformers League serves as the essential bridge connecting the constructive elements of both populist and globalist perspectives. By transcending traditional partisan divides, we create a unified framework where independents can collaborate with reform-minded citizens across the political spectrum to address our nation's most pressing challenges.
-      </p>
-    </div>
-    <img src="images/homebanner2.png" alt="Reform Movement" class="starlings-img" style="box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);" />
+      <section class="dynamic-card-section red-card">
+        <div class="card-image-wrapper">
+           <img src="images/honor.png" alt="Honor" class="card-image"/>
+        </div>
+        <div class="card-text-content">
+          <h2>Building a More Dignified Order</h2>
+          <p>Our mission is not merely to mitigate polarization, but to facilitate a historic realignment. We demonstrate that independents can coordinate effectively for the common good.</p>
+        </div>
+      </section>
+    </main>
   </div>
-</section>
-    
-    <!-- Honor Section with honor.png on the left -->
-    <section class="translucent-red">
-  <h2>Building a More Dignified Order</h2>
-  <div class="starlings-content">
-    <div class="starlings-text" style="text-align: center;">
-      <p>
-        Against the emboldened force of radical voices, polarized parties and captured 
-        institutions, honorable and capable Americans of all stripes have become scattered, 
-        drowned out and demoralized.
-      </p>
-      <p>
-        Our mission is not merely to mitigate polarization, but to facilitate a historic realignment where the virtuous aspects of populism and globalism can coexist and complement each other. Like the flock of starlings forming beautiful, adaptive patterns in the sky, we demonstrate that independents can simultaneously maintain autonomy while coordinating effectively for the common good.
-      </p>
-    </div>
-    <img src="images/honor.png" alt="Honor" class="starlings-img" style="box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);" />
-  </div>
-</section>
-
-    <!-- Home page video (click-to-toggle-audio)--> 
-    <section>
-      <video
-        class="home-video"
-        src="arlhomepage.mp4"
-        autoplay
-        loop
-        muted
-        playsinline
-        poster="images/homepage.png"
-      >
+  
+  <!-- VIDEO 2 - FULL BLEED -->
+  <section class="video-full-bleed" style="margin-top:0;">
+      <div class="video-overlay-text">
+        <h2>The People Are The Solution</h2>
+      </div>
+      <video class="home-video" src="arlhomepage.mp4" autoplay loop muted playsinline poster="images/homepage.png">
         Sorry, your browser doesn't support embedded videos.
       </video>
-    </section>
-  </main>
-
-  <!-- Donation section at bottom (scales logos on mobile) -->
-  <section class="section-black" style="margin-bottom:0;">
-    <h2>Support Our Work</h2>
-    <p>
-      Your donation helps establish our legal entities, build the communications
-      hub, and maintain a motivated core team.
-    </p>
-    <div class="donation-logos">
-      <a href="https://www.givesendgo.com/building-the-unity-coalition">
-        <img
-          src="images/givesend-logo.png"
-          alt="GiveSendGo Donate Button"
-        />
-      </a>
-      <a href="https://payments.google.com">
-        <img
-          src="images/googlepaylogo.png"
-          alt="Google Pay Donate Button"
-        />
-      </a>
-      <img
-        id="homeBitcoinLogo"
-        src="images/unitybitcoin-logo.png"
-        alt="Donate with Bitcoin"
-      />
-    </div>
   </section>
+
+  <!-- DONATION SECTION -->
+  <div class="angled-section both-angles">
+    <section class="section-black" style="margin:0;">
+      <h2>Support Our Work</h2>
+      <p>Your donation helps establish our legal entities, build the communications hub, and maintain a motivated core team.</p>
+      <div class="donation-logos">
+        <a href="https://www.givesendgo.com/building-the-unity-coalition"><img src="images/givesend-logo.png" alt="GiveSendGo"/></a>
+        <a href="https://payments.google.com"><img src="images/googlepaylogo.png" alt="Google Pay"/></a>
+        <img id="homeBitcoinLogo" src="images/unitybitcoin-logo.png" alt="Bitcoin"/>
+      </div>
+    </section>
+  </div>
 
   <!-- FOOTER -->
   <footer>
@@ -248,15 +149,9 @@
       <a href="contact.html">Contact</a>
     </div>
     <div class="footer-logos">
-      <a href="https://www.mightynetworks.com/">
-        <img src="images/mightylogo.png" alt="Mighty Networks Logo" />
-      </a>
-      <a href="#">
-        <img src="images/xlogo.png" alt="X Logo" />
-      </a>
-      <a href="#">
-        <img src="images/facebooklogo.png" alt="Facebook Logo" />
-      </a>
+      <a href="https://www.mightynetworks.com/"><img src="images/mightylogo.png" alt="Mighty Networks"/></a>
+      <a href="#"><img src="images/xlogo.png" alt="X"/></a>
+      <a href="#"><img src="images/facebooklogo.png" alt="Facebook"/></a>
     </div>
     <p>© 2025 American Reformers League. All rights reserved.</p>
   </footer>
