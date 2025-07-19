@@ -12,13 +12,11 @@ document.addEventListener("DOMContentLoaded", function() {
   const htmlElement = document.documentElement;
   const bannerDesktop = document.querySelector(".banner-desktop");
 
-  // Load saved theme from localStorage
   const savedTheme = localStorage.getItem("theme") || "light";
   htmlElement.setAttribute("data-theme", savedTheme);
   console.log(`Loaded theme: ${savedTheme}`);
   updateBanner(savedTheme);
 
-  // Toggle theme on button click
   themeToggle.forEach(btn => {
     btn.addEventListener("click", () => {
       const currentTheme = htmlElement.getAttribute("data-theme");
@@ -30,11 +28,10 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 
-  // Function to swap banner image
   function updateBanner(theme) {
     if (bannerDesktop) {
       const src = theme === "dark" ? bannerDesktop.dataset.dark : bannerDesktop.dataset.light;
-      if (src) { // Check if data attributes exist before setting src
+      if (src) {
           bannerDesktop.src = src;
       } else {
           console.warn("Dark/Light mode banner source not found for theme:", theme);
@@ -63,22 +60,18 @@ document.addEventListener("DOMContentLoaded", function() {
   /************************************************
    * 2. Hamburger Overlay (Partial Screen)
    ***********************************************/
-  // Only create overlay if hamburger exists
   if (hamburger && navLinks) {
       let overlay = document.createElement("div");
       overlay.classList.add("mobile-nav-overlay");
       document.body.appendChild(overlay);
-
       let overlayNavHTML = '';
       navLinks.querySelectorAll("a").forEach(link => {
           overlayNavHTML += `<a href="${link.getAttribute('href')}" class="${link.classList.contains('active') ? 'active' : ''}">${link.textContent}</a>`;
       });
       overlay.innerHTML = overlayNavHTML;
-
       hamburger.addEventListener("click", () => {
           overlay.classList.toggle("show");
       });
-
       overlay.querySelectorAll("a").forEach(link => {
           link.addEventListener("click", () => {
               overlay.classList.remove("show");
@@ -90,96 +83,154 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
   /************************************************
-   * 3. "Shop & Contribute" Popup - Modified
+   * 3. "Shop & Contribute" Popup - MODIFIED FOR IMAGE
    ***********************************************/
   function createPopup() {
-    console.log("Creating popup...");
-    let mobileButtonsOverlay = document.createElement("div");
-    mobileButtonsOverlay.id = "mobileButtonsOverlay";
-    mobileButtonsOverlay.innerHTML = `
-        <div class="mobile-buttons-content">
-            <button class="close-mobile-btn" aria-label="Close popup">×</button>
-            <h3>Check It Out</h3>
-            <a href="https://www.amazon.com" id="mobileShopBtn" target="_blank" rel="noopener noreferrer">Shop</a>
-            <a href="contact.html#contributeSection" id="mobileContributeBtn">Contribute</a>
+    console.log("Creating image popup...");
+    // The main container for the overlay
+    let imagePopupOverlay = document.createElement("div");
+    imagePopupOverlay.id = "imagePopupOverlay"; // New ID for new CSS styling
+    
+    // The content inside the overlay, including the image and buttons
+    imagePopupOverlay.innerHTML = `
+        <div class="image-popup-content">
+            <button class="close-popup-btn" aria-label="Close popup">×</button>
+            <div class="popup-image-container">
+              <!-- The background image will be set in CSS using popup.png -->
+            </div>
+            <div class="popup-button-group">
+                <a href="https://www.amazon.com" class="popup-shop-btn" target="_blank" rel="noopener noreferrer">Shop Now</a>
+                <a href="contact.html#contributeSection" class="popup-contribute-btn">Contribute</a>
+            </div>
         </div>
-        `;
-    document.body.appendChild(mobileButtonsOverlay);
+    `;
+    document.body.appendChild(imagePopupOverlay);
 
-    const closeBtn = mobileButtonsOverlay.querySelector(".close-mobile-btn");
+    const closeBtn = imagePopupOverlay.querySelector(".close-popup-btn");
     closeBtn.addEventListener("click", () => {
-      mobileButtonsOverlay.classList.remove("show");
+      imagePopupOverlay.classList.remove("show");
     });
 
-    // Close popup if clicking outside the content
-    mobileButtonsOverlay.addEventListener('click', (event) => {
-        if (event.target === mobileButtonsOverlay) {
-             mobileButtonsOverlay.classList.remove('show');
+    // Close popup if clicking the dark overlay area
+    imagePopupOverlay.addEventListener('click', (event) => {
+        if (event.target === imagePopupOverlay) {
+             imagePopupOverlay.classList.remove('show');
         }
     });
 
-    console.log("Setting timeout to show popup in 10 seconds...");
+    console.log("Setting timeout to show image popup in 10 seconds...");
     setTimeout(() => {
-      console.log("Timeout executed, showing popup");
-      // Only show if it hasn't been closed/interacted with? Add logic if needed.
-      mobileButtonsOverlay.classList.add("show");
+      console.log("Timeout executed, showing image popup");
+      imagePopupOverlay.classList.add("show");
     }, 10000); // 10 seconds
   }
 
   function isHomePage() {
-    const path = window.location.pathname;
-    const filename = path.substring(path.lastIndexOf('/') + 1);
-    return filename === "" || filename === "index.html";
+    return document.body.id === 'home-page';
   }
 
+  // Only create the popup on the home page
   if (isHomePage()) {
-    // Check screen width before creating popup if it should be mobile only
-    // Example: if (window.innerWidth <= 768) { createPopup(); }
-    // Currently runs regardless of width based on previous script logic:
     createPopup();
   }
+  
+  // --- ADD THIS NEW CSS BLOCK FOR THE NEW POPUP ---
+  const popupStyles = `
+    #imagePopupOverlay {
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(10, 25, 47, 0.85);
+        display: flex; justify-content: center; align-items: center;
+        z-index: 10000;
+        opacity: 0; visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    #imagePopupOverlay.show { opacity: 1; visibility: visible; }
+    .image-popup-content {
+        position: relative;
+        width: 90%; max-width: 500px;
+        transform: scale(0.9);
+        transition: transform 0.3s ease;
+    }
+    #imagePopupOverlay.show .image-popup-content { transform: scale(1); }
+    .popup-image-container {
+        width: 100%;
+        padding-top: 100%; /* Creates a square aspect ratio box */
+        background-image: url('images/popup.png');
+        background-size: cover;
+        background-position: center;
+        border-radius: 8px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .close-popup-btn {
+        position: absolute; top: -15px; right: -15px;
+        width: 40px; height: 40px;
+        background: var(--patriot-white); color: var(--patriot-blue);
+        border: 2px solid var(--patriot-blue);
+        border-radius: 50%;
+        font-size: 24px; font-weight: bold;
+        cursor: pointer;
+        display: flex; justify-content: center; align-items: center;
+        line-height: 1;
+        z-index: 10;
+        transition: all 0.2s ease;
+    }
+    .close-popup-btn:hover { transform: rotate(90deg) scale(1.1); background: var(--patriot-red); color: white; border-color:white; }
+    .popup-button-group {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+        justify-content: center;
+    }
+    .popup-button-group a {
+        padding: 12px 25px;
+        border-radius: 4px;
+        text-transform: uppercase;
+        font-weight: bold;
+        text-align: center;
+        color: white;
+        text-decoration: none;
+        transition: all 0.2s ease;
+    }
+    .popup-shop-btn { background-color: var(--patriot-blue); border: 2px solid var(--patriot-cyan); }
+    .popup-shop-btn:hover { background-color: var(--patriot-cyan); color: var(--patriot-blue); }
+    .popup-contribute-btn { background-color: var(--patriot-red); }
+    .popup-contribute-btn:hover { background-color: #ff505f; transform: scale(1.05); }
+  `;
+  const styleSheet = document.createElement("style");
+  styleSheet.type = "text/css";
+  styleSheet.innerText = popupStyles;
+  document.head.appendChild(styleSheet);
 
 
   /************************************************
    * 4. About Page Video (Static Image, Play on Click, Pause on Scroll)
    ***********************************************/
-  // NOTE: Ensure these selectors match your About page HTML if the video section exists there
- /************************************************
- * 4. About Page Video (Static Image, Play on Click, Pause on Scroll)
- ***********************************************/
-// NOTE: This code ONLY runs if the specific elements for the About page video exist.
-const videoWrapper = document.querySelector(".video-wrapper"); // Specific wrapper for About page video
-const playButton = document.querySelector(".play-button"); // Specific play button for About page video
-const videoContainer = document.querySelector(".video-container"); // Specific container for About page video
+  const videoWrapper = document.querySelector(".video-wrapper");
+  const playButton = document.querySelector(".play-button");
+  const videoContainer = document.querySelector(".video-container");
 
-if (videoWrapper && playButton && videoContainer) {
+  if (videoWrapper && playButton && videoContainer) {
     console.log("About page video elements found. Initializing player.");
-    let aboutPageVideo = null; // Variable specifically for the about page video
+    let aboutPageVideo = null; 
 
-    // Create video element when play button is clicked
     playButton.addEventListener("click", () => {
         if (!aboutPageVideo) {
             aboutPageVideo = document.createElement("video");
             aboutPageVideo.classList.add("about-video");
             aboutPageVideo.setAttribute("playsinline", "");
-            aboutPageVideo.setAttribute("controls", ""); // Add controls
-            aboutPageVideo.innerHTML = `
-                <source src="slidevideo.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-                `;
-            videoContainer.innerHTML = ''; // Clear container
+            aboutPageVideo.setAttribute("controls", "");
+            aboutPageVideo.innerHTML = `<source src="slidevideo.mp4" type="video/mp4">Your browser does not support the video tag.`;
+            videoContainer.innerHTML = '';
             videoContainer.appendChild(aboutPageVideo);
         }
         aboutPageVideo.play().catch(e => console.error("Error playing about page video:", e));
-        videoWrapper.classList.add("playing"); // Hide preview/button
+        videoWrapper.classList.add("playing");
     });
 
-    // Pause video when it scrolls out of view
-    const aboutObserver = new IntersectionObserver( // Use a different observer variable name
+    const aboutObserver = new IntersectionObserver(
         (entries) => {
             entries.forEach((entry) => {
                 if (!entry.isIntersecting && aboutPageVideo && !aboutPageVideo.paused) {
-                    console.log("About page video scrolled out of view, pausing.");
                     aboutPageVideo.pause();
                 }
             });
@@ -187,62 +238,41 @@ if (videoWrapper && playButton && videoContainer) {
     );
     aboutObserver.observe(videoWrapper);
 
-} else {
+  } else {
     console.log("About page video elements (.video-wrapper, .play-button, .video-container) not found on this page.");
-}
+  }
 
-/************************************************
- * 5. Homepage Videos (Click-to-toggle-audio, Exclusive Audio)
- ***********************************************/
-// This specifically targets videos with class="home-video"
-const homePageVideos = document.querySelectorAll("video.home-video"); // Select ALL videos with this class
+  /************************************************
+  * 5. Homepage Videos (Click-to-toggle-audio, Exclusive Audio)
+  ***********************************************/
+  const homePageVideos = document.querySelectorAll("video.home-video");
 
-if (homePageVideos.length > 0) {
-    console.log(`Found ${homePageVideos.length} videos with class .home-video for exclusive audio control.`);
-    homePageVideos.forEach(video => { // Loop through each one
-        // Ensure autoplay videos start muted
+  if (homePageVideos.length > 0) {
+    homePageVideos.forEach(video => {
         video.muted = true;
-
         video.addEventListener("click", () => {
-            console.log("Clicked homepage video:", video.src);
-
-            // Check if the clicked video IS currently muted (i.e., user wants to unmute THIS one)
             if (video.muted) {
-                console.log("Attempting to unmute:", video.src);
-
-                // **NEW LOGIC: Mute all OTHER videos in the NodeList first**
                 homePageVideos.forEach(otherVideo => {
-                    // Check if it's a different video than the one clicked
                     if (otherVideo !== video) {
-                        if (!otherVideo.muted) { // Only mute if it's currently unmuted
-                            console.log("Muting other video:", otherVideo.src);
-                            otherVideo.muted = true;
-                        }
+                        otherVideo.muted = true;
                     }
                 });
-
-                // NOW, unmute the video that was actually clicked
                 video.muted = false;
-                video.play().catch(e => console.warn("Video play() failed:", e)); // Attempt to play if needed
-                console.log("Homepage video unmuted:", video.src);
-
+                video.play().catch(e => console.warn("Video play() failed:", e));
             } else {
-                // If the clicked video was already unmuted, just mute it.
                 video.muted = true;
-                console.log("Homepage video muted:", video.src);
             }
         });
     });
-} else {
-    console.log("No videos with class .home-video found on this page for exclusive audio control.");
-}
+  }
+
   /************************************************
    * 6. Bitcoin "Coming Soon" Popup
    ***********************************************/
   const homeBtcLogo = document.getElementById("homeBitcoinLogo");
   if (homeBtcLogo) {
     homeBtcLogo.addEventListener("click", () => {
-      alert("Bitcoin donation option coming soon!"); // Slightly more informative
+      alert("Bitcoin donation option coming soon!");
     });
   }
 
@@ -259,9 +289,9 @@ if (homePageVideos.length > 0) {
   function smoothScrollToAnchor(hash) {
       const targetElement = document.querySelector(hash);
       if (targetElement) {
-          const headerHeight = header ? header.offsetHeight : 0; // Use 0 if header not found
+          const headerHeight = header ? header.offsetHeight : 0;
           const elementPosition = targetElement.getBoundingClientRect().top;
-          const offsetPosition = elementPosition + window.pageYOffset - headerHeight - 20; // 20px buffer
+          const offsetPosition = elementPosition + window.pageYOffset - headerHeight - 20;
 
           window.scrollTo({
               top: offsetPosition,
@@ -273,87 +303,66 @@ if (homePageVideos.length > 0) {
   document.querySelectorAll('a[href*="#"]').forEach(link => {
       link.addEventListener('click', function (e) {
           const targetUrl = this.getAttribute('href');
-          const currentPath = window.location.pathname.split('/').pop(); // Get current page filename
-          const targetPath = targetUrl.split('#')[0]; // Get path part of the link
-          const targetHash = `#${targetUrl.split('#')[1]}`; // Get hash part
+          const currentPath = window.location.pathname.split('/').pop();
+          const targetPath = targetUrl.split('#')[0];
+          const targetHash = `#${targetUrl.split('#')[1]}`;
 
-          // Check if it's an anchor link on the *current* page
           if (targetHash && (targetPath === "" || targetPath === currentPath)) {
-              // Specific handling for known sections
               if (targetHash === '#contributeSection' || targetHash === '#volunteerSection') {
                   e.preventDefault();
                   smoothScrollToAnchor(targetHash);
               }
-              // Add more specific hashes here if needed
-              // else { /* Handle other same-page anchors if necessary */ }
           }
-          // If it links to a different page's anchor, let the browser handle it,
-          // but the handleHashScroll function below will smooth scroll on page load.
       });
   });
 
-  // Function to handle scrolling on page load or hash change
   function handleHashScroll() {
       if (window.location.hash) {
-          // Use setTimeout to ensure page layout is stable
           setTimeout(() => {
               smoothScrollToAnchor(window.location.hash);
-          }, 100); // Delay might need adjustment
+          }, 100);
       }
   }
 
-  handleHashScroll(); // Check hash on initial load
-  window.addEventListener('hashchange', handleHashScroll, false); // Check if hash changes
+  handleHashScroll();
+  window.addEventListener('hashchange', handleHashScroll, false);
 
-
-  // ==========================================================
-  // == NEW CODE BLOCK STARTS HERE ==
-  // ==========================================================
 
   /************************************************
    * 8. API Form Submission Handling
    ***********************************************/
-  // Selectors might need adjustment based on final HTML structure
-  const joinFormHome = document.querySelector(".join-movement-form-container .modern-form-wrapper form"); // Target home page join form
-  // Ensure the selector below uniquely identifies the Contact page form
-  const subscribeFormContact = document.querySelector("main form:not(#volunteerForm):not(.join-movement-form-container form)"); // Attempt to select non-volunteer/join forms in main
-  const volunteerForm = document.getElementById("volunteerForm"); // Target volunteer form by ID
+  const joinFormHome = document.querySelector(".join-movement-form-container .modern-form-wrapper form");
+  const subscribeFormContact = document.querySelector("main form:not(#volunteerForm):not(.join-movement-form-container form)");
+  const volunteerForm = document.getElementById("volunteerForm");
+  const apiGatewayUrl = "https://po1s6ptb9g.execute-api.us-east-2.amazonaws.com/dev/submit";
 
-  // !!! IMPORTANT: Replace with your actual API Gateway Invoke URL !!!
-  const apiGatewayUrl = "https://po1s6ptb9g.execute-api.us-east-2.amazonaws.com/dev/submit"; // e.g., https://xxxxxx.execute-api.us-east-1.amazonaws.com/dev/submit
-
-  // --- Function to handle form submission ---
   async function handleFormSubmit(event, formType) {
-    event.preventDefault(); // Prevent default HTML submission
+    event.preventDefault();
     const form = event.target;
     const submitButton = form.querySelector('button[type="submit"]');
 
-    // Check if submit button exists before proceeding
     if (!submitButton) {
         console.error("Submit button not found in form:", form);
         alert("An error occurred: Could not find the submit button.");
         return;
     }
     const originalButtonText = submitButton.textContent;
-
-    // Disable button and show loading state
     submitButton.disabled = true;
     submitButton.textContent = 'Submitting...';
 
     const formData = new FormData(form);
     const dataPayload = { formType: formType };
 
-    // Populate payload based on form type
-    try { // Wrap data gathering in try block for safety
+    try {
         if (formType === 'join') {
             dataPayload.email = formData.get('email');
             dataPayload.zipCode = formData.get('zip');
-            if (!dataPayload.email) throw new Error("Email is required."); // Basic validation
+            if (!dataPayload.email) throw new Error("Email is required.");
         } else if (formType === 'subscribe') {
             dataPayload.name = formData.get('name');
             dataPayload.email = formData.get('email');
             dataPayload.zipCode = formData.get('zip');
-            dataPayload.privacyPolicyAgreed = formData.get('privacy_policy') === 'on'; // Checkbox value is 'on' if checked
+            dataPayload.privacyPolicyAgreed = formData.get('privacy_policy') === 'on';
             if (!dataPayload.email) throw new Error("Email is required.");
             if (!dataPayload.privacyPolicyAgreed) throw new Error("Privacy policy agreement is required.");
         } else if (formType === 'volunteer') {
@@ -364,12 +373,11 @@ if (homePageVideos.length > 0) {
             dataPayload.zipCode = formData.get('zip');
             dataPayload.city = formData.get('city');
             dataPayload.state = formData.get('state');
-            // Get all checked interests
             const interests = [];
             form.querySelectorAll('input[name="interest"]:checked').forEach(checkbox => {
                 interests.push(checkbox.value);
             });
-            dataPayload.interests = interests; // Send empty array if none checked
+            dataPayload.interests = interests;
             dataPayload.notRobotChecked = formData.get('not_robot') === 'on';
             dataPayload.privacyPolicyAgreed = formData.get('privacy_policy') === 'on';
              if (!dataPayload.email || !dataPayload.firstName || !dataPayload.lastName) throw new Error("First Name, Last Name, and Email are required.");
@@ -379,18 +387,13 @@ if (homePageVideos.length > 0) {
             throw new Error(`Unknown form type: ${formType}`);
         }
     } catch (validationError) {
-        console.error("Form validation/data error:", validationError);
         alert(`Error: ${validationError.message}`);
         submitButton.disabled = false;
         submitButton.textContent = originalButtonText;
-        return; // Stop processing
+        return;
     }
 
-
-    console.log(`Submitting ${formType} payload:`, JSON.stringify(dataPayload, null, 2));
-
-    if (!apiGatewayUrl || apiGatewayUrl === "YOUR_API_GATEWAY_INVOKE_URL_HERE") {
-        console.error("API Gateway URL is not configured!");
+    if (!apiGatewayUrl || apiGatewayUrl.includes("YOUR_API_GATEWAY")) {
         alert("Error: API endpoint is not configured. Please contact support.");
         submitButton.disabled = false;
         submitButton.textContent = originalButtonText;
@@ -400,74 +403,41 @@ if (homePageVideos.length > 0) {
     try {
       const response = await fetch(apiGatewayUrl, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(dataPayload),
       });
 
-      // Try parsing response body regardless of status code, as backend might send error details
       let responseData = {};
       try {
           responseData = await response.json();
-      } catch (e) {
-          console.warn("Could not parse JSON response body:", e);
-          // If parsing fails, maybe use text?
-          // responseData.message = await response.text(); // Uncomment if needed
-      }
+      } catch (e) { console.warn("Could not parse JSON response body:", e); }
 
-
-      if (response.ok) { // Checks status code 200-299
-        console.log("Submission successful:", responseData);
+      if (response.ok) {
         alert("Thank you! Your submission was successful.");
-        form.reset(); // Clear the form
+        form.reset();
       } else {
-        console.error("Submission failed:", response.status, responseData);
-        // Try to show a more specific error from the backend if available
         const errorMessage = responseData.message || `Server responded with status ${response.status}. Please try again.`;
         alert(`Submission Failed: ${errorMessage}`);
       }
     } catch (error) {
-      console.error("Network or other error sending request:", error);
       alert("An error occurred while sending your submission. Please check your connection and try again.");
     } finally {
-      // Re-enable button regardless of success or failure
       submitButton.disabled = false;
       submitButton.textContent = originalButtonText;
     }
   }
 
-  // --- Add event listeners to forms ---
   if (joinFormHome) {
     joinFormHome.addEventListener("submit", (event) => handleFormSubmit(event, 'join'));
-    console.log("Join form listener added.");
-  } else {
-      console.log("Join form (home) not found on this page.");
   }
-
   if (subscribeFormContact) {
-    // Verify this selector works reliably for the Contact page form
     subscribeFormContact.addEventListener("submit", (event) => handleFormSubmit(event, 'subscribe'));
-    console.log("Subscribe form listener added.");
-  } else {
-      console.log("Subscribe form (contact) not found on this page.");
   }
-
   if (volunteerForm) {
     volunteerForm.addEventListener("submit", (event) => handleFormSubmit(event, 'volunteer'));
-    console.log("Volunteer form listener added.");
-  } else {
-      console.log("Volunteer form (get involved) not found on this page.");
   }
 
-  console.log("Form submission handlers potentially initialized."); // Updated log
-
-  // ==========================================================
-  // == NEW CODE BLOCK ENDS HERE ==
-  // ==========================================================
-
-
-  console.log("Script fully initialized!"); // This should be the last line inside the DOMContentLoaded listener
+  console.log("Script fully initialized!");
 });
 
 // --- END OF COMPLETE SCRIPT.JS ---
