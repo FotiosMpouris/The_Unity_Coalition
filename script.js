@@ -36,33 +36,19 @@ document.addEventListener("DOMContentLoaded", function() {
    * 2. Homepage-Only Functionality
    ***********************************************/
   if (document.body.id === 'home-page') {
-    // A. Create the Timed Popup
     function createPopup() {
       let imagePopupOverlay = document.createElement("div");
       imagePopupOverlay.id = "imagePopupOverlay";
       imagePopupOverlay.innerHTML = `
-          <div class="image-popup-content">
-              <button class="close-popup-btn" aria-label="Close popup">×</button>
-              <div class="popup-card">
-                <div class="popup-image-container"></div>
-                <div class="popup-button-group">
-                    <a href="https://www.amazon.com" class="popup-shop-btn" target="_blank" rel="noopener noreferrer">Shop Now</a>
-                    <a href="contact.html#contributeSection" class="popup-contribute-btn">Contribute</a>
-                </div>
-              </div>
-          </div>
-      `;
+          <div class="image-popup-content"><button class="close-popup-btn" aria-label="Close popup">×</button><div class="popup-card"><div class="popup-image-container"></div><div class="popup-button-group"><a href="https://www.amazon.com" class="popup-shop-btn" target="_blank" rel="noopener noreferrer">Shop Now</a><a href="contact.html#contributeSection" class="popup-contribute-btn">Contribute</a></div></div></div>`;
       document.body.appendChild(imagePopupOverlay);
       const closeBtn = imagePopupOverlay.querySelector(".close-popup-btn");
       closeBtn.addEventListener("click", () => imagePopupOverlay.classList.remove('show'));
-      imagePopupOverlay.addEventListener('click', (e) => {
-          if (e.target === imagePopupOverlay) imagePopupOverlay.classList.remove('show');
-      });
+      imagePopupOverlay.addEventListener('click', (e) => { if (e.target === imagePopupOverlay) imagePopupOverlay.classList.remove('show'); });
       setTimeout(() => imagePopupOverlay.classList.add("show"), 10000);
     }
     createPopup();
 
-    // B. Exclusive Audio for Homepage Videos
     const homePageVideos = document.querySelectorAll("video.home-video");
     if (homePageVideos.length > 0) {
       homePageVideos.forEach(video => {
@@ -72,18 +58,13 @@ document.addEventListener("DOMContentLoaded", function() {
                   homePageVideos.forEach(otherVideo => { otherVideo.muted = true; });
                   video.muted = false;
                   video.play().catch(e => console.warn("Video play() failed:", e));
-              } else {
-                  video.muted = true;
-              }
+              } else { video.muted = true; }
           });
       });
     }
 
-    // C. Bitcoin "Coming Soon" Alert
     const homeBtcLogo = document.getElementById("homeBitcoinLogo");
-    if (homeBtcLogo) {
-      homeBtcLogo.addEventListener("click", () => alert("Bitcoin donation option coming soon!"));
-    }
+    if (homeBtcLogo) homeBtcLogo.addEventListener("click", () => alert("Bitcoin donation option coming soon!"));
   }
 
   /************************************************
@@ -91,19 +72,16 @@ document.addEventListener("DOMContentLoaded", function() {
    ***********************************************/
   const apiGatewayUrl = "https://po1s6ptb9g.execute-api.us-east-2.amazonaws.com/dev/submit";
   
-  // A. Homepage "Join" Form
-  const joinFormHome = document.querySelector(".join-movement-section form");
-  if (joinFormHome) {
-    joinFormHome.addEventListener("submit", (event) => handleFormSubmit(event, 'join'));
-  }
+  const joinFormHome = document.querySelector("#home-page .join-movement-section form");
+  if (joinFormHome) joinFormHome.addEventListener("submit", (event) => handleFormSubmit(event, 'join'));
 
-  // B. "Get Involved" Volunteer Form
   const volunteerForm = document.getElementById("volunteerForm");
-  if (volunteerForm) {
-    volunteerForm.addEventListener("submit", (event) => handleFormSubmit(event, 'volunteer'));
-  }
+  if (volunteerForm) volunteerForm.addEventListener("submit", (event) => handleFormSubmit(event, 'volunteer'));
 
-  // C. Master Submission Function
+  // NEW: Add listener for the subscribe form
+  const subscribeForm = document.getElementById("subscribeForm");
+  if (subscribeForm) subscribeForm.addEventListener("submit", (event) => handleFormSubmit(event, 'subscribe'));
+
   async function handleFormSubmit(event, formType) {
     event.preventDefault();
     const form = event.target;
@@ -133,11 +111,15 @@ document.addEventListener("DOMContentLoaded", function() {
         dataPayload.interests = formData.getAll('interest');
         dataPayload.notRobotChecked = formData.get('not_robot') === 'on';
         dataPayload.privacyPolicyAgreed = formData.get('privacy_policy') === 'on';
-
-        if (!dataPayload.firstName || !dataPayload.lastName || !dataPayload.email) {
-          throw new Error("First Name, Last Name, and Email are required.");
-        }
+        if (!dataPayload.firstName || !dataPayload.lastName || !dataPayload.email) throw new Error("First Name, Last Name, and Email are required.");
         if (!dataPayload.notRobotChecked) throw new Error("Please confirm you are not a robot.");
+        if (!dataPayload.privacyPolicyAgreed) throw new Error("You must agree to the Privacy Policy.");
+      }
+      else if (formType === 'subscribe') {
+        dataPayload.name = formData.get('name');
+        dataPayload.email = formData.get('email');
+        dataPayload.privacyPolicyAgreed = formData.get('privacy_policy') === 'on';
+        if (!dataPayload.name || !dataPayload.email) throw new Error("Name and Email are required.");
         if (!dataPayload.privacyPolicyAgreed) throw new Error("You must agree to the Privacy Policy.");
       }
     } catch (validationError) {
@@ -147,12 +129,9 @@ document.addEventListener("DOMContentLoaded", function() {
         return;
     }
     
-    // AWS Fetch Logic
     try {
         const response = await fetch(apiGatewayUrl, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(dataPayload),
+            method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(dataPayload),
         });
         if (response.ok) {
             alert("Thank you! Your submission was successful.");
@@ -171,7 +150,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   }
 
-
   /************************************************
    * 4. Site-Wide Smooth Scroll for Anchor Links
    ***********************************************/
@@ -182,10 +160,8 @@ document.addEventListener("DOMContentLoaded", function() {
           const navHeight = document.querySelector('.main-nav')?.offsetHeight || 0;
           const bannerHeight = document.querySelector('.top-banner')?.offsetHeight || 0;
           const totalOffset = headerHeight + navHeight + bannerHeight;
-
           const elementPosition = targetElement.getBoundingClientRect().top;
-          const offsetPosition = elementPosition + window.pageYOffset - totalOffset + 1; // +1 to ensure it's below the line
-
+          const offsetPosition = elementPosition + window.pageYOffset - totalOffset + 1;
           window.scrollTo({ top: offsetPosition, behavior: "smooth" });
       }
   }
@@ -195,7 +171,6 @@ document.addEventListener("DOMContentLoaded", function() {
           const href = this.getAttribute('href');
           const targetPath = href.split('#')[0];
           const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-
           if ((targetPath === '' || targetPath === currentPath) && href.includes('#')) {
               e.preventDefault();
               const targetHash = `#${href.split('#')[1]}`;
@@ -203,6 +178,10 @@ document.addEventListener("DOMContentLoaded", function() {
           }
       });
   });
+  
+  // Specific handler for Bitcoin logos on different pages
+  const bitcoinDonateButton = document.getElementById("bitcoinDonate");
+  if(bitcoinDonateButton) bitcoinDonateButton.addEventListener("click", () => alert("Bitcoin donation option coming soon!"));
 
-  console.log("ARL Script Initialized (Unified V4)");
+  console.log("ARL Script Initialized (Unified V5)");
 });
