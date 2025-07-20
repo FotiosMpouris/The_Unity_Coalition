@@ -3,177 +3,100 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>American Refermers League - Gallery</title>
+  <title>American Reformers League - Gallery</title>
   <link rel="stylesheet" href="style.css" />
-  <!-- Google Fonts for Montserrat and Open Sans -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 </head>
-<body>
-  <!-- Top Banner -->
-  <div class="top-banner">
-    People Are The Solution
+<body id="gallery-page">
+
+  <!-- ================== STANDARD HEADER ================== -->
+  <div class="site-header-sticky-container">
+    <div class="top-banner">
+      <div class="ticker-wrap">
+          <div class="ticker-content">
+              <a href="register.html"><span>REGISTER TO VOTE</span></a>
+              <a href="contact.html#contributeSection"><span>SUPPORT THE MISSION</span></a>
+              <a href="get-involved.html#volunteerSection"><span>JOIN THE MOVEMENT</span></a>
+              <a href="#"><span>UPCOMING EVENTS</span></a>
+              <a href="register.html"><span>REGISTER TO VOTE</span></a>
+              <a href="contact.html#contributeSection"><span>SUPPORT THE MISSION</span></a>
+              <a href="get-involved.html#volunteerSection"><span>JOIN THE MOVEMENT</span></a>
+              <a href="#"><span>UPCOMING EVENTS</span></a>
+          </div>
+      </div>
+    </div>
+    <header>
+      <div class="header-content"><div class="logo-group"><a href="index.html"><img src="images/unitycoalitionlogo.png" alt="Unity Coalition Logo" class="logo" /><span class="logo-text">American Reformers League</span></a></div><div class="header-right"><div class="header-socials"><a href="#" aria-label="X/Twitter"><img src="images/xlogo.png" alt="X Logo" /></a><a href="#" aria-label="Facebook"><img src="images/facebooklogo.png" alt="Facebook Logo" /></a></div><div class="header-buttons"><a href="https://www.amazon.com" target="_blank" rel="noopener noreferrer" class="header-shop-btn">Shop</a><a href="contact.html#contributeSection" class="header-contribute-btn">Contribute</a></div></div><div class="hamburger"><div></div><div></div><div></div></div></div>
+    </header>
+    <nav class="main-nav">
+      <div class="main-nav-links"><a href="index.html">Home</a><a href="about.html">About</a><a href="mission.html">Mission</a><a href="projects.html">Projects</a><a href="get-involved.html">Get Involved</a><a href="contact.html">Contact</a></div>
+    </nav>
   </div>
 
-  <!-- HEADER -->
-  <header>
-    <div class="logo-group">
-      <img src="images/unitycoalitionlogo.png" alt="Unity Coalition Logo" class="logo" />
-      <span class="logo-text">American Refermers League</span>
-    </div>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="mission.html">Mission</a>
-      <a href="projects.html">Projects</a>
-      <a href="get-involved.html">Get Involved</a>
-      <a href="contact.html">Contact</a>
-      <button class="theme-toggle"></button>
-    </div>
-    <div class="header-buttons">
-      <a href="https://www.amazon.com" id="shop-btn">Shop</a>
-      <a href="contact.html#contributeSection" id="contribute-btn">Contribute</a>
-    </div>
-    <div class="hamburger">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-    <!-- Dark Mode Toggle Button (mobile only) -->
-    <button class="theme-toggle mobile-only"></button>
-  </header>
+  <!-- PAGE HERO -->
+  <section class="page-hero" style="background-image: url('images/gallery-hero.png');">
+    <div class="page-hero-overlay"><h1>Gallery</h1></div>
+  </section>
 
-  <main>
-    <!-- Gallery Intro Section -->
-    <section class="translucent-blue">
-      <div class="section-content">
-        <h1>American Refermers League Gallery</h1>
-        <p>
-          Below are snapshots from our events, meetups, and community projects. We invite
-          you to explore these moments and be inspired by the growing movement that seeks
-          to unify and empower everyday Americans.
-        </p>
-        <p>
-          These images represent our commitment to bringing together diverse voices and perspectives in the pursuit of a more cohesive, effective reform movement. From local gatherings to national summits, each event contributes to our mission of building bridges across traditional divides.
-        </p>
+  <main class="content-wrapper">
+    <!-- GALLERY INTRO -->
+    <section class="text-section">
+      <h2>Moments in the Movement</h2>
+      <p>Explore snapshots from our events, meetups, and community projects. These images represent our commitment to bringing together diverse voices in the pursuit of a more cohesive, effective reform movement.</p>
+    </section>
+
+    <!-- FILTER BUTTONS -->
+    <section class="gallery-filters">
+      <a href="#community-events" class="filter-btn">Community Events</a>
+      <a href="#summit-gatherings" class="filter-btn">Summit Gatherings</a>
+      <a href="#reform-dialogues" class="filter-btn">Reform Dialogues</a>
+      <a href="#coalition-building" class="filter-btn">Coalition Building</a>
+    </section>
+
+    <!-- COMMUNITY EVENTS -->
+    <section id="community-events" class="gallery-category">
+      <h2 class="section-title">Community Events</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item"><img src="images/gallery1.png" alt="Community Event 1" /></div>
+        <div class="gallery-item"><img src="images/gallery2.png" alt="Community Event 2" /></div>
       </div>
     </section>
 
-    <!-- Gallery Categories Section -->
-    <section class="translucent-red">
-      <div class="section-content">
-        <h2>Gallery Categories</h2>
-        <div style="display: flex; flex-wrap: wrap; gap: 15px; margin-top: 15px; justify-content: center;">
-          <a href="#community-events" class="hero-volunteer-btn">Community Events</a>
-          <a href="#summit-gatherings" class="hero-volunteer-btn">Summit Gatherings</a>
-          <a href="#reform-dialogues" class="hero-volunteer-btn">Reform Dialogues</a>
-          <a href="#coalition-building" class="hero-volunteer-btn">Coalition Building</a>
-        </div>
+    <!-- SUMMIT GATHERINGS -->
+    <section id="summit-gatherings" class="gallery-category">
+      <h2 class="section-title">Summit Gatherings</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item"><img src="images/gallery3.png" alt="Summit Gathering 1" /></div>
+        <div class="gallery-item"><img src="images/gallery4.png" alt="Summit Gathering 2" /></div>
       </div>
     </section>
 
-    <!-- Community Events Section -->
-    <section id="community-events">
-      <div class="section-content">
-        <h2>Community Events</h2>
-        <p>
-          Community events form the foundation of our grassroots movement. These gatherings bring together neighbors, local leaders, and community organizations to discuss shared concerns and develop collaborative solutions.
-        </p>
-        <div class="gallery-grid">
-          <img src="images/gallery1.png" alt="Community Event 1" />
-          <img src="images/gallery2.png" alt="Community Event 2" />
-          <!-- Add more as needed -->
-        </div>
+    <!-- REFORM DIALOGUES -->
+    <section id="reform-dialogues" class="gallery-category">
+      <h2 class="section-title">Reform Dialogues</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item placeholder"><p>Coming Soon</p></div>
+        <div class="gallery-item placeholder"><p>Coming Soon</p></div>
       </div>
     </section>
 
-    <!-- Summit Gatherings Section -->
-    <section id="summit-gatherings" class="translucent-blue" style="margin-top: 40px;">
-      <div class="section-content">
-        <h2>Summit Gatherings</h2>
-        <p>
-          Our summits bring together reform-minded leaders from across the political spectrum to develop shared strategies and coordinate efforts for maximum impact. These events foster the connections necessary for effective, nationwide reform.
-        </p>
-        <div class="gallery-grid">
-          <img src="images/gallery3.png" alt="Summit Gathering 1" />
-          <img src="images/gallery4.png" alt="Summit Gathering 2" />
-          <!-- Add more as needed -->
-        </div>
-      </div>
+    <!-- SUBMIT PHOTOS -->
+    <section class="text-section">
+      <h2>Share Your Moments</h2>
+      <p>Have you participated in an ARL event? We invite you to share your photos! To submit, please email them to <strong>gallery@example.com</strong> with a brief description.</p>
     </section>
 
-    <!-- Reform Dialogues Section -->
-    <section id="reform-dialogues" style="margin-top: 40px;">
-      <div class="section-content">
-        <h2>Reform Dialogues</h2>
-        <p>
-          Reform dialogues create spaces for in-depth discussion of specific policy challenges and reform opportunities. These structured conversations bridge perspectives and generate innovative approaches to complex issues.
-        </p>
-        <div class="gallery-grid">
-          <!-- Placeholder for future images -->
-          <div style="background-color: #f0f0f0; height: 200px; display: flex; justify-content: center; align-items: center; border-radius: 8px;">
-            <p style="font-style: italic; color: #666;">Coming Soon</p>
-          </div>
-          <div style="background-color: #f0f0f0; height: 200px; display: flex; justify-content: center; align-items: center; border-radius: 8px;">
-            <p style="font-style: italic; color: #666;">Coming Soon</p>
-          </div>
-          <!-- Add more as needed -->
-        </div>
-      </div>
-    </section>
-
-    <!-- Coalition Building Section -->
-    <section id="coalition-building" class="translucent-red" style="margin-top: 40px;">
-      <div class="section-content">
-        <h2>Coalition Building</h2>
-        <p>
-          These images capture moments of connection and collaboration between diverse organizations and individuals united by a shared commitment to effective reform. Coalition building is at the heart of our strategic approach.
-        </p>
-        <div class="gallery-grid">
-          <!-- Placeholder for future images -->
-          <div style="background-color: #f0f0f0; height: 200px; display: flex; justify-content: center; align-items: center; border-radius: 8px;">
-            <p style="font-style: italic; color: #666;">Coming Soon</p>
-          </div>
-          <div style="background-color: #f0f0f0; height: 200px; display: flex; justify-content: center; align-items: center; border-radius: 8px;">
-            <p style="font-style: italic; color: #666;">Coming Soon</p>
-          </div>
-          <!-- Add more as needed -->
-        </div>
-      </div>
-    </section>
-
-    <!-- Submit Your Photos Section -->
-    <section class="translucent-blue" style="margin-top: 40px;">
-      <div class="section-content">
-        <h2>Share Your American Refermers League Moments</h2>
-        <p>
-          Have you participated in a American Refermers League event or organized a local gathering? We invite you to share your photos to be featured in our gallery. These visual testimonies help illustrate the growing movement across America.
-        </p>
-        <p>
-          To submit photos, please email them to <strong>gallery@example.com</strong> with a brief description of the event, date, and location. By submitting photos, you grant permission for the Unity Coalition to use them on our website and in promotional materials.
-        </p>
-      </div>
-    </section>
   </main>
-
-  <!-- FOOTER -->
+  
+  <!-- ================== STANDARD FOOTER ================== -->
   <footer>
-    <div class="footer-links">
-      <a href="gallery.html">Gallery</a>
-      <a href="resources.html">Resources</a>
-      <a href="contact.html">Contact</a>
+    <div class="footer-grid">
+      <div class="footer-column-logo"><h4 class="footer-tagline-heading">It Matters That We're United.</h4></div>
+      <div class="footer-column-links"><h4>Quick Links</h4><a href="index.html">Home</a><a href="about.html">About Us</a><a href="mission.html">Our Mission</a><a href="projects.html">Projects</a></div>
+      <div class="footer-column-links"><h4>Get Involved</h4><a href="get-involved.html">Volunteer</a><a href="contact.html#contributeSection">Contribute</a><a href="gallery.html">Gallery</a><a href="resources.html">Resources</a></div>
+      <div class="footer-column-links"><h4>Connect</h4><a href="#">X / Twitter</a><a href="#">Facebook</a><a href="https://www.mightynetworks.com/">Mighty Networks</a><a href="contact.html">Contact Us</a></div>
     </div>
-    <div class="footer-logos">
-      <a href="https://www.mightynetworks.com/">
-        <img src="images/mightylogo.png" alt="Mighty Networks Logo" />
-      </a>
-      <a href="#">
-        <img src="images/xlogo.png" alt="X Logo" />
-      </a>
-      <a href="#">
-        <img src="images/facebooklogo.png" alt="Facebook Logo" />
-      </a>
-    </div>
-    <p>© 2025 American Refermers League. All rights reserved.</p>
+    <div class="footer-bottom"><p>© 2025 American Reformers League. All rights reserved.</p></div>
   </footer>
 
   <script src="script.js"></script>
