@@ -9,57 +9,77 @@
 </head>
 <body id="contact-page">
 
-  <!-- TOP BANNER -->
-  <div class="top-banner">
-    People Are The Solution
+  <!-- =================================================================
+  == STICKY HEADER AREA: Updated to the new standard structure ==
+  ================================================================== -->
+  <div class="site-header-sticky-container">
+    
+    <!-- TOP SCROLLING TICKER BANNER -->
+    <div class="top-banner">
+      <div class="ticker-wrap">
+          <div class="ticker-content">
+              <a href="register.html"><span>REGISTER TO VOTE</span></a>
+              <a href="contact.html#contributeSection"><span>SUPPORT THE MISSION</span></a>
+              <a href="get-involved.html#volunteerSection"><span>JOIN THE MOVEMENT</span></a>
+              <a href="#"><span>UPCOMING EVENTS</span></a>
+              <!-- Repeat for seamless loop -->
+              <a href="register.html"><span>REGISTER TO VOTE</span></a>
+              <a href="contact.html#contributeSection"><span>SUPPORT THE MISSION</span></a>
+              <a href="get-involved.html#volunteerSection"><span>JOIN THE MOVEMENT</span></a>
+              <a href="#"><span>UPCOMING EVENTS</span></a>
+          </div>
+      </div>
+    </div>
+
+    <!-- MAIN HEADER -->
+    <header>
+      <div class="header-content">
+        <div class="logo-group">
+          <a href="index.html">
+            <img src="images/unitycoalitionlogo.png" alt="Unity Coalition Logo" class="logo" />
+            <span class="logo-text">American Reformers League</span>
+          </a>
+        </div>
+        <div class="header-right">
+          <div class="header-socials">
+            <a href="#" aria-label="X/Twitter"><img src="images/xlogo.png" alt="X Logo" /></a>
+            <a href="#" aria-label="Facebook"><img src="images/facebooklogo.png" alt="Facebook Logo" /></a>
+          </div>
+          <div class="header-buttons">
+            <a href="https://www.amazon.com" target="_blank" rel="noopener noreferrer" class="header-shop-btn">Shop</a>
+            <a href="contact.html#contributeSection" class="header-contribute-btn">Contribute</a>
+          </div>
+        </div>
+        <div class="hamburger">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN NAVIGATION -->
+    <nav class="main-nav">
+      <div class="main-nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="mission.html">Mission</a>
+        <a href="projects.html">Projects</a>
+        <a href="get-involved.html">Get Involved</a>
+        <a href="contact.html" class="active">Contact</a>
+      </div>
+    </nav>
   </div>
 
-  <!-- STANDARD HEADER & NAV -->
-  <header>
-    <div class="header-content">
-      <div class="logo-group">
-        <a href="index.html">
-          <img src="images/unitycoalitionlogo.png" alt="Unity Coalition Logo" class="logo" />
-          <span class="logo-text">American Reformers League</span>
-        </a>
-      </div>
-      <div class="header-right">
-        <div class="header-socials">
-          <a href="#" aria-label="X/Twitter"><img src="images/xlogo.png" alt="X Logo" /></a>
-          <a href="#" aria-label="Facebook"><img src="images/facebooklogo.png" alt="Facebook Logo" /></a>
-        </div>
-        <div class="header-buttons">
-          <a href="https://www.amazon.com" id="shop-btn">Shop</a>
-          <a href="contact.html#contributeSection" id="contribute-btn">Contribute</a>
-        </div>
-      </div>
-      <div class="hamburger">
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-    </div>
-  </header>
-  <nav class="main-nav">
-    <div class="main-nav-links">
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="mission.html">Mission</a>
-      <a href="projects.html">Projects</a>
-      <a href="get-involved.html">Get Involved</a>
-      <a href="contact.html" class="active">Contact</a>
-    </div>
-  </nav>
-
-  <!-- PAGE HERO -->
+  <!-- PAGE HERO (Unchanged) -->
   <section class="page-hero" style="background-image: url('images/contact.png');">
     <div class="page-hero-overlay">
       <h1>Contact Us</h1>
     </div>
   </section>
 
+  <!-- MAIN CONTENT (Unchanged) -->
   <main class="content-wrapper">
-    <!-- INTRO SECTION -->
     <section class="contact-intro-section">
       <div class="contact-intro-grid">
         <div class="contact-intro-text">
@@ -76,7 +96,6 @@
       </div>
     </section>
 
-    <!-- CONTRIBUTE SECTION -->
     <section id="contributeSection" class="contribute-section-wrapper">
       <div class="form-banner">
         <h2>Contribute to the Mission</h2>
@@ -105,13 +124,11 @@
       </div>
     </section>
 
-    <!-- SUBSCRIBE FORM SECTION -->
     <section class="form-section-wrapper">
       <div class="form-banner">
         <h2>Stay Informed</h2>
       </div>
       <div class="form-container">
-        <!-- The form now has a unique ID for the script to find -->
         <form id="subscribeForm">
             <div class="form-row">
               <div class="form-field">
@@ -130,10 +147,12 @@
     </section>
   </main>
   
-  <!-- STANDARD FOOTER -->
+  <!-- FOOTER (Updated to the new standard structure) -->
   <footer>
     <div class="footer-grid">
-      <div class="footer-column-logo"><img src="images/unitycoalitionlogo.png" alt="Unity Coalition Logo" class="footer-logo" /><p class="footer-tagline">Reuniting America. It Matters That We're United.</p></div>
+      <div class="footer-column-logo">
+        <h4 class="footer-tagline-heading">It Matters That We're United.</h4>
+      </div>
       <div class="footer-column-links"><h4>Quick Links</h4><a href="index.html">Home</a><a href="about.html">About Us</a><a href="mission.html">Our Mission</a><a href="projects.html">Projects</a></div>
       <div class="footer-column-links"><h4>Get Involved</h4><a href="get-involved.html">Volunteer</a><a href="contact.html#contributeSection">Contribute</a><a href="gallery.html">Gallery</a><a href="resources.html">Resources</a></div>
       <div class="footer-column-links"><h4>Connect</h4><a href="#">X / Twitter</a><a href="#">Facebook</a><a href="https://www.mightynetworks.com/">Mighty Networks</a><a href="contact.html">Contact Us</a></div>
