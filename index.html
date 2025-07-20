@@ -5,43 +5,55 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>American Reformers League - Home</title>
   <link rel="stylesheet" href="style.css" />
-  <!-- Google Fonts for Montserrat and Open Sans -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body id="home-page">
-  <!-- Top Banner -->
+
+  <!-- TOP BANNER (Remains the same) -->
   <div class="top-banner">
     People Are The Solution
   </div>
 
-  <!-- HEADER -->
+  <!-- ========================================================= -->
+  <!-- NEW HEADER STRUCTURE (REPLACES OLD <header>) -->
+  <!-- ========================================================= -->
   <header>
-    <div class="logo-group">
-      <img src="images/unitycoalitionlogo.png" alt="Unity Coalition Logo" class="logo" />
-      <span class="logo-text">American Reformers League</span>
+    <div class="header-content">
+      <div class="logo-group">
+        <a href="index.html">
+          <img src="images/unitycoalitionlogo.png" alt="Unity Coalition Logo" class="logo" />
+          <span class="logo-text">American Reformers League</span>
+        </a>
+      </div>
+      <div class="header-right">
+        <div class="header-socials">
+          <a href="#" aria-label="X/Twitter"><img src="images/xlogo.png" alt="X Logo" /></a>
+          <a href="#" aria-label="Facebook"><img src="images/facebooklogo.png" alt="Facebook Logo" /></a>
+        </div>
+        <div class="header-buttons">
+          <a href="https://www.amazon.com" id="shop-btn">Shop</a>
+          <a href="contact.html#contributeSection" id="contribute-btn">Contribute</a>
+        </div>
+      </div>
+      <div class="hamburger">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
     </div>
-    <div class="nav-links">
+  </header>
+  <nav class="main-nav">
+    <div class="main-nav-links">
       <a href="index.html" class="active">Home</a>
       <a href="about.html">About</a>
       <a href="mission.html">Mission</a>
       <a href="projects.html">Projects</a>
       <a href="get-involved.html">Get Involved</a>
       <a href="contact.html">Contact</a>
-      <button class="theme-toggle"></button>
     </div>
-    <div class="header-buttons">
-      <a href="https://www.amazon.com" id="shop-btn">Shop</a>
-      <a href="contact.html#contributeSection" id="contribute-btn">Contribute</a>
-    </div>
-    <div class="hamburger">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-    <button class="theme-toggle mobile-only"></button>
-  </header>
+  </nav>
 
-  <!-- HERO SECTION REIMAGINED V2 -->
+  <!-- HERO SECTION REIMAGINED V3 -->
   <section class="hero-impact">
     <div class="hero-impact-content">
       <h1 class="hero-outline-text">Reuniting</h1>
@@ -67,7 +79,7 @@
   </div>
   
   <!-- JOIN OUR MOVEMENT SECTION -->
-  <section class="join-movement-section" style="margin:0;">
+  <section class="join-movement-section">
     <div class="join-movement-banner">
       <h2>JOIN OUR MOVEMENT</h2>
     </div>
@@ -119,7 +131,7 @@
   </div>
   
   <!-- VIDEO 2 - FULL BLEED -->
-  <section class="video-full-bleed" style="margin-top:0;">
+  <section class="video-full-bleed">
       <div class="video-overlay-text">
         <h2>The People Are The Solution</h2>
       </div>
@@ -130,7 +142,7 @@
 
   <!-- DONATION SECTION -->
   <div class="angled-section both-angles">
-    <section class="section-black" style="margin:0;">
+    <section class="section-black">
       <h2>Support Our Work</h2>
       <p>Your donation helps establish our legal entities, build the communications hub, and maintain a motivated core team.</p>
       <div class="donation-logos">
@@ -141,19 +153,40 @@
     </section>
   </div>
 
-  <!-- FOOTER -->
+  <!-- ========================================================= -->
+  <!-- NEW FOOTER STRUCTURE (REPLACES OLD <footer>) -->
+  <!-- ========================================================= -->
   <footer>
-    <div class="footer-links">
-      <a href="gallery.html">Gallery</a>
-      <a href="resources.html">Resources</a>
-      <a href="contact.html">Contact</a>
+    <div class="footer-grid">
+      <div class="footer-column-logo">
+        <img src="images/unitycoalitionlogo.png" alt="Unity Coalition Logo" class="footer-logo" />
+        <p class="footer-tagline">Reuniting America. It Matters That We're United.</p>
+      </div>
+      <div class="footer-column-links">
+        <h4>Quick Links</h4>
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="mission.html">Our Mission</a>
+        <a href="projects.html">Projects</a>
+      </div>
+      <div class="footer-column-links">
+        <h4>Get Involved</h4>
+        <a href="get-involved.html">Volunteer</a>
+        <a href="contact.html#contributeSection">Contribute</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="resources.html">Resources</a>
+      </div>
+      <div class="footer-column-links">
+        <h4>Connect</h4>
+        <a href="#">X / Twitter</a>
+        <a href="#">Facebook</a>
+        <a href="https://www.mightynetworks.com/">Mighty Networks</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
     </div>
-    <div class="footer-logos">
-      <a href="https://www.mightynetworks.com/"><img src="images/mightylogo.png" alt="Mighty Networks"/></a>
-      <a href="#"><img src="images/xlogo.png" alt="X"/></a>
-      <a href="#"><img src="images/facebooklogo.png" alt="Facebook"/></a>
+    <div class="footer-bottom">
+      <p>© 2025 American Reformers League. All rights reserved.</p>
     </div>
-    <p>© 2025 American Reformers League. All rights reserved.</p>
   </footer>
 
   <script src="script.js"></script>
