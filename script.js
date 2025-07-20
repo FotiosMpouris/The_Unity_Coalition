@@ -9,18 +9,25 @@ document.addEventListener("DOMContentLoaded", function() {
       let overlay = document.createElement("div");
       overlay.classList.add("mobile-nav-overlay");
       document.body.appendChild(overlay);
+
       let overlayNavHTML = `<button class="close-overlay-btn" aria-label="Close menu">×</button>${mainNavLinks.innerHTML}`;
       overlay.innerHTML = overlayNavHTML;
+
       const closeOverlayBtn = overlay.querySelector('.close-overlay-btn');
+
       const toggleOverlay = () => {
         overlay.classList.toggle("show");
         hamburger.classList.toggle("is-active");
       };
+
       hamburger.addEventListener("click", toggleOverlay);
       closeOverlayBtn.addEventListener("click", toggleOverlay);
+
       overlay.querySelectorAll("a").forEach(link => {
           link.addEventListener("click", () => {
-            if (overlay.classList.contains("show")) toggleOverlay();
+            if (overlay.classList.contains("show")) {
+              toggleOverlay();
+            }
           });
       });
   }
@@ -64,10 +71,13 @@ document.addEventListener("DOMContentLoaded", function() {
    * 3. Form Submission Handling (Unified)
    ***********************************************/
   const apiGatewayUrl = "https://po1s6ptb9g.execute-api.us-east-2.amazonaws.com/dev/submit";
+  
   const joinFormHome = document.querySelector("#home-page .join-movement-section form");
   if (joinFormHome) joinFormHome.addEventListener("submit", (event) => handleFormSubmit(event, 'join'));
+
   const volunteerForm = document.getElementById("volunteerForm");
   if (volunteerForm) volunteerForm.addEventListener("submit", (event) => handleFormSubmit(event, 'volunteer'));
+
   const subscribeForm = document.getElementById("subscribeForm");
   if (subscribeForm) subscribeForm.addEventListener("submit", (event) => handleFormSubmit(event, 'subscribe'));
 
@@ -76,76 +86,114 @@ document.addEventListener("DOMContentLoaded", function() {
     const form = event.target;
     const submitButton = form.querySelector('button[type="submit"]');
     const originalButtonText = submitButton.textContent;
+    
     submitButton.disabled = true;
     submitButton.textContent = 'Submitting...';
+
     const dataPayload = { formType };
     const formData = new FormData(form);
+
     try {
       if (formType === 'join') {
         dataPayload.email = formData.get('email');
         dataPayload.zipCode = formData.get('zip');
         if (!dataPayload.email) throw new Error("Email is required.");
-      } else if (formType === 'volunteer') {
-        dataPayload.firstName = formData.get('firstName'); dataPayload.lastName = formData.get('lastName');
-        dataPayload.email = formData.get('email'); dataPayload.phone = formData.get('phone');
-        dataPayload.city = formData.get('city'); dataPayload.state = formData.get('state');
-        dataPayload.zipCode = formData.get('zip'); dataPayload.interests = formData.getAll('interest');
+      } 
+      else if (formType === 'volunteer') {
+        dataPayload.firstName = formData.get('firstName');
+        dataPayload.lastName = formData.get('lastName');
+        dataPayload.email = formData.get('email');
+        dataPayload.phone = formData.get('phone');
+        dataPayload.city = formData.get('city');
+        dataPayload.state = formData.get('state');
+        dataPayload.zipCode = formData.get('zip');
+        dataPayload.interests = formData.getAll('interest');
         dataPayload.notRobotChecked = formData.get('not_robot') === 'on';
         dataPayload.privacyPolicyAgreed = formData.get('privacy_policy') === 'on';
         if (!dataPayload.firstName || !dataPayload.lastName || !dataPayload.email) throw new Error("First Name, Last Name, and Email are required.");
         if (!dataPayload.notRobotChecked) throw new Error("Please confirm you are not a robot.");
         if (!dataPayload.privacyPolicyAgreed) throw new Error("You must agree to the Privacy Policy.");
-      } else if (formType === 'subscribe') {
-        dataPayload.name = formData.get('name'); dataPayload.email = formData.get('email');
+      }
+      else if (formType === 'subscribe') {
+        dataPayload.name = formData.get('name');
+        dataPayload.email = formData.get('email');
         dataPayload.privacyPolicyAgreed = formData.get('privacy_policy') === 'on';
         if (!dataPayload.name || !dataPayload.email) throw new Error("Name and Email are required.");
         if (!dataPayload.privacyPolicyAgreed) throw new Error("You must agree to the Privacy Policy.");
       }
     } catch (validationError) {
         alert(`Error: ${validationError.message}`);
-        submitButton.disabled = false; submitButton.textContent = originalButtonText; return;
+        submitButton.disabled = false;
+        submitButton.textContent = originalButtonText;
+        return;
     }
+    
     try {
-        const response = await fetch(apiGatewayUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(dataPayload), });
-        if (response.ok) { alert("Thank you! Your submission was successful."); form.reset(); } 
-        else { const responseData = await response.json().catch(() => ({})); const errorMessage = responseData.message || `Server responded with status ${response.status}.`; alert(`Submission Failed: ${errorMessage}`); }
-    } catch (error) { console.error("Submission Error:", error); alert("An error occurred while sending your submission. Please check your connection.");
-    } finally { submitButton.disabled = false; submitButton.textContent = originalButtonText; }
+        const response = await fetch(apiGatewayUrl, {
+            method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(dataPayload),
+        });
+        if (response.ok) {
+            alert("Thank you! Your submission was successful.");
+            form.reset();
+        } else {
+            const responseData = await response.json().catch(() => ({}));
+            const errorMessage = responseData.message || `Server responded with status ${response.status}.`;
+            alert(`Submission Failed: ${errorMessage}`);
+        }
+    } catch (error) {
+        console.error("Submission Error:", error);
+        alert("An error occurred while sending your submission. Please check your connection.");
+    } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = originalButtonText;
+    }
   }
 
-  /************************************************
-   * 4. Site-Wide Smooth Scroll for Anchor Links (MODIFIED)
-   ***********************************************/
+  /******************************************************************
+   * 4. Site-Wide Smooth Scroll for Anchor Links (REVISED & SIMPLIFIED)
+   * This is now much more robust. The actual offset is handled by
+   * the `scroll-margin-top` property in the CSS file. The JS
+   * just needs to trigger the scroll. This fixes the issue of
+   * scrolling too far into a section.
+   ******************************************************************/
   function smoothScrollToAnchor(hash) {
       const targetElement = document.querySelector(hash);
       if (targetElement) {
-          const headerHeight = document.querySelector('header')?.offsetHeight || 0;
-          const navHeight = document.querySelector('.main-nav')?.offsetHeight || 0;
-          const bannerHeight = document.querySelector('.top-banner')?.offsetHeight || 0;
-          // Calculate the total height of all sticky elements
-          const totalOffset = headerHeight + navHeight + bannerHeight;
-          const elementPosition = targetElement.getBoundingClientRect().top;
-          // Add a 20px buffer for extra spacing so the title isn't touching the nav bar
-          const offsetPosition = elementPosition + window.pageYOffset - totalOffset - 20;
-          window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+          targetElement.scrollIntoView({ behavior: 'smooth' });
       }
   }
 
+  // Listener for on-page anchor clicks
   document.querySelectorAll('a[href*="#"]').forEach(link => {
       link.addEventListener('click', function (e) {
           const href = this.getAttribute('href');
           const targetPath = href.split('#')[0];
-          const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+          // Use `location.pathname` for a more robust current path check
+          const currentPath = window.location.pathname.endsWith('/') 
+              ? window.location.pathname 
+              : window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1);
+
+          // Check if the link is for the current page
           if ((targetPath === '' || targetPath === currentPath) && href.includes('#')) {
               e.preventDefault();
               const targetHash = `#${href.split('#')[1]}`;
+              history.pushState(null, null, targetHash); // Optionally update URL
               smoothScrollToAnchor(targetHash);
           }
       });
   });
+
+  // Also check for a hash in the URL when the page loads
+  if (window.location.hash) {
+    // A small delay ensures all elements are rendered before scrolling
+    setTimeout(() => {
+        smoothScrollToAnchor(window.location.hash);
+    }, 100);
+  }
   
+  // Specific handler for Bitcoin logos on different pages
   const bitcoinDonateButton = document.getElementById("bitcoinDonate");
   if(bitcoinDonateButton) bitcoinDonateButton.addEventListener("click", () => alert("Bitcoin donation option coming soon!"));
 
-  console.log("ARL Script Initialized (V6)");
+  console.log("ARL Script Initialized (Unified V6)");
 });
