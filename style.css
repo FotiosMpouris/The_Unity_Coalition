@@ -19,15 +19,18 @@ html, body {
   line-height: 1.6;
 }
 /* REPLACE the existing :root block with this one */
+/* REPLACE the existing :root block with this one */
 :root {
-  /* NEW "Tech Patriot" Palette */
+  /* The Official "Tech Patriot" Palette */
   --patriot-blue: #0A192F;  /* Deep navy for backgrounds */
   --patriot-red: #E63946;   /* Strong, impactful red */
   --patriot-white: #CCD6F6; /* Off-white for readable text */
   --patriot-cyan: #64FFDA;  /* Electric cyan for glows/accents */
   --light-slate: #8892B0;   /* Secondary text color */
   --white: #ffffff;
-
+  --header-height: 70px; /* Define a reusable header height */
+  --nav-height: 50px; /* Define a reusable nav height */
+}
   /* Old variables for compatibility on other pages */
   --blue: #1c2951;
   --red: #b22222;
@@ -1974,44 +1977,99 @@ footer p {
 
 /* =========================================================
    =========================================================
-   ===   HOMEPAGE REVAMP V2 (REPLACE OLD REVAMP STYLES)  ===
+   ===      HOMEPAGE REVAMP V3 (REPLACE V2 STYLES)       ===
    =========================================================
    ========================================================= */
 
-body#home-page {
+/* Universal styles for the new theme */
+html {
+  scroll-behavior: smooth;
+}
+body {
   background-color: var(--patriot-blue);
   color: var(--patriot-white);
 }
+main, section {
+  margin-top: 0; /* Remove old default margins */
+  padding: 20px;
+}
 
-/* Make header background match on homepage */
-body#home-page header {
+/* 1. COMPLETE HEADER & NAV OVERHAUL */
+/* ---------------------------------- */
+header {
   background-color: var(--patriot-blue);
-  border-bottom-color: var(--patriot-red);
+  padding: 0 20px;
+  height: var(--header-height);
+  border-bottom: 1px solid var(--light-slate);
+  position: relative;
+  z-index: 999;
+  top: 36px; /* Account for the top red banner */
 }
-body#home-page header .logo-text,
-body#home-page header .nav-links a {
-  color: var(--patriot-white);
+.header-content {
+  height: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-body#home-page .hamburger div {
-    background-color: var(--patriot-white);
+.logo-group a { display: flex; align-items: center; text-decoration: none;}
+.logo { max-height: 50px; }
+.logo-text { color: var(--patriot-white); font-size: 1.5rem; margin-left: 15px;}
+.header-right { display: flex; align-items: center; gap: 20px; }
+.header-socials { display: flex; gap: 15px; }
+.header-socials img { height: 24px; transition: transform 0.2s ease; }
+.header-socials img:hover { transform: scale(1.1); }
+#shop-btn { background-color: transparent; border: 1px solid var(--patriot-white); color: var(--patriot-white); }
+#shop-btn:hover { background-color: var(--patriot-white); color: var(--patriot-blue); }
+#contribute-btn { background-color: var(--patriot-red); border: 1px solid var(--patriot-red); color: var(--white); }
+#contribute-btn:hover { filter: brightness(1.2); }
+
+.main-nav {
+  background-color: var(--patriot-blue);
+  height: var(--nav-height);
+  border-bottom: 2px solid var(--patriot-red);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: 36px;
+}
+.main-nav-links { display: flex; gap: 30px; }
+.main-nav a {
+  color: var(--light-slate);
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 1px;
+  padding: 10px;
+  transition: color 0.2s ease;
+}
+.main-nav a:hover { color: var(--patriot-white); }
+.main-nav a.active { color: var(--patriot-red); }
+
+/* Hide new elements on mobile to be handled by hamburger */
+@media (max-width: 768px) {
+  .header-right, .main-nav { display: none; }
+  .hamburger { display: flex; }
+  .logo-text { font-size: 1.1rem; margin-left: 10px; }
+  header, .main-nav { top: 40px; }
 }
 
-/* 1. HERO IMPACT SECTION */
+/* 2. HERO SECTION FIX */
 /* ---------------------------------- */
 .hero-impact {
-  min-height: 90vh;
+  min-height: calc(100vh - var(--header-height) - var(--nav-height) - 36px); /* Full height minus headers */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  padding: 100px 20px 20px;
-  background-image: url('images/homebanner.png'); /* Use light image as base */
+  padding: 20px;
+  margin-top: 36px; /* Account for top banner */
+  background-image: url('images/homebannerdark.png');
   background-size: cover;
   background-position: center;
   background-attachment: fixed; /* Parallax effect */
   position: relative;
-  margin-top:0;
 }
 .hero-impact::before {
     content:'';
@@ -2019,99 +2077,96 @@ body#home-page .hamburger div {
     top:0; left:0; width:100%; height:100%;
     background: rgba(10, 25, 47, 0.8); /* Dark overlay */
 }
-[data-theme="dark"] .hero-impact {
-    background-image: url('images/homebannerdark.png');
-}
+/* All other hero styles from V2 are still good */
 
-.hero-impact-content {
-    position: relative;
-    z-index: 2;
+/* 3. FOOTER REDESIGN */
+/* ---------------------------------- */
+footer {
+  background-color: #0E203F; /* Slightly lighter navy */
+  padding: 50px 20px 20px;
+  margin-top: 0;
+  border-top: 3px solid var(--patriot-red);
 }
-
-.hero-outline-text {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 900;
-  font-size: clamp(3rem, 12vw, 8rem);
-  color: transparent;
-  -webkit-text-stroke: 2px var(--patriot-cyan);
-  text-transform: uppercase;
-  line-height: 1;
-  text-shadow: 0 0 15px rgba(100, 255, 218, 0.3);
-  border:none;
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto 40px;
 }
-
-.hero-solid-text {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 900;
-  font-size: clamp(2.5rem, 10vw, 7rem);
+.footer-column-logo .footer-logo { max-width: 80px; margin-bottom: 15px; }
+.footer-column-logo .footer-tagline { color: var(--light-slate); line-height: 1.5; }
+.footer-column-links h4 {
   color: var(--patriot-white);
-  text-transform: uppercase;
-  line-height: 1;
-  margin-top: -1.5vw;
+  font-size: 1.1rem;
   margin-bottom: 20px;
-  text-shadow: 0 0 10px rgba(0,0,0,0.5);
-  border:none;
+  text-transform: uppercase;
 }
-
-body#home-page .hero-subheadline {
-  font-size: clamp(1rem, 2.5vw, 1.5rem);
+.footer-column-links a {
+  display: block;
   color: var(--light-slate);
-  margin-bottom: 40px;
+  margin-bottom: 10px;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.footer-column-links a:hover { color: var(--patriot-cyan); }
+.footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid var(--light-slate);
+  color: var(--light-slate);
+  font-size: 0.9rem;
 }
 
+/* ALL OTHER V2 STYLES (ANGLED SECTIONS, VIDEOS, CARDS) ARE GOOD AND SHOULD REMAIN */
+/* Hero Text Styles (from V2) */
+.hero-impact-content { position: relative; z-index: 2; }
+.hero-outline-text {
+  font-family: 'Montserrat', sans-serif; font-weight: 900;
+  font-size: clamp(3rem, 12vw, 8rem); color: transparent;
+  -webkit-text-stroke: 2px var(--patriot-cyan);
+  text-transform: uppercase; line-height: 1;
+  text-shadow: 0 0 15px rgba(100, 255, 218, 0.3); border:none;
+}
+.hero-solid-text {
+  font-family: 'Montserrat', sans-serif; font-weight: 900;
+  font-size: clamp(2.5rem, 10vw, 7rem); color: var(--patriot-white);
+  text-transform: uppercase; line-height: 1;
+  margin-top: -1.5vw; margin-bottom: 20px;
+  text-shadow: 0 0 10px rgba(0,0,0,0.5); border:none;
+}
+body#home-page .hero-subheadline {
+  font-size: clamp(1rem, 2.5vw, 1.5rem); color: var(--light-slate); margin-bottom: 40px;
+}
 body#home-page .hero-buttons-group a {
-    padding: 15px 35px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    border: 2px solid;
-    transition: all 0.3s ease;
+    padding: 15px 35px; font-size: 1.2rem; font-weight: bold;
+    border: 2px solid; transition: all 0.3s ease;
 }
 body#home-page .hero-volunteer-btn {
-    background: transparent;
-    border-color: var(--patriot-cyan);
-    color: var(--patriot-cyan);
+    background: transparent; border-color: var(--patriot-cyan); color: var(--patriot-cyan);
 }
 body#home-page .hero-volunteer-btn:hover {
-    background: var(--patriot-cyan);
-    color: var(--patriot-blue);
-    box-shadow: 0 0 20px var(--patriot-cyan);
+    background: var(--patriot-cyan); color: var(--patriot-blue); box-shadow: 0 0 20px var(--patriot-cyan);
 }
 body#home-page .hero-contribute-btn {
-    background: var(--patriot-red);
-    border-color: var(--patriot-red);
-    color: var(--white);
+    background: var(--patriot-red); border-color: var(--patriot-red); color: var(--white);
 }
 body#home-page .hero-contribute-btn:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 20px var(--patriot-red);
+    transform: scale(1.05); box-shadow: 0 0 20px var(--patriot-red);
 }
-
-
-/* 2. ANGLED SECTION STYLING */
-/* ---------------------------------- */
-.angled-section {
-  background-color: var(--patriot-blue); /* Match page bg */
-}
+.angled-section { background-color: var(--patriot-blue); }
 .angled-section.top-angle {
   clip-path: polygon(0 0, 100% 5vw, 100% 100%, 0 100%);
-  margin-top: -5vw;
-  padding-top: 10vw;
+  margin-top: -5vw; padding-top: 10vw;
 }
-.angled-section.bottom-angle {
+.angled-section.bottom-_angle {
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 5vw));
-  margin-bottom: -5vw;
-  padding-bottom: 10vw;
+  margin-bottom: -5vw; padding-bottom: 10vw;
 }
 .angled-section.both-angles {
   clip-path: polygon(0 5vw, 100% 0, 100% calc(100% - 5vw), 0 100%);
-  margin-top: -5vw;
-  margin-bottom: -5vw;
-  padding: 10vw 0;
+  margin-top: -5vw; margin-bottom: -5vw; padding: 10vw 0;
 }
-
-
-/* 3. FULL-BLEED VIDEO SECTIONS */
-/* ---------------------------------- */
 .video-full-bleed {
     position: relative; width: 100vw;
     left: 50%; right: 50%;
@@ -2133,9 +2188,6 @@ body#home-page .hero-contribute-btn:hover {
     border-bottom: 3px solid var(--patriot-red);
     padding-bottom: 10px;
 }
-
-/* 4. JOIN MOVEMENT & DYNAMIC CARDS */
-/* ---------------------------------- */
 body#home-page .join-movement-section { background-color: var(--patriot-blue); }
 body#home-page .join-movement-banner { background-color: var(--patriot-red); }
 body#home-page .join-movement-form-container { background-color: var(--patriot-blue); }
@@ -2147,7 +2199,6 @@ body#home-page .join-button { background: var(--patriot-red); }
 body#home-page .join-button:hover { background: #ff505f; transform: scale(1.05); }
 .unite-together-banner { background-color: var(--patriot-blue) !important; color: var(--patriot-white) !important; padding: 15px; margin-top: 20px; border: 1px solid var(--patriot-red); }
 .unite-together-banner p { font-size: 1.3rem; font-weight: bold; margin: 0; color: var(--patriot-white) !important; }
-
 body#home-page main.home-content-wrapper { padding: 60px 20px; margin-top: 0; }
 .dynamic-card-section {
     display: grid; grid-template-columns: 1fr 1.5fr; gap: 0; align-items: center;
@@ -2181,7 +2232,6 @@ body#home-page main.home-content-wrapper { padding: 60px 20px; margin-top: 0; }
 body#home-page .section-black { background-color: #0E203F; padding: 60px 20px;}
 body#home-page .section-black h2 { color: var(--patriot-white); border-color: var(--patriot-red);}
 body#home-page .section-black p { color: var(--light-slate); }
-
 @media (max-width: 900px) {
   .dynamic-card-section, .dynamic-card-section.red-card {
       grid-template-columns: 1fr; margin: 40px auto;
