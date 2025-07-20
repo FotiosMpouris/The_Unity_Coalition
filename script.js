@@ -151,10 +151,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
   /******************************************************************
    * 4. Site-Wide Smooth Scroll for Anchor Links (REVISED & SIMPLIFIED)
-   * This is now much more robust. The actual offset is handled by
-   * the `scroll-margin-top` property in the CSS file. The JS
-   * just needs to trigger the scroll. This fixes the issue of
-   * scrolling too far into a section.
    ******************************************************************/
   function smoothScrollToAnchor(hash) {
       const targetElement = document.querySelector(hash);
@@ -168,12 +164,10 @@ document.addEventListener("DOMContentLoaded", function() {
       link.addEventListener('click', function (e) {
           const href = this.getAttribute('href');
           const targetPath = href.split('#')[0];
-          // Use `location.pathname` for a more robust current path check
           const currentPath = window.location.pathname.endsWith('/') 
               ? window.location.pathname 
               : window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1);
 
-          // Check if the link is for the current page
           if ((targetPath === '' || targetPath === currentPath) && href.includes('#')) {
               e.preventDefault();
               const targetHash = `#${href.split('#')[1]}`;
@@ -185,7 +179,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // Also check for a hash in the URL when the page loads
   if (window.location.hash) {
-    // A small delay ensures all elements are rendered before scrolling
     setTimeout(() => {
         smoothScrollToAnchor(window.location.hash);
     }, 100);
@@ -195,5 +188,5 @@ document.addEventListener("DOMContentLoaded", function() {
   const bitcoinDonateButton = document.getElementById("bitcoinDonate");
   if(bitcoinDonateButton) bitcoinDonateButton.addEventListener("click", () => alert("Bitcoin donation option coming soon!"));
 
-  console.log("ARL Script Initialized (Unified V6)");
+  console.log("ARL Script Initialized (Unified V7)");
 });
