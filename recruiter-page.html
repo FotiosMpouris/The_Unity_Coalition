@@ -3,142 +3,49 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>ARL Recruiter Hub (QR)</title>
-    <!-- No link to main style.css -->
+    <title>ARL Recruiter Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* Recruiter Page Specific Styles - FORCED LIGHT MODE */
         :root {
-            --qr-blue: #1c2951;
-            --qr-white: #ffffff;
-            --qr-red: #d9534f;
-            --qr-text-primary: #1c2951;
-            --qr-text-secondary: #555;
-            --qr-button-bg: var(--qr-red);
-            --qr-button-text: var(--qr-white);
-            --qr-button-hover-bg: #c83c3c;
+            --qr-blue: #0A192F; --qr-red: #E63946; --qr-white: #ffffff;
+            --qr-text: #333; --qr-text-light: #555;
         }
-
-        html {
-            --blue: var(--qr-blue);
-            --white: var(--qr-white);
-            --red: var(--qr-red);
-        }
-
         body {
-            padding: 20px 15px;
-            background-color: var(--qr-blue);
-            color: var(--qr-white);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            text-align: center;
-            font-family: 'Open Sans', Arial, sans-serif;
-            margin: 0;
-            box-sizing: border-box;
+            margin: 0; padding: 20px; background-color: var(--qr-blue); font-family: 'Open Sans', sans-serif;
+            display: flex; align-items: center; justify-content: center; min-height: 100vh;
         }
-
         .recruiter-container {
-            background-color: var(--qr-white);
-            color: var(--qr-text-primary);
-            padding: 25px 20px;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-            width: 100%;
-            max-width: 850px; /* Increased max-width for three items */
-            margin-top: 20px;
-            margin-bottom: 20px;
-            box-sizing: border-box;
+            background-color: var(--qr-white); color: var(--qr-text);
+            padding: 30px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            width: 100%; max-width: 900px; text-align: center;
         }
-
-        .recruiter-logo { max-width: 100px; margin-bottom: 15px; }
-        .recruiter-container h1 {
-            font-family: 'Montserrat', sans-serif; font-size: 1.8rem; margin-bottom: 20px; color: var(--qr-red);
-        }
-        .recruiter-container p.intro {
-            margin-bottom: 25px; font-size: 0.95rem;
-        }
-
+        .recruiter-logo { max-width: 100px; margin-bottom: 20px; }
+        h1 { font-family: 'Montserrat', sans-serif; font-size: 2rem; color: var(--qr-blue); margin: 0 0 10px; }
+        .intro { font-size: 1.1rem; color: var(--qr-text-light); margin-bottom: 30px; }
         .access-options {
-            display: flex;
-            flex-direction: column; /* Stack sections vertically first */
-            gap: 20px; /* Adjusted gap */
+            display: flex; flex-direction: column; gap: 20px;
         }
-
         .option-section {
-            padding: 15px;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            background-color: #f9f9f9;
-            display: flex; /* For better internal alignment */
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between; /* Pushes button to bottom if content heights vary */
+            padding: 20px; border-radius: 8px; background-color: #f7f9fc;
+            display: flex; flex-direction: column; align-items: center;
+            justify-content: space-between; border: 1px solid #e1e5ea;
         }
-
-        .option-section h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.3rem;
-            color: var(--qr-blue);
-            margin-top: 0;
-            margin-bottom: 15px;
-        }
-
-        .qr-code-display {
-            margin-bottom: 15px; /* Space between QR and button */
-        }
-
-        .qr-code-display img {
-            max-width: 180px; /* Slightly smaller QR for three items */
-            height: auto;
-            border: 1px solid #ccc;
-            padding: 5px;
-            background-color: white;
-            margin-bottom: 10px;
-        }
-        .qr-code-display p {
-            font-size: 0.9rem;
-            margin-bottom: 0; /* Removed bottom margin as .qr-code-display handles it */
-        }
-
+        .option-section h2 { font-family: 'Montserrat', sans-serif; font-size: 1.4rem; color: var(--qr-blue); margin: 0 0 15px; }
+        .qr-code-display { margin-bottom: 20px; }
+        .qr-code-display img { max-width: 150px; border: 1px solid #ccc; padding: 5px; background-color: white; }
+        .qr-code-display p { font-size: 0.9rem; color: var(--qr-text-light); margin: 10px 0 0; }
         .direct-link-button {
-            display: inline-block;
-            padding: 12px 20px; /* Adjusted padding */
-            font-size: 0.95rem; /* Adjusted font size */
-            background-color: var(--qr-button-bg);
-            color: var(--qr-button-text);
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            text-decoration: none;
-            text-transform: uppercase;
-            transition: background-color 0.2s ease;
-            width: 90%; /* Make buttons more uniform in width */
-            max-width: 250px;
+            display: inline-block; padding: 12px 25px; font-size: 1rem;
+            background-color: var(--qr-red); color: var(--qr-white);
+            border-radius: 5px; font-weight: bold; text-decoration: none;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+            width: 90%; max-width: 280px;
         }
-        .direct-link-button:hover {
-            background-color: var(--qr-button-hover-bg);
-        }
-
-        .recruiter-footer-text { margin-top: 25px; font-size: 0.85rem; color: var(--qr-text-primary); }
-
-        /* Responsive adjustments for side-by-side on wider screens */
-        @media (min-width: 700px) { /* Adjusted breakpoint for 3 items to go side-by-side */
-            .access-options {
-                flex-direction: row;
-                justify-content: space-around; /* Distributes space around items */
-                align-items: stretch; /* Makes option-sections same height */
-            }
-            .option-section {
-                flex-basis: 31%; /* Each section takes up roughly a third, accounts for gap */
-                margin-bottom: 0;
-            }
-        }
-         @media (min-width: 500px) and (max-width: 699px) { /* For 2 items per row if needed, or keep stacked */
-            .access-options {
-                /* You could style for 2 then 1, or just let them stack */
-            }
+        .direct-link-button:hover { background-color: #c22a37; transform: translateY(-2px); }
+        .recruiter-footer-text { margin-top: 30px; font-size: 0.9rem; color: #aaa; }
+        @media (min-width: 800px) {
+            .access-options { flex-direction: row; align-items: stretch; }
+            .option-section { flex-basis: 32%; }
         }
     </style>
 </head>
@@ -148,44 +55,32 @@
         <h1>Recruiter Quick Access</h1>
         <p class="intro">Use the QR codes or direct links below for quick sign-ups.</p>
 
-        <div class="option-section">
+        <div class="access-options">
+            <div class="option-section">
+                <h2>Donate Now</h2>
+                <div class="qr-code-display">
+                    <img src="images/joinQR.png" alt="QR Code for Donate Now Page" />
+                    <p>Scan for Donation Form</p>
+                </div>
+                <a href="qr-donate.html" class="direct-link-button" target="_blank">Open Donate Form</a>
+            </div>
+            <div class="option-section">
                 <h2>Stay Informed</h2>
                 <div class="qr-code-display">
                     <img src="images/informedQR.png" alt="QR Code for Stay Informed Page" />
                     <p>Scan for Subscribe Form</p>
                 </div>
-                <a href="stay-informed.html" class="direct-link-button" target="_blank">Open Subscribe Form</a>
+                <a href="qr-informed.html" class="direct-link-button" target="_blank">Open Subscribe Form</a>
             </div>
-        </div>       
-
             <div class="option-section">
-                <h2>Sign Up to Volunteer</h2>
+                <h2>Volunteer</h2>
                 <div class="qr-code-display">
                     <img src="images/volunteerQR.png" alt="QR Code for Volunteer Page" />
                     <p>Scan for Volunteer Form</p>
                 </div>
                 <a href="qr-volunteer.html" class="direct-link-button" target="_blank">Open Volunteer Form</a>
             </div>
-
-             <div class="access-options">
-            <div class="option-section">
-                <h2>Donate Now</h2>
-                <div class="qr-code-display">
-                    <img src="images/joinQR.png" alt="QR Code for Join Our Movement Page" />
-                    <p>Scan for Donate Now Form</p>
-                </div>
-                <a href="qr-join.html" class="direct-link-button" target="_blank">Open Donate Now Form</a>
-            </div>
-
-        <p class="recruiter-footer-text">American Reformers League</p>
+        </div>
     </div>
-
-    <script>
-        // Ensure this page always uses a light theme visually
-        document.documentElement.setAttribute('data-theme', 'light');
-        // localStorage.setItem('theme', 'light'); // Optional
-        console.log("Recruiter page: Light theme enforced.");
-    </script>
-    <!-- No need for script.js as this page only has links, no forms to submit -->
 </body>
 </html>
