@@ -19,9 +19,8 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Montserrat', sans-serif; font-weight: 700
    2. Banners & Header Structure
    ========================================================= */
 .top-banner { background-color: var(--patriot-red); color: var(--white); text-align: center; font-weight: bold; text-transform: uppercase; font-size: 0.9rem; position: fixed; top: 0; left: 0; right: 0; z-index: 1001; height: var(--banner-height); overflow: hidden; }
-header { background-color: var(--patriot-blue); padding: 0 20px; height: var(--header-height); border-bottom: 1px solid var(--light-slate); position: sticky; /* NOW STICKY ON DESKTOP */ top: var(--banner-height); z-index: 999; }
-.main-nav { background-color: var(--patriot-blue); height: var(--nav-height); border-bottom: 2px solid var(--patriot-red); display: flex; justify-content: center; align-items: center; position: sticky; /* NOW STICKY ON DESKTOP */ top: calc(var(--banner-height) + var(--header-height)); z-index: 998; }
-
+header { background-color: var(--patriot-blue); padding: 0 20px; height: var(--header-height); border-bottom: 1px solid var(--light-slate); position: sticky; top: var(--banner-height); z-index: 999; }
+.main-nav { background-color: var(--patriot-blue); height: var(--nav-height); border-bottom: 2px solid var(--patriot-red); display: flex; justify-content: center; align-items: center; position: sticky; top: calc(var(--banner-height) + var(--header-height)); z-index: 998; }
 .header-content { height: 100%; max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
 .logo-group a { display: flex; align-items: center; text-decoration: none;}
 .logo { max-height: 50px; }
@@ -43,10 +42,7 @@ header { background-color: var(--patriot-blue); padding: 0 20px; height: var(--h
 /* =========================================================
    3. Scrolling Ticker Banner
    ========================================================= */
-@keyframes scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
+@keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 .ticker-wrap { display: flex; align-items: center; height: 100%; }
 .ticker-content { display: flex; animation: scroll 25s linear infinite; white-space: nowrap; }
 .ticker-content a { color: var(--white); text-decoration: none; display: flex; align-items: center; }
@@ -124,7 +120,6 @@ header { background-color: var(--patriot-blue); padding: 0 20px; height: var(--h
 #home-page .blue-card h2::after { background-color: var(--patriot-cyan); }
 #home-page .red-card h2::after { background-color: var(--patriot-red); }
 #home-page .card-text-content p { font-size: 1.1rem; line-height: 1.7; color: var(--light-slate); }
-@media (max-width: 900px) { #home-page .dynamic-card-section, #home-page .dynamic-card-section.red-card { grid-template-columns: 1fr; margin: 40px auto; } #home-page .card-image-wrapper, #home-page .dynamic-card-section.red-card .card-image-wrapper { grid-column: 1 / 2; grid-row: 1 / 2; } #home-page .card-text-content, #home-page .dynamic-card-section.red-card .card-text-content { grid-column: 1 / 2; grid-row: 2 / 3; padding: 40px 20px 20px; text-align: left !important; } #home-page .card-text-content h2, #home-page .dynamic-card-section.red-card .card-text-content h2 { text-align: left !important; } #home-page .dynamic-card-section.red-card .card-text-content h2::after { right: auto; left: 0; } }
 
 /* =========================================================
    6. Inner Page (Get Involved, Contact, etc.)
@@ -195,28 +190,7 @@ footer { background-color: #0E203F; padding: 80px 20px 20px; border-top: 3px sol
 .popup-contribute-btn:hover { filter: brightness(1.2); transform: scale(1.02); }
 
 /* =========================================================
-   8. Homepage Donate CTA Section
-   ========================================================= */
-#home-page .donate-cta-section { position: relative; padding: 100px 20px; background-image: url('images/donate.png'); background-size: cover; background-position: center 30%; background-attachment: fixed; text-align: center; }
-#home-page .donate-cta-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, rgba(10, 25, 47, 0.9) 0%, rgba(10, 25, 47, 0.5) 100%); z-index: 1; }
-#home-page .donate-cta-content { position: relative; z-index: 2; }
-#home-page .donate-cta-quote { font-size: 1.5rem; font-style: italic; color: var(--light-slate); max-width: 600px; margin: 0 auto 40px; padding-top: 20px; border-top: 1px solid var(--light-slate); }
-#home-page .donate-cta-link { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: clamp(4rem, 15vw, 9rem); color: transparent; -webkit-text-stroke: 2px var(--patriot-cyan); text-transform: uppercase; line-height: 1; text-shadow: 0 0 25px rgba(100, 255, 218, 0.4); transition: all 0.3s ease; }
-#home-page .donate-cta-link:hover { color: var(--patriot-cyan); text-shadow: 0 0 35px rgba(100, 255, 218, 0.8); }
-
-/* =========================================================
-   9. Mobile-Specific Fixes
-   ========================================================= */
-@media (max-width: 768px) {
-  .header-right, .main-nav { display: none; } .hamburger { display: flex; }
-  header { position: sticky; top: var(--banner-height); }
-  #home-page .hero-impact { background-attachment: scroll; min-height: 80vh; }
-  .form-row { flex-direction: column; }
-  @media (max-width: 600px) { .checkbox-grid { grid-template-columns: 1fr; } }
-}
-
-/* =========================================================
-   10. Contact Page Styles
+   8. Contact Page Styles
    ========================================================= */
 #contact-page .contact-intro-grid { display: grid; grid-template-columns: 2fr 1fr; align-items: center; gap: 40px; margin: 40px auto; }
 #contact-page .contact-intro-text h2 { font-size: 2rem; color: var(--patriot-white); margin-bottom: 15px; border-bottom: 2px solid var(--patriot-red); display: inline-block; padding-bottom: 5px; }
@@ -235,18 +209,71 @@ footer { background-color: #0E203F; padding: 80px 20px 20px; border-top: 3px sol
 #contact-page .donation-logos img:hover { transform: scale(1.05); }
 #contact-page .highlight-card { border-color: var(--patriot-cyan); max-width: 800px; margin: 30px auto 0; text-align: center; }
 #contact-page .highlight-card h3 { margin-top: 0; }
-@media (max-width: 900px) { #contact-page .contact-intro-grid { grid-template-columns: 1fr; text-align: center; } #contact-page .contact-intro-text h2 { display: inline-block; } #contact-page .contact-intro-image { grid-row: 1; margin-bottom: 20px; max-width: 300px; justify-self: center;} }
 
 /* =========================================================
-   11. Register Page Styles
+   9. Register Page Styles
    ========================================================= */
 #register-page .form-container { background-color: #0E203F; padding: 40px 20px; }
 #register-page form { max-width: 600px; }
-#register-page form select {
-    background-image: linear-gradient(45deg, transparent 50%, var(--patriot-cyan) 50%), linear-gradient(135deg, var(--patriot-cyan) 50%, transparent 50%);
-    background-position: calc(100% - 20px) calc(1em + 2px), calc(100% - 15px) calc(1em + 2px);
-    background-size: 5px 5px, 5px 5px;
-    background-repeat: no-repeat;
-    cursor: pointer;
-}
+#register-page form select { background-image: linear-gradient(45deg, transparent 50%, var(--patriot-cyan) 50%), linear-gradient(135deg, var(--patriot-cyan) 50%, transparent 50%); background-position: calc(100% - 20px) calc(1em + 2px), calc(100% - 15px) calc(1em + 2px); background-size: 5px 5px, 5px 5px; background-repeat: no-repeat; cursor: pointer; }
 #register-page form select option { background-color: var(--patriot-blue); }
+
+/* =========================================================
+   10. CRITICAL FIXES AND POLISH (V6)
+   ========================================================= */
+/* A. Desktop Hero Spacing Fix */
+#home-page .hero-impact {
+    padding-top: 50px; /* Pushes "REUNITING AMERICA" down from the sticky nav */
+}
+
+/* B. Glowing Title Style for "Join" banner */
+.glowing-title {
+    font-weight: 900;
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--patriot-cyan);
+    text-shadow: 0 0 15px rgba(100, 255, 218, 0.3);
+}
+
+/* C. Donate Section Spacing Fix */
+#home-page .donate-cta-section {
+    padding: 150px 20px; /* Increased vertical padding significantly */
+}
+
+/* D. Mobile Header Logo Text Fix */
+@media (max-width: 420px) {
+    .logo-text {
+        font-size: 1rem; /* Further reduce font size on very small screens */
+    }
+}
+@media (max-width: 768px) {
+  .logo-text { font-size: 1.2rem; } /* Base mobile size adjustment */
+  header { position: sticky; top: var(--banner-height); }
+  #home-page .hero-impact { background-attachment: scroll; min-height: 80vh; padding-top: 20px; }
+  .form-row { flex-direction: column; }
+  
+  /* E. Mobile Content Card Fixes */
+  #home-page .dynamic-card-section { grid-template-columns: 1fr; margin: 40px auto; }
+  #home-page .dynamic-card-section .card-image-wrapper {
+      display: block; /* Make sure the image wrapper is always visible */
+      grid-column: 1 / 2;
+      grid-row: 1 / 2;
+  }
+  #home-page .dynamic-card-section .card-text-content {
+      grid-column: 1 / 2;
+      grid-row: 2 / 3;
+      padding: 40px 20px 20px;
+      text-align: left !important;
+  }
+  #home-page .dynamic-card-section.red-card .card-text-content h2,
+  #home-page .dynamic-card-section.blue-card .card-text-content h2 {
+      text-align: left !important;
+  }
+  #home-page .dynamic-card-section .card-text-content h2::after {
+      width: 25%; /* Use percentage for responsive underline */
+      min-width: 60px; /* Ensure it's not too small */
+      right: auto !important; /* Force left alignment */
+      left: 0 !important;
+  }
+}
+@media (max-width: 600px) { .checkbox-grid { grid-template-columns: 1fr; } }
+@media (max-width: 900px) { #contact-page .contact-intro-grid { grid-template-columns: 1fr; text-align: center; } #contact-page .contact-intro-text h2 { display: inline-block; } #contact-page .contact-intro-image { grid-row: 1; margin-bottom: 20px; max-width: 300px; justify-self: center;} }
