@@ -188,5 +188,5 @@ document.addEventListener("DOMContentLoaded", function() {
   const bitcoinDonateButton = document.getElementById("bitcoinDonate");
   if(bitcoinDonateButton) bitcoinDonateButton.addEventListener("click", () => alert("Bitcoin donation option coming soon!"));
 
-  console.log("ARL Script Initialized (Unified V7)");
+  console.log("ARL Script Initialized (V8)");
 });
