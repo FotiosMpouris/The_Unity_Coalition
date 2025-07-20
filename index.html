@@ -9,30 +9,67 @@
 </head>
 <body id="home-page">
 
-  <!-- NEW SCROLLING TICKER BANNER -->
-  <div class="top-banner">
-    <div class="ticker-wrap">
-        <div class="ticker-content">
-            <a href="register.html"><span>REGISTER TO VOTE</span></a>
-            <a href="contact.html#contributeSection"><span>SUPPORT THE MISSION</span></a>
-            <a href="get-involved.html#volunteerSection"><span>JOIN THE MOVEMENT</span></a>
-            <a href="#"><span>UPCOMING EVENTS</span></a>
-            <!-- Repeat for seamless loop -->
-            <a href="register.html"><span>REGISTER TO VOTE</span></a>
-            <a href="contact.html#contributeSection"><span>SUPPORT THE MISSION</span></a>
-            <a href="get-involved.html#volunteerSection"><span>JOIN THE MOVEMENT</span></a>
-            <a href="#"><span>UPCOMING EVENTS</span></a>
-        </div>
+  <!-- =================================================================
+  == STICKY HEADER AREA: Contains Ticker, Main Header, and Navigation ==
+  ================================================================== -->
+  <div class="site-header-sticky-container">
+    
+    <!-- TOP SCROLLING TICKER BANNER -->
+    <div class="top-banner">
+      <div class="ticker-wrap">
+          <div class="ticker-content">
+              <a href="register.html"><span>REGISTER TO VOTE</span></a>
+              <a href="contact.html#contributeSection"><span>SUPPORT THE MISSION</span></a>
+              <a href="get-involved.html#volunteerSection"><span>JOIN THE MOVEMENT</span></a>
+              <a href="#"><span>UPCOMING EVENTS</span></a>
+              <!-- Repeat for seamless loop -->
+              <a href="register.html"><span>REGISTER TO VOTE</span></a>
+              <a href="contact.html#contributeSection"><span>SUPPORT THE MISSION</span></a>
+              <a href="get-involved.html#volunteerSection"><span>JOIN THE MOVEMENT</span></a>
+              <a href="#"><span>UPCOMING EVENTS</span></a>
+          </div>
+      </div>
     </div>
-  </div>
 
-  <!-- HEADER & NAV -->
-  <header>
-    <div class="header-content"><div class="logo-group"><a href="index.html"><img src="images/unitycoalitionlogo.png" alt="Unity Coalition Logo" class="logo" /><span class="logo-text">American Reformers League</span></a></div><div class="header-right"><div class="header-socials"><a href="#" aria-label="X/Twitter"><img src="images/xlogo.png" alt="X Logo" /></a><a href="#" aria-label="Facebook"><img src="images/facebooklogo.png" alt="Facebook Logo" /></a></div><div class="header-buttons"><a href="https://www.amazon.com" id="shop-btn">Shop</a><a href="contact.html#contributeSection" id="contribute-btn">Contribute</a></div></div><div class="hamburger"><div></div><div></div><div></div></div></div>
-  </header>
-  <nav class="main-nav">
-    <div class="main-nav-links"><a href="index.html" class="active">Home</a><a href="about.html">About</a><a href="mission.html">Mission</a><a href="projects.html">Projects</a><a href="get-involved.html">Get Involved</a><a href="contact.html">Contact</a></div>
-  </nav>
+    <!-- MAIN HEADER -->
+    <header>
+      <div class="header-content">
+        <div class="logo-group">
+          <a href="index.html">
+            <img src="images/unitycoalitionlogo.png" alt="Unity Coalition Logo" class="logo" />
+            <span class="logo-text">American Reformers League</span>
+          </a>
+        </div>
+        <div class="header-right">
+          <div class="header-socials">
+            <a href="#" aria-label="X/Twitter"><img src="images/xlogo.png" alt="X Logo" /></a>
+            <a href="#" aria-label="Facebook"><img src="images/facebooklogo.png" alt="Facebook Logo" /></a>
+          </div>
+          <div class="header-buttons">
+            <a href="https://www.amazon.com" target="_blank" rel="noopener noreferrer" class="header-shop-btn">Shop</a>
+            <a href="contact.html#contributeSection" class="header-contribute-btn">Contribute</a>
+          </div>
+        </div>
+        <div class="hamburger">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN NAVIGATION -->
+    <nav class="main-nav">
+      <div class="main-nav-links">
+        <a href="index.html" class="active">Home</a>
+        <a href="about.html">About</a>
+        <a href="mission.html">Mission</a>
+        <a href="projects.html">Projects</a>
+        <a href="get-involved.html">Get Involved</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </nav>
+  </div>
 
   <!-- HERO SECTION -->
   <section class="hero-impact" id="top">
@@ -76,11 +113,9 @@
   <div class="angled-section bottom-angle">
     <main class="home-content-wrapper">
       <section class="dynamic-card-section blue-card" id="reform-movement">
-        <!-- IMAGE REMOVED. Now a background in CSS. -->
         <div class="card-text-content"><h2>Uniting America's Reform Movement</h2><p>The American Reformers League serves as the essential bridge connecting the constructive elements of both populist and globalist perspectives, creating a unified framework for a new American center.</p></div>
       </section>
       <section class="dynamic-card-section red-card" id="dignified-order">
-        <!-- IMAGE REMOVED. Now a background in CSS. -->
         <div class="card-text-content"><h2>Building a More Dignified Order</h2><p>Our mission is not merely to mitigate polarization, but to facilitate a historic realignment. We demonstrate that independents can coordinate effectively for the common good.</p></div>
       </section>
     </main>
@@ -94,11 +129,10 @@
 
   <!-- DONATE CTA SECTION -->
   <section class="donate-cta-section" id="donate">
-    <div class="donate-cta-overlay">
-      <div class="donate-cta-content">
-        <p class="donate-cta-quote">"Your support fuels the movement to restore our nation's integrity."</p>
-        <a href="contact.html#contributeSection" class="donate-cta-link">Donate</a>
-      </div>
+    <div class="donate-cta-overlay"></div>
+    <div class="donate-cta-content">
+      <p class="donate-cta-quote">"Your support fuels the movement to restore our nation's integrity."</p>
+      <a href="contact.html#contributeSection" class="donate-cta-link">Donate</a>
     </div>
   </section>
 
