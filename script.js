@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", function() {
       overlay.classList.add("mobile-nav-overlay");
       document.body.appendChild(overlay);
 
-      // Clone the main nav links for the overlay and add a close button
       let overlayNavHTML = `<button class="close-overlay-btn" aria-label="Close menu">×</button>${mainNavLinks.innerHTML}`;
       overlay.innerHTML = overlayNavHTML;
 
@@ -39,7 +38,6 @@ document.addEventListener("DOMContentLoaded", function() {
   if (document.body.id === 'home-page') {
     // A. Create the Timed Popup
     function createPopup() {
-      console.log("Creating image card popup...");
       let imagePopupOverlay = document.createElement("div");
       imagePopupOverlay.id = "imagePopupOverlay";
       imagePopupOverlay.innerHTML = `
@@ -86,60 +84,96 @@ document.addEventListener("DOMContentLoaded", function() {
     if (homeBtcLogo) {
       homeBtcLogo.addEventListener("click", () => alert("Bitcoin donation option coming soon!"));
     }
-    
-    // D. "Join Our Movement" Form Submission
-    const joinFormHome = document.querySelector(".join-movement-form-container .modern-form-wrapper form");
-    if (joinFormHome) {
-        const apiGatewayUrl = "https://po1s6ptb9g.execute-api.us-east-2.amazonaws.com/dev/submit";
-        
-        joinFormHome.addEventListener("submit", async (event) => {
-            event.preventDefault();
-            const form = event.target;
-            const submitButton = form.querySelector('button[type="submit"]');
-            const originalButtonText = submitButton.textContent;
-            
-            submitButton.disabled = true;
-            submitButton.textContent = 'Submitting...';
-
-            const dataPayload = {
-                formType: 'join',
-                email: form.elements.email.value,
-                zipCode: form.elements.zip.value
-            };
-            
-            if (!dataPayload.email) {
-                alert("Error: Email is required.");
-                submitButton.disabled = false;
-                submitButton.textContent = originalButtonText;
-                return;
-            }
-
-            try {
-                const response = await fetch(apiGatewayUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(dataPayload),
-                });
-                if (response.ok) {
-                    alert("Thank you! Your submission was successful.");
-                    form.reset();
-                } else {
-                    const responseData = await response.json().catch(() => ({}));
-                    const errorMessage = responseData.message || `Server responded with status ${response.status}.`;
-                    alert(`Submission Failed: ${errorMessage}`);
-                }
-            } catch (error) {
-                alert("An error occurred while sending your submission.");
-            } finally {
-                submitButton.disabled = false;
-                submitButton.textContent = originalButtonText;
-            }
-        });
-    }
   }
 
   /************************************************
-   * 3. Site-Wide Smooth Scroll for Anchor Links
+   * 3. Form Submission Handling (Unified)
+   ***********************************************/
+  const apiGatewayUrl = "https://po1s6ptb9g.execute-api.us-east-2.amazonaws.com/dev/submit";
+  
+  // A. Homepage "Join" Form
+  const joinFormHome = document.querySelector(".join-movement-section form");
+  if (joinFormHome) {
+    joinFormHome.addEventListener("submit", (event) => handleFormSubmit(event, 'join'));
+  }
+
+  // B. "Get Involved" Volunteer Form
+  const volunteerForm = document.getElementById("volunteerForm");
+  if (volunteerForm) {
+    volunteerForm.addEventListener("submit", (event) => handleFormSubmit(event, 'volunteer'));
+  }
+
+  // C. Master Submission Function
+  async function handleFormSubmit(event, formType) {
+    event.preventDefault();
+    const form = event.target;
+    const submitButton = form.querySelector('button[type="submit"]');
+    const originalButtonText = submitButton.textContent;
+    
+    submitButton.disabled = true;
+    submitButton.textContent = 'Submitting...';
+
+    const dataPayload = { formType };
+    const formData = new FormData(form);
+
+    try {
+      if (formType === 'join') {
+        dataPayload.email = formData.get('email');
+        dataPayload.zipCode = formData.get('zip');
+        if (!dataPayload.email) throw new Error("Email is required.");
+      } 
+      else if (formType === 'volunteer') {
+        dataPayload.firstName = formData.get('firstName');
+        dataPayload.lastName = formData.get('lastName');
+        dataPayload.email = formData.get('email');
+        dataPayload.phone = formData.get('phone');
+        dataPayload.city = formData.get('city');
+        dataPayload.state = formData.get('state');
+        dataPayload.zipCode = formData.get('zip');
+        dataPayload.interests = formData.getAll('interest');
+        dataPayload.notRobotChecked = formData.get('not_robot') === 'on';
+        dataPayload.privacyPolicyAgreed = formData.get('privacy_policy') === 'on';
+
+        if (!dataPayload.firstName || !dataPayload.lastName || !dataPayload.email) {
+          throw new Error("First Name, Last Name, and Email are required.");
+        }
+        if (!dataPayload.notRobotChecked) throw new Error("Please confirm you are not a robot.");
+        if (!dataPayload.privacyPolicyAgreed) throw new Error("You must agree to the Privacy Policy.");
+      }
+    } catch (validationError) {
+        alert(`Error: ${validationError.message}`);
+        submitButton.disabled = false;
+        submitButton.textContent = originalButtonText;
+        return;
+    }
+    
+    // AWS Fetch Logic
+    try {
+        const response = await fetch(apiGatewayUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(dataPayload),
+        });
+        if (response.ok) {
+            alert("Thank you! Your submission was successful.");
+            form.reset();
+        } else {
+            const responseData = await response.json().catch(() => ({}));
+            const errorMessage = responseData.message || `Server responded with status ${response.status}.`;
+            alert(`Submission Failed: ${errorMessage}`);
+        }
+    } catch (error) {
+        console.error("Submission Error:", error);
+        alert("An error occurred while sending your submission. Please check your connection.");
+    } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = originalButtonText;
+    }
+  }
+
+
+  /************************************************
+   * 4. Site-Wide Smooth Scroll for Anchor Links
    ***********************************************/
   function smoothScrollToAnchor(hash) {
       const targetElement = document.querySelector(hash);
@@ -150,7 +184,7 @@ document.addEventListener("DOMContentLoaded", function() {
           const totalOffset = headerHeight + navHeight + bannerHeight;
 
           const elementPosition = targetElement.getBoundingClientRect().top;
-          const offsetPosition = elementPosition + window.pageYOffset - totalOffset;
+          const offsetPosition = elementPosition + window.pageYOffset - totalOffset + 1; // +1 to ensure it's below the line
 
           window.scrollTo({ top: offsetPosition, behavior: "smooth" });
       }
@@ -162,7 +196,6 @@ document.addEventListener("DOMContentLoaded", function() {
           const targetPath = href.split('#')[0];
           const currentPath = window.location.pathname.split('/').pop() || 'index.html';
 
-          // Only intercept if it's an anchor on the *current* page.
           if ((targetPath === '' || targetPath === currentPath) && href.includes('#')) {
               e.preventDefault();
               const targetHash = `#${href.split('#')[1]}`;
@@ -171,5 +204,5 @@ document.addEventListener("DOMContentLoaded", function() {
       });
   });
 
-  console.log("ARL Script Initialized (V3)");
+  console.log("ARL Script Initialized (Unified V4)");
 });
