@@ -174,6 +174,9 @@ h2.cyan-glow { color: transparent; -webkit-text-stroke: 2px var(--patriot-cyan);
    ========================================================= */
 .dynamic-card-section { display: flex; flex-direction: column; justify-content: center; align-items: center; max-width: 1100px; margin: 80px auto; border: 1px solid var(--light-slate); min-height: 450px; padding: 40px; position: relative; background-size: cover; background-position: center center; border-radius: 8px; overflow: hidden; }
 .dynamic-card-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(rgba(10, 25, 47, 0.85), rgba(10, 25, 47, 0.7)); z-index: 1; }
+/* --- FIX: Added background images back to homepage cards --- */
+#home-page .dynamic-card-section.blue-card { background-image: url('images/section1.png'); }
+#home-page .dynamic-card-section.red-card { background-image: url('images/section2.png'); }
 .dynamic-card-section .card-text-content { position: relative; z-index: 2; text-align: center; max-width: 700px; }
 .dynamic-card-section .card-text-content h2 { text-align: center; font-size: clamp(2.2rem, 5vw, 2.8rem); padding-bottom: 15px; margin-bottom: 25px; color: var(--white); }
 .dynamic-card-section .card-text-content p { font-size: 1.2rem; line-height: 1.7; color: var(--light-slate); }
@@ -195,16 +198,18 @@ h2.cyan-glow { color: transparent; -webkit-text-stroke: 2px var(--patriot-cyan);
 .hub-list li { margin-bottom: 10px; color: var(--light-slate); }
 
 /* =========================================================
-   8. Gallery & Resources Styles (NEW)
+   8. Gallery & Resources Styles
    ========================================================= */
 .gallery-filters { text-align: center; margin: 0 auto 60px; display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
 .filter-btn { padding: 10px 25px; border: 2px solid var(--light-slate); color: var(--light-slate); border-radius: 20px; font-weight: bold; transition: all 0.3s ease; }
 .filter-btn:hover { background-color: var(--patriot-cyan); color: var(--patriot-blue); border-color: var(--patriot-cyan); }
 .gallery-category { margin-bottom: 80px; }
 .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-.gallery-item img { width: 100%; height: 100%; object-fit: cover; border-radius: 8px; display: block; transition: transform 0.3s ease; }
+/* --- FIX: Gallery item height consistency --- */
+.gallery-item { aspect-ratio: 4 / 3; border-radius: 8px; overflow: hidden; }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s ease; }
 .gallery-item:hover img { transform: scale(1.05); }
-.gallery-item.placeholder { min-height: 250px; background-color: rgba(14, 32, 63, 0.5); border: 1px dashed var(--light-slate); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--light-slate); font-style: italic; }
+.gallery-item.placeholder { background-color: rgba(14, 32, 63, 0.5); border: 1px dashed var(--light-slate); display: flex; align-items: center; justify-content: center; color: var(--light-slate); font-style: italic; }
 .resource-section { margin: 80px auto; }
 .responsive-table-container { background: rgba(14, 32, 63, 0.5); padding: 20px; border-radius: 8px; border: 1px solid #17325e; }
 .desktop-table { width: 100%; border-collapse: collapse; }
@@ -246,6 +251,6 @@ h2.cyan-glow { color: transparent; -webkit-text-stroke: 2px var(--patriot-cyan);
   .mobile-cards { display: block; }
 }
 @media (max-width: 900px) { 
-  #home-page .dynamic-card-section { margin: 40px auto; min-height: 400px; }
+  .dynamic-card-section { margin: 40px auto; min-height: 400px; }
   #home-page .card-text-content h2 { font-size: 2.2rem; }
 }
