@@ -6,8 +6,11 @@
    ========================================================= */
 :root {
   --patriot-blue: #0A192F; --patriot-red: #E63946; --patriot-white: #CCD6F6; --patriot-cyan: #64FFDA;
-  --light-slate: #8892B0; --white: #ffffff; --header-height: 70px; --nav-height: 50px; --banner-height: 36px;
+  --light-slate: #8892B0; --white: #ffffff;
+  --banner-height: 36px; --header-height: 80px; --nav-height: 50px;
   --total-sticky-height: calc(var(--banner-height) + var(--header-height) + var(--nav-height));
+  --header-bg: rgba(10, 25, 47, 0.85);
+  --header-blur: blur(10px);
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -20,18 +23,152 @@ section[id] {
 }
 
 /* =========================================================
-   2. Banners & Header Structure
+   2. Banners, Header & Navigation (FIXED)
    ========================================================= */
-/* Unchanged */
+.site-header-sticky-container {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+/* --- Top Ticker Banner --- */
+.top-banner {
+  height: var(--banner-height);
+  background-color: var(--patriot-red);
+  color: var(--white);
+  overflow: hidden;
+  position: relative;
+}
+.ticker-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.ticker-content {
+  display: inline-block;
+  white-space: nowrap;
+  animation: ticker-scroll 30s linear infinite;
+  height: 100%;
+}
+.ticker-content a {
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 25px;
+  color: var(--white);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.ticker-content a:hover span {
+  text-decoration: underline;
+}
+@keyframes ticker-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* --- Main Header --- */
+header {
+  height: var(--header-height);
+  background: var(--header-bg);
+  backdrop-filter: var(--header-blur);
+  -webkit-backdrop-filter: var(--header-blur);
+  border-bottom: 1px solid #132d57;
+  display: flex;
+  align-items: center;
+}
+.header-content {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo-group a { display: flex; align-items: center; gap: 15px; }
+.logo { height: 50px; width: auto; }
+.logo-text { font-family: 'Montserrat', sans-serif; font-size: 1.25rem; font-weight: 600; color: var(--patriot-white); }
+.header-right { display: flex; align-items: center; gap: 30px; }
+.header-socials { display: flex; gap: 15px; }
+.header-socials img { height: 24px; transition: transform 0.2s ease; }
+.header-socials a:hover img { transform: scale(1.1); }
+.header-buttons { display: flex; gap: 10px; }
+.header-buttons a { padding: 10px 20px; font-size: 1rem; font-weight: bold; border: 2px solid; border-radius: 4px; transition: all 0.3s ease; }
+.header-shop-btn { background: transparent; border-color: var(--patriot-cyan); color: var(--patriot-cyan); }
+.header-shop-btn:hover { background: var(--patriot-cyan); color: var(--patriot-blue); }
+.header-contribute-btn { background: var(--patriot-red); border-color: var(--patriot-red); color: var(--white); }
+.header-contribute-btn:hover { filter: brightness(1.2); }
+
+/* --- Main Navigation Bar --- */
+.main-nav {
+  height: var(--nav-height);
+  background: var(--patriot-blue);
+  border-bottom: 2px solid var(--patriot-red);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main-nav-links { display: flex; gap: 35px; }
+.main-nav a { color: var(--light-slate); font-family: 'Montserrat', sans-serif; text-transform: uppercase; font-weight: 600; font-size: 0.9rem; letter-spacing: 0.5px; position: relative; padding: 10px 0; }
+.main-nav a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 3px; background: var(--patriot-cyan); transition: width 0.3s ease; }
+.main-nav a:hover, .main-nav a.active { color: var(--patriot-white); }
+.main-nav a:hover::after, .main-nav a.active::after { width: 100%; }
+
+/* --- Hamburger & Mobile Overlay --- */
+.hamburger { display: none; cursor: pointer; }
+.hamburger div { width: 30px; height: 3px; background-color: var(--patriot-white); margin: 6px 0; transition: 0.4s; }
+.hamburger.is-active div:nth-child(1) { transform: rotate(-45deg) translate(-7px, 7px); }
+.hamburger.is-active div:nth-child(2) { opacity: 0; }
+.hamburger.is-active div:nth-child(3) { transform: rotate(45deg) translate(-7px, -7px); }
+
+.mobile-nav-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--patriot-blue);
+  z-index: 1100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+}
+.mobile-nav-overlay.show { transform: translateX(0); }
+.mobile-nav-overlay a {
+  color: var(--patriot-white);
+  font-size: 2rem;
+  margin: 15px 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+}
+.close-overlay-btn {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  font-size: 3rem;
+  color: var(--patriot-white);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
 
 /* =========================================================
    5. Homepage-Specific Styles
    ========================================================= */
 
-/* FIX 1: HERO IMAGE - Adjusted background-position to show top of image on desktop */
 #home-page .hero-impact { min-height: calc(100vh - var(--total-sticky-height)); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 60px 20px; background-image: url('images/homebannerdark.png'); background-size: cover; background-position: center top; background-attachment: fixed; position: relative; }
 #home-page .hero-impact::before { content:''; position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(10, 25, 47, 0.8); }
-/* ... other hero styles are fine ... */
 #home-page .hero-impact-content { position: relative; z-index: 2; text-align: center; }
 #home-page .hero-outline-text { font-weight: 900; font-size: clamp(3rem, 12vw, 8rem); color: transparent; -webkit-text-stroke: 2px var(--patriot-cyan); text-transform: uppercase; line-height: 1; text-shadow: 0 0 15px rgba(100, 255, 218, 0.3); border:none; }
 #home-page .hero-solid-text { font-weight: 900; font-size: clamp(2.5rem, 10vw, 7rem); color: var(--patriot-white); text-transform: uppercase; line-height: 1; margin-top: -1.5vw; margin-bottom: 20px; text-shadow: 0 0 10px rgba(0,0,0,0.5); border:none; }
@@ -53,10 +190,9 @@ section[id] {
 #home-page .video-full-bleed:hover .video-overlay-text { background: rgba(0, 0, 0, 0.1); }
 #home-page .video-overlay-text h2 { color: white; font-size: clamp(1.5rem, 5vw, 3rem); text-transform: uppercase; text-shadow: 2px 2px 5px rgba(0,0,0,0.8); border-bottom: 3px solid var(--patriot-red); padding-bottom: 10px; }
 
-/* FIX 2: JOIN OUR MOVEMENT SECTION - Rebuilt for new style and transition */
+/* --- JOIN OUR MOVEMENT SECTION --- */
 #home-page .join-movement-section { background-color: var(--patriot-blue); padding: 0; position: relative; clip-path: polygon(0 5vw, 100% 0, 100% 100%, 0 100%); margin-top: -5.1vw; }
-#home-page .join-movement-banner { background-color: transparent; /* Removed red block */ text-align: center; padding: calc(80px + 5vw) 20px 40px 20px; /* Adjusted padding for clip path */}
-/* FIX 2: JOIN OUR MOVEMENT TEXT - Big, bold, red outline glow */
+#home-page .join-movement-banner { background-color: transparent; text-align: center; padding: calc(80px + 5vw) 20px 40px 20px; }
 #home-page .join-movement-banner h2 { font-weight: 900; font-size: clamp(3rem, 10vw, 6rem); color: transparent; -webkit-text-stroke: 2px var(--patriot-red); text-transform: uppercase; line-height: 1; text-shadow: 0 0 25px rgba(230, 57, 70, 0.6); transition: all 0.3s ease; border: none;}
 #home-page .join-movement-banner h2:hover { color: var(--patriot-red); }
 #home-page .join-movement-form-container { background-color: transparent; padding: 0 20px 80px 20px; text-align: center; }
@@ -64,75 +200,34 @@ section[id] {
 #home-page .form-field-group { display: flex; flex-direction: column; gap: 25px; margin-bottom: 30px; }
 #home-page .form-field { text-align: left; }
 #home-page .form-field span { display: block; font-weight: bold; margin-bottom: 8px; color: var(--patriot-white); text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; }
-/* FIX 3: GLOWING FORM FIELDS */
 #home-page .form-field input { width: 100%; padding: 15px; border: 1px solid var(--light-slate); border-radius: 4px; font-size: 1.1rem; background: var(--patriot-blue); color: var(--patriot-white); transition: all 0.3s ease; }
 #home-page .form-field input:focus { border-color: var(--patriot-cyan); box-shadow: 0 0 15px rgba(100, 255, 218, 0.6), inset 0 0 5px rgba(100, 255, 218, 0.2); background-color: rgba(100, 255, 218, 0.05); outline: none; }
 #home-page .join-button { background-color: var(--patriot-red); color: var(--white); border: 2px solid var(--patriot-red); border-radius: 4px; padding: 15px 40px; font-size: 1.2rem; text-transform: uppercase; font-weight: bold; cursor: pointer; transition: all 0.3s; box-shadow: 0 0 10px rgba(230, 57, 70, 0.5); }
 #home-page .join-button:hover { filter: brightness(1.2); transform: translateY(-3px); box-shadow: 0 0 25px var(--patriot-red); }
-#home-page .unite-together-banner { display: none; /* Hiding this for now to simplify design, can be re-enabled */ }
+#home-page .unite-together-banner { display: none; }
 
-/* FIX 4: DYNAMIC CARD SECTIONS REBUILT */
+/* --- DYNAMIC CARD SECTIONS --- */
 #home-page .home-content-wrapper { padding: 60px 20px; margin-top: 0; }
-#home-page .dynamic-card-section {
-  display: flex; /* Changed from grid */
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  max-width: 1100px;
-  margin: 80px auto;
-  border: 1px solid var(--light-slate);
-  min-height: 450px;
-  padding: 40px;
-  position: relative;
-  background-size: cover;
-  background-position: center center;
-  border-radius: 8px;
-  overflow: hidden;
-}
-#home-page .dynamic-card-section::before { /* Overlay for text readability */
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(rgba(10, 25, 47, 0.85), rgba(10, 25, 47, 0.7));
-  z-index: 1;
-}
+#home-page .dynamic-card-section { display: flex; flex-direction: column; justify-content: center; align-items: center; max-width: 1100px; margin: 80px auto; border: 1px solid var(--light-slate); min-height: 450px; padding: 40px; position: relative; background-size: cover; background-position: center center; border-radius: 8px; overflow: hidden; }
+#home-page .dynamic-card-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(rgba(10, 25, 47, 0.85), rgba(10, 25, 47, 0.7)); z-index: 1; }
 #home-page .dynamic-card-section.blue-card { background-image: url('images/section1.png'); }
 #home-page .dynamic-card-section.red-card { background-image: url('images/section2.png'); }
-
-#home-page .card-text-content {
-  position: relative;
-  z-index: 2;
-  text-align: center; /* Centered text */
-  max-width: 700px; /* Constrain text width */
-}
-#home-page .card-text-content h2 {
-  text-align: center; /* Center heading */
-  font-size: 2.8rem;
-  padding-bottom: 15px;
-  margin-bottom: 25px;
-}
-/* Center the decorative line */
-#home-page .card-text-content h2::after {
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100px;
-  height: 4px;
-}
+#home-page .card-text-content { position: relative; z-index: 2; text-align: center; max-width: 700px; }
+#home-page .card-text-content h2 { text-align: center; font-size: 2.8rem; padding-bottom: 15px; margin-bottom: 25px; position: relative; }
+#home-page .card-text-content h2::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 100px; height: 4px; }
 #home-page .blue-card h2::after { background-color: var(--patriot-cyan); }
 #home-page .red-card h2::after { background-color: var(--patriot-red); }
 #home-page .card-text-content p { font-size: 1.2rem; line-height: 1.7; color: var(--light-slate); }
 
-/* Remove old mobile override for dynamic cards as it's no longer needed */
-@media (max-width: 900px) { 
-  #home-page .dynamic-card-section { margin: 40px auto; min-height: 400px; }
-  #home-page .card-text-content h2 { font-size: 2.2rem; }
+/* --- FIX FOR VIDEO/DONATE OVERLAP --- */
+#home-page #the-solution {
+  position: relative;
+  z-index: 1; /* Puts the video section on a lower layer */
 }
-
-/* FIX 5: DONATE CTA SECTION */
 #home-page .donate-cta-section { 
   position: relative; 
-  /* Increased top padding significantly to push content down */
-  padding: calc(180px + 8vw) 20px 180px 20px; 
+  z-index: 2; /* Puts the donate section on a higher layer */
+  padding: calc(80px + 5vw) 20px 120px 20px; /* Adjusted padding */
   margin-top: -5.1vw;
   min-height: 80vh; 
   background-image: url('images/donate.png'); 
@@ -151,31 +246,41 @@ section[id] {
 #home-page .donate-cta-link { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: clamp(4rem, 15vw, 9rem); color: transparent; -webkit-text-stroke: 2px var(--patriot-cyan); text-transform: uppercase; line-height: 1; text-shadow: 0 0 25px rgba(100, 255, 218, 0.4); transition: all 0.3s ease; }
 #home-page .donate-cta-link:hover { color: var(--patriot-cyan); text-shadow: 0 0 35px rgba(100, 255, 218, 0.8); }
 
-/* FIX 6: FOOTER RESTORED */
+/* --- FOOTER --- */
 footer { background-color: #0E203F; padding: 80px 20px 20px; border-top: 3px solid var(--patriot-red); position: relative; clip-path: polygon(0 5vw, 100% 0, 100% 100%, 0 100%); margin-top: -5.1vw; }
 .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto 40px; }
-.footer-column-logo .footer-logo { max-width: 80px; /* Resized logo */ margin-bottom: 15px; }
+.footer-column-logo .footer-logo { max-width: 80px; margin-bottom: 15px; }
 .footer-column-logo .footer-tagline { color: var(--light-slate); line-height: 1.5; }
 .footer-column-links h4 { color: var(--patriot-white); font-size: 1.1rem; margin-bottom: 20px; text-transform: uppercase; }
-.footer-column-links a { display: block; /* Ensures links are on new lines */ color: var(--light-slate); margin-bottom: 10px; transition: color 0.2s ease; }
+.footer-column-links a { display: block; color: var(--light-slate); margin-bottom: 10px; transition: color 0.2s ease; }
 .footer-column-links a:hover { color: var(--patriot-cyan); }
 .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid var(--light-slate); color: var(--light-slate); font-size: 0.9rem; }
 
 /* =========================================================
    9. Mobile-Specific Fixes
    ========================================================= */
+@media (max-width: 992px) {
+  /* --- RESPONSIVE HEADER --- */
+  .main-nav, .header-right { display: none; }
+  .hamburger { display: flex; flex-direction: column; justify-content: space-around; }
+  .logo-text { font-size: 1.1rem; }
+  :root { --total-sticky-height: calc(var(--banner-height) + var(--header-height)); }
+  section[id] { scroll-margin-top: var(--total-sticky-height); }
+}
+
 @media (max-width: 768px) {
   #home-page .hero-impact { background-attachment: scroll; }
-  
-  /* Mobile fixes for new Join Movement section */
   #home-page .join-movement-section { clip-path: none; margin-top: 0; }
   #home-page .join-movement-banner { padding: 60px 20px 30px; }
   #home-page .join-movement-banner h2 { font-size: 3rem; }
-
   #home-page .donate-cta-section { clip-path: none; margin-top: 0; background-attachment: scroll; }
-  
   footer { clip-path: none; margin-top: 0; }
+  .logo-text { display: none; } /* Hide logo text on small screens */
 }
 
-/* ... Other styles like Hamburger, Header, Popups, Inner Pages remain unchanged ... */
+@media (max-width: 900px) { 
+  #home-page .dynamic-card-section { margin: 40px auto; min-height: 400px; }
+  #home-page .card-text-content h2 { font-size: 2.2rem; }
+}
 
+/* ... Other styles like Popups, Inner Pages remain unchanged ... */
