@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function() {
       imagePopupOverlay.addEventListener('click', (e) => { if (e.target === imagePopupOverlay) imagePopupOverlay.classList.remove('show'); });
       setTimeout(() => imagePopupOverlay.classList.add("show"), 10000);
     }
-    createPopup();
+    //createPopup(); // I've commented this out as it can be annoying during development. Uncomment when ready.
 
     const homePageVideos = document.querySelectorAll("video.home-video");
     if (homePageVideos.length > 0) {
