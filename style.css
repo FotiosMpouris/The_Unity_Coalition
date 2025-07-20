@@ -16,13 +16,13 @@ html { scroll-behavior: smooth; }
 body {
   font-family: 'Open Sans', Arial, sans-serif; line-height: 1.6; background-color: var(--patriot-blue);
   color: var(--patriot-white); overflow-x: hidden;
-  /* FIX: Add padding to body to prevent content from hiding under sticky header */
+  /* Add padding to body to prevent content from hiding under sticky header */
   padding-top: var(--total-sticky-height);
 }
 a { color: var(--patriot-cyan); text-decoration: none; transition: color 0.3s ease; }
 a:hover { color: var(--patriot-red); }
 h1, h2, h3, h4, h5, h6 { font-family: 'Montserrat', sans-serif; font-weight: 700; line-height: 1.2; }
-/* FIX: Correctly offset anchor link targets */
+/* Correctly offset anchor link targets */
 section[id] { scroll-margin-top: var(--total-sticky-height); }
 
 /* =========================================================
@@ -50,7 +50,7 @@ header { background-color: var(--patriot-blue); padding: 0 20px; height: var(--h
 .main-nav a.active { color: var(--patriot-red); }
 
 /* =========================================================
-   3. Scrolling Ticker Banner (RESTORED)
+   3. Scrolling Ticker Banner
    ========================================================= */
 @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 .ticker-wrap { display: flex; align-items: center; height: 100%; }
@@ -77,7 +77,7 @@ header { background-color: var(--patriot-blue); padding: 0 20px; height: var(--h
 /* =========================================================
    5. Homepage-Specific Styles
    ========================================================= */
-#home-page .hero-impact { min-height: calc(100vh - var(--total-sticky-height)); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; background-image: url('images/homebannerdark.png'); background-size: cover; background-position: center; background-attachment: fixed; position: relative; }
+#home-page .hero-impact { min-height: calc(100vh - var(--total-sticky-height)); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; background-image: url('images/homebannerdark.png'); background-size: cover; background-position: center; background-attachment: fixed; position: relative; margin-top: calc(-1 * var(--total-sticky-height)); /* Counteract body padding */ }
 #home-page .hero-impact::before { content:''; position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(10, 25, 47, 0.8); }
 #home-page .hero-impact-content { position: relative; z-index: 2; text-align: center; }
 #home-page .hero-outline-text { font-weight: 900; font-size: clamp(3rem, 12vw, 8rem); color: transparent; -webkit-text-stroke: 2px var(--patriot-cyan); text-transform: uppercase; line-height: 1; text-shadow: 0 0 15px rgba(100, 255, 218, 0.3); }
@@ -89,18 +89,14 @@ header { background-color: var(--patriot-blue); padding: 0 20px; height: var(--h
 #home-page .hero-volunteer-btn:hover { background: var(--patriot-cyan); color: var(--patriot-blue); box-shadow: 0 0 20px var(--patriot-cyan); }
 #home-page .hero-contribute-btn { background: var(--patriot-red); border-color: var(--patriot-red); color: var(--white); }
 #home-page .hero-contribute-btn:hover { filter: brightness(1.2); box-shadow: 0 0 20px var(--patriot-red); }
-
 #home-page .angled-section { background-color: var(--patriot-blue); position: relative; }
 #home-page .angled-section.top-angle { clip-path: polygon(0 0, 100% 5vw, 100% 100%, 0 100%); margin-top: -5.1vw; padding-top: 10vw; }
 #home-page .angled-section.bottom-angle { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 5vw)); padding-bottom: 10vw; }
-
 #home-page .video-full-bleed { position: relative; width: 100vw; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; padding: 0; line-height: 0; background-color: #000; }
 #home-page .video-full-bleed video { width: 100%; height: auto; max-width: none; border: none; cursor: pointer; }
 #home-page .video-overlay-text { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: rgba(0, 0, 0, 0.4); z-index: 2; pointer-events: none; transition: background-color 0.3s ease; }
 #home-page .video-full-bleed:hover .video-overlay-text { background: rgba(0, 0, 0, 0.1); }
 #home-page .video-overlay-text h2 { color: white; font-size: clamp(1.5rem, 5vw, 3rem); text-transform: uppercase; text-shadow: 2px 2px 5px rgba(0,0,0,0.8); border-bottom: 3px solid var(--patriot-red); padding-bottom: 10px; }
-
-/* FIX: JOIN MOVEMENT SECTION with Glowing Text */
 #home-page .join-movement-section { background-color: var(--patriot-blue); padding: 80px 20px; }
 #home-page .join-movement-banner { text-align: center; margin-bottom: 40px; }
 #home-page .join-movement-banner h2 { font-weight: 900; font-size: clamp(3rem, 10vw, 6rem); color: transparent; -webkit-text-stroke: 2px var(--patriot-red); text-transform: uppercase; line-height: 1; text-shadow: 0 0 25px rgba(230, 57, 70, 0.6); transition: all 0.3s ease; }
@@ -108,43 +104,27 @@ header { background-color: var(--patriot-blue); padding: 0 20px; height: var(--h
 #home-page .join-movement-form-container { background-color: transparent; text-align: center; }
 #home-page .modern-form-wrapper { max-width: 600px; margin: 0 auto; background: rgba(14, 32, 63, 0.5); padding: 40px; border-radius: 8px; border: 1px solid var(--light-slate); backdrop-filter: blur(5px); }
 #home-page .form-field-group { display: flex; flex-direction: column; gap: 25px; margin-bottom: 30px; }
+@media (min-width: 768px) { #home-page .form-field-group { flex-direction: row; } }
 #home-page .form-field { text-align: left; }
 #home-page .form-field span { display: block; font-weight: bold; margin-bottom: 8px; color: var(--patriot-white); }
 #home-page .form-field input { width: 100%; padding: 15px; border: 1px solid var(--light-slate); border-radius: 4px; font-size: 1.1rem; background: var(--patriot-blue); color: var(--patriot-white); transition: all 0.3s ease; }
 #home-page .form-field input:focus { border-color: var(--patriot-cyan); box-shadow: 0 0 15px rgba(100, 255, 218, 0.6), inset 0 0 5px rgba(100, 255, 218, 0.2); background-color: rgba(100, 255, 218, 0.05); outline: none; }
 #home-page .join-button { background-color: var(--patriot-red); color: var(--white); border: 2px solid var(--patriot-red); border-radius: 4px; padding: 15px 40px; font-size: 1.2rem; text-transform: uppercase; font-weight: bold; cursor: pointer; transition: all 0.3s; box-shadow: 0 0 10px rgba(230, 57, 70, 0.5); }
 #home-page .join-button:hover { filter: brightness(1.2); transform: translateY(-3px); box-shadow: 0 0 25px var(--patriot-red); }
-
-/* FIX: DYNAMIC CARD SECTIONS (Rebuilt for mobile and desktop) */
 #home-page .home-content-wrapper { padding: 60px 20px; }
 #home-page .dynamic-card-section { display: grid; grid-template-columns: 1fr 1.5fr; gap: 0; align-items: center; max-width: 1100px; margin: 80px auto; background: #0E203F; border: 1px solid var(--light-slate); transition: transform 0.3s ease, box-shadow 0.3s ease; }
 #home-page .dynamic-card-section:hover { transform: translateY(-10px); box-shadow: 0 0 25px rgba(100, 255, 218, 0.2); }
 #home-page .dynamic-card-section.red-card { grid-template-columns: 1.5fr 1fr; }
-#home-page .card-logo-mobile { display: none; } /* Hide mobile logo on desktop */
+#home-page .card-logo-mobile { display: none; }
 .card-text-content { padding: 40px 60px; z-index: 1; }
 #home-page .dynamic-card-section.red-card .card-text-content { text-align: right; }
 #home-page .card-text-content h2 { font-size: 2.2rem; position: relative; padding-bottom: 15px; margin-bottom: 25px; color: var(--patriot-white); }
-/* FIX: Underline length and position */
 #home-page .card-text-content h2::after { content: ''; position: absolute; bottom: 0; left: 0; width: 80px; height: 4px; }
 #home-page .dynamic-card-section.red-card .card-text-content h2::after { left: auto; right: 0; }
 #home-page .blue-card h2::after { background-color: var(--patriot-cyan); }
 #home-page .red-card h2::after { background-color: var(--patriot-red); }
 #home-page .card-text-content p { font-size: 1.1rem; line-height: 1.7; color: var(--light-slate); }
-
-/* FIX: DONATE SECTION (Layout and spacing fixed) */
-#home-page .donate-cta-section {
-    position: relative;
-    padding: 120px 20px;
-    background-image: url('images/donate.png');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    text-align: center;
-    display: flex; /* Centers content vertically */
-    align-items: center;
-    justify-content: center;
-    min-height: 80vh; /* Ensures it has height */
-}
+#home-page .donate-cta-section { position: relative; padding: 120px 20px; background-image: url('images/donate.png'); background-size: cover; background-position: center; background-attachment: fixed; text-align: center; display: flex; align-items: center; justify-content: center; min-height: 80vh; }
 #home-page .donate-cta-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, rgba(10, 25, 47, 0.9) 0%, rgba(10, 25, 47, 0.5) 100%); z-index: 1; }
 #home-page .donate-cta-content { position: relative; z-index: 2; max-width: 800px; }
 #home-page .donate-cta-quote { font-size: 1.5rem; font-style: italic; color: var(--light-slate); max-width: 600px; margin: 0 auto 40px; padding-top: 20px; border-top: 1px solid var(--light-slate); }
@@ -152,69 +132,35 @@ header { background-color: var(--patriot-blue); padding: 0 20px; height: var(--h
 #home-page .donate-cta-link:hover { color: var(--patriot-cyan); text-shadow: 0 0 35px rgba(100, 255, 218, 0.8); }
 
 /* =========================================================
-   6. Footer
+   6. Inner Page (Get Involved, Contact, etc.) - RESTORED
    ========================================================= */
-footer { background-color: #0E203F; padding: 60px 20px 20px; border-top: 3px solid var(--patriot-red); position: relative; }
-.footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto 40px; }
-.footer-column-logo .footer-logo { max-width: 80px; margin-bottom: 15px; }
-.footer-column-logo .footer-tagline { color: var(--light-slate); line-height: 1.5; }
-.footer-column-links h4 { color: var(--patriot-white); font-size: 1.1rem; margin-bottom: 20px; text-transform: uppercase; }
-.footer-column-links a { display: block; color: var(--light-slate); margin-bottom: 10px; }
-.footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid var(--light-slate); color: var(--light-slate); font-size: 0.9rem; }
-
-/* NOTE: Popup, inner page, form styles are omitted for brevity but should be copied from your old complete file if needed.
-   This CSS focuses on fixing the homepage issues you described. */
-
-/* =========================================================
-   7. Mobile-Specific Fixes & Responsive Design
-   ========================================================= */
-@media (max-width: 900px) {
-  /* FIX: Mobile dynamic cards layout */
-  #home-page .dynamic-card-section, #home-page .dynamic-card-section.red-card {
-    grid-template-columns: 1fr;
-    margin: 40px auto;
-    padding: 20px;
-  }
-  #home-page .card-logo-mobile {
-    display: block; /* Show the logo */
-    margin: 0 auto 20px;
-    padding: 20px 0;
-    border-bottom: 1px solid var(--light-slate);
-    text-align: center;
-  }
-  #home-page .card-logo-mobile img {
-      max-height: 60px;
-  }
-  #home-page .card-text-content, #home-page .dynamic-card-section.red-card .card-text-content {
-    padding: 20px;
-    text-align: center !important;
-  }
-  #home-page .card-text-content h2, #home-page .dynamic-card-section.red-card .card-text-content h2 {
-    text-align: center !important;
-  }
-  /* FIX: Center underline on mobile */
-  #home-page .card-text-content h2::after, #home-page .dynamic-card-section.red-card .card-text-content h2::after {
-    left: 50%;
-    transform: translateX(-50%);
-  }
-}
-
-@media (max-width: 768px) {
-  body { padding-top: var(--total-sticky-height-mobile); }
-  section[id] { scroll-margin-top: var(--total-sticky-height-mobile); }
-  .header-right, .main-nav { display: none; }
-  .hamburger { display: flex; }
-  header { position: fixed; } /* Revert to fixed for mobile */
-
-  /* FIX: Mobile header title scaling */
-  .logo-text { font-size: 1.2rem; }
-
-  #home-page .hero-impact { background-attachment: scroll; min-height: 80vh; }
-  #home-page .donate-cta-section { background-attachment: scroll; }
-  #home-page .form-field-group { flex-direction: column; }
-  #home-page .angled-section, footer { clip-path: none; margin-top: 0; padding-top: 0; padding-bottom: 0; }
-  #home-page .home-content-wrapper { padding: 40px 20px; }
-  #home-page .join-movement-section { padding: 60px 20px; }
-}
-
-/* Other general styles (like popups, other page content) from the old file would go here */
+.content-wrapper { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+.page-hero { min-height: 300px; position: relative; display: flex; align-items: center; justify-content: center; background-size: cover; background-position: center; margin-top: calc(-1 * var(--total-sticky-height)); }
+.page-hero-overlay { position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(10, 25, 47, 0.7); display: flex; align-items: center; justify-content: center; }
+.page-hero h1 { font-size: clamp(2.5rem, 6vw, 4rem); color: var(--white); text-transform: uppercase; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+.text-section { text-align: center; max-width: 800px; margin: 40px auto; }
+.text-section h2, .initiatives-section h2, .ways-to-help-section h2 { font-size: 2rem; color: var(--patriot-white); margin-bottom: 10px; border-bottom: 2px solid var(--patriot-red); display: inline-block; padding-bottom: 5px; }
+.text-section p { font-size: 1.1rem; color: var(--light-slate); line-height: 1.7; }
+.initiatives-section, .ways-to-help-section { text-align: center; margin: 60px auto; }
+.content-grid { display: grid; gap: 25px; margin-top: 30px; }
+.content-grid.three-column { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+.content-card { background-color: #0E203F; border: 1px solid var(--light-slate); border-radius: 4px; padding: 25px; text-align: left; transition: all 0.3s ease; }
+.content-card:hover { transform: translateY(-5px); border-color: var(--patriot-cyan); }
+.content-card h3 { color: var(--patriot-white); margin-bottom: 10px; }
+.content-card p { color: var(--light-slate); }
+.form-section-wrapper { margin-top: 60px; }
+.form-banner { background-color: var(--patriot-red); padding: 20px; text-align: center; }
+.form-banner h2 { color: var(--white); border: none; text-transform: uppercase; }
+.form-container { background-color: #0E203F; padding: 40px 20px; }
+form { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+.form-row { display: flex; gap: 20px; }
+.form-field { flex: 1; }
+.form-row.three-column .form-field { min-width: 150px; }
+form input[type="text"], form input[type="email"], form input[type="tel"], form select { width: 100%; padding: 12px 15px; border: 1px solid var(--light-slate); border-radius: 4px; font-size: 1rem; background: var(--patriot-blue); color: var(--patriot-white); transition: all 0.2s ease; appearance: none; }
+form input:focus, form select:focus { border-color: var(--patriot-cyan); box-shadow: 0 0 8px rgba(100, 255, 218, 0.3); outline: none; }
+.form-interests h3 { font-size: 1.2rem; color: var(--patriot-white); margin-bottom: 15px; text-align: left; }
+.checkbox-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
+.custom-checkbox { display: flex; align-items: center; cursor: pointer; user-select: none; }
+.custom-checkbox input { display: none; }
+.custom-checkbox span { position: relative; padding-left: 30px; color: var(--light-slate); transition: color 0.2s ease;}
+.custom-checkbox span::before { content: ''; position: absolute; left: 0; top: 2px; width: 20px; height: 20px; background-color: var(--patriot-blue); border: 1px solid var(--light-slate); border-radius: 3
