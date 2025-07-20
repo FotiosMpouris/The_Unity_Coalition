@@ -17,7 +17,7 @@ body { font-family: 'Open Sans', Arial, sans-serif; line-height: 1.6; background
 a { color: var(--patriot-cyan); text-decoration: none; transition: color 0.3s ease; }
 a:hover { color: var(--patriot-red); }
 h1, h2, h3, h4, h5, h6 { font-family: 'Montserrat', sans-serif; font-weight: 700; line-height: 1.2; }
-section[id] { scroll-margin-top: calc(var(--total-sticky-height) + 20px); }
+section[id] { scroll-margin-top: calc(var(--total-sticky-height) + 40px); }
 
 /* =========================================================
    2. Banners, Header & Navigation
@@ -70,7 +70,6 @@ header { height: var(--header-height); background: var(--header-bg); backdrop-fi
 #home-page .hero-solid-text { font-weight: 900; font-size: clamp(2.5rem, 10vw, 7rem); color: var(--patriot-white); text-transform: uppercase; line-height: 1; margin-top: -1.5vw; margin-bottom: 20px; text-shadow: 0 0 10px rgba(0,0,0,0.5); border:none; }
 #home-page .hero-subheadline { font-size: clamp(1rem, 2.5vw, 1.5rem); color: var(--light-slate); margin-bottom: 40px; }
 #home-page .hero-buttons-group { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
-/* --- FIX: Restored original hero button styles --- */
 #home-page .hero-buttons-group a { padding: 15px 35px; font-size: 1.2rem; font-weight: bold; border: 2px solid; transition: all 0.3s ease; border-radius: 4px; }
 #home-page .hero-volunteer-btn { background: transparent; border-color: var(--patriot-cyan); color: var(--patriot-cyan); }
 #home-page .hero-volunteer-btn:hover { background: var(--patriot-cyan); color: var(--patriot-blue); box-shadow: 0 0 20px var(--patriot-cyan); }
@@ -139,8 +138,9 @@ footer { background-color: #0E203F; padding: 80px 20px 20px; border-top: 3px sol
 .form-section-wrapper { margin: 60px 0; }
 .form-banner { text-align: center; margin-bottom: 40px; }
 .form-banner h2 { font-weight: 900; font-size: clamp(2.5rem, 8vw, 4rem); text-transform: uppercase; line-height: 1; border: none; }
-.form-banner h2.red-glow { color: transparent; -webkit-text-stroke: 2px var(--patriot-red); text-shadow: 0 0 25px rgba(230, 57, 70, 0.6); }
-.form-banner h2.blue-glow { color: transparent; -webkit-text-stroke: 2px var(--patriot-vibrant-blue); text-shadow: 0 0 25px rgba(77, 150, 255, 0.6); }
+h2.red-glow { color: transparent; -webkit-text-stroke: 2px var(--patriot-red); text-shadow: 0 0 25px rgba(230, 57, 70, 0.6); }
+h2.blue-glow { color: transparent; -webkit-text-stroke: 2px var(--patriot-vibrant-blue); text-shadow: 0 0 25px rgba(77, 150, 255, 0.6); }
+h2.cyan-glow { color: transparent; -webkit-text-stroke: 2px var(--patriot-cyan); text-shadow: 0 0 25px rgba(100, 255, 218, 0.4); }
 .form-container, .contribute-content { max-width: 900px; margin: 0 auto; background: rgba(14, 32, 63, 0.5); padding: 40px; border-radius: 8px; border: 1px solid #17325e; }
 .form-row { display: flex; gap: 20px; margin-bottom: 20px; }
 .form-field { flex: 1; }
@@ -172,13 +172,11 @@ footer { background-color: #0E203F; padding: 80px 20px 20px; border-top: 3px sol
 /* =========================================================
    7. Specific Page Styles
    ========================================================= */
-/* --- Re-usable Dynamic Card Section (from Homepage) --- */
 .dynamic-card-section { display: flex; flex-direction: column; justify-content: center; align-items: center; max-width: 1100px; margin: 80px auto; border: 1px solid var(--light-slate); min-height: 450px; padding: 40px; position: relative; background-size: cover; background-position: center center; border-radius: 8px; overflow: hidden; }
 .dynamic-card-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(rgba(10, 25, 47, 0.85), rgba(10, 25, 47, 0.7)); z-index: 1; }
 .dynamic-card-section .card-text-content { position: relative; z-index: 2; text-align: center; max-width: 700px; }
-.dynamic-card-section .card-text-content h2 { text-align: center; font-size: 2.8rem; padding-bottom: 15px; margin-bottom: 25px; color: var(--white); }
+.dynamic-card-section .card-text-content h2 { text-align: center; font-size: clamp(2.2rem, 5vw, 2.8rem); padding-bottom: 15px; margin-bottom: 25px; color: var(--white); }
 .dynamic-card-section .card-text-content p { font-size: 1.2rem; line-height: 1.7; color: var(--light-slate); }
-/* --- Re-usable Alternating Grid Section (for About, Mission etc.) --- */
 .about-section { margin: 80px auto; }
 .about-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 50px; align-items: center; }
 .about-image-content img { width: 100%; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
@@ -190,18 +188,35 @@ footer { background-color: #0E203F; padding: 80px 20px 20px; border-top: 3px sol
 .about-section:nth-child(even) .about-grid { grid-auto-flow: dense; }
 .about-section:nth-child(even) .about-image-content { grid-column: 2; }
 .about-section:nth-child(even) .about-text-content { grid-column: 1; }
-/* --- Page Specifics: Mission & Projects --- */
-.strategy-section, .collaborators-section { margin: 80px 0; }
-.hub-list { columns: 2; -webkit-columns: 2; -moz-columns: 2; gap: 20px; list-style-position: inside; }
-.hub-list li { margin-bottom: 10px; color: var(--light-slate); }
-.collaborator-card { text-align: center; }
-.collaborator-card img { height: 80px; margin-bottom: 20px; }
-.collaborator-card h3 { font-size: 1.3rem; }
-.collaborator-card p { font-size: 0.95rem; margin-bottom: 20px; }
-.card-link { display: inline-block; background-color: var(--patriot-cyan); color: var(--patriot-blue); padding: 8px 20px; border-radius: 4px; font-weight: bold; transition: all 0.3s ease; }
-.card-link:hover { background-color: var(--white); }
 .video-section { text-align: center; margin: 80px 0; }
 .video-section video { max-width: 100%; width: 100%; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); border: 1px solid #17325e; }
+.strategy-section { margin: 80px 0; }
+.hub-list { columns: 2; -webkit-columns: 2; -moz-columns: 2; gap: 20px; list-style-position: inside; }
+.hub-list li { margin-bottom: 10px; color: var(--light-slate); }
+
+/* =========================================================
+   8. Gallery & Resources Styles (NEW)
+   ========================================================= */
+.gallery-filters { text-align: center; margin: 0 auto 60px; display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
+.filter-btn { padding: 10px 25px; border: 2px solid var(--light-slate); color: var(--light-slate); border-radius: 20px; font-weight: bold; transition: all 0.3s ease; }
+.filter-btn:hover { background-color: var(--patriot-cyan); color: var(--patriot-blue); border-color: var(--patriot-cyan); }
+.gallery-category { margin-bottom: 80px; }
+.gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; border-radius: 8px; display: block; transition: transform 0.3s ease; }
+.gallery-item:hover img { transform: scale(1.05); }
+.gallery-item.placeholder { min-height: 250px; background-color: rgba(14, 32, 63, 0.5); border: 1px dashed var(--light-slate); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--light-slate); font-style: italic; }
+.resource-section { margin: 80px auto; }
+.responsive-table-container { background: rgba(14, 32, 63, 0.5); padding: 20px; border-radius: 8px; border: 1px solid #17325e; }
+.desktop-table { width: 100%; border-collapse: collapse; }
+.desktop-table th, .desktop-table td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #17325e; }
+.desktop-table th { font-family: 'Montserrat'; color: var(--patriot-cyan); text-transform: uppercase; font-size: 0.9rem; }
+.desktop-table tbody tr:nth-child(even) { background-color: rgba(10, 25, 47, 0.5); }
+.desktop-table tbody tr:hover { background-color: rgba(100, 255, 218, 0.05); }
+.mobile-cards { display: none; }
+.era-card { padding: 15px; border-radius: 4px; margin-bottom: 15px; background-color: rgba(10, 25, 47, 0.5); }
+.era-card:last-child { margin-bottom: 0; }
+.era-card h3 { color: var(--patriot-cyan); font-size: 1.2rem; }
+.era-card p { margin: 5px 0 0; color: var(--light-slate); }
 
 /* =========================================================
    9. Mobile-Specific Fixes
@@ -227,6 +242,8 @@ footer { background-color: #0E203F; padding: 80px 20px 20px; border-top: 3px sol
   .form-row, .register-form { flex-direction: column; }
   .form-container { padding: 25px; }
   .hub-list { columns: 1; -webkit-columns: 1; -moz-columns: 1; }
+  .desktop-table { display: none; }
+  .mobile-cards { display: block; }
 }
 @media (max-width: 900px) { 
   #home-page .dynamic-card-section { margin: 40px auto; min-height: 400px; }
