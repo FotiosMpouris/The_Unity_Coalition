@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function() {
       closeOverlayBtn.addEventListener("click", toggleOverlay);
       overlay.querySelectorAll("a").forEach(link => {
           link.addEventListener("click", () => {
-            if (overlay.classList.contains("show")) { toggleOverlay(); }
+            if (overlay.classList.contains("show")) toggleOverlay();
           });
       });
   }
@@ -32,7 +32,8 @@ document.addEventListener("DOMContentLoaded", function() {
     function createPopup() {
       let imagePopupOverlay = document.createElement("div");
       imagePopupOverlay.id = "imagePopupOverlay";
-      imagePopupOverlay.innerHTML = `<div class="image-popup-content"><button class="close-popup-btn" aria-label="Close popup">×</button><div class="popup-card"><div class="popup-image-container"></div><div class="popup-button-group"><a href="https://www.amazon.com" class="popup-shop-btn" target="_blank" rel="noopener noreferrer">Shop Now</a><a href="contact.html#contributeSection" class="popup-contribute-btn">Contribute</a></div></div></div>`;
+      imagePopupOverlay.innerHTML = `
+          <div class="image-popup-content"><button class="close-popup-btn" aria-label="Close popup">×</button><div class="popup-card"><div class="popup-image-container"></div><div class="popup-button-group"><a href="https://www.amazon.com" class="popup-shop-btn" target="_blank" rel="noopener noreferrer">Shop Now</a><a href="contact.html#contributeSection" class="popup-contribute-btn">Contribute</a></div></div></div>`;
       document.body.appendChild(imagePopupOverlay);
       const closeBtn = imagePopupOverlay.querySelector(".close-popup-btn");
       closeBtn.addEventListener("click", () => imagePopupOverlay.classList.remove('show'));
@@ -80,40 +81,53 @@ document.addEventListener("DOMContentLoaded", function() {
     const dataPayload = { formType };
     const formData = new FormData(form);
     try {
-      if (formType === 'join') { dataPayload.email = formData.get('email'); dataPayload.zipCode = formData.get('zip'); if (!dataPayload.email) throw new Error("Email is required."); } 
-      else if (formType === 'volunteer') { dataPayload.firstName = formData.get('firstName'); dataPayload.lastName = formData.get('lastName'); dataPayload.email = formData.get('email'); dataPayload.phone = formData.get('phone'); dataPayload.city = formData.get('city'); dataPayload.state = formData.get('state'); dataPayload.zipCode = formData.get('zip'); dataPayload.interests = formData.getAll('interest'); dataPayload.notRobotChecked = formData.get('not_robot') === 'on'; dataPayload.privacyPolicyAgreed = formData.get('privacy_policy') === 'on'; if (!dataPayload.firstName || !dataPayload.lastName || !dataPayload.email) throw new Error("First Name, Last Name, and Email are required."); if (!dataPayload.notRobotChecked) throw new Error("Please confirm you are not a robot."); if (!dataPayload.privacyPolicyAgreed) throw new Error("You must agree to the Privacy Policy."); }
-      else if (formType === 'subscribe') { dataPayload.name = formData.get('name'); dataPayload.email = formData.get('email'); dataPayload.privacyPolicyAgreed = formData.get('privacy_policy') === 'on'; if (!dataPayload.name || !dataPayload.email) throw new Error("Name and Email are required."); if (!dataPayload.privacyPolicyAgreed) throw new Error("You must agree to the Privacy Policy."); }
-    } catch (validationError) { alert(`Error: ${validationError.message}`); submitButton.disabled = false; submitButton.textContent = originalButtonText; return; }
+      if (formType === 'join') {
+        dataPayload.email = formData.get('email');
+        dataPayload.zipCode = formData.get('zip');
+        if (!dataPayload.email) throw new Error("Email is required.");
+      } else if (formType === 'volunteer') {
+        dataPayload.firstName = formData.get('firstName'); dataPayload.lastName = formData.get('lastName');
+        dataPayload.email = formData.get('email'); dataPayload.phone = formData.get('phone');
+        dataPayload.city = formData.get('city'); dataPayload.state = formData.get('state');
+        dataPayload.zipCode = formData.get('zip'); dataPayload.interests = formData.getAll('interest');
+        dataPayload.notRobotChecked = formData.get('not_robot') === 'on';
+        dataPayload.privacyPolicyAgreed = formData.get('privacy_policy') === 'on';
+        if (!dataPayload.firstName || !dataPayload.lastName || !dataPayload.email) throw new Error("First Name, Last Name, and Email are required.");
+        if (!dataPayload.notRobotChecked) throw new Error("Please confirm you are not a robot.");
+        if (!dataPayload.privacyPolicyAgreed) throw new Error("You must agree to the Privacy Policy.");
+      } else if (formType === 'subscribe') {
+        dataPayload.name = formData.get('name'); dataPayload.email = formData.get('email');
+        dataPayload.privacyPolicyAgreed = formData.get('privacy_policy') === 'on';
+        if (!dataPayload.name || !dataPayload.email) throw new Error("Name and Email are required.");
+        if (!dataPayload.privacyPolicyAgreed) throw new Error("You must agree to the Privacy Policy.");
+      }
+    } catch (validationError) {
+        alert(`Error: ${validationError.message}`);
+        submitButton.disabled = false; submitButton.textContent = originalButtonText; return;
+    }
     try {
         const response = await fetch(apiGatewayUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(dataPayload), });
         if (response.ok) { alert("Thank you! Your submission was successful."); form.reset(); } 
         else { const responseData = await response.json().catch(() => ({})); const errorMessage = responseData.message || `Server responded with status ${response.status}.`; alert(`Submission Failed: ${errorMessage}`); }
-    } catch (error) { console.error("Submission Error:", error); alert("An error occurred while sending your submission. Please check your connection."); } 
-    finally { submitButton.disabled = false; submitButton.textContent = originalButtonText; }
+    } catch (error) { console.error("Submission Error:", error); alert("An error occurred while sending your submission. Please check your connection.");
+    } finally { submitButton.disabled = false; submitButton.textContent = originalButtonText; }
   }
 
   /************************************************
-   * 4. Site-Wide Smooth Scroll for Anchor Links (FIXED)
+   * 4. Site-Wide Smooth Scroll for Anchor Links (MODIFIED)
    ***********************************************/
   function smoothScrollToAnchor(hash) {
       const targetElement = document.querySelector(hash);
       if (targetElement) {
-          // Get the actual rendered height of the sticky elements
-          const bannerHeight = document.querySelector('.top-banner')?.offsetHeight || 0;
           const headerHeight = document.querySelector('header')?.offsetHeight || 0;
           const navHeight = document.querySelector('.main-nav')?.offsetHeight || 0;
-          const totalOffset = bannerHeight + headerHeight + navHeight;
-          
-          // Calculate the element's position relative to the top of the page
-          const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
-          
-          // Set the final scroll position, subtracting the total height of all sticky bars and a small margin
-          const offsetPosition = elementPosition - totalOffset - 20; // 20px buffer
-
-          window.scrollTo({
-              top: offsetPosition,
-              behavior: "smooth"
-          });
+          const bannerHeight = document.querySelector('.top-banner')?.offsetHeight || 0;
+          // Calculate the total height of all sticky elements
+          const totalOffset = headerHeight + navHeight + bannerHeight;
+          const elementPosition = targetElement.getBoundingClientRect().top;
+          // Add a 20px buffer for extra spacing so the title isn't touching the nav bar
+          const offsetPosition = elementPosition + window.pageYOffset - totalOffset - 20;
+          window.scrollTo({ top: offsetPosition, behavior: "smooth" });
       }
   }
 
@@ -121,7 +135,6 @@ document.addEventListener("DOMContentLoaded", function() {
       link.addEventListener('click', function (e) {
           const href = this.getAttribute('href');
           const targetPath = href.split('#')[0];
-          // Handle case where current page is root (index.html)
           const currentPath = window.location.pathname.split('/').pop() || 'index.html';
           if ((targetPath === '' || targetPath === currentPath) && href.includes('#')) {
               e.preventDefault();
