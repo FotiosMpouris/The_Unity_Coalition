@@ -63,6 +63,7 @@ header { height: var(--header-height); background: var(--header-bg); backdrop-fi
 /* =========================================================
    5. Homepage-Specific Styles
    ========================================================= */
+/* ... (All homepage styles remain here, unchanged) ... */
 #home-page .hero-impact { min-height: calc(100vh - var(--total-sticky-height)); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 60px 20px; background-image: url('images/homebannerdark.png'); background-size: cover; background-position: center center; background-attachment: fixed; position: relative; }
 #home-page .hero-impact::before { content:''; position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(10, 25, 47, 0.8); }
 #home-page .hero-impact-content { position: relative; z-index: 2; text-align: center; }
@@ -123,21 +124,16 @@ footer { background-color: #0E203F; padding: 80px 20px 20px; border-top: 3px sol
 .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid var(--light-slate); color: var(--light-slate); font-size: 0.9rem; }
 
 /* =========================================================
-   6. Inner Page & Content Styles (NEW)
+   6. Inner Page & Content Styles
    ========================================================= */
-/* --- Page Hero Banner --- */
 .page-hero { min-height: 350px; position: relative; display: flex; align-items: center; justify-content: center; background-size: cover; background-position: center; }
 .page-hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, rgba(10, 25, 47, 0.85) 0%, rgba(10, 25, 47, 0.4) 100%); display: flex; align-items: center; justify-content: center; text-align: center; }
 .page-hero h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); color: var(--white); text-transform: uppercase; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
-
-/* --- General Content Wrappers --- */
-.content-wrapper { max-width: 1100px; margin: 0 auto; padding: 60px 20px; }
-.text-section { text-align: center; max-width: 800px; margin: 0 auto 80px; }
+.content-wrapper { max-width: 1100px; margin: 0 auto; padding: 0px 20px 60px; }
+.text-section { text-align: center; max-width: 800px; margin: 60px auto; }
 .text-section h2 { font-size: 2.5rem; margin-bottom: 20px; color: var(--patriot-white); }
 .text-section p { font-size: 1.1rem; color: var(--light-slate); line-height: 1.7; }
 .section-subheading { text-align: center; max-width: 800px; margin: -20px auto 40px; font-size: 1.1rem; color: var(--light-slate); }
-
-/* --- Reusable Content Grids & Cards --- */
 .content-grid { display: grid; gap: 30px; margin-top: 30px; }
 .content-grid.two-column { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
 .content-grid.three-column { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
@@ -149,14 +145,12 @@ footer { background-color: #0E203F; padding: 80px 20px 20px; border-top: 3px sol
 .content-card li { padding-left: 25px; position: relative; margin-bottom: 10px; }
 .content-card li::before { content: '✓'; position: absolute; left: 0; color: var(--patriot-cyan); }
 .highlight-card { border-left: 4px solid var(--patriot-cyan); background: rgba(100, 255, 218, 0.05); }
-
-/* --- Impactful Form Styles --- */
-.form-section-wrapper { margin: 80px 0; }
+.form-section-wrapper { margin: 60px 0; }
 .form-banner { text-align: center; margin-bottom: 40px; }
 .form-banner h2 { font-weight: 900; font-size: clamp(2.5rem, 8vw, 4rem); text-transform: uppercase; line-height: 1; border: none; }
 .form-banner h2.red-glow { color: transparent; -webkit-text-stroke: 2px var(--patriot-red); text-shadow: 0 0 25px rgba(230, 57, 70, 0.6); }
 .form-banner h2.blue-glow { color: transparent; -webkit-text-stroke: 2px var(--patriot-vibrant-blue); text-shadow: 0 0 25px rgba(77, 150, 255, 0.6); }
-.form-container, .contribute-content { max-width: 900px; margin: 0 auto; background: rgba(14, 32, 63, 0.5); padding: 40px; border-radius: 8px; border: 1px solid #17325e; }
+.form-container { max-width: 900px; margin: 0 auto; background: rgba(14, 32, 63, 0.5); padding: 40px; border-radius: 8px; border: 1px solid #17325e; }
 .form-row { display: flex; gap: 20px; margin-bottom: 20px; }
 .form-field { flex: 1; }
 .form-field input, .form-field textarea { width: 100%; padding: 15px; border: 1px solid var(--light-slate); border-radius: 4px; font-size: 1.1rem; background: var(--patriot-blue); color: var(--patriot-white); transition: all 0.3s ease; font-family: 'Open Sans', sans-serif; }
@@ -174,11 +168,33 @@ footer { background-color: #0E203F; padding: 80px 20px 20px; border-top: 3px sol
 .custom-checkbox input:checked + span::after { transform: translateY(-50%) scale(1); }
 .form-submit-btn { display: block; width: 100%; margin-top: 30px; background-color: var(--patriot-red); color: var(--white); border: 2px solid var(--patriot-red); border-radius: 4px; padding: 15px 40px; font-size: 1.2rem; text-transform: uppercase; font-weight: bold; cursor: pointer; transition: all 0.3s; }
 .form-submit-btn:hover { filter: brightness(1.2); transform: translateY(-2px); }
+.contact-page .donation-logos { display: flex; justify-content: center; align-items: center; gap: 30px; margin-top: 40px; flex-wrap: wrap; }
+.contact-page .donation-logos img { height: 60px; transition: all 0.3s ease; cursor: pointer; }
+.contact-page .donation-logos img:hover { transform: scale(1.05); filter: brightness(1.2); }
+.register-form { display: flex; gap: 20px; align-items: center; }
+.register-form .form-submit-btn { margin-top: 0; width: auto; }
+.select-wrapper { flex: 1; position: relative; }
+.select-wrapper::after { content: '▼'; font-size: 1.2rem; color: var(--patriot-cyan); position: absolute; right: 15px; top: 50%; transform: translateY(-50%); pointer-events: none; }
+.select-wrapper select { width: 100%; padding: 15px; border: 1px solid var(--light-slate); border-radius: 4px; font-size: 1.1rem; background: var(--patriot-blue); color: var(--patriot-white); transition: all 0.3s ease; font-family: 'Open Sans', sans-serif; -webkit-appearance: none; -moz-appearance: none; appearance: none; }
+.select-wrapper select:focus { border-color: var(--patriot-cyan); box-shadow: 0 0 15px rgba(100, 255, 218, 0.6), inset 0 0 5px rgba(100, 255, 218, 0.2); background-color: rgba(100, 255, 218, 0.05); outline: none; }
 
-/* --- Contact Page Specifics --- */
-.donation-logos { display: flex; justify-content: center; align-items: center; gap: 30px; margin-top: 40px; flex-wrap: wrap; }
-.donation-logos img { height: 60px; transition: all 0.3s ease; cursor: pointer; }
-.donation-logos img:hover { transform: scale(1.05); filter: brightness(1.2); }
+/* =========================================================
+   7. About Page Specific Styles (NEW)
+   ========================================================= */
+.about-section { margin: 80px 0; }
+.about-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 50px; align-items: center; }
+.about-image-content img { width: 100%; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+.about-text-content h2 { font-size: 2.5rem; color: var(--patriot-white); margin-bottom: 20px; }
+.about-text-content p { color: var(--light-slate); margin-bottom: 15px; line-height: 1.7; }
+.about-text-content ul { list-style: none; padding-left: 0; margin-top: 20px; }
+.about-text-content li { color: var(--light-slate); padding-left: 25px; position: relative; margin-bottom: 10px; }
+.about-text-content li::before { content: '✓'; position: absolute; left: 0; color: var(--patriot-cyan); }
+.about-section:nth-child(even) .about-grid { grid-auto-flow: dense; }
+.about-section:nth-child(even) .about-image-content { grid-column: 2; }
+.about-section:nth-child(even) .about-text-content { grid-column: 1; }
+.video-section { text-align: center; margin: 80px 0; }
+.video-section .section-title { font-size: 2.5rem; margin-bottom: 30px; }
+.video-section video { max-width: 100%; width: 100%; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); border: 1px solid #17325e; }
 
 /* =========================================================
    9. Mobile-Specific Fixes
@@ -188,6 +204,11 @@ footer { background-color: #0E203F; padding: 80px 20px 20px; border-top: 3px sol
   .hamburger { display: flex; flex-direction: column; justify-content: space-around; }
   :root { --total-sticky-height: calc(var(--banner-height) + var(--header-height)); }
   section[id] { scroll-margin-top: calc(var(--total-sticky-height) + 20px); }
+  /* About page mobile grid */
+  .about-grid { grid-template-columns: 1fr; gap: 30px; }
+  .about-section:nth-child(even) .about-image-content { grid-column: 1; }
+  .about-section:nth-child(even) .about-text-content { grid-column: 1; }
+  .about-image-content { order: -1; } /* Always put image on top on mobile */
 }
 @media (max-width: 768px) {
   .logo-text { font-size: 1rem; white-space: nowrap; }
@@ -197,9 +218,8 @@ footer { background-color: #0E203F; padding: 80px 20px 20px; border-top: 3px sol
   #home-page .join-movement-section, #home-page .donate-cta-section, footer { clip-path: none; margin-top: 0; }
   #home-page .join-movement-banner { padding: 60px 20px 30px; }
   #home-page .join-movement-banner h2 { font-size: 3rem; }
-  /* Inner page mobile fixes */
-  .form-row { flex-direction: column; }
-  .form-container, .contribute-content { padding: 25px; }
+  .form-row, .register-form { flex-direction: column; }
+  .form-container { padding: 25px; }
 }
 @media (max-width: 900px) { 
   #home-page .dynamic-card-section { margin: 40px auto; min-height: 400px; }
