@@ -45,7 +45,7 @@
       <p>Your involvement is a direct investment in America's civic revival. If you're interested in learning more, sharing resources, or joining our efforts, please reach out. Our primary point of contact is through email, allowing us to efficiently direct your inquiry to the right team member.</p>
     </section>
 
-    <!-- CONTRIBUTE SECTION (REDESIGNED FOR IMPACT) -->
+    <!-- CONTRIBUTE SECTION (NOW WITH PLEDGE FORM) -->
     <section id="contributeSection" class="form-section-wrapper">
       <div class="form-banner"><h2 class="red-glow">Contribute to the Mission</h2></div>
       <div class="contribute-content">
@@ -60,7 +60,6 @@
                 <li><strong>Connection Events:</strong> Support summits that bring together diverse stakeholders.</li>
             </ul>
           </div>
-          <!-- FIX: Removed 'highlight-card' class for consistency -->
           <div class="content-card">
             <h3>Join Our Monthly Giving Program</h3>
             <p>Regular contributions provide sustainable funding for long-term impact. Monthly supporters receive special briefings, early access to events, and direct communication with our team.</p>
@@ -68,13 +67,40 @@
           </div>
         </div>
 
-        <div class="donation-logos">
-           
+        <!-- ================= NEW PLEDGE FORM INSERTED HERE ================= -->
+        <div class="donation-form-container">
+            <h3 class="donation-form-title">Make a Pledge</h3>
+            <form id="donateFormContact">
+                <input type="hidden" name="formType" value="donate_pledge">
+                <div class="form-field">
+                    <span>Select an Amount (USD)</span>
+                    <div class="donation-amounts">
+                        <button type="button" class="amount-btn" data-amount="25">$25</button>
+                        <button type="button" class="amount-btn active" data-amount="50">$50</button>
+                        <button type="button" class="amount-btn" data-amount="100">$100</button>
+                    </div>
+                </div>
+                <div class="form-field">
+                    <span>Or Enter Custom Amount</span>
+                    <input type="number" name="customAmount" id="customAmount" placeholder="e.g., 75" />
+                </div>
+                <input type="hidden" name="donationAmount" id="donationAmountInput" value="50" required>
+                <div class="form-row">
+                    <div class="form-field"><input type="text" name="name" placeholder="Full Name" required /></div>
+                    <div class="form-field"><input type="email" name="email" placeholder="Email Address" required /></div>
+                </div>
+                <div class="form-agreements">
+                    <label class="custom-checkbox"><input type="checkbox" name="is_recurring" /><span>Make this a monthly pledge</span></label>
+                </div>
+                <button type="submit" class="form-submit-btn">Pledge My Support</button>
+            </form>
         </div>
+        <!-- ================= OLD DONATION LOGOS REMOVED ================= -->
+
       </div>
     </section>
 
-    <!-- SUBSCRIBE FORM SECTION (REDESIGNED) -->
+    <!-- SUBSCRIBE FORM SECTION -->
     <section class="form-section-wrapper">
       <div class="form-banner"><h2 class="blue-glow">Stay Informed</h2></div>
       <div class="form-container">
@@ -92,7 +118,7 @@
     </section>
   </main>
   
-  <!-- ================== NEW STANDARD FOOTER ================== -->
+  <!-- ================== STANDARD FOOTER ================== -->
   <footer>
     <div class="footer-grid">
       <div class="footer-column-logo"><h4 class="footer-tagline-heading">It Matters That We're United.</h4></div>
