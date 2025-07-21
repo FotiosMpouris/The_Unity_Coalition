@@ -196,6 +196,45 @@ h2.cyan-glow { color: transparent; -webkit-text-stroke: 2px var(--patriot-cyan);
 .hub-list { columns: 2; -webkit-columns: 2; -moz-columns: 2; gap: 20px; list-style-position: inside; }
 .hub-list li { margin-bottom: 10px; color: var(--light-slate); }
 
+/* --- Donation Pledge Form Styles (NEW) --- */
+.donation-form-container {
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 1px solid #17325e;
+}
+.donation-form-title {
+    text-align: center;
+    font-size: 2rem;
+    color: var(--patriot-white);
+    margin-bottom: 30px;
+}
+.donation-amounts {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 15px;
+}
+.amount-btn {
+    background: rgba(10, 25, 47, 0.7);
+    border: 1px solid var(--light-slate);
+    color: var(--patriot-white);
+    padding: 15px 5px;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: 'Open Sans', sans-serif;
+}
+.amount-btn:hover {
+    border-color: var(--patriot-cyan);
+}
+.amount-btn.active {
+    background-color: var(--patriot-cyan);
+    color: var(--patriot-blue);
+    border-color: var(--patriot-cyan);
+}
+
 /* =========================================================
    8. Gallery & Resources Styles
    ========================================================= */
