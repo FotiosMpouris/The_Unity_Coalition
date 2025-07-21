@@ -73,13 +73,14 @@ document.addEventListener("DOMContentLoaded", function() {
   const apiGatewayUrl = "https://po1s6ptb9g.execute-api.us-east-2.amazonaws.com/dev/submit";
   
   const joinFormHome = document.querySelector("#home-page .join-movement-section form");
-  if (joinFormHome) joinFormHome.addEventListener("submit", (event) => handleFormSubmit(event, 'join'));
-
   const volunteerForm = document.getElementById("volunteerForm");
-  if (volunteerForm) volunteerForm.addEventListener("submit", (event) => handleFormSubmit(event, 'volunteer'));
-
   const subscribeForm = document.getElementById("subscribeForm");
+  const donateFormContact = document.getElementById("donateFormContact"); // ADDED
+
+  if (joinFormHome) joinFormHome.addEventListener("submit", (event) => handleFormSubmit(event, 'join'));
+  if (volunteerForm) volunteerForm.addEventListener("submit", (event) => handleFormSubmit(event, 'volunteer'));
   if (subscribeForm) subscribeForm.addEventListener("submit", (event) => handleFormSubmit(event, 'subscribe'));
+  if (donateFormContact) donateFormContact.addEventListener("submit", (event) => handleFormSubmit(event, 'donate_pledge')); // ADDED
 
   async function handleFormSubmit(event, formType) {
     event.preventDefault();
@@ -121,6 +122,15 @@ document.addEventListener("DOMContentLoaded", function() {
         if (!dataPayload.name || !dataPayload.email) throw new Error("Name and Email are required.");
         if (!dataPayload.privacyPolicyAgreed) throw new Error("You must agree to the Privacy Policy.");
       }
+      // ADDED: Logic for the new donation pledge form
+      else if (formType === 'donate_pledge') {
+        dataPayload.donationAmount = formData.get('donationAmount');
+        dataPayload.name = formData.get('name');
+        dataPayload.email = formData.get('email');
+        dataPayload.isRecurring = formData.get('is_recurring') === 'on';
+        if (!dataPayload.donationAmount || !dataPayload.name || !dataPayload.email) throw new Error("Amount, Name, and Email are required.");
+      }
+
     } catch (validationError) {
         alert(`Error: ${validationError.message}`);
         submitButton.disabled = false;
@@ -135,6 +145,13 @@ document.addEventListener("DOMContentLoaded", function() {
         if (response.ok) {
             alert("Thank you! Your submission was successful.");
             form.reset();
+            // ADDED: Specifically for the donation form, reset the active button state after submit
+            if (formType === 'donate_pledge') {
+              const amountButtons = form.querySelectorAll('.amount-btn');
+              amountButtons.forEach(btn => btn.classList.remove('active'));
+              const defaultButton = form.querySelector('.amount-btn[data-amount="50"]');
+              if(defaultButton) defaultButton.classList.add('active');
+            }
         } else {
             const responseData = await response.json().catch(() => ({}));
             const errorMessage = responseData.message || `Server responded with status ${response.status}.`;
@@ -150,7 +167,7 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   /******************************************************************
-   * 4. Site-Wide Smooth Scroll for Anchor Links (REVISED & SIMPLIFIED)
+   * 4. Site-Wide Smooth Scroll for Anchor Links
    ******************************************************************/
   function smoothScrollToAnchor(hash) {
       const targetElement = document.querySelector(hash);
@@ -159,7 +176,6 @@ document.addEventListener("DOMContentLoaded", function() {
       }
   }
 
-  // Listener for on-page anchor clicks
   document.querySelectorAll('a[href*="#"]').forEach(link => {
       link.addEventListener('click', function (e) {
           const href = this.getAttribute('href');
@@ -171,22 +187,49 @@ document.addEventListener("DOMContentLoaded", function() {
           if ((targetPath === '' || targetPath === currentPath) && href.includes('#')) {
               e.preventDefault();
               const targetHash = `#${href.split('#')[1]}`;
-              history.pushState(null, null, targetHash); // Optionally update URL
+              history.pushState(null, null, targetHash);
               smoothScrollToAnchor(targetHash);
           }
       });
   });
 
-  // Also check for a hash in the URL when the page loads
   if (window.location.hash) {
     setTimeout(() => {
         smoothScrollToAnchor(window.location.hash);
     }, 100);
   }
   
-  // Specific handler for Bitcoin logos on different pages
+  /******************************************************************
+   * 5. Donation Form Amount Picker Logic
+   ******************************************************************/
+  const donationFormOnContactPage = document.getElementById('donateFormContact');
+  if (donationFormOnContactPage) {
+    const amountButtons = donationFormOnContactPage.querySelectorAll('.amount-btn');
+    const customAmountInput = donationFormOnContactPage.querySelector('#customAmount');
+    const hiddenAmountInput = donationFormOnContactPage.querySelector('#donationAmountInput');
+
+    amountButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            amountButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            hiddenAmountInput.value = button.dataset.amount;
+            customAmountInput.value = '';
+        });
+    });
+
+    customAmountInput.addEventListener('input', () => {
+        if(customAmountInput.value) {
+            amountButtons.forEach(btn => btn.classList.remove('active'));
+            hiddenAmountInput.value = customAmountInput.value;
+        }
+    });
+  }
+
+  /******************************************************************
+   * 6. Miscellaneous Event Handlers
+   ******************************************************************/
   const bitcoinDonateButton = document.getElementById("bitcoinDonate");
   if(bitcoinDonateButton) bitcoinDonateButton.addEventListener("click", () => alert("Bitcoin donation option coming soon!"));
 
-  console.log("ARL Script Initialized (V8)");
+  console.log("ARL Script Initialized (V9)");
 });
