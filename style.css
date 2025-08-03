@@ -26,8 +26,12 @@ section[id] { scroll-margin-top: calc(var(--total-sticky-height) + 40px); }
 .top-banner { height: var(--banner-height); background-color: var(--patriot-red); color: var(--white); overflow: hidden; position: relative; }
 .ticker-wrap { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 .ticker-content { display: inline-block; white-space: nowrap; animation: ticker-scroll 30s linear infinite; height: 100%; }
-.ticker-content a { display: inline-flex; align-items: center; height: 100%; padding: 0 25px; color: var(--white); font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+.ticker-content a { display: inline-flex; align-items: center; height: 100%; padding: 0 10px; color: var(--white); font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: color 0.3s ease; }
+/* --- FIX: Ticker Clickability --- */
+.ticker-content a:hover { color: var(--patriot-cyan); }
 .ticker-content a:hover span { text-decoration: underline; }
+.ticker-content a::after { content: '◆'; font-size: 0.7rem; margin: 0 15px; opacity: 0.6; }
+.ticker-content a:last-child::after { content: ''; }
 @keyframes ticker-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 header { height: var(--header-height); background: var(--header-bg); backdrop-filter: var(--header-blur); -webkit-backdrop-filter: var(--header-blur); border-bottom: 1px solid #132d57; display: flex; align-items: center; }
 .header-content { width: 100%; max-width: 1300px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
@@ -134,7 +138,6 @@ footer { background-color: #0E203F; padding: 80px 20px 20px; border-top: 3px sol
 .content-card ul, .content-card ol { list-style: none; padding-left: 0; }
 .content-card li { padding-left: 25px; position: relative; margin-bottom: 10px; }
 .content-card li::before { content: '✓'; position: absolute; left: 0; color: var(--patriot-cyan); }
-/* No longer need this as we removed it from the HTML for consistency .highlight-card { border-left: 4px solid var(--patriot-cyan); background: rgba(100, 255, 218, 0.05); } */
 .form-section-wrapper { margin: 60px 0; }
 .form-banner { text-align: center; margin-bottom: 40px; }
 .form-banner h2 { font-weight: 900; font-size: clamp(2.5rem, 8vw, 4rem); text-transform: uppercase; line-height: 1; border: none; }
@@ -159,15 +162,19 @@ h2.cyan-glow { color: transparent; -webkit-text-stroke: 2px var(--patriot-cyan);
 .custom-checkbox input:checked + span::after { transform: translateY(-50%) scale(1); }
 .form-submit-btn { display: block; width: 100%; margin-top: 30px; background-color: var(--patriot-red); color: var(--white); border: 2px solid var(--patriot-red); border-radius: 4px; padding: 15px 40px; font-size: 1.2rem; text-transform: uppercase; font-weight: bold; cursor: pointer; transition: all 0.3s; }
 .form-submit-btn:hover { filter: brightness(1.2); transform: translateY(-2px); }
-.contact-page .donation-logos { display: flex; justify-content: center; align-items: center; gap: 30px; margin-top: 40px; flex-wrap: wrap; }
-.contact-page .donation-logos img { height: 60px; transition: all 0.3s ease; cursor: pointer; }
-.contact-page .donation-logos img:hover { transform: scale(1.05); filter: brightness(1.2); }
 .register-form { display: flex; gap: 20px; align-items: center; }
 .register-form .form-submit-btn { margin-top: 0; width: auto; }
 .select-wrapper { flex: 1; position: relative; }
 .select-wrapper::after { content: '▼'; font-size: 1.2rem; color: var(--patriot-cyan); position: absolute; right: 15px; top: 50%; transform: translateY(-50%); pointer-events: none; }
 .select-wrapper select { width: 100%; padding: 15px; border: 1px solid var(--light-slate); border-radius: 4px; font-size: 1.1rem; background: var(--patriot-blue); color: var(--patriot-white); transition: all 0.3s ease; font-family: 'Open Sans', sans-serif; -webkit-appearance: none; -moz-appearance: none; appearance: none; }
 .select-wrapper select:focus { border-color: var(--patriot-cyan); box-shadow: 0 0 15px rgba(100, 255, 218, 0.6), inset 0 0 5px rgba(100, 255, 218, 0.2); background-color: rgba(100, 255, 218, 0.05); outline: none; }
+.select-wrapper select option { color: var(--patriot-blue); background-color: var(--white); }
+.donation-form-container { margin-top: 50px; padding-top: 30px; border-top: 1px solid #17325e; }
+.donation-form-title { text-align: center; font-size: 2rem; color: var(--patriot-white); margin-bottom: 30px; }
+.donation-amounts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 15px; }
+.amount-btn { background: rgba(10, 25, 47, 0.7); border: 1px solid var(--light-slate); color: var(--patriot-white); padding: 15px 5px; border-radius: 6px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: all 0.2s ease; font-family: 'Open Sans', sans-serif; }
+.amount-btn:hover { border-color: var(--patriot-cyan); }
+.amount-btn.active { background-color: var(--patriot-cyan); color: var(--patriot-blue); border-color: var(--patriot-cyan); }
 
 /* =========================================================
    7. Specific Page Styles
@@ -196,45 +203,6 @@ h2.cyan-glow { color: transparent; -webkit-text-stroke: 2px var(--patriot-cyan);
 .hub-list { columns: 2; -webkit-columns: 2; -moz-columns: 2; gap: 20px; list-style-position: inside; }
 .hub-list li { margin-bottom: 10px; color: var(--light-slate); }
 
-/* --- Donation Pledge Form Styles (NEW) --- */
-.donation-form-container {
-    margin-top: 50px;
-    padding-top: 30px;
-    border-top: 1px solid #17325e;
-}
-.donation-form-title {
-    text-align: center;
-    font-size: 2rem;
-    color: var(--patriot-white);
-    margin-bottom: 30px;
-}
-.donation-amounts {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-    margin-bottom: 15px;
-}
-.amount-btn {
-    background: rgba(10, 25, 47, 0.7);
-    border: 1px solid var(--light-slate);
-    color: var(--patriot-white);
-    padding: 15px 5px;
-    border-radius: 6px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    font-family: 'Open Sans', sans-serif;
-}
-.amount-btn:hover {
-    border-color: var(--patriot-cyan);
-}
-.amount-btn.active {
-    background-color: var(--patriot-cyan);
-    color: var(--patriot-blue);
-    border-color: var(--patriot-cyan);
-}
-
 /* =========================================================
    8. Gallery & Resources Styles
    ========================================================= */
@@ -259,7 +227,6 @@ h2.cyan-glow { color: transparent; -webkit-text-stroke: 2px var(--patriot-cyan);
 .era-card:last-child { margin-bottom: 0; }
 .era-card h3 { color: var(--patriot-cyan); font-size: 1.2rem; }
 .era-card p { margin: 5px 0 0; color: var(--light-slate); }
-/* FIX: Collaborator card image scaling */
 .collaborator-card { display: flex; flex-direction: column; text-align: center; }
 .collaborator-card .collaborator-logo-container { height: 120px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
 .collaborator-card img { max-width: 100%; max-height: 100%; object-fit: contain; }
@@ -291,11 +258,11 @@ h2.cyan-glow { color: transparent; -webkit-text-stroke: 2px var(--patriot-cyan);
   #home-page .join-movement-banner h2 { font-size: 3rem; }
   .form-row, .register-form { flex-direction: column; }
   .form-container { padding: 25px; }
-  /* FIX: Center the two-column grid items on mobile */
   .content-grid.two-column { grid-template-columns: 1fr; }
   .hub-list { columns: 1; -webkit-columns: 1; -moz-columns: 1; }
   .desktop-table { display: none; }
   .mobile-cards { display: block; }
+  .ticker-content { animation-duration: 18s; }
 }
 @media (max-width: 900px) { 
   #home-page .dynamic-card-section { margin: 40px auto; min-height: 400px; }
